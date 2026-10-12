@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+
+# Editor / project settings
+.vscode/
+.idea/
+
+# Sample database (about 290 MB, downloaded separately, see README)
+SQL_Lite_Source/*.db

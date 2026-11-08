@@ -1,0 +1,161 @@
+{
+  "name": "bmad-method",
+  "mechanism": "Ask",
+  "repo": "modbender/skill-library-mcp",
+  "path": "data/lb-bmad-skill/SKILL.md",
+  "author": {
+    "owner": "modbender",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0091c64593355e188d6b2705616aa2276f33cd9e.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "bmad-method (Ask) specifies 4 of 5 categories: 4 autonomy limits, 3 clarification rules, 1 approval gate, 4 validation rules; none for escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "bmad-method drives the BMad agile AI development framework through Claude Code, from analysis and planning to stories and implementation. The agent supervises Claude Code's prompts itself, answering routine ones but keeping commits with the orchestrator unless the user grants full git autonomy, and asks the user when it cannot answer. Destructive deletions need human validation. It verifies each step and its outputs, and sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. The agent answers Claude Code's shell-command prompts with yes on its own, but declines its commit prompts by default and accepts them only if the user explicitly asked for full git autonomy. It never uses the quick development path for security-sensitive changes.",
+    "statements": [
+      {
+        "quote": "**Shell command (Y/n):** → submit \"y\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never use quick-dev for security-sensitive changes**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Default Git answer: \"n\" (let OpenClaw handle commits)**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Reply \"y\"** ONLY if user explicitly requested full Git autonomy",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 3 tied to a situation, all bullet points. When Claude Code asks something the agent cannot answer, it pauses and asks the user, and if the generated architecture does not match the user's request it regenerates or clarifies with the user.",
+    "statements": [
+      {
+        "quote": "**Other:** → evaluate if you know the answer, otherwise ask user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If you need to ask the user** → pause and get clarification first",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If misaligned → regenerate or clarify with user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent never runs `rm -rf` through Claude Code without the human's explicit validation.",
+    "statements": [
+      {
+        "quote": "**Never run `rm -rf` via Claude Code without explicit human validation**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly running text. The agent counts a task complete only on an explicit success message or a returned prompt, verifies each step before the next, checks that output files exist after each workflow, and checks the architecture against the user's original request.",
+    "statements": [
+      {
+        "quote": "**⚠️ Only consider task complete when you see explicit success message or prompt is back.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Rule:** Verify each step before proceeding to the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**⚠️ Always verify files exist** by running `ls _bmad-output/` or `ls -R _bmad-output/` after each workflow.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify it aligns with user's original request",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

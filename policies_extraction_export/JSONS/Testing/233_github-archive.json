@@ -1,0 +1,168 @@
+{
+  "name": "github-archive",
+  "mechanism": "Escalate",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/github-archive/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": "mbrg"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/019566eb4f8a6612a423b4800dd577b193d064c3.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "github-archive (Escalate) specifies 3 of 5 categories: 2 autonomy limits, 2 approval gates, 9 validation rules; none for clarification rules, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "github-archive investigates GitHub security incidents with tamper-proof GitHub Archive data in BigQuery: verifying activity claims, recovering deleted content and building forensic timelines. Its rules center on query cost: estimate first, check a cost checklist, and ask the user before expensive queries. Evidence is cross-verified. It sets no clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. The agent runs cheap, well-scoped queries without asking, and never selects all columns in production queries.",
+    "statements": [
+      {
+        "quote": "**DON'T ASK if**:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never use `SELECT *` in production queries.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a bullet point. Before running a costly query (over $1, wide date ranges, no filters, all columns or cross-repository) the agent asks the user to confirm.",
+    "statements": [
+      {
+        "quote": "**ASK USER BEFORE RUNNING** if any of these conditions apply:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Estimated cost > $1.00** - Always confirm with user for queries over $1",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "9 validation rules (9 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 1 tied to a situation, mostly bullet points. The agent always estimates query cost first, cross-verifies single-source evidence, tests queries on a single day before widening, and checks a production checklist: specific columns, narrow dates, repository filter, a dry run under $1 and a byte limit.",
+    "statements": [
+      {
+        "quote": "Single-source evidence - always cross-verify",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "ALWAYS Estimate Costs Before Querying",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Verify query returns expected results",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Expand to date range only after validation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Used specific column names (no `SELECT *`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Included narrowest possible date range",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Added `repo.name` filter if investigating specific repository",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ran dry run and verified cost < $1.00 (or got user approval)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Set `maximum_bytes_billed` in query config",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

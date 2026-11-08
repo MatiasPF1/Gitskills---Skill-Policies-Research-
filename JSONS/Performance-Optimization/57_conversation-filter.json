@@ -1,0 +1,71 @@
+{
+  "name": "conversation-filter",
+  "mechanism": "Ask",
+  "repo": "qmfpdls4908/Vigos-s-Paradox",
+  "path": ".opencode/skills/conversation-filter/SKILL.md",
+  "author": {
+    "owner": "qmfpdls4908",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/000df8b3b3b716a8f2ba9647ed6815495866aede.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "conversation-filter (Ask) specifies 2 of 5 categories: 1 autonomy limit, 1 clarification rule; none for approval gates, validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "conversation-filter classifies conversation content in real time into what to log in a daily memory file, what to note briefly and what to discard. It has almost no human-control rules: at medium confidence it asks a clarifying question silently and otherwise makes its best guess. It sets no approval gates, no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When the agent is only moderately sure how to classify a message, it makes its best guess.",
+    "statements": [
+      {
+        "quote": "Make best guess",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. At medium confidence about how to classify a message, the agent asks a clarifying question \"silently\".",
+    "statements": [
+      {
+        "quote": "Ask clarifying question silently",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

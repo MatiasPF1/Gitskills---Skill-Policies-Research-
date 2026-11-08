@@ -1,0 +1,226 @@
+{
+  "name": "self-improve",
+  "mechanism": "Act",
+  "repo": "HyperionBurn/searchv1beta",
+  "path": ".github/skills/self-improve/SKILL.md",
+  "author": {
+    "owner": "HyperionBurn",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01889daaa853a73ce22c555e8ebda82724c720ec.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Distributed Systems",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "self-improve (Act) specifies 5 of 5 categories: 5 autonomy limits, 6 clarification rules, 7 approval gates, 6 validation rules, 2 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "self-improve runs an autonomous evolutionary loop that improves a codebase toward a measurable benchmark goal, picking the best of several parallel attempts in each round. All user interaction happens at setup: the agent asks for the repository, goal and harness rules and must get the user's consent before running benchmarks; after that it runs without stopping or asking. It reviews every plan and checks each winner for regressions with re-benchmarks. When a merge regresses or conflicts, it reverts or aborts and tries the next candidate.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly running text. Once the improvement loop starts, the agent never stops or pauses to ask the user, does not ask for confirmation between iterations, and runs continuously; if a previous run crashed, it resumes automatically.",
+    "statements": [
+      {
+        "quote": "**NEVER stop or pause to ask the user during the improvement loop.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask for confirmation between iterations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Once the improvement loop begins (after gate passes), run fully autonomously — no hooks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Execute continuously without stopping.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`running`: crashed — resume automatically",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 3 tied to a situation, spread evenly over bullet points, table rows and running text. During setup the agent asks the user every decision through `vscode_askQuestions` (or a numbered list if that tool is missing): the target repository path and, if no goal is set, a short interview on the objective, metric, target and scope.",
+    "statements": [
+      {
+        "quote": "**MANDATORY**: Use `vscode_askQuestions` for all user decisions during setup (when available).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `vscode_askQuestions` is NOT available (e.g., Copilot CLI), present numbered options in markdown and ask the user to respond with a number or freeform text.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Step 1: Repo path | Confirm or select target repo",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Step 5: Goal interview | Socratic goal-setting questions (Objective, Metric, Target, Scope)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**HOOK**: Ask user for target repo path via `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If goal not set → **HOOK: Socratic goal interview** via sequential `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, mostly bullet points. Before running any benchmark the agent asks for the user's consent, aborts at once if the user declines, and has the user confirm the harness rules (the rules plans must follow). The loop starts only when all settings and the user's trust confirmation are in place, and after a user stop it asks before resuming.",
+    "statements": [
+      {
+        "quote": "Step 4: Trust confirmation | Confirm benchmark execution consent",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Step 7: Harness rules | Confirm/customize harness rules",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**HOOK: Trust confirmation** (mandatory) via `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If declined: abort immediately.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If harness not set → **HOOK: Confirm harness rules** via `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Gate**: All settings + trust must be true.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`user_stopped`: ask to resume",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly bullet points. The agent validates a new benchmark three times and records a baseline. Each plan goes through an architecture review and a critic review, executors run validation and benchmarks, and a winning change must pass a no-regression check and be re-benchmarked after merging.",
+    "statements": [
+      {
+        "quote": "If benchmark not set → Survey repo, create/wrap benchmark, validate 3x, record baseline.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**6a. Architecture Review**: @architect with 6-point checklist (testability, novelty, scope, target files, implementation clarity, expected outcome). Advisory only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**6b. Critic Review**: @critic with harness rules (H001: one hypothesis, H002: no approach_family streak ≥3, H003: intra-round diversity). Sets `critic_approved: true/false`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Each executor works in a git worktree, implements the plan, runs validation, and benchmarks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "No-regression check vs `best_score`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-benchmark on merged state",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (0 mandatory, 2 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both counted as suggestions (worded with \"try\"), both tied to a situation, both bullet points. If a merged change causes a regression the agent reverts the merge, and if a merge conflicts it aborts the merge; in both cases it then tries the next candidate.",
+    "statements": [
+      {
+        "quote": "If regression: revert merge, try next",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If conflict: abort merge, try next",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

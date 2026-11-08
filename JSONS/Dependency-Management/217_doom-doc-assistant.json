@@ -1,0 +1,168 @@
+{
+  "name": "doom-doc-assistant",
+  "mechanism": "Escalate",
+  "repo": "alauda/agent-skills",
+  "path": "skills/doom-doc-assistant/SKILL.md",
+  "author": {
+    "owner": "alauda",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01413594ec809dc109065e79a56d2db31e7fefcc.md",
+  "topics": [
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "approval_gates",
+        "validation",
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "doom-doc-assistant (Escalate) specifies 5 of 5 categories: 3 autonomy limits, 3 clarification rules, 6 approval gates, 4 validation rules, 1 escalation rule. Strongest: approval gates.",
+  "conclusion_qualitative": "doom-doc-assistant turns requirements into diagnosis, plans, drafts and AI-usability reviews for Doom documentation repositories. It never modifies files without approval, asks before each phase, and never runs dev, build or translate commands on its own. Drafts are checked against the plan and repository conventions. Requests for non-English product docs are refused with an explanation.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all bullet points. The agent never runs the dev server, build or translate commands on its own, and in review-only mode it makes no plans, edits or installs.",
+    "statements": [
+      {
+        "quote": "Do not automatically run `yarn dev`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not automatically or by default run `yarn build` or `yarn translate`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not output an execution plan, modify files, run `yarn up @alauda/doom`, run `yarn install`, or hand off `yarn dev`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (2 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (it contains \"should\"), 2 tied to a situation, all bullet points. The agent asks which language to use for its own output when unclear, asks for a repository path only without clear context, and after a review asks whether the user wants a fix plan.",
+    "statements": [
+      {
+        "quote": "If the preference is not explicit, ask the user whether assistant-facing output should be in English or Chinese.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask for a path only when there is no clear repository context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask whether the user wants a fix plan for the findings.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (5 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 counted as a suggestion (it contains \"Should\", in a quoted question), 2 tied to a situation, all bullet points. The agent never modifies files without the user's approval: it produces the diagnosis or plan first, asks whether to proceed, and stops until the user confirms at each phase.",
+    "statements": [
+      {
+        "quote": "Never modify files directly without the user's approval. Always produce the diagnosis or plan first, then wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop unless the user asks for edits.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask for confirmation before moving on.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask: `Should I proceed with generating or modifying the documentation based on this plan?`",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop until the user confirms.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all bullet points. The agent verifies directory integrity, then checks plan consistency, metadata against the approved contract, and that components are backed by real repository examples.",
+    "statements": [
+      {
+        "quote": "Verify directory integrity, especially the `index.mdx` rule for any directory you will create or touch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify plan consistency before any style or content checks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm that metadata matches the approved contract, including explicit repository overrides and built-in minimum product documentation fields.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm that any MDX component usage is backed by real repository examples.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the user asks for Chinese product documentation, the agent stops and explains that the skill only drafts English documentation.",
+    "statements": [
+      {
+        "quote": "If the user requests Chinese product documentation content or asks to write under `docs/zh`, stop and explain that this skill only drafts English product documentation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

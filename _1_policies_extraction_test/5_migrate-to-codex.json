@@ -1,0 +1,113 @@
+{
+  "name": "migrate-to-codex",
+  "mechanism": "Act",
+  "repo": "salexandr0s/ai-config",
+  "path": "codex/skills/migrate-to-codex/SKILL.md",
+  "author": {
+    "owner": "salexandr0s",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/0047e440f317750335fd1fdf3d8d9e2fda312d2a.md",
+  "conclusion": "migrate-to-codex (Act) specifies 2 of 5 categories: 6 autonomy limits, 7 validation rules; none for clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "6 autonomy limits (6 mandatory, 0 advisory; 4 conditional), mostly prose: continuing without asking for confirmation; editing generated Codex artifacts without asking; editing source Claude Code files or secrets.",
+    "statements": [
+      {
+        "quote": "Keep going until the selected migration is completely done: run the migrator, inspect the report, fix migrated Codex instructions/skills/agents/MCP config, and re-run checks without stopping to ask fo",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user has selected a target, do not ask before creating, editing, replacing, or deleting generated Codex artifacts in that target (`AGENTS.md`, `.codex/`, `.agents/`, or `~/.codex/`).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Preserve unrelated existing Codex config entries in `.codex/config.toml` or `~/.codex/config.toml`, such as `notify`, `projects`, `marketplaces`, or unrelated MCP servers; do not ask about them unless",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not edit source Claude Code files (`.claude/`, `~/.claude/`, `.mcp.json`, or `.claude.json`), unrelated project code, secrets, or another repository.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not edit source Claude Code files, unrelated project code, secrets, or another repository during this loop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If a report row requires source-provider changes or product judgment, leave the generated Codex artifact with clear manual guidance instead of changing the source.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 1 conditional), mostly list: inspecting the migration output and report; validating each target after edits; re-running until no fixes left.",
+    "statements": [
+      {
+        "quote": "Inspect the terminal output and `.codex/migrate-to-codex-report.txt` after real runs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Review generated artifacts in this order: `AGENTS.md`, `.agents/skills/`, `.codex/config.toml`, `.codex/hooks.json`, `.codex/agents/`, then report-only plugin items.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run `--validate-target` against each target after edits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-run checks and `--dry-run` after edits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run `--validate-target`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-run the migrator and validator until the report and validator have no actionable generated-artifact fixes left.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Run the post-migration validator against each target after edits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

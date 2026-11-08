@@ -1,0 +1,161 @@
+{
+  "name": null,
+  "mechanism": "Escalate",
+  "repo": "LUAgam/agent-delivery",
+  "path": "ring/dev-team/skills/systemplane-migration/SKILL.md",
+  "author": {
+    "owner": "LUAgam",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0144b9f1842e76945ea2a07ea7f6138b44803adb.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 4 approval gates, 3 validation rules, 1 escalation rule; none for clarification rules. Strongest: approval gates.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) orchestrates a gated migration of Go services to the systemplane, a database-backed runtime configuration plane. The orchestrator never writes code itself, runs every gate in order, and skips a gate only with evidence of compliance. The user approves the detection results, the implementation preview and the final checklist, and all seven reviewers must pass.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. The orchestrator never edits source code itself, only verifying outputs while engineer subagents implement, and runs the gates strictly in order without skipping or reordering.",
+    "statements": [
+      {
+        "quote": "**FORBIDDEN: Orchestrator MUST NOT use Edit, Write, or Bash tools to modify source code files.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The orchestrator only verifies outputs (grep, go build, go test) — MUST NOT write implementation code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "MUST execute gates sequentially. CANNOT skip or reorder.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all in running text. The user explicitly approves the detection results, the developer approves the implementation preview before any code changes (with re-confirmation after changes), and the final checklist needs explicit approval.",
+    "statements": [
+      {
+        "quote": "MUST confirm: user explicitly approves detection results before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "HARD GATE: Developer MUST explicitly approve the implementation preview before any code changes begin (Gates 2+).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If the developer requests changes to the preview, regenerate the report and re-confirm.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "MUST approve: present checklist for explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, all in running text. A gate is skipped only when every compliance check passes with evidence, any non-compliant check forces the gate to run, and all seven reviewers must pass.",
+    "statements": [
+      {
+        "quote": "**If ANY audit check is NON-COMPLIANT → the corresponding gate MUST execute to fix it. CANNOT skip.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A gate can only be marked as SKIP when ALL its compliance checks are COMPLIANT with evidence.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "All 7 reviewers must PASS. 6/7 = FAIL. Critical findings → fix and re-review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent reports findings of every severity and stops immediately on a critical one.",
+    "statements": [
+      {
+        "quote": "MUST report all severities. CRITICAL: STOP immediately.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

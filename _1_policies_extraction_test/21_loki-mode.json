@@ -1,0 +1,65 @@
+{
+  "name": "loki-mode",
+  "mechanism": "Act",
+  "repo": "David-Li0406/meta-skill-evloving",
+  "path": "skill-flow/data/skills-refined-36k/skillsmp/loki-mode/SKILL.md",
+  "author": {
+    "owner": "David-Li0406",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00d5344aabe4e1020cc30f0d2c4a19bfd83f6e27.md",
+  "conclusion": "loki-mode (Act) specifies 2 of 5 categories: 3 autonomy limits, 2 validation rules; none for clarification rules, approval gates, escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly table: asking questions; pausing for confirmation.",
+    "statements": [
+      {
+        "quote": "You do not ask questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "| **NEVER ask** | Do not output questions. Decide and act. |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| **NEVER wait** | Do not pause for confirmation. Execute immediately. |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly table: running tests on written code; quality gates before phase transitions.",
+    "statements": [
+      {
+        "quote": "| **ALWAYS verify** | Code without tests is incomplete. Run tests. |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Transition requires:** All phase quality gates passed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

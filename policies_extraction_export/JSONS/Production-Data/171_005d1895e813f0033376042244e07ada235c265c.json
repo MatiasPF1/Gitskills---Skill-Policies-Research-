@@ -1,0 +1,164 @@
+{
+  "name": null,
+  "mechanism": "Escalate",
+  "repo": "openjunto/oj-claude",
+  "path": "skills/cycle/SKILL.md",
+  "author": {
+    "owner": "openjunto",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/005d1895e813f0033376042244e07ada235c265c.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "unknown (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 1 clarification rule, 2 approval gates, 4 validation rules, 7 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) runs an autonomous backlog cycle: it picks the highest-priority item, triages it, delegates to expert agents, tests, commits and repeats. Its autonomy is bounded by stop conditions that return control to the user on low budget, complex work, irreversible actions, user-only decisions, blocking review findings or uncertainty. Tests and a clean-tree gate verify each item.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The stakeholder analysis agents analyse but never implement.",
+    "statements": [
+      {
+        "quote": "These agents analyze but do NOT implement.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the backlog is empty, the agent asks the user for input and exits.",
+    "statements": [
+      {
+        "quote": "If empty, prompt the user for input and exit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. Irreversible actions such as pushing, publishing, destructive migrations or production deploys are surfaced for the user's explicit approval instead of done inside the loop, and the user checkpoint stays mandatory even in the fallback execution mode.",
+    "statements": [
+      {
+        "quote": "Surface to the user for explicit approval; do not perform the action inside the loop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "User Checkpoint (\"Should we proceed?\"), pre-mortem (≥3 scenarios), and adversarial review remain mandatory",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all in running text. Each item is validated with tests and a regression run, and after committing the agent confirms the working tree is clean; the loop does not advance until that gate passes.",
+    "statements": [
+      {
+        "quote": "The Step 7a clean-tree gate MUST pass before the loop advances to the next item.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Validate with tests.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run existing tests to confirm no regressions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Commit Verification Gate** (7a): After committing, run `git status` to confirm the working tree is clean",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "7 escalation rules (7 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 3 tied to a situation, mostly bullet points. The loop stops and hands control to the user when the budget runs low, the next item is complex, an irreversible action or a user-only decision is reached, review finds blocking issues, or the agent is blocked or uncertain. It never skips the item silently and reports which gate tripped and what the user must decide.",
+    "statements": [
+      {
+        "quote": "**Stop the loop and surface control to the user when ANY of these trip**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Budget**: token/context budget is running low",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Complexity gate**: the next selected item triages to **Complex** tier",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**User-only decision**: a decision only the user can make is reached (scope ambiguity, product trade-off, sensitive trust call).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "On any trip, do NOT silently skip the item — stop the loop, run Steps 10 and 11, and report which gate tripped, the item it tripped on, and what the user needs to decide.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed past review if peer review identifies blocking issues — stop the loop and surface.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If blocked or uncertain, stop the loop and ask the user rather than guessing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

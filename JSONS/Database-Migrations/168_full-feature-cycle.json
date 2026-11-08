@@ -1,0 +1,115 @@
+{
+  "name": "full-feature-cycle",
+  "mechanism": "Escalate",
+  "repo": "jaisonschmidt/agent-driven",
+  "path": ".github/skills/full-feature-cycle/SKILL.md",
+  "author": {
+    "owner": "jaisonschmidt",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/004a6ddfcb3170c22b8812d9f250b9ed612fad11.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "full-feature-cycle (Escalate) specifies 4 of 5 categories: 1 clarification rule, 2 approval gates, 3 validation rules, 2 escalation rules; none for autonomy limits. Strongest: validation rules.",
+  "conclusion_qualitative": "full-feature-cycle orchestrates a feature from demand to merged, documented pull request through a chain of agents: product owner, architect, database and DevOps specialists, staff engineer, developers, QA, reviewer and documenter. Tracker writes need explicit approval of the draft, and QA and review verify the work. The cycle stops when tracker access is missing or a phase fails.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The staff agent clarifies ambiguities in the task before planning.",
+    "statements": [
+      {
+        "quote": "Clarifies ambiguities and validates task quality",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. The product-owner agent always shows its draft and waits for explicit approval before creating or updating any tracker card.",
+    "statements": [
+      {
+        "quote": "Waits for explicit approval before any tracker write",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The product-owner must always show the draft and wait for explicit approval before creating or updating any tracker card",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all bullet points. The QA agent runs the automated tests and validates the acceptance criteria, and the reviewer checks the code against all guidelines.",
+    "statements": [
+      {
+        "quote": "Runs automated tests",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Validates acceptance criteria",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Reviews code against all guidelines",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, all bullet points. Without a writable tracker connection the cycle stops in draft mode and asks for manual card creation, and a failed or blocked phase must be resolved before continuing.",
+    "statements": [
+      {
+        "quote": "If no writable MCP support exists, stop in draft-only mode and ask for manual card creation before continuing the full cycle",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If any phase fails or is blocked, resolve before proceeding",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

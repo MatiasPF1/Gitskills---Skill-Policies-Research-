@@ -1,0 +1,145 @@
+{
+  "name": "evolve",
+  "mechanism": "Act",
+  "repo": "ConcertoNotes/codex-plugins",
+  "path": "plugins/community/agentops/skills-codex/evolve/SKILL.md",
+  "author": {
+    "owner": "ConcertoNotes",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/0164037f22ae456201eb3b5fb58797b555cabec1.md",
+  "conclusion": "evolve (Act) specifies 4 of 5 categories: 10+ autonomy limits, 1 clarification rule, 5 validation rules, 2 escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 4 conditional), mostly list: unattended edits to critical skills; asking for confirmation, clarification or approval; asking the user during execution.",
+    "statements": [
+      {
+        "quote": "Critical skills listed in `docs/contracts/critical-skills.txt` reject unattended edits; use `--allow-critical` only when Bo is supervising that critical edit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT ask the user for confirmation, clarification, or approval at any point.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "| Ask the user anything during execution | Evolve is fully autonomous — questions break the loop | Make best judgment, report in teardown |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "When a program contract exists, prefer work that can land wholly inside mutable scope. Do not silently widen scope around immutable files.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT write per-cycle `fitness-{N}-pre.json` files.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "candidate work that clearly requires immutable-scope edits is not eligible for direct execution",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "if the selected item is inherently out of scope, escalate it or convert it into durable follow-up work instead of invoking `$rpi` and hoping discovery widens scope",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not select work that is obviously outside mutable scope.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If a bead or goal would require edits under immutable scope, escalate it or convert it into durable follow-up work instead of launching `$rpi`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT intervene, ask questions, or pause between phases.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list: missing required execution profile fields.",
+    "statements": [
+      {
+        "quote": "If the repo execution profile is present but missing required fields, stop or downgrade with an explicit warning before cycle 1. Do not silently invent repo policy.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 3 conditional), mostly prose: project build and test bundle; declared validation_commands; program contract validation_commands.",
+    "statements": [
+      {
+        "quote": "After execution, run the project build+test bundle.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the repo execution profile declared `validation_commands`, run them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a repo-local program contract exists, run its `validation_commands` too, de-duplicated and in declared order after the repo bootstrap checks.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Treat program `stop_conditions` as per-cycle done criteria.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not mark claimed work consumed, completed, or productive until both the stop conditions and the regression gate pass.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list: structurally invalid program file; FAIL or non-convergence.",
+    "statements": [
+      {
+        "quote": "If the program file exists but is structurally invalid, stop or downgrade with an explicit warning before cycle 1. Do not silently ignore a broken operator contract.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "FAIL or non-convergence → write STOP citing the verdict path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

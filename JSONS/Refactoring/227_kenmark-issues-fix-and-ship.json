@@ -1,0 +1,183 @@
+{
+  "name": "kenmark-issues-fix-and-ship",
+  "mechanism": "Escalate",
+  "repo": "tanoojmehra/kenmark-skills",
+  "path": "skills/user-skills/kenmark-issues-fix-and-ship/SKILL.md",
+  "author": {
+    "owner": "tanoojmehra",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/017d1fe6688ee401e331ce5b8d753c7953aac330.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "kenmark-issues-fix-and-ship (Escalate) specifies 4 of 5 categories: 4 autonomy limits, 5 approval gates, 4 validation rules, 3 escalation rules; none for clarification rules. Strongest: approval gates.",
+  "conclusion_qualitative": "kenmark-issues-fix-and-ship is a manual end-to-end workflow that turns an issues blob into tracked issues, fixes them on a feature branch, validates, commits and opens a pull request. Protected-branch commits, risky fixes and the merge target need the user's confirmation, fixes are verified, and it stops when there is nothing new to do. It sets no clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. The agent never force-pushes, skips hooks, changes git config or stages secrets, and skips confirmation questions when the user invoked the full ship run and the evidence is clear.",
+    "statements": [
+      {
+        "quote": "**No force push**, **no `--no-verify`**, **no git config** changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Skip `AskUserQuestion` when the user explicitly invoked this orchestrator for a full ship run and evidence is clear.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never stage `.env`, credentials, or secrets.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never force-push protected branches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 4 tied to a situation, mostly bullet points. The agent commits to protected branches only with the user's explicit approval, pauses for confirmation on large or API-changing fixes, asks the user to confirm the merge target every time, and merges directly only when the user explicitly chooses it.",
+    "statements": [
+      {
+        "quote": "**Feature branch:** never commit on `main`, `master`, `dev`, `develop`, `staging`, or `production` unless the user explicitly approves after a CI/CD warning.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Merge default:** open a PR; direct merge only when the user explicitly requests it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm large or risky fixes** — when a fix touches many files (>8 unrelated paths) or changes a public API surface, pause and confirm with the user before committing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user to confirm merge target every time:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Direct merge** only when the user explicitly chooses C and names the branch.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. The agent confirms each bug still exists before fixing, runs quality gates and repository validation before committing, and verifies each fixed issue against the code.",
+    "statements": [
+      {
+        "quote": "Search codebase to confirm the bug still exists.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run quality gates when feasible (detect from `package.json` scripts):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Verify each fixed issue against the codebase (grep / read evidence paths).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before invoking `kenmark-commit`, run repo validation:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly running text. The agent stops when the issues blob yields nothing new or the tracker index is missing, and reports validation failures honestly, fixing them or asking the user before committing.",
+    "statements": [
+      {
+        "quote": "**Stop if zero new issues** — when the blob yields no unique candidates after dedupe, report and stop before creating a feature branch.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `INDEX.md` is missing, run `kenmark-tracker-setup` or stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Report failures honestly; fix or ask the user before committing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

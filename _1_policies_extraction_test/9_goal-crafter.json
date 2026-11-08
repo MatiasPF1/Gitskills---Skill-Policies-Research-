@@ -1,0 +1,248 @@
+{
+  "name": "goal-crafter",
+  "mechanism": "Act",
+  "repo": "OrestesK/pi",
+  "path": "skills/goal-crafter/SKILL.md",
+  "author": {
+    "owner": "OrestesK",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/0074ad6c4c20509c0fbc57ba723e591647f95a60.md",
+  "conclusion": "goal-crafter (Act) specifies 5 of 5 categories: 10+ autonomy limits, 9 clarification rules, 8 approval gates, 7 validation rules, 1 escalation rule. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 4 conditional), mostly prose: goal crafting and session-history research; .scratch notes and artifacts; implementing the underlying task.",
+    "statements": [
+      {
+        "quote": "When the user explicitly asked for goal crafting, goal-skill iteration, broad session-history mining, or research for goal design, do not ask permission for safe local read-only research, subagent res",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `.scratch/` notes only when artifacts are permitted by the active task; strict no-artifact/no-file constraints mean no `.scratch/` writes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not implement the underlying task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not ask for approval for routine local research, artifact notes, or requested local skill-file creation/update when goal crafting or goal-skill iteration is already the task.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not store raw transcripts or one-off details.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the task is read-only or no-edit/no-artifact, align prose with runtime/output policy: no writes means no output files unless an explicit artifact path is part of the task; do not create `.scratch/`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Produce a plan or `.scratch/research` artifact before any mutating git command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not read `.env` or secret files; use safe environment-presence checks and user-provided credentials only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not bypass package registry quarantine.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask for information tools can verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "9 clarification rules (9 mandatory, 0 advisory; 3 conditional), mostly prose: material auth/transport choices; branch/PR semantics; unresolved material decisions before rendering.",
+    "statements": [
+      {
+        "quote": "Ask one focused question for material auth/transport choices.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Preserve the user's intended branch/PR semantics and existing PR identity; do not invent branch names, rename PR branches, or create review boundaries when the existing meaning is ambiguous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Immediately before rendering, ask once for all still-unresolved related material decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When only one decision remains, ask one focused question.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A pre-render clarification is required when missing information materially changes:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not render while a material contract question remains unresolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only make assumptions for mechanical, reversible defaults already implied by current instructions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not bake material unapproved assumptions into the command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not invent commands.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "8 approval gates (7 mandatory, 1 advisory; 4 conditional), mostly prose: offering a /goal; starting the goal for the user; persisting user-confirmed preferences.",
+    "statements": [
+      {
+        "quote": "In those cases, ask whether the user wants a `/goal`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not start the goal for the user unless the user explicitly asks after seeing it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Persist only explicitly user-confirmed durable preferences or preference edits the user explicitly requested.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Inferred preferences may guide research, but require user approval before editing this skill or user memory.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Preserve no-edit mode unless implementation is explicitly requested.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Track every diagnostic state change, preserve the original settings/profile, restore them before completion unless the user approves keeping the change, and state remaining upstream/version/config ris",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not include git mutation steps as automatically approved unless the user explicitly authorized that exact mutation scope.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Treat cloud/network/security mutations as approval-blocked: state exact targets and expected effect, wait for explicit approval, then verify primary access, backup access, and cleanup state.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 1 conditional), mostly prose: boot/recovery file rewrites; config syntax; running service code version.",
+    "statements": [
+      {
+        "quote": "Before copying or rewriting boot/recovery files, require read-only inspection, backups with paths, and post-copy hash/existence verification.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Validate config syntax, document restart/reload/auth follow-up, and distinguish written config from currently active tool availability.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify the running service/container code version matches the working tree or commit under test before trusting live results.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before trusting container/dev-server results, verify the runtime contains the changed code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`GOAL_DONE` is not valid while accepted must-fix review findings remain unless the user explicitly waives or defers them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Before output, check:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Reject or revise goals with these anti-patterns:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose: safety or permission blockers.",
+    "statements": [
+      {
+        "quote": "A direct safety or permission blocker that prevents safe research must be surfaced immediately rather than deferred.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

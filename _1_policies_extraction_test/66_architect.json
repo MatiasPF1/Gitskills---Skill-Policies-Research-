@@ -1,0 +1,272 @@
+{
+  "name": "architect",
+  "mechanism": "Escalate",
+  "repo": "Heavy-Chain-Engineering/etc",
+  "path": "skills/architect/SKILL.md",
+  "author": {
+    "owner": "Heavy-Chain-Engineering",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/001ad1a3fa82f6da90cf28eaea61a5d7fb6e96e5.md",
+  "conclusion": "architect (Escalate) specifies 5 of 5 categories: 7 autonomy limits, 8 clarification rules, 4 approval gates, 10+ validation rules, 10+ escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "7 autonomy limits (7 mandatory, 0 advisory; 1 conditional), mostly prose: re-allocating the feature directory; Agent-dispatching Socratic questioning; Agent-dispatching the Layer Impact phase.",
+    "statements": [
+      {
+        "quote": "You do NOT re-allocate a feature directory — `/spec` already did that, and `/architect` inherits the F<NNN> + feature_path from the existing `state.yaml`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "You MUST NOT attempt to Agent-dispatch Socratic questioning, gray-area resolution, section drafting, or the Definition of Ready validation; those operations live in this skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**This phase is INTERACTIVE and MUST NOT Agent-dispatch.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**No automatic Read** of any path a contract string might name — a contract string is recorded verbatim, never fetched (directory-traversal defense, mirroring the user-flow gate).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not write an ADR with a slug containing path separators or shell metacharacters.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not overwrite the file wholesale.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "NEVER re-allocate the feature directory — `/architect` inherits from `/spec`'s prior allocation. Exit non-zero if `state.yaml` is missing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "8 clarification rules (8 mandatory, 0 advisory; 1 conditional), mostly prose: writing the design before clarifying questions; six architect questions one at a time; vague answers before proceeding.",
+    "statements": [
+      {
+        "quote": "You NEVER start writing the design before asking clarifying questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Phase 1 Step 3: Ask six architect-style questions, ONE AT A TIME via Pattern B (the visual marker)** — do not batch them into a numbered list.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT proceed until the user has answered all six. If any answer is vague, ask a follow-up using the same Pattern B marker:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Then resolve them ONE AT A TIME using `AskUserQuestion` (Pattern A — multi-choice is a perfect fit for gray areas because each has 2-4 enumerable options from the research).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for ALL gray areas to be resolved before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Either way, YOU never fabricate the answer — you force the human to make it (BR-014).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user (Pattern A) whether this feature's Layer Impact Analysis should be a HARD /build gate on unfilled CRITICAL items, or advisory (warn-only) — mirroring F006's `design_mandatory`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "NEVER start writing the design before asking clarifying questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list: gating on a missing architecture baseline; section approval via AskUserQuestion; each section before moving on.",
+    "statements": [
+      {
+        "quote": "Then reuse the **existing contract-completeness WARN+recorded-override machinery** (BR-006; do NOT fork a parallel mechanism) to gate proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Prompt for approval via `AskUserQuestion`** using the standard section-approval template below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "ALWAYS present each section for user approval before moving to the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for the user's selection before executing anything.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "10+ validation rules (10 mandatory, 0 advisory; 2 conditional), mostly list: architect-specific Definition of Ready checklist; clear module boundaries; named integration patterns.",
+    "statements": [
+      {
+        "quote": "After all sections are written and approved, run the architect-specific Definition of Ready checklist.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "[ ] **Module boundaries are clear.** Every module named in the Module Structure section has a stated responsibility, a stated public surface, and a stated layer (per `standards/architecture/layer-boun",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] **Integration patterns are named.** Every integration in the design has a chosen pattern (sync vs async, push vs pull, idempotent vs not) with a one-line rationale.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] **Technology choices have rationale.** Every new technology introduction (framework, library, database, queue) has a Trade-offs entry citing the alternatives considered and the reason for the choi",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] **Security considerations addressed.** The Security Considerations section is non-empty AND identifies the trust-boundary crossings, OR explicitly notes \"no new trust-boundary crossings\" with rati",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] **Trade-offs documented.** The Trade-offs section is non-empty AND each major decision lists what becomes easier and what becomes harder.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] **ADR(s) for major decisions identified.** Every Trade-offs entry that meets the `standards/architecture/adr-process.md` \"When to Write an ADR\" criteria has a corresponding entry in the Phase 3 AD",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] **Layer Impact Analysis is complete.** The `## Layer Impact Analysis` section exists (Phase 2.9). For every layer `detect` returned (and every touched cross-cutting concern), every rubric item has",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Validate `value-hypothesis.yaml`** via the CLI:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not proceed to step 8 until this CLI exits 0.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "10+ escalation rules (10 mandatory, 0 advisory; 9 conditional), mostly prose: missing interactive-user-input standard; missing architecture standards files; missing spec-allocated feature directory.",
+    "statements": [
+      {
+        "quote": "If `standards/process/interactive-user-input.md` does not exist, STOP and report the missing file to the user — no phase in this skill can proceed without it, because every user interaction is Pattern",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "instead, report the missing standard to the user and ask whether to proceed without it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user invokes `/architect` without an existing `/spec`-allocated directory, exit non-zero with stderr:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it's `rejected`, exit non-zero:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `state.yaml` is missing, exit non-zero with stderr:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `spec.md` is missing under the resolved feature_path, exit non-zero with the same message — `/architect` cannot author a design against a missing spec (this is also Edge Case 4 of F006).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the state.yaml has changed under the skill's feet (concurrent edit), exit non-zero with stderr naming the conflict and stop — never silently allocate a new directory.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Error handling (EC-003): if the engine exits non-zero (`registry not found`, `registry parse error: <detail>`, or a missing/unreadable design file), surface the stderr message to the user via Pattern ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If any items fail:** Point out the specific gaps and ask the user to resolve them before finalizing:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the ADR-write loop in step 3 was abandoned for any reason, stop here — do not write design.md.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

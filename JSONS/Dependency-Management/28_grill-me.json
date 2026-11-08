@@ -1,0 +1,69 @@
+{
+  "name": "grill-me",
+  "mechanism": "Act",
+  "repo": "ruskibeats/t1d",
+  "path": ".pi/skills-archive/t1d-grill-me/SKILL.md",
+  "author": {
+    "owner": "ruskibeats",
+    "commit_author": "cf1ea8ec90d4f606",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01021389057438d6132c1bdd4b881ca56410715c.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "grill-me (Act) specifies 2 of 5 categories: 1 autonomy limit, 2 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "grill-me interviews the user about a plan or design until every branch of the decision tree is resolved. Its rules make the agent question the user one item at a time until they agree, but look in the codebase instead when the answer is there. It sets no approval gates, no checks on the agent's own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If a question can be answered by exploring the codebase, the agent explores it instead of asking the user.",
+    "statements": [
+      {
+        "quote": "If a question can be answered by exploring the codebase, explore the codebase instead.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both in running text. The agent interviews the user relentlessly about every part of the plan until both share the same understanding, asking one question at a time.",
+    "statements": [
+      {
+        "quote": "Interview me relentlessly about every aspect of this plan until we reach a shared understanding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the questions one at a time.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

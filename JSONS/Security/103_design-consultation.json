@@ -1,0 +1,359 @@
+{
+  "name": "design-consultation",
+  "mechanism": "Ask",
+  "repo": "huyonghui666/QuickArt",
+  "path": ".claude/skills/design-consultation/SKILL.md",
+  "author": {
+    "owner": "huyonghui666",
+    "commit_author": "8d83032f350020fb",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00a5f0f2eca49fa4b3e676f0d1fbd046b1849a6f.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "design-consultation (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 10+ approval gates, 3 validation rules, 10+ escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "design-consultation builds a complete design system for a product, from product context and competitive research to a proposal, mockups and a written DESIGN.md (gstack). Its shared preamble asks about setup choices and gets a yes before upgrades, syncing or other skills, while spawned sessions decide alone. The design work is a dialogue: the user chooses what to do with an existing design, approves the proposal and always has the final say. Mockups pass a self-check before being shown, and research or reviewer failures are reported to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 5 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep`, `AskUserQuestion` and `WebSearch`. From the shared gstack preamble: when proactive mode is off it does not start or suggest skills on its own; spawned sessions skip setup prompts and pick the recommended option; when it cannot ask the user it must not decide silently; the sync question never blocks the skill; and it auto-commits only in continuous checkpoint mode, pushing only when that is on.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Glob, Grep, AskUserQuestion, WebSearch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not auto-invoke or proactively suggest skills.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `SPAWNED_SESSION` is true, skip feature discovery.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion for interactive prompts. Auto-choose the recommended option.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT run upgrade checks, telemetry prompts, routing injection, or lake intro.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not write decisions to the plan file as a substitute, do not emit them as prose and stop, and do not silently auto-decide (only `/plan-tune` AUTO_DECIDE opt-ins authorize auto-picking).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not block the skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"continuous\"`: auto-commit completed logical units with `WIP:` prefix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Rules: stage only intentional files, NEVER `git add -A`, do not commit broken tests or mid-edit state, and push only if `CHECKPOINT_PUSH` is `\"true\"`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"explicit\"`: ignore this section unless a skill or user asks to commit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 7 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 7 tied to a situation, mostly running text. During setup the agent asks about continuous checkpoints, the writing style, telemetry, proactive behavior and cross-project learnings; on high-stakes ambiguity it stops and asks, and says exactly what it needs when information is missing. For the design work it asks whether to update or replace an existing DESIGN.md, and suggests exploring the product first when the purpose is unclear.",
+    "statements": [
+      {
+        "quote": "Missing `~/.claude/skills/gstack/.feature-prompted-continuous-checkpoint`: AskUserQuestion for Continuous checkpoint auto-commits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `WRITING_STYLE_PENDING` is `yes`: ask once about writing style:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: ask telemetry once via AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask follow-up:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: ask once:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For high-stakes ambiguity (architecture, data model, destructive scope, missing context), STOP. Name it in one sentence, present 2-3 options with tradeoffs, and ask. Do not use for routine coding or o",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — missing info; state exactly what is needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If a DESIGN.md exists: Read it. Ask the user: \"You already have a design system. Want to **update** it, **start fresh**, or **cancel**?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the codebase is empty and purpose is unclear, say: *\"I don't have a clear picture of what you're building yet. Want to explore first with `/office-hours`? Once we know the product direction, we can",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CROSS_PROJECT` is `unset` (first time): Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (9 mandatory, 1 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"might\"), 5 tied to a situation, mostly running text. The agent asks before starting another skill, upgrading, opening the essay link, syncing artifacts, setting up the sync repository or building the browser, and confirms ambiguous preference changes. Agreement between AI models is only a recommendation for the user to decide; the full design proposal goes to the user, and the user's final choice is always accepted.",
+    "statements": [
+      {
+        "quote": "If a skill seems useful, ask: \"I think /skillname might help here — want me to run it?\"",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/gstack/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Privacy stop-gate: if output shows `ARTIFACTS_SYNC: off`, `artifacts_sync_mode_prompted` is `false`, and gbrain is on PATH or `gbrain doctor --fast --json` works, ask once:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If A/B and `~/.gstack/.git` is missing, ask whether to run `gstack-artifacts-init`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Cross-model agreement is a recommendation, not a decision. The user decides.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Normalize never-ask, always-ask, ask-only-for-one-way; confirm ambiguous free-form first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Tell the user: \"gstack browse needs a one-time build (~10 seconds). OK to proceed?\" Then STOP and wait.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**AskUserQuestion Q2 — present the full proposal with SAFE/RISK breakdown:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always accept the user's final choice. Never refuse to proceed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. Done means completed with evidence. The agent runs a quality check on each mockup variant and, before showing them, discards and regenerates any that a human designer would be embarrassed to sign.",
+    "statements": [
+      {
+        "quote": "**DONE** — completed with evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run quality check on each variant:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Before presenting to the user, self-gate:** For each variant, ask yourself: *\"Would a human designer be embarrassed to put their name on this?\"* If yes, discard the variant and regenerate. This is a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (9 mandatory, 1 advisory; 6 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"consider\"), 6 tied to a situation, mostly running text. Without a way to ask the user the skill is blocked and waits. The agent stops when going in circles, flags anything that looks wrong, reports concerns and blockers, and escalates after 3 failures, on security doubts or unverifiable work. It notes sites it could not research, tells the user about outside-reviewer login failures or outages, and flags incoherent overrides without blocking.",
+    "statements": [
+      {
+        "quote": "**If no AskUserQuestion variant appears in your tool list, this skill is BLOCKED.** Stop, report `BLOCKED — AskUserQuestion unavailable`, and wait for the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you are looping on the same diagnostic, same file, or failed fix variants, STOP and reassess. Consider escalation or /context-save.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Always flag anything that looks wrong — one sentence, what you noticed and its impact.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — completed, but list concerns.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — cannot proceed; state blocker and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Escalate after 3 failed attempts, uncertain security-sensitive changes, or scope you cannot verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If a site blocks the headless browser or requires login, skip it and note why.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Auth failure:** If stderr contains \"auth\", \"login\", \"unauthorized\", or \"API key\": \"Codex authentication failed. Run `codex login` to authenticate.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If Claude subagent also fails: \"Outside voices unavailable — continuing with primary review.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When the user overrides one section, check if the rest still coheres. Flag mismatches with a gentle nudge — never block:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "name": "long-running-agent",
+  "mechanism": "Act",
+  "repo": "shekohex/dotai",
+  "path": "skills/long-running-agent/SKILL.md",
+  "author": {
+    "owner": "shekohex",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01144cbf9add10c5c8ac424a0f17c680720aa636.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "long-running-agent (Act) specifies 5 of 5 categories: 10+ autonomy limits, 3 clarification rules, 1 approval gate, 10+ validation rules, 2 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "long-running-agent orchestrates end-to-end project delivery over hours or days, dispatching parallel subagents in git worktrees and reviewing each milestone. All user interaction happens up front: the agent interviews the user, resolves ambiguity and gets sign-off on the plan, then works alone and settles ambiguities, trade-offs and conflicts itself. It checks work heavily with tests, lint, type checks and architectural reviews before merging. It stops for the user only on a catastrophic failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly table rows. After the plan is approved, the agent runs for hours or days without human intervention and asks the user no questions. A table tells it to settle technical ambiguity, design trade-offs, non-converging reviews, newly discovered scope and merge conflicts on its own, logging its reasons. It runs at most 5 parallel subagents.",
+    "statements": [
+      {
+        "quote": "You run continuously for hours or days without human intervention",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After approval, you execute autonomously.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Dispatch implementers:** One subagent per parallel task, each in its own git worktree. Max 5 parallel subagents to limit merge conflicts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "You do NOT ask the user questions during execution.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Resolve everything yourself.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Technical ambiguity** | Research codebase, read docs, check existing patterns. Decide. Log rationale in progress.md",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Design tradeoffs** | Pick the pragmatic option that fits existing architecture. Log rationale",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Review not converging (3+ iterations)** | Make best-judgment call on remaining issues. Document what was deferred and why. Proceed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Scope discovery** | Add new task to plans.md under current milestone. Proceed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Merge conflicts** | Resolve them. You're a senior engineer, not a junior who escalates conflicts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. During setup the agent interviews the user thoroughly, using `AskUserQuestion` heavily, and resolves all ambiguity before it starts.",
+    "statements": [
+      {
+        "quote": "Interview the user thoroughly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Resolve ALL ambiguity now.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use the `AskUserQuestionTool`/`interview` heavily to get the user's input, gain as clear an understanding of the goal as possible.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent presents its plan to the user for final sign-off before executing.",
+    "statements": [
+      {
+        "quote": "Present plan to user for final sign-off",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, all bullet points. After each subagent finishes, the agent runs tests, lint and type checks, and verifies them before merging any worktree (separate working copy). It has a reviewer subagent check each milestone and the whole codebase at the end, re-reviews fixes up to 3 times, and must never skip reviews, merge code with failing tests, ignore test failures or trust subagent reports without checking.",
+    "statements": [
+      {
+        "quote": "**Verify results:** After each subagent completes, run tests, linter, type checker in the worktree",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Architectural review:** Dispatch reviewer subagent on the merged milestone code",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Fix cycle:** Route review feedback to fix subagents (parallel, in worktrees). Re-review until approved or 3 iterations reached",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Final cross-cutting review:** Dispatch reviewer on entire codebase (`git diff` from initial commit to HEAD)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Skip architectural reviews after milestones",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Merge code with failing tests",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ignore test failures hoping they'll resolve themselves",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Skip the fix-review cycle (reviewer found issues = fix = re-review)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify tests/lint/types before merging any worktree",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Treat subagent reports with verification, not blind trust",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (1 mandatory, 1 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 2 rules, 1 strict and 1 counted as a suggestion (it contains \"try\"), 1 tied to a situation, one table row and one in running text. If a subagent fails catastrophically, the agent logs the state and reports to the user. Its only reason to stop for user input is a catastrophic failure with no way forward, such as a broken build system or missing credentials.",
+    "statements": [
+      {
+        "quote": "**Subagent failure** | Retry with more context. If still failing, try different approach. If catastrophic, log state and report to user",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "**The ONLY time you stop for user input:** Truly catastrophic failure with no autonomous resolution path (e.g., entire build system broken with no clear fix, credentials/access required that you don't",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

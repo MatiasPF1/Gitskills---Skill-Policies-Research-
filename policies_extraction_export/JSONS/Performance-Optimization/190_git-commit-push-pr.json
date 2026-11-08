@@ -1,0 +1,149 @@
+{
+  "name": "git-commit-push-pr",
+  "mechanism": "Escalate",
+  "repo": "Jerrylalala/compound-engineering",
+  "path": "plugins/compound-engineering/skills/git-commit-push-pr/SKILL.md",
+  "author": {
+    "owner": "Jerrylalala",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00c6904e1cc48f73b9e96e88ec7a4eead03b22d9.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "git-commit-push-pr (Escalate) specifies 4 of 5 categories: 2 clarification rules, 4 approval gates, 2 validation rules, 4 escalation rules; none for autonomy limits. Strongest: approval gates.",
+  "conclusion_qualitative": "git-commit-push-pr goes from working-tree changes to an open pull request with a value-first, adaptive description, or updates an existing PR description. The agent confirms before updating descriptions or creating branches, asks for the target branch when needed, and stops with an explanation when the repository state does not allow a PR. It checks diagrams and issue references in the description and sets no autonomy limits.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. The agent asks for the target branch when it cannot resolve one, and after pushing to an existing PR asks whether the description should be updated.",
+    "statements": [
+      {
+        "quote": "If none resolve, ask the user to specify the target branch.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Report the PR URL, then ask the user whether they want the PR description updated to reflect the new changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly running text. The agent confirms before updating a PR description and before applying the new one, and asks before creating a feature branch when on a detached HEAD or the default branch.",
+    "statements": [
+      {
+        "quote": "Ask the user to confirm: \"Update the PR description for this branch?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to confirm before applying.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask whether to create a feature branch now.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask whether to create a feature branch first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. The agent verifies that any diagram matches the change and that any bare issue reference points to the right issue.",
+    "statements": [
+      {
+        "quote": "After generating a visual aid, verify it accurately represents the change described in the PR",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never use bare `#123` unless you have verified it refers to the correct issue in the current repository.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, mostly running text. On a detached HEAD, when there is no open PR to update, or when the user declines to leave the default branch, the agent reports why and stops.",
+    "statements": [
+      {
+        "quote": "If the current branch is empty (detached HEAD), report that there is no branch to update and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Otherwise (`NO_OPEN_PR` or a non-OPEN state), report no open PR and stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user declines, report that this workflow cannot open a PR from the default branch directly and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the current branch is empty, report that the workflow is in detached HEAD state and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

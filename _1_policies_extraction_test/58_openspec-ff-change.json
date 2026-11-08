@@ -1,0 +1,101 @@
+{
+  "name": "openspec-ff-change",
+  "mechanism": "Ask",
+  "repo": "trrad/pytyche",
+  "path": ".claude/skills/opsx:ff/SKILL.md",
+  "author": {
+    "owner": "trrad",
+    "commit_author": "f6b1b58f0712279a",
+    "declared": "openspec"
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/0152acf569ae145b9d4a44ce16487465b24446a8.md",
+  "conclusion": "openspec-ff-change (Ask) specifies 2 of 5 categories: 8 clarification rules, 3 validation rules; none for autonomy limits, approval gates, escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "8 clarification rules (7 mandatory, 1 advisory; 4 conditional), mostly list: what the user wants to build; ambiguous approaches or scope; artifacts needing user input.",
+    "statements": [
+      {
+        "quote": "**If no clear input provided, ask what they want to build**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**IMPORTANT**: Do NOT proceed without understanding what the user wants to build.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before starting the artifact loop, scan for likely ambiguities and resolve them upfront.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user's description mentions multiple possible approaches → ask which one",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope is unclear (affects one area vs. many) → ask",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Use **AskUserQuestion** with concrete options.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "c.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If context is critically unclear, ask the user - but prefer making reasonable decisions to keep momentum",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 2 conditional), mostly list: applyRequires artifacts reaching done; artifact files existing after writing.",
+    "statements": [
+      {
+        "quote": "Check if every artifact ID in `applyRequires` has `status: \"done\"` in the artifacts array",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Stop when all `applyRequires` artifacts are done",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Verify each artifact file exists after writing before proceeding to next",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

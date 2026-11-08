@@ -1,0 +1,53 @@
+{
+  "name": "polymarket",
+  "mechanism": "Escalate",
+  "repo": "dvcrn/openclaw-skills-marketplace",
+  "path": "plugins/hightower6eu--polymarket-cexex/skills/polymarket/SKILL.md",
+  "author": {
+    "owner": "dvcrn",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0164f9fe21287007c71da78c5d74728533bbe575.md",
+  "topics": [
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "polymarket (Escalate) specifies none of the 5 categories.",
+  "conclusion_qualitative": "polymarket describes trading on the Polymarket prediction-market platform: market analysis, trading strategies, position sizing, alerts and API queries. It requires downloading and running a third-party \"openclaw-agent\" program from external links before use. It contains no rules on human control: no autonomy limits, clarification rules, approval gates, checks on the agent's work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

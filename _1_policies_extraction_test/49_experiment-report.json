@@ -1,0 +1,90 @@
+{
+  "name": "experiment-report",
+  "mechanism": "Ask",
+  "repo": "weisberg/agile_agentic_analytics",
+  "path": "plugins/ab-testing/skills/experiment-report/SKILL.md",
+  "author": {
+    "owner": "weisberg",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/009567cf89aca72f9eee4eb83673d938b1249e6d.md",
+  "conclusion": "experiment-report (Ask) specifies 3 of 5 categories: 5 clarification rules, 2 validation rules, 2 escalation rules; none for autonomy limits, approval gates. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (5 mandatory, 0 advisory; 4 conditional), mostly prose: missing numbers or sources; the readout audience; missing context named in the status.",
+    "statements": [
+      {
+        "quote": "If a number is missing, you ask for it or pull it from the analysis artifact; you do not estimate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Hard gates are source availability and audience selection: if the analysis or design is missing, block; if the audience is unclear, resolve it once with AskUserQuestion before drafting.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any are missing, ask in a single batched message, not a Q&A loop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user has not named an audience, present it as a structured decision brief using **AskUserQuestion**:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — the audience is unconfirmed (see the audience decision gate) or the user's recommendation context is missing. Name exactly what to provide.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list: pre-registration reconciliation before writing; DONE only with a confirmed audience and recommendation.",
+    "statements": [
+      {
+        "quote": "Before writing the report body, reconcile the pre-registered plan against the executed analysis.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE** — report written for the confirmed audience; a single recommendation from {Ship, Iterate, Kill, Extend} is stated and the pre-registration is reconciled.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list: data contradicting the recommendation context; no analysis or design to compose from.",
+    "statements": [
+      {
+        "quote": "If the user provided a recommendation context and the data does not support it, **say so**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**BLOCKED** — no analysis artifact or design document to compose from; the skill will not invent numbers. State what is needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

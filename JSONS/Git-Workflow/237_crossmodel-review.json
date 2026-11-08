@@ -1,0 +1,84 @@
+{
+  "name": "crossmodel-review",
+  "mechanism": "Escalate",
+  "repo": "ktundwal/crossmodel-review",
+  "path": "crossmodel-review/SKILL.md",
+  "author": {
+    "owner": "ktundwal",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01a6fd391106184f4d343cee4948e45e1bad18c1.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "crossmodel-review (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 3 clarification rules, 2 escalation rules; none for approval gates, validation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "crossmodel-review gets a second opinion on code or documents from Google and OpenAI models through the GitHub Copilot CLI. The user confirms the model choice, disagreements between the models are left to human judgment, and a missing CLI stops the skill. It works with a fixed tool set and sets no approval gates or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Bash`, `Read`, `Glob`, `Grep` and `AskUserQuestion`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, one heading, one running-text line and one bullet point. The user confirms which models to use before the review runs, and for very large files the agent warns and asks how to proceed instead of truncating silently.",
+    "statements": [
+      {
+        "quote": "3. Confirm model selection with the user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Wait for the user to confirm before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the file is very large (>50KB), warn the user and ask how to proceed rather than silently truncating.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a bullet point. If the Copilot CLI is not installed or authenticated the agent stops and tells the user, and points where the models disagree are flagged for human judgment.",
+    "statements": [
+      {
+        "quote": "If this fails, stop and tell the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Disagreements** — Points where they diverge. Flag these for human judgment.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

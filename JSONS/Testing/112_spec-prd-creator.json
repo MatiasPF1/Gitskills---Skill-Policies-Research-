@@ -1,0 +1,124 @@
+{
+  "name": "spec-prd-creator",
+  "mechanism": "Ask",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/spec-prd-creator/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00f18927b795f1ed3cdfe1cf267ef418c1f74635.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "spec-prd-creator (Ask) specifies 3 of 5 categories: 1 autonomy limit, 2 clarification rules, 7 validation rules; none for approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "spec-prd-creator writes a product requirements document for a new feature after a short round of clarifying questions. The agent asks a few lettered-option questions, writes only the PRD and never starts implementing, and runs a checklist before saving. It sets no approval gates or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent must not start implementing; it only creates the PRD.",
+    "statements": [
+      {
+        "quote": "**Important:** Do NOT start implementing. Just create the PRD.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. The agent asks 3 to 5 essential clarifying questions with lettered options, and only critical ones where the request is ambiguous.",
+    "statements": [
+      {
+        "quote": "Ask 3-5 essential clarifying questions (with lettered options)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask only critical questions where the initial prompt is ambiguous.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. Before saving the PRD the agent checks that clarifying questions were asked and answered, user stories are small and specific, requirements are numbered and unambiguous, non-goals set clear boundaries and the file is saved in the right place.",
+    "statements": [
+      {
+        "quote": "Before saving the PRD:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Asked clarifying questions with lettered options",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Incorporated user's answers",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "User stories are small and specific",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Functional requirements are numbered and unambiguous",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Non-goals section defines clear boundaries",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Saved to `docs/product-specs/[NNNN]_prd_[feature-name].md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

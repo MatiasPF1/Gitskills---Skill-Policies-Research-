@@ -1,0 +1,147 @@
+{
+  "name": "whip-debug",
+  "mechanism": "Ask",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "development/whip-debug/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00345951cf433bfc039849f8971e6605e97844e0.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "whip-debug (Ask) specifies 4 of 5 categories: 6 clarification rules, 1 approval gate, 3 validation rules, 5 escalation rules; none for autonomy limits. Strongest: clarification rules.",
+  "conclusion_qualitative": "whip-debug runs a systematic debugging loop: gather information, dispatch an analysis agent to reproduce and find the root cause, apply the fix, then have a fresh agent challenge it. It refuses to guess, stopping to ask the user whenever the bug report is unclear. Reproduction and independent verification gate every fix. Blocked analyses, persistent hypotheses and the round limit all bring the user back in, and a workaround is accepted only with the user's agreement.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, evenly split between running text and bullet points. The agent gathers enough information before dispatching any analysis and does not assume. When something is unclear it stops and asks targeted questions, restates the problem to confirm its understanding, and treats insufficient information as a hard stop.",
+    "statements": [
+      {
+        "quote": "**Purpose**: Gather sufficient information before dispatching analysis. Do not assume — ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any required information is unclear or ambiguous:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Stop and ask** — do not assume or guess",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Be specific** — ask targeted questions, not open-ended ones",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm understanding** — restate the problem before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Hard stop if insufficient info. Better to ask one more question than dispatch a blind agent.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After the maximum number of rounds, a documented workaround is accepted only with the user's explicit agreement.",
+    "statements": [
+      {
+        "quote": "Or explicitly accept the documented workaround with the user's agreement",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. Reproducing the bug is a gate the analysis cannot pass without. Before applying a fix the agent checks that the analysis delivered everything required, and a different agent on a different backend independently challenges the fix.",
+    "statements": [
+      {
+        "quote": "Reproduction is a GATE — the agent cannot proceed without it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before applying any fix, verify the analysis agent delivered:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Purpose**: Fresh-eye verification. A different agent (different backend) challenges the fix.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (4 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"may\", in \"may be structural\"), 3 tied to a situation, mostly bullet points. When the analysis agent is blocked, its questions are relayed to the user. If the same root-cause hypothesis survives 3 rounds the agent questions the architecture and discusses it with the user, and after 4 rounds or when stuck it stops looping and asks the user for more information.",
+    "statements": [
+      {
+        "quote": "If the analysis agent returns `blocked`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Architecture check at round 3**: If the same root cause hypothesis persists through 3 rounds, stop diagnosing code and question the architecture. The bug may be structural, not local. Discuss with t",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Max 4 rounds**: After 4 analysis→verification cycles, stop looping.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Escalation path** (after max rounds or when stuck):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Request more information from the user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

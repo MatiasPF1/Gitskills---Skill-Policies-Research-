@@ -1,0 +1,113 @@
+{
+  "name": "cold-start-interview",
+  "mechanism": "Act",
+  "repo": "alexchlou/codex-for-legal",
+  "path": "plugins/commercial-legal/skills/cold-start-interview/SKILL.md",
+  "author": {
+    "owner": "alexchlou",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/0044caf63143e6cfafa981a9f1fe1429ffd802e8.md",
+  "conclusion": "cold-start-interview (Act) specifies 2 of 5 categories: 10+ clarification rules, 3 approval gates; none for autonomy limits, validation rules, escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "10+ clarification rules (10 mandatory, 0 advisory; 7 conditional), mostly list: connector exports, seed docs and company questions; filling gaps only from typed answers; answers, uploads and open items before writing.",
+    "statements": [
+      {
+        "quote": "When a connector is unavailable, ask for a local export, local file path, or pasted excerpts.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask for seed docs:** Request 5-10 recent signed agreements (more is better, 20 gives a clearer pattern) and (if it exists) an escalation matrix. Accept file paths, Google local file path or pasted t",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If it exists:** Read it. Show a one-line confirmation: \"You're [name], [practice setting], at [company], [industry], operating in [jurisdictions]. Right? (Or say 'update' to change the shared profil",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If it doesn't exist:** You'll be the first plugin this user set up. After the orientation and fork, ask the company questions and write them to the shared profile (per the template at `references/co",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not pull from ambient context, prior sessions, or user memory to fill in gaps.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Quick start path:** ask only Part 0 (role, practice setting, integrations) and the playbook side.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Assume the answer exists somewhere.** When a question asks for information that's probably written down somewhere — company description, playbook, escalation matrix, style guide, handbook, jurisdict",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask and wait.** Say explicitly: \"This one needs a typed answer — I'll wait.\" Do not move to the next question until the user responds.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**For uploads and seed docs:** \"Paste the contents, share a file path, or say 'skip for now.' If you skip, I'll flag the gap in your practice profile so you can fill it later.\" Then actually wait.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Before writing the practice profile:** review the interview and list any questions that were skipped or answered with placeholders — especially the playbook positions, the \"one thing,\" and the seed ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "3 approval gates (3 mandatory, 0 advisory; 2 conditional), mostly prose: re-running and overwriting the configured profile; continuing with project scope; using conversation context in the profile.",
+    "statements": [
+      {
+        "quote": "**Check current state:** Read `config/local/codex-for-legal/commercial-legal/CLAUDE.md`. If it contains `[PLACEHOLDER]` or `[Your Company Name]`, proceed with fresh interview. If populated and `--redo",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user to confirm before proceeding: continue with project scope, or pause to reinstall user-scoped.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If something relevant surfaces in the current conversation context (e.g., they mentioned the company earlier), ask before using it — do not fold anything personal into the team practice profile unless",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "name": "conductor-newtrack",
+  "mechanism": "Ask",
+  "repo": "edithatogo/conductor-next",
+  "path": "conductor-vscode/skills/conductor-newtrack/conductor-newtrack/SKILL.md",
+  "author": {
+    "owner": "edithatogo",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/004999d648fa0140eeae98d4639784e2e918ca04.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "conductor-newtrack (Ask) specifies 5 of 5 categories: 1 autonomy limit, 10+ clarification rules, 4 approval gates, 1 validation rule, 3 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "conductor-newtrack guides the user through creating a new Conductor track (a feature or bug fix), producing its spec and plan files. Most of its rules are about asking: one question at a time with suggested options, building the spec interactively. The user approves both the spec and the plan before anything is written. Every tool call is checked, and failures, missing setup or duplicate track names halt the run with a message to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent infers whether the track is a feature or something else and does not ask the user to classify it.",
+    "statements": [
+      {
+        "quote": "Do NOT ask the user to classify it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"recommended\"), 3 tied to a situation, all bullet points. The agent asks for a track description if none was given and waits for it. It then asks a series of questions to build the spec, strictly one at a time, waiting for each answer and offering 2 to 3 options where possible, and summarizes its understanding before moving on: 3 to 5 questions for a feature, 2 to 3 for a bug or chore.",
+    "statements": [
+      {
+        "quote": "**If `{{args}}` is empty:** Ask the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Await the user's response and use it as the track description.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Questioning Phase:** Ask a series of questions to gather details for the `spec.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**CRITICAL:** You MUST ask these questions sequentially (one by one). Do not ask multiple questions in a single turn. Wait for the user's response after each question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Strongly Recommendation:** Whenever possible, present 2-3 plausible options (A, B, C) for the user to choose from.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Strongly Recommended:** Whenever possible, present 2-3 plausible options (A, B, C) for the user to choose from.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**CRITICAL:** You MUST ask questions sequentially (one by one). Do not ask multiple questions in a single turn. Wait for the user's response after each question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm your understanding by summarizing before moving on to the next question or section..",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask 3-5 relevant questions** to clarify the feature request.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask 2-3 relevant questions** to obtain necessary details.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, all bullet points. The agent presents the drafted spec and then the drafted plan for the user's review and approval, revising each until the user confirms.",
+    "statements": [
+      {
+        "quote": "**User Confirmation:** Present the drafted `spec.md` content to the user for review and approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Await user feedback and revise the `spec.md` content until confirmed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**User Confirmation:** Present the drafted `plan.md` to the user for review and approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Await user feedback and revise the `plan.md` content until confirmed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent must validate the success of every tool call.",
+    "statements": [
+      {
+        "quote": "CRITICAL: You must validate the success of every tool call.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 3 tied to a situation, mostly bullet points. If a tool call fails the agent halts, announces the failure to the user and waits for instructions. It halts when the Conductor setup files are missing, and when a track with the same name already exists, explaining and suggesting a different name or resuming the existing track.",
+    "statements": [
+      {
+        "quote": "If any tool call fails, you MUST halt the current operation immediately, announce the failure to the user, and await further instructions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If ANY of these files are missing, you MUST halt the operation immediately.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the proposed short name for the new track (derived from the initial description) matches an existing short name, halt the `newTrack` creation. Explain that a track with that name already exists and",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

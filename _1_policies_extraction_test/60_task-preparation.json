@@ -1,0 +1,182 @@
+{
+  "name": "task-preparation",
+  "mechanism": "Ask",
+  "repo": "nolood/planpipe",
+  "path": "skills/task-preparation/SKILL.md",
+  "author": {
+    "owner": "nolood",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/01659384667f97eea5b2f301e248fb69d34ab5b1.md",
+  "conclusion": "task-preparation (Ask) specifies 5 of 5 categories: 2 autonomy limits, 7 clarification rules, 3 approval gates, 10+ validation rules, 2 escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list: designing solutions, writing code or plans; optional Memobank.",
+    "statements": [
+      {
+        "quote": "You do NOT design solutions, write code, or build plans here.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Memobank is optional.** Not every project has one. Check, use if available, skip if not. Don't ask the user about it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "7 clarification rules (7 mandatory, 0 advisory; 1 conditional), mostly list: confirming understanding of the task; clarifying question per finding; re-confirming after corrections.",
+    "statements": [
+      {
+        "quote": "Step 3: Confirm Understanding with the User",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Ask: \"Правильно ли я понял задачу? Если нет — поправь, и я обновлю понимание.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each finding, ask a specific clarifying question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the corrections change the understanding significantly, re-confirm with the user (Step 3)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Convert each open unknown and each WEAK area into a specific clarification question",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present it to the user and **wait for answers**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Be thorough.** Read actual files. Don't guess from file names.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "3 approval gates (3 mandatory, 0 advisory; 2 conditional), mostly prose: normalized understanding before going deeper; proceeding before the user confirms; invoking /deep-analysis.",
+    "statements": [
+      {
+        "quote": "Before going deeper, present your normalized understanding to the user and ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT proceed until the user confirms or corrects.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user agrees, invoke the `/deep-analysis` skill.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "10+ validation rules (10 mandatory, 0 advisory; 4 conditional), mostly list: Readiness Critic subagent; resolving unknowns and weak areas; re-running the critique.",
+    "statements": [
+      {
+        "quote": "Spawn a **Readiness Critic** subagent to independently evaluate whether the task preparation is good enough.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Every unknown and every weak area must be resolved before the task moves forward.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-run the critique (Step 7) on the updated draft",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Repeat until the critic returns READY_FOR_DEEP_ANALYSIS *and* all gaps are closed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT declare the stage complete yet",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Check the requirements draft for any items listed under Unknowns or Assumptions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Check the readiness review for any WEAK criteria",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only declare complete when unknowns are resolved and no WEAK scores remain",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Stage 1 is complete when **all** of these hold:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Stage 1 is NOT complete if **any** of these hold:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 0 conditional), mostly list: proceeding with documented risks or abandoning; possible bug in the code.",
+    "statements": [
+      {
+        "quote": "Flag this to the user and discuss whether to proceed with documented risks or abandon the task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Don't assume the user is wrong either.** Maybe the code has a bug, or maybe there's a mapping layer you didn't find. Flag the discrepancy and let the user decide.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

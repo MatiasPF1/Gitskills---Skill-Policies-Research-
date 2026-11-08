@@ -1,0 +1,229 @@
+{
+  "name": "brainstorming",
+  "mechanism": "Ask",
+  "repo": "silviobeer/agentic-development-skill-chain",
+  "path": "claude/skills/1_brainstorming/SKILL.md",
+  "author": {
+    "owner": "silviobeer",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/01349d7d3124b0b1f1000e400404087b4f237403.md",
+  "conclusion": "brainstorming (Ask) specifies 4 of 5 categories: 2 autonomy limits, 10+ clarification rules, 10+ approval gates, 10+ validation rules; none for escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list: research browsing; invoking writing-plans or implementation skills.",
+    "statements": [
+      {
+        "quote": "**Research if needed** - browse only for current, niche, regulated, or unfamiliar technical/domain context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT invoke writing-plans, architecture, executing, QA, documentation, or implementation directly from brainstorming.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "10+ clarification rules (10 mandatory, 0 advisory; 3 conditional), mostly prose: filling gaps with assumptions; assuming what the user means; re-asking with specific alternatives.",
+    "statements": [
+      {
+        "quote": "Do NOT fill gaps with assumptions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you catch yourself thinking \"I assume the user means X\", ask the user instead.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-ask with specific alternatives.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user what already exists and gather references:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not guess — only record what the user confirms or what a reference clearly shows.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-ask with specific merge/remove/reorder options when needed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Choose processing order** - for a multi-PROJ map, confirm whether to write only the first concept or write all concepts in dependency order.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Clarifying questions** - ask one at a time until mandatory deep-dives are covered.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Assumption playback** - read back every assumption and wait for confirmation/correction.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Explicit clarity confirmation** - ask exactly: \"From your perspective, is everything now clear, or are there still unclear or open points?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 3 conditional), mostly prose: nothing important left unclear; implementation skills, code or scaffolding; allocating PROJ numbers.",
+    "statements": [
+      {
+        "quote": "Do not proceed until the user confirms that nothing important is unclear.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT invoke any implementation skill, write code, scaffold a project, edit production files, or create an implementation plan until you have presented a feature concept and the user has approved it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not allocate real PROJ numbers before approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to approve or correct the split before continuing:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Allocate real PROJ numbers only after the split and ordering are approved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Approve project boundary** - get explicit user approval for one PROJ or an approved multi-PROJ map before feature intake.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Present feature concept** - section by section, scaled to complexity, and get approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**User reviews written concept** - wait for approval before transition.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask for approval after each section when the concept is large or nuanced.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed after approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list: concept self-review; reviewing the written concept; placeholder scan.",
+    "statements": [
+      {
+        "quote": "**Concept self-review** - fix placeholders, contradictions, ambiguity, missing deep-dives, and scope creep.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Review the written concept before asking the user to review it:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Placeholder scan:** no `TBD`, `TODO`, empty sections, or vague words standing in for decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Internal consistency:** selected direction, scope, users, success criteria, and risks do not contradict each other.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Scope check:** the concept is focused enough for one PROJ, or it has been decomposed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Decomposition check:** for broad seeds, the approved project map, sibling PROJs, dependencies, and excluded sibling scope are documented.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ambiguity check:** requirements cannot be interpreted in materially different ways.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Deep-dive coverage:** success criteria, out-of-scope, and users/scenarios are explicitly documented.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Exploration record:** rejected/deferred alternatives are captured briefly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Assumption record:** confirmed assumptions are documented; unresolved assumptions are not hidden.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

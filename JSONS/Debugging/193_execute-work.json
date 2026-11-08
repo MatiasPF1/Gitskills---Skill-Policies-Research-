@@ -1,0 +1,155 @@
+{
+  "name": "execute-work",
+  "mechanism": "Escalate",
+  "repo": "twister229/dev-kit",
+  "path": "skills/execute-work/SKILL.md",
+  "author": {
+    "owner": "twister229",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00df42b13635806f91d3de1cdc8d1dc9e93a341c.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "execute-work (Escalate) specifies 4 of 5 categories: 4 autonomy limits, 2 approval gates, 6 validation rules, 4 escalation rules; none for clarification rules. Strongest: validation rules.",
+  "conclusion_qualitative": "execute-work turns a written plan into code task by task, giving each task a fresh implementer followed by spec and quality reviews and a verification gate. Most of its rules are checks and orchestration limits. Starting on main or skipping test-first work needs approval, and blocked work, file conflicts and a wrong plan are escalated.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. The orchestrator never dispatches agents onto overlapping files or parallelizes work on shared state, uses only project-local commands, and keeps every changed line traceable to the current task.",
+    "statements": [
+      {
+        "quote": "Do not dispatch overlapping agents to edit the same files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not use `npm`, `npx`, or network tools for this dev-kit workflow. Use project-local commands only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Every changed line must trace to the current task, its verification, or cleanup caused by the task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never parallelize agents that may edit the same files or shared state.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. Work does not start on main or master without the user's explicit approval, and skipping test-driven development for a behavior change needs the user's explicit approval.",
+    "statements": [
+      {
+        "quote": "Do not start on `main` or `master` without explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use `tdd-work` for behavior changes unless the user explicitly approves an exception.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, all bullet points. Independent spec and quality reviews are required, in that order, before moving on; agent reports are not evidence, so the diff and commands are verified, tasks are marked complete only with evidence, and a final integration verification runs.",
+    "statements": [
+      {
+        "quote": "Do not let implementer self-review replace independent review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not run code quality review before spec compliance review passes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not move to the next task while review issues remain open.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify actual diff and commands. Agent success reports are not evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Mark task complete only after evidence exists.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After all tasks, run final integration verification.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly bullet points. The agent stops and reconciles when two agents touch the same file, escalates only for product, architecture, destructive or security decisions or repeated agent failure, escalates a wrong plan to the user, and never ignores a blocked or missing-context status.",
+    "statements": [
+      {
+        "quote": "If two agents touched the same file unexpectedly, stop and reconcile before continuing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Escalate only for product judgment, architecture decisions, destructive actions, security-sensitive changes, or unresolved agent failure after two corrective attempts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "if the plan itself is wrong, escalate to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never ignore a BLOCKED or NEEDS_CONTEXT status and never force the same model to retry without changing something.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

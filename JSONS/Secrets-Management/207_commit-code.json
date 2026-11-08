@@ -1,0 +1,162 @@
+{
+  "name": "commit-code",
+  "mechanism": "Escalate",
+  "repo": "vesviet/agent-skills",
+  "path": "core/skills/foundation/commit-code/SKILL.md",
+  "author": {
+    "owner": "vesviet",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0124cc1b943a4731e461f18bcbc962457342535d.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "commit-code (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 7 approval gates, 5 validation rules; none for clarification rules, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "commit-code validates a finished change and packages it into a clean commit following the repository's validation, generation and release-note rules. It does not imply permission to push, tag or release: each of those, and the commit itself, needs explicit approval. Validation must pass before committing. It sets no clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent does not hand-edit generated files unless the repository expects it.",
+    "statements": [
+      {
+        "quote": "do not hand-edit generated files unless the repo explicitly expects that",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, mostly bullet points. A commit needs explicit approval from the user or the repository process, and pushing, tagging and releasing are separate gated actions that commit approval does not cover.",
+    "statements": [
+      {
+        "quote": "do not create a commit unless the user or repo-local process explicitly allows that specific commit action",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "do not push commits, create tags, or publish releases unless the user or repo-local process explicitly allows that specific action",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "user approval exists for the commit action",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After the commit exists, treat these as separate gated actions:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not assume commit approval also covers any of these actions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "explicit approval exists for the commit action",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "explicit approval exists for any push, tag, or release action",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. The agent runs the repository's quality gates and never commits a broken build or failing verification, confirming validation is complete before committing.",
+    "statements": [
+      {
+        "quote": "do not commit broken builds or knowingly failing verification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run the normal quality gates for the repo, such as:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before committing, confirm:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "validation is complete",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "validation completed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

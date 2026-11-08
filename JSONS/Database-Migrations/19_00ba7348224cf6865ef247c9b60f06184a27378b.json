@@ -1,0 +1,197 @@
+{
+  "name": null,
+  "mechanism": "Act",
+  "repo": "ayehiaa/my-travel-assistant",
+  "path": ".claude/skills/build-feature/SKILL.md",
+  "author": {
+    "owner": "ayehiaa",
+    "commit_author": "4a69354a0db2d2b3",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00ba7348224cf6865ef247c9b60f06184a27378b.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Act) specifies 4 of 5 categories: 6 autonomy limits, 1 clarification rule, 10+ validation rules, 3 escalation rules; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) has a team of agents build a feature end to end, from spec and plan to code, security review, tests and a pull request for human review. The agent may not commit to `main`, stage files with `git add -A` or merge the pull request, and in autonomous mode it asks no questions. It checks its work through hard gates (project rules, consistency, security review, tests, build and lint) that must pass before it goes on. It aborts when required planning files are missing, and asks the user only when the module for an issue is ambiguous. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, evenly split between bullet points and running text. In autonomous mode the agent never calls `AskUserQuestion` and settles all decisions from project context. It treats module-level planning files as read-only, stages specific files only (never `git add -A`), never commits to `main`, and never merges the pull request, only creates it.",
+    "statements": [
+      {
+        "quote": "Never call `AskUserQuestion` — resolve all decisions from project context",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Module-level artifacts (spec.md, plan.md, data-model.md, contracts/, research.md) stay in `MODULE_DIR` and are read-only for this run.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Stage specific files only (never `git add -A`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never merge the PR — only create it.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never commit to `main`; never merge the PR",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never `git add -A` — stage specific files only",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If several module spec folders could match the issue, the agent asks the user which module the issue belongs to.",
+    "statements": [
+      {
+        "quote": "If no such line exists, scan `specs/` for subdirectories that contain both `spec.md` and `plan.md`: if exactly one is found, use it; if multiple are found, ask the user which module this issue belongs",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 7 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 7 tied to a situation, mostly running text. When skipping steps, the agent verifies that the needed files and the issue already exist. The Constitution Check (a check against the project's rules) and the `/speckit-analyze` consistency check are hard gates whose issues must be fixed before continuing. A security reviewer checks every new or changed file, and failed security or test gates are fixed and re-run until they pass.",
+    "statements": [
+      {
+        "quote": "Self-heal gate failures in Steps 9 and 10 inline; re-run until green",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If skipping**: Verify `specs/<feature>/spec.md` exists.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If skipping**: Verify issue exists via `gh issue view <N>`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If skipping**: Verify all of the following exist in `specs/<feature>/`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Constitution Check is a hard gate** — resolve any failure before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If skipping**: Verify `ISSUE_DIR/tasks.md` exists (when `ISSUE_DIR` is set).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If running**: Run `/speckit-analyze`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Hard gate** — fix all flagged issues before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Spawn `security-reviewer` with the full list of new/modified files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any category is FAIL: fix inline, re-run on fixed files, repeat until all PASS.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, all tied to a situation, all in running text. When a step is skipped but its expected file (`spec.md`, the plan files or `tasks.md`) is missing, the agent aborts with a message naming the missing file and the command to run.",
+    "statements": [
+      {
+        "quote": "If missing, abort: \"spec.md not found — run /speckit-specify first or remove --from flag.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any are missing, abort: \"[file] not found — run /speckit-plan first or adjust --from flag.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If missing, abort: \"tasks.md not found — run /speckit-tasks first or adjust --from flag.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "name": "listenhub",
+  "mechanism": "Ask",
+  "repo": "LeoYeAI/openclaw-master-skills",
+  "path": "skills/listenhub/SKILL.md",
+  "author": {
+    "owner": "LeoYeAI",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/004fba599f813453c98eb26dcfd5bd6edb054063.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "listenhub (Ask) specifies 3 of 5 categories: 2 autonomy limits, 1 clarification rule, 5 approval gates; none for validation rules, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "listenhub turns ideas into podcasts, explainer videos, narration or images through ListenHub scripts. The agent mostly acts on its own, picking modes and defaults without asking when a request is short or ambiguous, and asks only about the format when it is unclear. Its firm gates are human review of a two-stage podcast script before audio is made and confirmation before rewriting an image prompt. It sets no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both in running text. When the user only gives a topic, the agent creates a single-speaker podcast without further clarification, and when a speech request is ambiguous it applies defaults instead of asking.",
+    "statements": [
+      {
+        "quote": "create a single-speaker podcast without further clarification.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When the request is ambiguous (e.g., \"convert to speech\", \"read aloud\"), apply:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (0 mandatory, 1 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one rule, counted as a suggestion (it contains \"prefer\"), tied to a situation, in running text. If it is unclear which format the user wants, the agent asks.",
+    "statements": [
+      {
+        "quote": "**Default**: If unclear, ask user which format they prefer.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly running text. In two-stage podcast generation the agent must stop after the script is generated and wait for the user's explicit approval before producing audio, never skipping that review. It asks before enriching a short image prompt and never optimizes a prompt without confirmation.",
+    "statements": [
+      {
+        "quote": "**The entire value of two-stage generation is human review between stages. Skipping review reduces it to one-stage with extra latency — never do this.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Review Gate (mandatory)**: After text generation completes, the agent MUST:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP and wait for explicit user approval** before proceeding to Stage 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The agent MUST NOT proceed to Stage 2 automatically. This is a hard constraint, not a suggestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "In this case, ask whether the user would like help enriching the prompt. Do not optimize without confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

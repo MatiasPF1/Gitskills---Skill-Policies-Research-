@@ -1,0 +1,236 @@
+{
+  "name": "plan-eng-review",
+  "mechanism": "Escalate",
+  "repo": "no-session/pstack",
+  "path": "plan-eng-review/SKILL.md",
+  "author": {
+    "owner": "no-session",
+    "commit_author": "6158ae348b5ef944",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/0194dd4f1795cd981a366438a9da281341963d7d.md",
+  "conclusion": "plan-eng-review (Escalate) specifies 5 of 5 categories: 6 autonomy limits, 10+ clarification rules, 8 approval gates, 1 validation rule, 8 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "6 autonomy limits (6 mandatory, 0 advisory; 1 conditional), mostly prose: proactive skill invocation; fixing issues outside your branch; code changes before the review.",
+    "statements": [
+      {
+        "quote": "allowed-tools:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest pstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**`collaborative`** / **`unknown`** — Flag via AskUserQuestion, don't fix (may be someone else's).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Review this plan thoroughly before making any code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "No AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "10+ clarification rules (10 mandatory, 0 advisory; 1 conditional), mostly prose: proactive behavior setting; missing context and input before assuming; one AskUserQuestion per review issue.",
+    "statements": [
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "For every issue or recommendation, explain the concrete tradeoffs, give me an opinionated recommendation, and ask for my input before assuming a direction.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each issue found in this section, call AskUserQuestion individually.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each issue found in this section, call AskUserQuestion individually.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each issue found in this section, call AskUserQuestion individually.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each issue found in this section, call AskUserQuestion individually.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After all review sections are complete, present each potential TODO as its own individual AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After each review section, pause and ask for feedback before moving on.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "At the end of the review, list these as \"Unresolved decisions that may bite you later\" — never silently default to an option.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "8 approval gates (7 mandatory, 1 advisory; 3 conditional), mostly prose: auto-invoking skills and opening the essay; scope reduction versus proceeding as-is; resolving all issues before the next section.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the complexity check triggers (8+ files or 2+ new classes/services), proactively recommend scope reduction via AskUserQuestion — explain what's overbuilt, propose a minimal version that achieves th",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed to the next section after ALL issues in this section are resolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed to the next section after ALL issues in this section are resolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Then use AskUserQuestion to confirm the eval scope with the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed to the next section after ALL issues in this section are resolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed to the next section after ALL issues in this section are resolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list: evidence for each DONE claim.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "8 escalation rules (7 mandatory, 1 advisory; 6 conditional), mostly list: anything that looks wrong; blocked tasks and repeated failed attempts; unavailable skill files, search or outside voice.",
+    "statements": [
+      {
+        "quote": "Always flag anything that looks wrong — one sentence, what you noticed and its impact.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the Read fails (file not found), say: \"Could not load /validate — proceeding with standard review.\"",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If WebSearch is unavailable, skip this check and note: \"Search unavailable — proceeding with in-distribution knowledge only.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the subagent fails or times out: \"Outside voice unavailable. Continuing to outputs.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

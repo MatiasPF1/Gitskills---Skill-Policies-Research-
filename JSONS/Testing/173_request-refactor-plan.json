@@ -1,0 +1,88 @@
+{
+  "name": "request-refactor-plan",
+  "mechanism": "Escalate",
+  "repo": "johwer/marketplace",
+  "path": "skills/request-refactor-plan/SKILL.md",
+  "author": {
+    "owner": "johwer",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0067d980b45dc19cbbfa656a2e74d856287db353.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "request-refactor-plan (Escalate) specifies 1 of 5 categories: 4 clarification rules; none for autonomy limits, approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "request-refactor-plan builds a refactor plan of small, safe commits through an interview with the user and exploration of the code, then files it as a Jira ticket. Its control rules are all clarification: the agent asks about the problem, alternatives and how to handle missing tests before going on. It sets no autonomy limits, approval gates, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, all in running text. The agent interviews the user about the problem and their ideas, asks about alternative approaches, and when test coverage is insufficient asks how to handle it, not proceeding until there is a clear answer.",
+    "statements": [
+      {
+        "quote": "Ask the user for a detailed description of:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present 2-3 alternative approaches before interviewing on implementation. Ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If coverage is insufficient, ask: \"There are no tests covering [area]. How do you want to handle this — write characterization tests first, or proceed carefully with manual verification?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't proceed until there's a clear answer.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

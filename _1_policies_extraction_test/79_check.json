@@ -1,0 +1,248 @@
+{
+  "name": "check",
+  "mechanism": "Escalate",
+  "repo": "OiAnthony/dotfiles",
+  "path": ".agents/skills/check/SKILL.md",
+  "author": {
+    "owner": "OiAnthony",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/0092227e966ac4a07b0d08c6fe425e883bba4ae3.md",
+  "conclusion": "check (Escalate) specifies 5 of 5 categories: 10+ autonomy limits, 4 clarification rules, 6 approval gates, 10+ validation rules, 5 escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 3 conditional), mostly prose: re-triggering /review; branch-switching and cleanup commands; moving untracked user files.",
+    "statements": [
+      {
+        "quote": "Do not re-trigger `/review` from within this skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not run these commands as default review or PR setup: `git switch`, `git checkout`, `git reset --hard`, `git clean`, `git stash -u`, `git stash --include-untracked`, `git stash -a`, `git stash --al",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not \"protect\" user work by moving untracked files, generated files, screenshots, or local scratch files into `/tmp` or another holding directory.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For PR inspection, prefer commands that do not switch the current working tree: `gh pr view`, `gh pr diff`, `git fetch origin pull/<n>/head:refs/tmp/pr-<n>`, and `git merge-tree`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When the project's `AGENTS.md` or the current thread explicitly asks to \"commit after review\", \"ship if green\", or equivalent, transition directly from review to the Ship flow after a clean review.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Items with a clear disposition (already fixed, duplicate, already released) get acted on immediately without analysis paragraphs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not silently absorb an accepted PR into `main` and close it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not use a preview or beta artifact to claim stable release readiness, and do not touch stable appcast, registry, or download surfaces when the requested lane is preview-only unless project docs req",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Commit only intended files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Output to **terminal only**. Do not create files in the target repo. If the user follows up with \"save it\", offer `./docs/<project>-audit.md` then; default is ephemeral.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (4 mandatory, 0 advisory; 3 conditional), mostly prose: which commits to review on the base branch; genuinely ambiguous issue dispositions; incomplete evidence before closing items.",
+    "statements": [
+      {
+        "quote": "If already on the base branch, ask which commits to review.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only ask the user when the disposition is genuinely ambiguous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If evidence is incomplete, hold the item instead of closing it on a guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user for the verification command before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "6 approval gates (6 mandatory, 0 advisory; 3 conditional), mostly list: discarding user work in the worktree; branch change or cleanup operations; transitioning into Ship mode.",
+    "statements": [
+      {
+        "quote": "You may read them and include them in the review surface, but you must not move, hide, overwrite, clean, or discard them without explicit user approval in the current turn.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If a branch change or cleanup is genuinely required, stop and ask for that exact operation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If verdict is \"release\", offer to transition into Ship mode.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Push, publish, tag, or create a release only when the user has explicitly approved that action.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Removal needs the maintainer's go-ahead in the current turn, a grep proving zero references first, and a full build after.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "| `gated_auto` | Likely correct but changes behavior: null checks, error handling additions | Batch into one user confirmation block |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "10+ validation rules (10 mandatory, 0 advisory; 3 conditional), mostly list: verification ran in this session; findings proven by commands or artifacts; project verification command after plan items.",
+    "statements": [
+      {
+        "quote": "Done means verification ran in this session and passed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Done when: findings, fixes, shipped state, or blockers are stated with the commands, artifacts, or remote state that prove them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After all items are done, run the project's verification command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify generated or bundled outputs, version fields, release notes, package contents, and required artifacts are in sync. Prefer dry-run commands when the ecosystem provides them. When drafting releas",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "For issue/PR follow-through, confirm the item identity with the host's read command before posting.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After network or API failures, re-read the end state instead of assuming success or failure.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before reading code, check scope drift: do the diff and the stated goal match?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Extract the pattern signature, `grep -rn` it across the repo (exclude generated dirs), and confirm sibling instances were also handled.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After changing CLI-facing text, spacing, or layout, re-run the command and read the real output before claiming done; editing the string is not seeing the screen.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**No unverified claims.** Do not write \"I verified X\", \"I ran Y\", \"tests pass\", or \"this fixes Z\" unless the shell output is in this turn's transcript. If you reason about behavior without running, sa",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "5 escalation rules (5 mandatory, 0 advisory; 5 conditional), mostly prose: HEAD or worktree changing before push; drift making the plan unsafe; missing issue/PR host integration.",
+    "statements": [
+      {
+        "quote": "If HEAD moved, unknown commits appeared, or the worktree changed outside your intended files, stop and report the mismatch instead of rebasing, recommitting, or pushing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If drift makes the plan unsafe, name the specific conflict and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "For non-GitHub projects, use the platform CLI/API named by the project docs or user request; if none exists, stop and report the missing integration instead of pretending GitHub commands apply.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If auth, OTP, CI, registry, or network state blocks the operation, pause and report the exact blocker.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the script exits non-zero or prints `(no test command detected)`: halt.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

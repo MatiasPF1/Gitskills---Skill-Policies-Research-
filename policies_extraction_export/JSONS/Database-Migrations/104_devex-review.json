@@ -1,0 +1,330 @@
+{
+  "name": "devex-review",
+  "mechanism": "Ask",
+  "repo": "billydeeii136/black-opps-gstack",
+  "path": "devex-review/SKILL.md",
+  "author": {
+    "owner": "billydeeii136",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00ad9eba9e2f08d5c39f82d30ae4e806d21f5b33.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "devex-review (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 8 clarification rules, 8 approval gates, 3 validation rules, 6 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "devex-review audits a product's developer experience live, timing onboarding and testing docs, APIs, error messages and upgrade paths, then scores it (gstack). Almost all of its control rules come from the shared preamble: setup questions, a yes before upgrades, syncing or other skills, and decisions left to the user over AI agreement. The audit itself asks for missing URLs, requires evidence for every score, and escalates after repeated failures or unverifiable work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 5 tied to a situation, mostly running text. The front matter limits the agent to `Read`, `Edit`, `Grep`, `Glob`, `Bash`, `AskUserQuestion` and `WebSearch`. From the shared gstack preamble: when proactive mode is off it does not start or suggest skills on its own; spawned sessions skip setup prompts and pick the recommended option; when it cannot ask the user it must not decide silently; the sync question never blocks the skill; and it auto-commits only in continuous checkpoint mode, pushing only when that is on.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Edit, Grep, Glob, Bash, AskUserQuestion, WebSearch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not auto-invoke or proactively suggest skills.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `SPAWNED_SESSION` is true, skip feature discovery.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion for interactive prompts. Auto-choose the recommended option.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT run upgrade checks, telemetry prompts, routing injection, or lake intro.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not write decisions to the plan file as a substitute, do not emit them as prose and stop, and do not silently auto-decide (only `/plan-tune` AUTO_DECIDE opt-ins authorize auto-picking).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not block the skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"continuous\"`: auto-commit completed logical units with `WIP:` prefix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Rules: stage only intentional files, NEVER `git add -A`, do not commit broken tests or mid-edit state, and push only if `CHECKPOINT_PUSH` is `\"true\"`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"explicit\"`: ignore this section unless a skill or user asks to commit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "8 clarification rules (7 mandatory, 1 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"should\", in the quoted question), 5 tied to a situation, mostly running text. During setup the agent asks about continuous checkpoints, the writing style, telemetry and proactive behavior; on high-stakes ambiguity it stops and asks, and says exactly what it needs when information is missing. It asks for the docs or product URL when none was given.",
+    "statements": [
+      {
+        "quote": "Missing `~/.claude/skills/gstack/.feature-prompted-continuous-checkpoint`: AskUserQuestion for Continuous checkpoint auto-commits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `WRITING_STYLE_PENDING` is `yes`: ask once about writing style:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: ask telemetry once via AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask follow-up:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: ask once:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For high-stakes ambiguity (architecture, data model, destructive scope, missing context), STOP. Name it in one sentence, present 2-3 options with tradeoffs, and ask. Do not use for routine coding or o",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — missing info; state exactly what is needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If URLs are missing, AskUserQuestion: \"What's the URL for the docs/product I should test?\"",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "8 approval gates (7 mandatory, 1 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"might\"), 5 tied to a situation, mostly running text. The agent asks before starting another skill, upgrading, opening the essay link, syncing artifacts, setting up the sync repository or building the browser, and confirms ambiguous preference changes. Agreement between AI models is only a recommendation for the user to decide.",
+    "statements": [
+      {
+        "quote": "If a skill seems useful, ask: \"I think /skillname might help here — want me to run it?\"",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/gstack/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Privacy stop-gate: if output shows `ARTIFACTS_SYNC: off`, `artifacts_sync_mode_prompted` is `false`, and gbrain is on PATH or `gbrain doctor --fast --json` works, ask once:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If A/B and `~/.gstack/.git` is missing, ask whether to run `gstack-artifacts-init`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Cross-model agreement is a recommendation, not a decision. The user decides.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Normalize never-ask, always-ask, ask-only-for-one-way; confirm ambiguous free-form first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Tell the user: \"gstack browse needs a one-time build (~10 seconds). OK to proceed?\" Then STOP and wait.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. Done means completed with evidence; the agent never guesses a score but states the evidence source for each, and verifies that the review report is the last section of the plan file.",
+    "statements": [
+      {
+        "quote": "**DONE** — completed with evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never guess. State your evidence source for every score.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify with the Read tool that \\`## GSTACK REVIEW REPORT\\` is the last \\`## \\` heading in the file before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (5 mandatory, 1 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 counted as a suggestion (it contains \"consider\"), 2 tied to a situation, mostly running text. Without a way to ask the user the skill is blocked and waits. The agent stops when going in circles, flags anything that looks wrong, reports concerns and blockers, and escalates after 3 failures, on security doubts or work it cannot verify.",
+    "statements": [
+      {
+        "quote": "**If no AskUserQuestion variant appears in your tool list, this skill is BLOCKED.** Stop, report `BLOCKED — AskUserQuestion unavailable`, and wait for the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you are looping on the same diagnostic, same file, or failed fix variants, STOP and reassess. Consider escalation or /context-save.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Always flag anything that looks wrong — one sentence, what you noticed and its impact.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — completed, but list concerns.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — cannot proceed; state blocker and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Escalate after 3 failed attempts, uncertain security-sensitive changes, or scope you cannot verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

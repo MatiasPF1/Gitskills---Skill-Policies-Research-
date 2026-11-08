@@ -1,0 +1,195 @@
+{
+  "name": null,
+  "mechanism": "Ask",
+  "repo": "LLTOMZHOU/personal_website",
+  "path": "skills/photo-ingestion-upload-serve/SKILL.md",
+  "author": {
+    "owner": "LLTOMZHOU",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00d99584ad458e30f16ed30d2a08a3dc826e64a8.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Ask) specifies 4 of 5 categories: 3 autonomy limits, 4 clarification rules, 9 validation rules, 6 escalation rules; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) ingests photography and other media from a local folder, uploads it to the site's R2 storage, verifies delivery and writes the references into the repository. The agent infers structure itself and asks only the minimum questions, stating its assumptions. Its main rules are checks: no repository write until uploads and public URLs are verified. Failed verification stops the run and ambiguous collections are escalated to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all in running text. The agent does not install new tooling mid-ingestion to work around environment problems and does not upload or rewrite anything before summarizing the source folder. When answers are obvious enough it proceeds and states its assumptions instead of asking.",
+    "statements": [
+      {
+        "quote": "Do not install random new tooling in the middle of ingestion just to get around a local environment issue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not upload or rewrite content before this summary exists.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the answers are obvious enough, proceed and state the assumptions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (3 mandatory, 1 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"should\"), 3 tied to a situation, mostly running text. The agent asks only the minimum questions, only when the answer affects storage keys, page placement or metadata. It should not silently invent critical metadata when unsure, and surfaces uncertainty about anything user-facing.",
+    "statements": [
+      {
+        "quote": "4. Ask Only The Minimum Clarifying Questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Only ask when the answer materially affects storage keys, page placement, or authored metadata.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "AI should not silently invent critical metadata when confidence is low.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If confidence is low on something user-facing, surface the uncertainty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "9 validation rules (9 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 2 tied to a situation, mostly bullet points. A run is done only when upload access was confirmed before repository writes, public URLs were verified after upload, the repository points only at verified canonical URLs and the photography pages were checked after the build. Writing the JSON is not success while upload or delivery is broken, and canonical URLs are written only after delivery verification passes.",
+    "statements": [
+      {
+        "quote": "For a normal photography run, “done” means all of the following are true:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "upload credentials and bucket access were confirmed before final repo writes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "public delivery URLs were verified after upload",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "repo content points only at verified canonical URLs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`/photography/` and `/photography/<slug>/` were checked after the build",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not treat “JSON was written” as success if the upload path or delivery verification is still broken.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "only proceed to repo writes after the upload path is proven to work",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After upload, verify the public URLs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not write final canonical URLs into the repo until delivery verification passes or the failure is explicitly acknowledged.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (5 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 counted as a suggestion (it contains \"should\"), 2 tied to a situation, mostly bullet points. If upload verification fails the agent stops before writing canonical URLs unless the user asks for a partial update. It escalates when the folder mixes unrelated concepts or several collections, when video and images need different treatment, or when the inferred slug would be unstable.",
+    "statements": [
+      {
+        "quote": "If upload verification fails, stop before writing final canonical URLs unless the user explicitly asks for a partial or placeholder repo update.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Escalate when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "the folder mixes unrelated concepts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "the naming implies multiple separate collections",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "video and image treatment should diverge",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "the inferred slug would be unstable or confusing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

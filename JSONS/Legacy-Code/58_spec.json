@@ -1,0 +1,103 @@
+{
+  "name": "spec",
+  "mechanism": "Ask",
+  "repo": "zjykzj/ModelFlow",
+  "path": ".claude/skills/spec/SKILL.md",
+  "author": {
+    "owner": "zjykzj",
+    "commit_author": "fd17f5cdf20185ab",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00146596e3aa19fb0db7f83705ee21a351991352.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "spec (Ask) specifies 2 of 5 categories: 1 autonomy limit, 4 validation rules; none for clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "spec guides creating and editing project spec files, deciding what belongs in CLAUDE.md, in the external-contract layer or in the module layer, and what to delete. Apart from a fixed tool list, its only control rules are checks the agent runs on itself before deleting content. It never involves the user: there are no questions, approval gates or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Bash`, `Read`, `Write`, `Edit`, `Glob` and `Grep`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all in running text. Before deleting anything from a spec the agent runs two checks: whether the content helps explain a behavioral contract, in which case it stays, and whether only the framing is outdated while the substance is still correct. For module specs it applies the behavioral-contract test before deleting.",
+    "statements": [
+      {
+        "quote": "Before deleting any content, apply two checks:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**1. Contract check:** \"Does this content help explain a behavioral contract — even if it reads like education or FAQ?\" If yes, keep it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**2. Framing check:** Before deleting a section that seems \"about the old architecture\", check whether the *substance* is still correct but the *framing* is stale.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Apply the \"behavioral contract\" test before deleting:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

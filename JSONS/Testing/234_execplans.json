@@ -1,0 +1,131 @@
+{
+  "name": "execplans",
+  "mechanism": "Escalate",
+  "repo": "David-Li0406/meta-skill-evloving",
+  "path": "skill-flow/data/skills-refined-36k/skillsmp/execplans/SKILL.md",
+  "author": {
+    "owner": "David-Li0406",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/019ccb2b1161fdea943fe6072eaf4729e9d9a1e2.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "execplans (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 3 clarification rules, 3 approval gates, 4 escalation rules; none for validation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "execplans writes and maintains self-contained execution plans that a novice could follow end to end, then implements them. The agent pushes back and asks when a task is unclear, unbounded, conflicting or risky, implements only after the user approves the plan, and stops and escalates when tolerances are breached. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. Once the plan is approved the agent proceeds milestone by milestone without asking what to do next, never works around tolerances, and lets the user's standing instructions override the approval gate for qualifying work.",
+    "statements": [
+      {
+        "quote": "If the user has previously established standing instructions (e.g., \"implement plans immediately for changes under 100 LOC\"), those instructions override this gate for qualifying work.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not pause to ask what to do next; proceed to the next milestone.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not attempt to work around tolerances.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly bullet points. When a task is underspecified or unbounded, the agent asks for clarification: which interpretation is intended, or whether a proposed first milestone captures the intent.",
+    "statements": [
+      {
+        "quote": "Escalate or request clarification when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the interpretations and ask which is intended.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Propose a bounded first milestone and ask if that captures the intent.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. The draft plan is presented and implementation starts only after the user's explicit approval, never on silence, and high-blast-radius changes need confirmation of the risk.",
+    "statements": [
+      {
+        "quote": "Name the risk and ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After completing the initial ExecPlan draft, present it to the user and await explicit approval before beginning implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not interpret silence as approval. Do not begin implementation until the user explicitly confirms the plan or requests revisions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly bullet points. The agent asks how to resolve conflicts with project conventions, and when a tolerance threshold is reached or a constraint would be violated it stops implementation immediately and escalates.",
+    "statements": [
+      {
+        "quote": "Note the conflict and ask how to resolve it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop and escalate when a tolerance threshold is reached.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When a tolerance threshold is reached or a constraint would be violated:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop implementation immediately.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "name": "design-shotgun",
+  "mechanism": "Escalate",
+  "repo": "huichen/gstack",
+  "path": "design-shotgun/SKILL.md",
+  "author": {
+    "owner": "huichen",
+    "commit_author": "16fc57a4518f16a8",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/002c1ff1b635817e9117308ad78e2f3600a55c64.md",
+  "conclusion": "design-shotgun (Escalate) specifies 5 of 5 categories: 7 autonomy limits, 7 clarification rules, 7 approval gates, 1 validation rule, 6 escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "7 autonomy limits (7 mandatory, 0 advisory; 1 conditional), mostly prose: proactive skill invocation; where design artifacts may be saved; proceeding after two rounds of context gathering.",
+    "statements": [
+      {
+        "quote": "allowed-tools:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL PATH RULE:** All design artifacts (mockups, comparison boards, approved.json) MUST be saved to `~/.gstack/projects/$SLUG/designs/`, NEVER to `.context/`, `docs/designs/`, `/tmp/`, or any pr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Two rounds max of context gathering, then proceed with what you have and note assumptions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never save to `.context/`, `docs/designs/`, or `/tmp/`.** All design artifacts go to `~/.gstack/projects/$SLUG/designs/`. This is enforced. See DESIGN_SETUP above.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Two rounds max on context gathering.** Don't over-interrogate. Proceed with assumptions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "7 clarification rules (7 mandatory, 0 advisory; 4 conditional), mostly prose: telemetry and proactive behavior settings; missing context and prior sessions; waiting on comparison board feedback.",
+    "statements": [
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: After telemetry is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If `PREVIOUS_SESSIONS_FOUND`:** Read each `approved.json`, display a summary, then AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**AskUserQuestion with pre-filled context:** Pre-fill what you inferred from the codebase, DESIGN.md, and office-hours output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After the board is serving, use AskUserQuestion to wait for the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "7 approval gates (6 mandatory, 1 advisory; 2 conditional), mostly prose: auto-invoking skills and opening the essay; confirming concepts before spending API credits; confirming feedback before saving.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to confirm before spending API credits:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to verify before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to confirm before saving.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confirm feedback before saving.** Always summarize what you understood and verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list: evidence for each DONE claim.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "6 escalation rules (6 mandatory, 0 advisory; 4 conditional), mostly list: blocked tasks and repeated failed attempts; failed variant generation.",
+    "statements": [
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "For any failures: report explicitly with the error. Do NOT silently skip.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If zero variants succeeded: fall back to sequential generation (one at a time with `$D generate`, showing each as it lands). Tell the user: \"Parallel generation failed (likely rate limiting). Falling ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "name": "lean4",
+  "mechanism": "Escalate",
+  "repo": "Wenbobobo/AutoArchon",
+  "path": ".archon-src/skills/lean4/skills/lean4/SKILL.md",
+  "author": {
+    "owner": "Wenbobobo",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/010494476c02c001df5cc3e0d63a0db5a7a579d2.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "lean4 (Escalate) specifies 5 of 5 categories: 3 autonomy limits, 1 clarification rule, 4 approval gates, 5 validation rules, 1 escalation rule. Strongest: validation rules.",
+  "conclusion_qualitative": "lean4 supports editing Lean 4 proofs, debugging builds and searching mathlib, with guided and autonomous proving commands. Statements and axioms are never changed without the user's permission, the scope follows the user's choice, and optional commands need opt-in. A proof is complete only when it builds with no sorries and standard axioms.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all bullet points. The guided mode asks before each cycle while the autonomous mode loops with hard stop conditions, proof engines never change declaration headers, and plain editing makes one bounded pass with no looping, escalation or commits.",
+    "statements": [
+      {
+        "quote": "`/lean4:prove` asks before each cycle; `/lean4:autoprove` loops autonomously with hard stop conditions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Proof engines (`prove`/`autoprove`) never modify declaration headers (header fence)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No looping, no deep escalation, no multi-cycle behavior, no commits",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent follows the user's chosen scope of which sorries to fill and asks if it is unclear.",
+    "statements": [
+      {
+        "quote": "**Respect scope.** Follow the user's preference: fill one sorry, its transitive dependencies, all sorries in a file, or everything. Ask if unclear.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. The agent never changes theorem statements or adds axioms without explicit permission, suggests contribution commands but invokes them only after the user explicitly opts in, and in guided mode needs approval to replan.",
+    "statements": [
+      {
+        "quote": "**Never change statements or add axioms without explicit permission.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Suggest first, never invoke unprompted.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Only invoke after explicit user opt-in** in the current conversation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "In prove, replan requires user approval; in autoprove, replan auto-continues",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly bullet points. A proof counts as complete only when the build passes, no sorries remain in the agreed scope, only standard axioms are used and no statements were changed without permission.",
+    "statements": [
+      {
+        "quote": "A proof is complete when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "`lake build` passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Zero sorries in agreed scope",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only standard axioms (`propext`, `Classical.choice`, `Quot.sound`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No statement changes without permission",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the helper scripts are not available, the agent runs the doctor command and works with the language server only until that is resolved.",
+    "statements": [
+      {
+        "quote": "If `$LEAN4_SCRIPTS` is unset or missing, run `/lean4:doctor` and stay LSP-only until resolved.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

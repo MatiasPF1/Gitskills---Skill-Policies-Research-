@@ -1,0 +1,188 @@
+{
+  "name": "oat-project-quick-start",
+  "mechanism": "Ask",
+  "repo": "tkstang/skills",
+  "path": ".agents/skills/oat-project-quick-start/SKILL.md",
+  "author": {
+    "owner": "tkstang",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/0073bc62873a24729a376342d880d804c89838a3.md",
+  "conclusion": "oat-project-quick-start (Ask) specifies 5 of 5 categories: 5 autonomy limits, 8 clarification rules, 5 approval gates, 4 validation rules, 3 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 1 conditional), mostly prose: implementation code changes; auto-advancing well-understood requests; where dispatch ceilings may be written.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "No implementation code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Auto-advance rule:** If the request was classified as **well-understood** in Step 2a and discovery surfaced no architecture decisions, component boundary questions, or unexpected complexity, skip th",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A project-specific active policy or ceiling must not be written to user `~/.oat/config.json`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Persist the active project ceiling only in `\"$PROJECT_PATH/state.md\"`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "8 clarification rules (8 mandatory, 0 advisory; 4 conditional), mostly list: commit message and project description; inferring requirements from the name; design depth and ladder scope choices.",
+    "statements": [
+      {
+        "quote": "**Commit now** (recommended when only sync output is dirty) — stage and commit. For sync-only diffs, default the message to `chore: run sync`; otherwise ask the user for the commit message.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `$ARGUMENTS` contains only a bare `{project-name}` (for example a slug or short title) without a substantive description, ask the user for a short project description before scanning the repo or dr",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not infer requirements from the project name alone or go exploring the codebase to guess what the project means.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If neither field is available, ask for both the project name and a short project description. One or two sentences is enough for the description.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**One question at a time** — ask focused clarifying questions sequentially, not as a batch. After each answer, update your understanding and let the next question be informed by the response.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use `AskUserQuestion` to present this choice.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Contradictory or materially incomplete requirements remain a product-judgment boundary; auto-confirmation is not permission to invent scope.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the effective ladder is missing or incomplete, show the full bundled recommendation and ask the user to select its owning scope before running exactly one command:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly list: dirty working tree choices; buy-in on the chosen direction; requirements confirmation and medium fixes.",
+    "statements": [
+      {
+        "quote": "Offer three choices via `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not advance past this gate without an explicit choice.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Incremental validation** — after exploring the solution space and converging on an approach, summarize the chosen direction and get explicit user buy-in before moving to decisions and constraints.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not auto-confirm just because the structured question tool is missing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Apply Critical and Important artifact-local fixes when unambiguous; offer Medium and Minor fixes instead of silently applying them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly prose: relevant repository checks after formatting; plan artifact review loop; configured gate before completion.",
+    "statements": [
+      {
+        "quote": "After formatting, run only repository checks relevant to the files changed; writing lifecycle artifacts does not imply unrelated full test suites.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Invoke the shared `Auto Artifact-Review Loop` from `oat-project-plan-writing` with target `plan` before syncing project state or handing off to implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-dispatch after rewrites until clean or the retry bound is exhausted.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After artifact finalization and plan artifact review, run the configured gate as the last check before plan and project completion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "3 escalation rules (3 mandatory, 0 advisory; 2 conditional), mostly list: reviewer timeouts; gate attempts exhausted; unresolved dispatch or failed review recording.",
+    "statements": [
+      {
+        "quote": "After acceptance, poll, nudge, or continue only through the existing reviewer handle. A terminal timeout blocks or escalates without another launch. Replacement eligibility is limited to explicit pre-",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`block`: read gate feedback, remediate, and re-run the gate up to `maxAttempts` attempts (default `2`). If attempts are exhausted, escalate to the human with accumulated feedback and append that feedb",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If dispatch remains unresolved, review execution fails closed, or the outcome cannot be recorded, leave the Step 3 pre-review values unchanged and commit them before stopping.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

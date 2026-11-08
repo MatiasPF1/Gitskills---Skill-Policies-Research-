@@ -1,0 +1,126 @@
+{
+  "name": "fix-pr-tests",
+  "mechanism": "Ask",
+  "repo": "Franck-Fernandez-pro/inout",
+  "path": ".claude/skills/fix-pr-tests/SKILL.md",
+  "author": {
+    "owner": "Franck-Fernandez-pro",
+    "commit_author": "c1bb2249a09e8c05",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/00f9a2f5c1647829d837f13ae723ffb0f7d5a239.md",
+  "conclusion": "fix-pr-tests (Ask) specifies 3 of 5 categories: 5 autonomy limits, 3 clarification rules, 7 validation rules; none for approval gates, escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 3 conditional), mostly list: editing tests to make CI green; fixing production code and test together; editing CI workflow config.",
+    "statements": [
+      {
+        "quote": "If it **passes locally** but fails in CI: this is a CI-environment signal (env var, timezone, fixture seed, parallelism, OS). Do NOT edit the test to make CI green — investigate the env delta first. C",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Real bug:** fix production code. Do not also \"tighten\" the test in the same change.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER edit a test to make it pass without classifying first** **Instead:** Complete Phase 3 and write down the classification before opening the test file. **Why:** Editing the assertion is the fast",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER fix the prod code AND the test in the same change when only one was wrong** **Instead:** Pick one side based on Phase 3. If both genuinely need to change (e.g., intentional API rename), say so",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER edit `.github/workflows/` or CI config to make a test pass** **Instead:** Treat CI config as out of scope for this skill. If the test genuinely needs different CI setup (new env var, service c",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly list: unresolvable PR number; assuming the test runner; ambiguous intended behavior.",
+    "statements": [
+      {
+        "quote": "Resolve the PR: explicit `<PR#>` from the user, otherwise `gh pr view --json number,headRefName` for the current branch. If neither resolves, stop and ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Detect runner from project (`package.json` scripts, `pytest.ini`, `go.mod`, etc.) — do not assume.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ambiguous?** When you cannot tell whether the new behavior is intentional, **stop and ask the user**. Do not guess. Phrase: \"Test `X` expects `A`, code now returns `B`. Is `B` the intended new behav",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 5 conditional), mostly list: re-running a suspected flake three times; sibling-test scan and re-verification; reproducing locally before pushing.",
+    "statements": [
+      {
+        "quote": "**Is this a flake?** Re-run the single test 3× locally. If it alternates pass/fail with no code change → flake. Look for: `Date.now()`, `Math.random()`, unseeded fixtures, timing-based assertions, ord",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After fixing one failure, **scan sibling tests** for the same root cause before pushing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-verify: failing test → containing file → full suite only if the fix touched shared code (utilities, types, schemas, config).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Push to the PR branch. Then `gh pr checks <PR#> --watch` (or poll) until CI re-runs. If still red, return to Phase 1 with the new logs — do not assume a second failure is the same as the first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER push a fix without reproducing the failure locally first** **Instead:** Phase 2 must show the same failure on your machine before Phase 4. If it won't reproduce, that's the bug to investigate,",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER classify a single failure as a flake without re-running 3×** **Instead:** Re-run locally with the same seed/env at least three times. Only call it a flake if it actually alternates. **Why:** \"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER skip sibling-test scan after fixing one failure** **Instead:** After Phase 4, grep the codebase for tests that touch the same prod symbol/file before pushing. **Why:** A single root cause usua",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

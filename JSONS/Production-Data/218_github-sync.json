@@ -1,0 +1,126 @@
+{
+  "name": "github-sync",
+  "mechanism": "Escalate",
+  "repo": "thuantan2060/facebook-sale-tracking",
+  "path": ".claude/skills/github-sync/SKILL.md",
+  "author": {
+    "owner": "thuantan2060",
+    "commit_author": "cb325057599c43a8",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0143cbabcd5d6102290723a6a30622d0811cbdfa.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "github-sync (Escalate) specifies 5 of 5 categories: 3 autonomy limits, 2 clarification rules, 5 approval gates, 1 validation rule, 1 escalation rule. Strongest: approval gates.",
+  "conclusion_qualitative": "github-sync synchronises BMAD planning artifacts with GitHub Projects in both directions: onboarding, pushing stories as issues, pulling status back and comparing. Its core rule is that nothing syncs automatically: every change is shown in a sync report and waits for the user's approval. Data ownership is respected on each side, and failed prerequisites stop the workflow.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The agent never overwrites data owned by the other side and never parses issue bodies with a script; read-only comparisons run without approval.",
+    "statements": [
+      {
+        "quote": "Never overwrite the owner's data.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never auto-parse issue bodies with a script.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Compare local files with GitHub state without making any changes. No approval needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all in running text. During onboarding the agent asks whether to use an existing project or create one, and confirms the detected owner, repository and projects.",
+    "statements": [
+      {
+        "quote": "List existing projects and ask the user whether to use one or create new:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present detected owner/repo and existing projects. Ask for confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. Nothing syncs automatically: every mutating operation first produces a sync report, and the agent halts and waits for the user's approval before pushing, pulling or setting up.",
+    "statements": [
+      {
+        "quote": "**Never sync automatically.** Every mutating operation (create issues, update fields, modify files) requires generating a sync report first, presenting it to the user, and waiting for explicit approva",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**HALT HERE. Wait for user approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If approved, execute in this order:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**HALT HERE. Wait for user approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**HALT HERE. Wait for user approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent always checks the existing sync state before creating anything, to avoid duplicates.",
+    "statements": [
+      {
+        "quote": "Always check for existing sync state before creating.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent verifies the prerequisites in order and stops at the first failure.",
+    "statements": [
+      {
+        "quote": "Before any workflow, verify these in order. Stop at first failure.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

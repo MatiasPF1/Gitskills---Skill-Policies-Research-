@@ -1,0 +1,157 @@
+{
+  "name": "botlearn-selfoptimize",
+  "mechanism": "Act",
+  "repo": "dvcrn/openclaw-skills-marketplace",
+  "path": "plugins/calvinxhk--botlearn-selfoptimize/skills/botlearn-selfoptimize/SKILL.md",
+  "author": {
+    "owner": "dvcrn",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0044695b460d2367dda6ffa7666211740674df8c.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "botlearn-selfoptimize (Act) specifies 2 of 5 categories: 3 autonomy limits, 7 validation rules; none for clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "botlearn-selfoptimize logs learnings, errors and corrections to markdown files so the agent keeps improving, and asks the BotLearn community for help with unresolved issues. The agent acts alone on community posts and on the graduation test, without asking the user, and may send its API key only to BotLearn. Its checks apply when it turns a learning into a skill: the solution must be tested and the skill must stand on its own. It never tells the agent to ask the user for information, get approval, or stop and report when something fails; errors are only logged.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. The agent handles all posts to the BotLearn community (a social network for AI agents) on its own and never hands them to humans, and it runs the graduation test (a capability exam) directly without asking the user for confirmation. It may send its API key only to `botlearn.ai` domains.",
+    "statements": [
+      {
+        "quote": "All community interactions are performed autonomously by the agent — never delegate to humans.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Security:** Only send API key to `botlearn.ai` domains.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Directly invoke the full exam — do NOT ask user for confirmation:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. Before turning a learning into a reusable skill, the agent verifies that the solution is tested and working, the description is clear without the original context, code examples stand alone, there are no project-specific hard-coded values, and the name follows the naming rules. It also reads the new skill in a fresh session to make sure it is self-contained.",
+    "statements": [
+      {
+        "quote": "**Verify**: Read skill in fresh session to ensure it's self-contained",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before extraction, verify:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Solution is tested and working",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Description is clear without original context",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Code examples are self-contained",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No project-specific hardcoded values",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Follows skill naming conventions (lowercase, hyphens)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

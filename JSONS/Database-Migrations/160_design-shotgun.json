@@ -1,0 +1,266 @@
+{
+  "name": "design-shotgun",
+  "mechanism": "Escalate",
+  "repo": "huichen/gstack",
+  "path": "design-shotgun/SKILL.md",
+  "author": {
+    "owner": "huichen",
+    "commit_author": "16fc57a4518f16a8",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/002c1ff1b635817e9117308ad78e2f3600a55c64.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "design-shotgun (Escalate) specifies 5 of 5 categories: 6 autonomy limits, 9 clarification rules, 6 approval gates, 1 validation rule, 8 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "design-shotgun generates several AI design variants, opens a comparison board, collects structured feedback and iterates until the user approves a direction (gstack). A shared preamble asks about setup choices and gets a yes before upgrades or other skills. The design flow confirms concepts before spending credits and confirms the feedback before saving. It escalates after repeated failures, security doubts or work it cannot verify.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Glob`, `Grep`, `Agent` and `AskUserQuestion`. When proactive mode is off it runs only the skills the user types. It does not ask which variant the user prefers (the comparison board does that), never saves designs outside the project design folder, and gathers context in at most two rounds before proceeding on assumptions.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Glob, Grep, Agent, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT use AskUserQuestion to ask which variant the user prefers.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never save to `.context/`, `docs/designs/`, or `/tmp/`.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Two rounds max on context gathering.** Don't over-interrogate. Proceed with assumptions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "9 clarification rules (9 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 4 tied to a situation, mostly running text. During setup the agent asks about telemetry and proactive behavior, and it says exactly what it needs when information is missing. It asks one pre-filled question for missing design context, confirms its reading of the feedback before proceeding or saving, and offers the next steps.",
+    "statements": [
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: After telemetry is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**AskUserQuestion with pre-filled context:** Pre-fill what you inferred from the codebase, DESIGN.md, and office-hours output. Then ask for what's missing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to verify before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to confirm before saving.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If standalone, offer next steps via AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confirm feedback before saving.** Always summarize what you understood and verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (5 mandatory, 1 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 only a suggestion (worded with \"might\"), 3 tied to a situation, all in running text. Instead of starting skills, upgrades or the essay link on its own, the agent asks and waits for a yes, presents another model's advice as a recommendation for the user to decide, and confirms the design concepts before spending API credits.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.openclaw/skills/gstack/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion wi",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never say \"the outside voice is right\" and act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Say \"the outside voice recommends X — do you want to proceed?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to confirm before spending API credits:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. A task counts as done only when every step is complete with evidence for each claim.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "8 escalation rules (7 mandatory, 1 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"should\"), 4 tied to a situation, mostly bullet points. The agent reports concerns and blockers and may always stop, and must stop and escalate after 3 failed attempts, on doubts about a security-sensitive change, or when it cannot verify the work. Failed design variants are reported explicitly, and if all fail it falls back to sequential generation.",
+    "statements": [
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "For any failures: report explicitly with the error. Do NOT silently skip.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If zero variants succeeded: fall back to sequential generation (one at a time with `$D generate`, showing each as it lands).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

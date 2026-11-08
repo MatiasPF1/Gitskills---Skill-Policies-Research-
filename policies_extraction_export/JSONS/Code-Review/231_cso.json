@@ -1,0 +1,332 @@
+{
+  "name": "cso",
+  "mechanism": "Escalate",
+  "repo": "adityasingh2400/SwarmSell",
+  "path": ".claude/skills/cso/SKILL.md",
+  "author": {
+    "owner": "adityasingh2400",
+    "commit_author": "9c4cbe4ec26f4945",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0192365b6433f5846633bf429bf35ac3b9828b96.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "cso (Escalate) specifies 5 of 5 categories: 7 autonomy limits, 6 clarification rules, 7 approval gates, 6 validation rules, 8 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "cso runs a Chief Security Officer audit (gstack): secrets archaeology, supply chain, CI/CD, LLM security, skill supply chain, OWASP Top 10 and STRIDE, with independent verification of findings. It is strictly read-only and reports only high-confidence, verified findings. A shared preamble asks about setup choices and gets a yes before upgrades or other skills, and wider scans need permission. It escalates after repeated failures, security doubts or work it cannot verify.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (7 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Grep`, `Glob`, `Write`, `Agent`, `WebSearch` and `AskUserQuestion`. When proactive mode is off it runs only the skills the user types. The audit is read-only: the agent never modifies code, verifies by tracing code rather than making live requests, and never tests secrets against live APIs.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Grep, Glob, Write, Agent, WebSearch, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "You do NOT make code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verification approach (code-tracing only — NO live requests):**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Secrets:** Check if the pattern is a real key format (correct length, valid prefix). DO NOT test against live APIs.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Read-only.** Never modify code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 4 tied to a situation, mostly running text. During setup the agent asks about telemetry, proactive behavior and cross-project learnings, it says exactly what it needs when information is missing, and it presents the top findings' remediation plan to the user as a question.",
+    "statements": [
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: After telemetry is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `CROSS_PROJECT` is `unset` (first time): Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Remediation Roadmap:** For the top 5 findings, present via AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (6 mandatory, 1 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 only a suggestion (worded with \"might\"), 4 tied to a situation, all in running text. Instead of starting skills, upgrades or the essay link on its own, the agent asks and waits for a yes. Advice from another AI model is presented as a recommendation for the user to decide, and scanning globally installed skills needs the user's permission.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/gstack/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never say \"the outside voice is right\" and act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Say \"the outside voice recommends X — do you want to proceed?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Tier 2 — global skills (requires permission):** Before scanning globally installed skills or user settings, use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If approved, run the same Grep patterns on globally installed skill files and check hooks in user settings.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly running text. Done means every step is complete with evidence. In daily mode only findings at 8/10 confidence or above are reported, and the confidence gate is absolute; each finding is checked by an independent verification sub-agent (or a skeptical re-read when none is available) and needs a concrete exploit scenario.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Daily mode (default, `/cso`):** 8/10 confidence gate. Zero noise. Only report what you're sure about.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each candidate finding, launch an independent verification sub-task using the Agent tool.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the Agent tool is unavailable, self-verify by re-reading code with a skeptic's eye.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Exploit scenario requirement:** Every finding MUST include a concrete exploit scenario",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confidence gate is absolute.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "8 escalation rules (7 mandatory, 1 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"should\"), 5 tied to a situation, mostly bullet points. The agent reports concerns and blockers and may always stop, and must stop and escalate after 3 failed attempts, on doubts about a security-sensitive change, or when it cannot verify the work. Conflicting scope flags are an immediate error, and missing web search is noted rather than hidden.",
+    "statements": [
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If multiple scope flags are passed, **error immediately**:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If WebSearch is unavailable, skip checks that require it and note: \"WebSearch unavailable — proceeding with local-only analysis.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "name": "qa-engineer",
+  "mechanism": "Act",
+  "repo": "sundarshahi/drydock",
+  "path": "skills/qa-engineer/SKILL.md",
+  "author": {
+    "owner": "sundarshahi",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0197209d6d4cebe310e31119d17192a410124a64.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "clarification_rules",
+        "approval_gates",
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": [
+        "autonomy_limits",
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "qa-engineer (Act) specifies 5 of 5 categories: 10+ autonomy limits, 3 clarification rules, 2 approval gates, 10+ validation rules, 2 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "qa-engineer writes and runs tests (unit, integration, contract, end-to-end and performance) inside a larger orchestrated pipeline, without modifying source code. How much it asks the user depends on an autonomy level, from fully autonomous to manual review of the test plan, and it needs a recorded owner decision to override a failed gate. Its strongest rules are hard quality gates fed by real tool output, so nothing passes with failing tests or weak coverage. It keeps tests out of source folders, uses no real personal data, and stops or degrades when inputs are missing.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly running text. The front matter limits the agent to a listed tool set. In autopilot mode it works fully on its own. It must not modify source code or write test files into `services/` or `frontend/`, must use the project's existing test framework without restructuring its test folder, runs at most 3 sub-tasks at once, and never copies production data or real personal data into tests.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Grep, Glob, Task, Skill, WebSearch, WebFetch, Bash(bash \"${CLAUDE_SKILL_DIR}/../_shared/load-protocol.sh\" *), Bash(bash \"${CLAUDE_SKILL_DIR}/../_shared/load-fil",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Autopilot** | Fully autonomous. Generate all test suites with sensible coverage targets. Report test plan in output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**MATCH existing test framework** — if they use pytest, don't introduce jest. If they use Vitest, use Vitest",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**ADD tests alongside existing ones** — don't restructure their test directory",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The QA Engineer does NOT modify source code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never write test files into `services/` or `frontend/` directly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After the test plan is written, spawn all test types simultaneously with **bounded foreground fan-out** — up to **3 concurrent** `general-purpose` sub-tasks (Agent tool), batching in groups of 3 if th",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT pass isolation/background/mode at call time (not documented Agent-tool parameters; this subagent is already isolated).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Synthetic, PII-free data only** — factories and seed data generate synthetic values (Faker with a seeded locale); NEVER copy production data, real emails, real card numbers, or real PII into tests.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing tests inside `services/` or `frontend/` source directories | Pollutes source directories; violates pipeline separation | Always write tests to `tests/` at project root exclusively",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly table rows. Depending on the autonomy level, the agent raises one or two critical decisions (such as coverage targets) or asks about test data, key edge cases and performance targets. If the performance budget file is missing, it treats that as a critical missing input and does not invent a threshold.",
+    "statements": [
+      {
+        "quote": "**Copilot** | Surface 1-2 critical decisions — coverage targets, e2e scope (which flows to test), performance thresholds.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Checkpoint** | Show full test plan before implementing. Ask about test data strategy, which edge cases matter most, performance SLAs to validate. Show test results summary per category.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "When the budget file is missing, treat perf gating as a Critical missing input (do not invent 500ms).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one table row and one in running text. In manual mode the user reviews the test scenarios before implementation. When the owner chooses to ship past a failed quality gate, the agent records that decision through `AskUserQuestion` and writes an override receipt instead of letting it pass silently.",
+    "statements": [
+      {
+        "quote": "**Manual** | Walk through test plan per service. User reviews test scenarios before implementation. Show each test category's results. Ask about flaky test tolerance and retry strategy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "When the owner consciously ships past a breached gate, do NOT silently pass — capture the decision with AskUserQuestion (predefined options, never open-ended) and write an override receipt to the cano",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly table rows. The agent must never report success while any test fails, and every failing test becomes a finding to fix. It must take its reported metrics from real test, coverage and mutation tool output, not memory, and a table of gates blocks release on failing tests, low coverage or patch coverage, a low mutation score, a failed contract deployment check or a performance regression.",
+    "statements": [
+      {
+        "quote": "Do NOT print a green completion line while tests are red.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "These exact keys are MANDATORY and are extracted by the gate; emit them from real tool output (the test runner's JSON/JUnit summary + coverage report + mutation report), never from memory:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`tests_failing` | runner JUnit/JSON summary | `> 0`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`coverage_lines` / `coverage_branches` | coverage report | below the matching gate in `tests/coverage/thresholds.json`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`patch_coverage` | diff-coverage tool | below the patch threshold (~80%)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`mutation_score` | Stryker/mutmut/PIT/go-mutesting report (critical modules) | below the configured minimum (nightly gate)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`contract_can_i_deploy` | `pact-broker can-i-deploy` exit code | `false`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`perf_baseline_regression` | k6 thresholds vs `performance-budget.yaml` | `true`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Failing test = remediation finding, ALWAYS.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never marshal a green completion while a test is red.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (1 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, 1 strict and 1 counted as a suggestion (it contains the word \"Optional\"), none tied to a situation, one bullet point and one in running text. Before starting, the agent sorts missing inputs into critical (stop), degraded (warn and continue in part) or optional (skip), and if the frontend folder is missing it prints a degraded notice and skips the frontend tests.",
+    "statements": [
+      {
+        "quote": "Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently).",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Print: `[DEGRADED: frontend not found — skipping frontend tests]`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

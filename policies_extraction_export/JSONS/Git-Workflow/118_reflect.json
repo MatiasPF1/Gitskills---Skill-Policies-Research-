@@ -1,0 +1,94 @@
+{
+  "name": "reflect",
+  "mechanism": "Ask",
+  "repo": "estevanhernandez-stack-ed/vibe-cartographer",
+  "path": "plugins/vibe-cartographer/skills/reflect/SKILL.md",
+  "author": {
+    "owner": "estevanhernandez-stack-ed",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0116825ec35c58069dbefd1e8deae917749c86db.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "reflect (Ask) specifies 3 of 5 categories: 3 autonomy limits, 1 clarification rule, 1 escalation rule; none for approval gates, validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "reflect runs an end-of-project reflection with the builder, reviews what was built, calibrates logged friction and writes a reflection document and profile updates. Its few control rules limit which parts of the shared profile it may change, allow one clarifying question on ambiguous calibration answers, and report logging failures without blocking. It sets no approval gates or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. When updating the builder profile the agent never touches other plugins' sections, leaves identity, experience and taste alone unless the builder said something new, and does not edit the name, identity or technical experience fields.",
+    "statements": [
+      {
+        "quote": "**Never touch other plugins' blocks.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Leave identity, experience, and creative sensibility alone unless the builder explicitly told you something new.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Don't touch `shared.name`, `shared.identity`, or `shared.technical_experience` during reflect.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the builder's calibration markings are ambiguous, the agent asks a single clarifying question and then proceeds.",
+    "statements": [
+      {
+        "quote": "**If markings are ambiguous** (e.g., `fp` with no number, or a number out of range): ask a single clarifying question, then proceed. Don't spiral.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If writing the calibration log fails, the agent shows the error and continues without blocking the handoff.",
+    "statements": [
+      {
+        "quote": "If `atomic-append-jsonl.js` exits non-zero, surface the stderr and continue. Don't block the handoff.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

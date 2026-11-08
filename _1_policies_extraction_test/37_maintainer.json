@@ -1,0 +1,218 @@
+{
+  "name": "maintainer",
+  "mechanism": "Ask",
+  "repo": "kaitranntt/kai-personal-claude",
+  "path": "skills/maintainer/SKILL.md",
+  "author": {
+    "owner": "kaitranntt",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/003690e9f992f780a1b39f8e583ca60568816f45.md",
+  "conclusion": "maintainer (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 2 clarification rules, 10+ approval gates, 3 validation rules, 5 escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 3 conditional), mostly prose: cook stopping before its finalize step; reports saved in the target repo plans/; read-only signal intake mode.",
+    "statements": [
+      {
+        "quote": "When plan step runs, cook MUST stop before its finalize step — maintainer owns git ops (see Cook Finalize Gate in `implement-and-pr.md`)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**All reports, brainstorm outputs, and plans MUST be saved in the TARGET REPO's `plans/` directory**, NOT in the worktree directory.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**This mode is strictly read-only.** No autonomy, no cron, no auto-pick, no ck-loop. It never branches, commits, pushes, edits files, or opens a worktree.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**4. Launch parallel agents by classification** (max 4):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "NEVER make code changes directly on the original repo directory.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**`--skip-worktree` is only allowed when already inside a dedicated worktree/branch.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When `--pr-main` is used, the worktree MUST be created from `main`, NOT from `dev`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Cook MUST stop before its finalize step** -- do NOT let cook commit or create PRs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Maintainer-created issue (Step 3):** Auto-post comment, no confirmation needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Default target: `dev`** -- ALL PRs from worktrees/feature branches MUST target `dev`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list: target when no flag or input is given; which ranked candidate to address.",
+    "statements": [
+      {
+        "quote": "**Fallback when neither applies:** if there is no `--from-signals` flag AND no input (report / image / transcript / URL / description), ask the user what they want to work on (or suggest re-running wi",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user which candidate to address. The user may instead override with a fresh target -- a GitHub issue URL or a plain description. Never auto-pick, even when there is only one candidate or a cle",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 5 conditional), mostly list: suggesting decomposition; issue title and labels before creation; posting on user-provided issues.",
+    "statements": [
+      {
+        "quote": "If >3 files AND >2 groups -> suggest decomposition via `AskUserQuestion`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Use `AskUserQuestion` to confirm issue title and labels before creation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**User-provided issue URL:** Use `AskUserQuestion` to confirm before posting.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Proceed when user confirms understanding",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Before any git operations, ask the user via `AskUserQuestion`: > \"Run `/code-review codebase --parallel` to validate code quality before committing?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Hard gate if `--force-ui`:** PR creation (Step 8) is BLOCKED until evidence is produced and user-approved.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Review locally first** — open report for user approval BEFORE any git commit. Never push evidence incrementally",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER push evidence commits incrementally.** Capture locally, get user approval, THEN commit+push once.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If PR is still **open** -> Use `AskUserQuestion`: \"PR #N is still open (not merged). Merge it first before cleanup?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER comment on or close user-opened issues** via `gh` unless the user explicitly asks",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list: proving root cause with evidence; release-worthy commit types for --pr-main; self-review each loop iteration.",
+    "statements": [
+      {
+        "quote": "**Prove root cause** -- must show concrete evidence (code path, log, repro steps) that confirms the hypothesis. If brainstorm alone can't prove it, pair with `/debug` to validate before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**`--pr-main` commit audit:** Before committing, verify ALL commits use release-worthy types (`hotfix:`, `fix:`, `feat:`). Housekeeping commits (version sync, merge conflict resolution, package.json p",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Every loop iteration:** poll upstream feedback AND run parallel self-review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "5 escalation rules (5 mandatory, 0 advisory; 3 conditional), mostly list: unreliable UI evidence before a PR; failed evidence capture; no review within the max wait.",
+    "statements": [
+      {
+        "quote": "If reliable evidence cannot be produced, **stop and ask the user** before opening a weak PR",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "if reliable evidence still can't be produced: stop and ask the user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "| Evidence capture fails | Can proceed with warning | **STOP and ask user** — never open a weak PR |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "If `MAX_FIRST_WAIT` exceeded with no review: alert user, proceed to Step 9",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Alert: \"Review feedback loop reached max {MAX_ATTEMPTS} attempts for PR #{PR}. Remaining issues require manual attention.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

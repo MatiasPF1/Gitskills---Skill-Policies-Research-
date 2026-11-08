@@ -1,0 +1,143 @@
+{
+  "name": "ast-refactor",
+  "mechanism": "Escalate",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/ast-refactor/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00edec35d3906f48f2bcb14d610ff40f671e6cb1.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "clarification_rules",
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "ast-refactor (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 2 clarification rules, 4 approval gates, 4 validation rules; none for escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "ast-refactor transforms code patterns across files with ast-grep, a syntax-aware search and replace tool: renames, API migrations and syntax modernization. The agent clarifies the request, shows a plan with examples and gets approval before any destructive change, then verifies with tests and type checks. It works with a fixed tool set and sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Read`, `Glob`, `Grep`, `Bash`, `Edit`, `Write`, `AskUserQuestion` and `TodoWrite`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Glob, Grep, Bash, Edit, Write, AskUserQuestion, TodoWrite",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. The agent clarifies what structure to refactor and asks the user about architectural decisions.",
+    "statements": [
+      {
+        "quote": "**Understand the Request**: Clarify what structure to refactor",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Gather feedback using AskUserQuestion for architectural decisions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all bullet points. The agent always shows the transformation plan with examples, confirms the approach, needs a clean tree or the user's acknowledgment of existing changes, and never runs a destructive refactoring without approval.",
+    "statements": [
+      {
+        "quote": "Confirm approach before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify Git State**: Ensure clean working tree or user acknowledges changes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never run destructive refactoring without user approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Always show transformation plan with examples before executing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. The agent uses interactive or dry-run modes for significant changes and always verifies with tests, type checkers and linters afterwards.",
+    "statements": [
+      {
+        "quote": "**Verify Changes**: Run tests, type checkers, linters",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Always verify with tests/type-checker after refactoring",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Use `--interactive` or `--dry-run` modes for significant changes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify tests pass after refactoring",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

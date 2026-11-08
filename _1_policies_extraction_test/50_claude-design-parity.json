@@ -1,0 +1,146 @@
+{
+  "name": "claude-design-parity",
+  "mechanism": "Ask",
+  "repo": "jeffmichaeljohnson-tech/claude-design-parity",
+  "path": "SKILL.md",
+  "author": {
+    "owner": "jeffmichaeljohnson-tech",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/009ee53551a8cbd44dff8bffd06b45bcd382b75c.md",
+  "conclusion": "claude-design-parity (Ask) specifies 5 of 5 categories: 2 autonomy limits, 5 clarification rules, 3 approval gates, 6 validation rules, 2 escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list: asking where the design output is; introducing new libraries or styling idioms.",
+    "statements": [
+      {
+        "quote": "Find the new design output without asking the user where it is.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Preserve project conventions** discovered in Phase 0. Don't drift styling idioms, don't add error boundaries the project doesn't use, don't introduce libraries the project hasn't already adopted.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (5 mandatory, 0 advisory; 4 conditional), mostly list: assuming project conventions; multiple or missing design candidates; ambiguities before writing code.",
+    "statements": [
+      {
+        "quote": "Do NOT assume.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If more than one candidate: list with mtimes and ask multiple-choice.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If zero on Desktop: also check `~/Downloads` (same patterns, last 7 days). If the project has an off-repo archive (per `docs/design/README.md`, e.g. `~/Documents/<project>-design-archive/`), check the",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If ANY ambiguity in the report (new functionality, conflicting signals between design and impl, multiple plausible interpretations), ask multiple-choice questions BEFORE writing code.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask multiple-choice questions** whenever confused, unless the user said \"just go\" when invoking.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly prose: deferring to a stack-specific specialization; declaring success before the user's checklist.",
+    "statements": [
+      {
+        "quote": "If the current repo has a stack-specific specialization at `.claude/skills/claude-design-parity-<stack>/SKILL.md`, surface it in the first message and ask whether to defer to it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Stop.** Do not declare success. Wait for the user to run the checklist.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for the user's choice before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "6 validation rules (6 mandatory, 0 advisory; 1 conditional), mostly list: automated visual verification every run; static gates and boot test; repo state at the end of each run.",
+    "statements": [
+      {
+        "quote": "**Visual verification is automated, every run.** Phase 5 runs `scripts/parity-screenshot-diff.mjs` against the impl dev server and the design URL or HTML export. Routes with pixel deltas above the thr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Static gates** per Phase 0 discovery:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Boot test.** Run the dev launcher discovered in Phase 0 (e.g. `npm run dev`, `npm run tauri:dev`, `expo start`). Confirm it boots without console errors.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Visual verification (mandatory).** Run `scripts/parity-screenshot-diff.mjs`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Automated visual verification runs on every parity run** via `scripts/parity-screenshot-diff.mjs`. Any route with pixel delta above threshold blocks the human checklist sign-off until investigated a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Every run leaves the repo in a state where the dev launcher boots cleanly and `parity-screenshot-diff` exits 0 or 1** (not 2 or 3).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list: conflicts between design and implementation.",
+    "statements": [
+      {
+        "quote": "**Conflict policy when design and impl disagree:** PAUSE AND ASK PER CONFLICT.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Conflict policy is always pause-and-ask per conflict.** Never auto-resolve.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

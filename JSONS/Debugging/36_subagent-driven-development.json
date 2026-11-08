@@ -1,0 +1,145 @@
+{
+  "name": "subagent-driven-development",
+  "mechanism": "Act",
+  "repo": "SriramGandhiS/Skills",
+  "path": "skills/subagent-driven-development/SKILL.md",
+  "author": {
+    "owner": "SriramGandhiS",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/015abed180d0a65a2da9b90c9d80334b16475ea5.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "subagent-driven-development (Act) specifies 4 of 5 categories: 3 autonomy limits, 1 approval gate, 8 validation rules, 2 escalation rules; none for clarification rules. Strongest: validation rules.",
+  "conclusion_qualitative": "subagent-driven-development carries out an implementation plan by sending each task to a fresh subagent, followed by a spec-compliance review and then a code-quality review. The agent works through all tasks without checking in with the user, dispatches one implementation subagent at a time, and never fixes code by hand. Its largest group of rules are the reviews, which must pass before moving on. It stops only when blocked or genuinely stuck on ambiguity, escalates if the plan is wrong, and needs the user's consent to work on `main` or `master`. It has no clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The agent must not pause to check in with the user between tasks. It must never dispatch several implementation subagents in parallel, and when a subagent fails it sends a fix subagent rather than fixing the code by hand.",
+    "statements": [
+      {
+        "quote": "**Continuous execution:** Do not pause to check in with your human partner between tasks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Dispatch multiple implementation subagents in parallel (conflicts)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't try to fix manually (context pollution)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. It is listed under the things never to do: starting implementation on the `main` or `master` branch without the user's explicit consent.",
+    "statements": [
+      {
+        "quote": "Start implementation on main/master branch without explicit user consent",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (8 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, none tied to a situation, all bullet points. Listed mostly as things never to do, they make the agent run both reviews (spec compliance, then code quality) for every task in that order, never accept \"close enough\", never let the implementer's self-review replace them, re-review after every fix, and never move on or proceed while issues remain open.",
+    "statements": [
+      {
+        "quote": "Skip reviews (spec compliance OR code quality)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Proceed with unfixed issues",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Accept \"close enough\" on spec compliance (spec reviewer found issues = not done)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Skip review loops (reviewer found issues = implementer fixes = review again)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Let implementer self-review replace actual review (both are needed)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Start code quality review before spec compliance is PASS:** (wrong order)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Move to next task while either review has open issues",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't skip the re-review",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one in running text and one bullet point. The agent stops only for a blocked status it cannot resolve, an ambiguity that truly prevents progress, or when all tasks are done, and it escalates to the human if the plan itself is wrong.",
+    "statements": [
+      {
+        "quote": "The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the plan itself is wrong, escalate to the human",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

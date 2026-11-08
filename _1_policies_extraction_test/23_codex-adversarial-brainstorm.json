@@ -1,0 +1,53 @@
+{
+  "name": "codex-adversarial-brainstorm",
+  "mechanism": "Act",
+  "repo": "seenpartners/codex-adversarial-brainstorm",
+  "path": "SKILL.md",
+  "author": {
+    "owner": "seenpartners",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00e98598b7ba9cc3702a1cad2741084a4cbf01bc.md",
+  "conclusion": "codex-adversarial-brainstorm (Act) specifies 2 of 5 categories: 2 autonomy limits, 1 escalation rule; none for clarification rules, approval gates, validation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly prose: asking the user for Claude credentials; keeping the rebuttal phase read-only.",
+    "statements": [
+      {
+        "quote": "Never ask the user for Claude API keys, token exports, credential files, or credential migration for this workflow.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Keep this phase read-only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: Claude unavailable or unauthenticated.",
+    "statements": [
+      {
+        "quote": "If Claude is unavailable or unauthenticated, continue the Codex-led analysis and show the structured bridge error.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

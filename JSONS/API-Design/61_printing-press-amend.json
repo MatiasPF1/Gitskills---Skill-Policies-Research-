@@ -1,0 +1,330 @@
+{
+  "name": "printing-press-amend",
+  "mechanism": "Ask",
+  "repo": "barkleesanders/claude-code-starter",
+  "path": "skills/printing-press-amend/SKILL.md",
+  "author": {
+    "owner": "barkleesanders",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/001b5d0c5e70427d11ce28fdf5809c871dc550b3.md",
+  "topics": [
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "printing-press-amend (Ask) specifies 5 of 5 categories: 8 autonomy limits, 8 clarification rules, 10+ approval gates, 10+ validation rules, 5 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "printing-press-amend turns friction from a dogfooding session, or asks the user types directly, into a pull request that amends a published CLI in the public library. The user stays in the loop at two checkpoints, scope after capture and the pull-request draft before opening, and is asked whenever inputs are ambiguous or a finding needs a judgment call. Between checkpoints the agent works unattended within set limits, validating its fixes, patch records and documentation. It stops and reports to the user on outdated binaries, repeated validation failures or personal data found in the code.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 1 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep` and `AskUserQuestion`. It must not amend or regenerate on a binary below the required version floor, runs the sniff step only when the user asked for it, and keeps all edits inside the CLI's folder in the managed clone. Between the two user checkpoints it plans, fixes and validates unattended, and after the final checkpoint it pushes and opens the pull request on its own.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "This is a hard gate distinct from `min-binary-version`: do not amend or regenerate on that binary.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Sniff is opt-in per run — never invoked unless the user named it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Phase 4 — Plan + Execute + Validate (Autonomous)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "This phase runs unattended between checkpoints 1 and 2. The user does not see fix-by-fix details; they review the final diff at the Phase 6 PR-draft checkpoint.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All edits in this phase happen INSIDE `$CLI_DIR`. Never touch `$PRESS_LIBRARY/<slug>/` — that's a different working copy and editing it would not flow to the PR.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Everything that follows is unattended (push + PR-open + labels + RESULT block).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Phase 7 — PR Open (Autonomous)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "8 clarification rules (7 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"should\"), 3 tied to a situation, mostly bullet points. The agent asks the user when the input mode is ambiguous, when no target CLI is named, when asks span several CLIs or use vague verbs, and when the sniff target URL is missing. It asks whether to skip findings that may duplicate existing pull requests, whether a machine-level fix should be deferred, and whether unknown proper nouns should be scrubbed as personal data.",
+    "statements": [
+      {
+        "quote": "**Ambiguous** — only one signal is present (CLI named with no verbs, or verbs with no target CLI, or asks worded so they could be friction reports OR new asks). Ask the user via `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Extract via regex (`<slug>-pp-cli` or \"the <slug> CLI\"); if absent, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "multi-CLI asks split into two separate runs (out of scope for v0.2; ask the user to pick one).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ambiguous verbs (`update X` without specifics) trigger an `AskUserQuestion` clarification rather than a guess.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If neither field is set, ask the user inline:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For each finding with a possible-duplicate match, present inline:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Machine-vs-printed-CLI judgment** (per AGENTS.md): when a finding's fix would generalize to every printed CLI (e.g. \"the generator should emit `--type sent` for any threads list command\"), surface a",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**First-mention defense** — walk each artifact for capitalized phrases that look like proper nouns and were NOT in the stop-list. Surface to the user inline before the Phase 6 PR-draft display: \"Found",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly running text. The skill has two user checkpoints: the scope is confirmed after capture and the pull-request draft before it opens. The agent offers an upgrade through `AskUserQuestion` when the binary is too old, always confirms the transcript path and target CLI before using them, lets the user confirm or override its bug/feature classification, confirms custom selections, and never re-adds deferred findings without presenting and confirming them.",
+    "statements": [
+      {
+        "quote": "Confirms scope with the user, plans + executes the fix autonomously, scrubs PII, and opens a PR against mvanhorn/printing-press-library.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Two user-in-loop checkpoints: scope after capture, PR draft before open.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Offer a one-click upgrade via `AskUserQuestion` — **Yes — upgrade now** (run `go install github.com/mvanhorn/cli-printing-press/v4/cmd/cli-printing-press@latest`, re-capture `PRINTING_PRESS_BIN`, then",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "ALWAYS confirm the resolved path with the user via `AskUserQuestion` before reading — wrong-file selection ingests friction from the wrong session.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The classification is the agent's best read; the user confirms or overrides at the U4 scope checkpoint.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with `AskUserQuestion` (single CLI: simple yes/no; multiple close: pick from list).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Phase 3 — Scope Confirmation Checkpoint (User-in-Loop #1)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "This is the first of two user checkpoints. Everything until now has been read-only discovery; this checkpoint commits scope.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For the **custom selection** path: present a multi-select with each finding's id + category + one-line rationale; confirm the user-checked subset before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "do not silently re-add — always present and confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 4 tied to a situation, mostly running text. After editing, the agent runs the consolidated validator and retries targeted fixes up to 3 times. It checks that at least one patch file was recorded and that every user-facing change ships matching, accurate documentation verified by the skill verifier, blocking the pull-request draft until that checklist is empty. It also scans the Go source for personal data from the stop-list.",
+    "statements": [
+      {
+        "quote": "After all edits land, run the consolidated validator (replace `<PRINTING_PRESS_BIN>` with the absolute path captured at setup):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `publish validate` reports failures, parse the error categories from the JSON, attempt targeted fixes, re-run validate. Maximum 3 iterations total.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "This amend run must have recorded at least one patch — a `<id>.json` under `.printing-press-patches/` (the directory layout), or, only for a CLI not yet normalized, a non-empty `patches[]` in the lega",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Missing or empty patch manifest → fix locally before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before Phase 4 can emit a pass, inspect the confirmed findings and final diff for every new, renamed, or changed user-facing command, flag, workflow, runtime mode, or MCP-visible action. Each such cha",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Keep examples honest: commands, flags, positional args, and output snippets must match the code that now exists in `$CLI_DIR`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run `python3 .github/scripts/verify-skill/verify_skill.py --dir \"$CLI_DIR\"` from the public-library checkout when that path exists; otherwise run the packaged verifier equivalent available in the chec",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If any required doc edit or verifier result is missing, stop with a blocking checklist.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not move to the PR-draft checkpoint until the checklist is empty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Defense-in-depth**: walk every `*.go` file in `$CLI_DIR` for stop-list matches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 4 tied to a situation, all in running text. The agent stops and tells the user when the binary is older than the minimum or the upgrade fails, and aborts when the dogfooded binary is older than the published one. After 3 failed validation rounds it shows the final error log and does not open the pull request, and personal data found in Go source blocks the run until the user resolves it.",
+    "statements": [
+      {
+        "quote": "If the installed binary is older than the minimum, stop immediately and tell the user: \"cli-printing-press binary vX.Y.Z is older than the minimum required vA.B.C. Run `go install github.com/mvanhorn/",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the upgrade command fails, surface it and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `local_ver` is older than `published` (semver comparison), abort cleanly:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Surface the final error log to the user, do NOT auto-open the PR, exit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any match is found, treat as BLOCKING — pause and require user resolution before Phase 6.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

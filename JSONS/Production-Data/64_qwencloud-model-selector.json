@@ -1,0 +1,143 @@
+{
+  "name": "qwencloud-model-selector",
+  "mechanism": "Ask",
+  "repo": "GeorgeDoors888/GB-Power-Market-JJ",
+  "path": "openclaw-skills/skills/cuixiaoyang123/qwencloud-model-selector/SKILL.md",
+  "author": {
+    "owner": "GeorgeDoors888",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0027b0fe0a5ef36dc4e7df907f3199a3ec5dfacc.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "qwencloud-model-selector (Ask) specifies 4 of 5 categories: 5 autonomy limits, 3 clarification rules, 2 approval gates, 1 escalation rule; none for validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "qwencloud-model-selector recommends Qwen models and parameters, either by questioning the user or as a fast lookup for other skills. It asks diagnostic questions in interactive mode and works without the user when another skill calls it. Going online needs both an explicit request and the user's confirmation, and installing the update checker waits for the user's choice. It warns the user about restricted models and sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 4 tied to a situation, mostly running text. When another skill needs a model decision, the agent resolves it without user interaction. It does not fetch URLs or search online unless the user explicitly asks for the latest data and the reference files cannot answer, and it enables thinking mode only when the user asks for deep reasoning or the task needs multi-step analysis.",
+    "statements": [
+      {
+        "quote": "**Cross-skill resolution** — provides a fast-path model lookup for execution skills that need a model decision without user interaction (see Cross-Skill Model Resolution).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Load on demand — do not fetch external URLs unless the user explicitly asks for latest data.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Guidance**: Do not enable thinking by default for simple or conversational tasks — it increases latency and output token cost. Enable only when the user explicitly asks for deep reasoning or the tas",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT proactively fetch URLs or trigger web searches** — only access online sources when the user explicitly asks for \"latest\" data AND reference files cannot answer.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT proactively fetch or search online.** Only access online sources when ALL of these conditions are met:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, one bullet point, one running-text line and one table row. In interactive mode the agent asks the user diagnostic questions in order (content type, task, priority, input size, structured output), and asks the user to clarify when a task does not map clearly to one model.",
+    "statements": [
+      {
+        "quote": "**Interactive advisory** — asks diagnostic questions to recommend the right model (see Diagnostic Flow).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user (in order):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "compare Recommendation Matrix; ask user to clarify if needed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both bullet points. The agent looks things up online only after the user confirms they want it. When the update-check skill is missing, it presents the install options and waits for the user's response.",
+    "statements": [
+      {
+        "quote": "The user confirms they want an online lookup.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If not found** — you MUST present the following options and **wait for the user's response**:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the model the user chose is restricted, the agent warns the user and suggests an alternative.",
+    "statements": [
+      {
+        "quote": "If the user explicitly specified a model, use it as given — but still verify availability; if restricted, warn the user and suggest an alternative.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

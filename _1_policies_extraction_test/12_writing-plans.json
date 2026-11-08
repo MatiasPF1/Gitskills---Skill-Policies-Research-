@@ -1,0 +1,114 @@
+{
+  "name": "writing-plans",
+  "mechanism": "Act",
+  "repo": "psprowls/agent-research",
+  "path": "plugins/graph-wiki/skills/writing-plans/SKILL.md",
+  "author": {
+    "owner": "psprowls",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00a0f996bf7922e0680b5a5fccca16ba2462c36d.md",
+  "conclusion": "writing-plans (Act) specifies 3 of 5 categories: 6 autonomy limits, 2 clarification rules, 5 validation rules; none for approval gates, escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly prose: calling EnterPlanMode or ExitPlanMode; implementing tasks instead of invoking the skill; asking the user questions during write-plan.",
+    "statements": [
+      {
+        "quote": "**You MUST NOT call `EnterPlanMode` or `ExitPlanMode` at any point during this skill.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT turn this into an `AskUserQuestion`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "DO NOT call EnterPlanMode or ExitPlanMode.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT implement tasks yourself — do NOT read files, make edits, or update task statuses.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT start working on tasks directly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT ask the user questions during write-plan.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly prose: the user's execution choice via AskUserQuestion.",
+    "statements": [
+      {
+        "quote": "You MUST call AskUserQuestion below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Your ONLY permitted next action is calling `AskUserQuestion` with this EXACT structure:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly prose: self-review of the plan against the spec; placeholder scan and type consistency; TaskCreate descriptions containing every section.",
+    "statements": [
+      {
+        "quote": "After writing the complete plan, look at the spec with fresh eyes and check the plan against it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**1.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After TaskCreate for every task, open the task description (via TaskGet or by reading `<plan>.tasks.json`) and confirm all four section headers (`**Goal:**`, `**Files:**`, `**Acceptance Criteria:**`, ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

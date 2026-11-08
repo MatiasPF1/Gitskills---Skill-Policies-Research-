@@ -1,0 +1,84 @@
+{
+  "name": "auto-research",
+  "mechanism": "Act",
+  "repo": "christyjacob4/claude-tricks",
+  "path": "skills/auto-research/SKILL.md",
+  "author": {
+    "owner": "christyjacob4",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/01087618e4d9d9116a6905a50e81bceee6f85b65.md",
+  "conclusion": "auto-research (Act) specifies 3 of 5 categories: 5 autonomy limits, 1 clarification rule, 2 escalation rules; none for approval gates, validation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 2 conditional), mostly list: read-only evaluation harness and metric code; pausing to ask whether to continue; stopping to report errors.",
+    "statements": [
+      {
+        "quote": "**Read-only:** Evaluation harness, data loading, metric computation, infrastructure",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never stop.** Do not pause to ask the human if you should continue. They may be asleep, away, or busy. You are autonomous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never ask permission.** Each experiment is a small, reversible change. If it works, keep it. If it doesn't, revert. There's no risk that requires human approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Handle errors silently.** Crashes, OOM, divergence — log them and move on. Don't stop to report them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: defining a metric with the user.",
+    "statements": [
+      {
+        "quote": "If there's no clear single metric, work with the user to define one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 0 conditional), mostly list: experiments timing out; experiment crashes reverted.",
+    "statements": [
+      {
+        "quote": "**Timeout (>2x expected runtime):** Kill it, log as crash, move on",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Crash:** log it, revert, continue with different idea",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

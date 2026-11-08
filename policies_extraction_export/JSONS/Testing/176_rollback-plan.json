@@ -1,0 +1,148 @@
+{
+  "name": "rollback-plan",
+  "mechanism": "Escalate",
+  "repo": "ashutoshsrivastava17/skill-library",
+  "path": "devops/skills/rollback-plan/SKILL.md",
+  "author": {
+    "owner": "ashutoshsrivastava17",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/007be59dbb4c474f307d8d249140b3ead412d577.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "rollback-plan (Escalate) specifies 1 of 5 categories: 10+ validation rules; none for autonomy limits, clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "rollback-plan writes deployment rollback plans: triggers, decision trees, step-by-step procedures, data considerations, verification and post-rollback actions. Its only control rules are a quality checklist the plan must pass; the rest describes the plan's content for the humans who will run it. It sets no autonomy limits, clarification rules, approval gates or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, all bullet points. Before delivering a rollback plan the agent checks that triggers are measurable, any on-call engineer can run the procedure, data rollback is addressed, the known-good artifact exists, verification and communication are covered, the blast radius and durations are documented, and a backup is taken when data changes.",
+    "statements": [
+      {
+        "quote": "Rollback triggers are measurable with specific thresholds, not subjective",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Rollback procedure can be executed by any on-call engineer, not just the deployer",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Data rollback is addressed — either confirmed safe or scripted and tested",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Previous known-good artifact is identified and verified to exist",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verification steps cover health, error rate, latency, and business metrics",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Decision tree covers auto-rollback, manual rollback, and roll-forward scenarios",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Post-rollback communication plan is included",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Blast radius and dependency impact are documented",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Estimated rollback duration is stated for each method",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Database backup is taken before deployment if data changes are involved",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

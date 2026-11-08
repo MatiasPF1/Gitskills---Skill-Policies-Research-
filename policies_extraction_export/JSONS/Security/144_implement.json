@@ -1,0 +1,250 @@
+{
+  "name": "implement",
+  "mechanism": "Ask",
+  "repo": "levifig/loaf",
+  "path": "content/skills/implement/SKILL.md",
+  "author": {
+    "owner": "levifig",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01a3901d4c93cd27268e9ecab8e5ab77dc1a1725.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "implement (Ask) specifies 5 of 5 categories: 6 autonomy limits, 6 clarification rules, 5 approval gates, 5 validation rules, 3 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "implement coordinates implementation work (features, bug fixes, refactors) by delegating everything to specialised subagents, logging to a project journal and syncing with local tasks or Linear issues. The agent never edits code itself, gets the user's approval before spawning agents and when uncertain, and asks the user to choose among open work items. It checks blockers before starting and refuses to proceed when work is blocked.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, evenly split between running text and bullet points. The agent is the orchestrator, not the implementer: every code change, documentation edit and implementation step is delegated to subagents, with no exceptions. It turns a plain description into a task without asking, but never silently creates a task for an unknown ID, and never closes a parent issue while a sub-issue is open.",
+    "statements": [
+      {
+        "quote": "**You are the ORCHESTRATOR, not the implementer.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**ALL code changes, documentation edits, and implementation work** to specialized agents. **No exceptions**, even for \"trivial\" 1-line fixes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**No user interaction required.** The description IS the task; invoking `/implement` already expressed intent.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not silently create** — the user likely has a typo",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** close the parent while any sub-issue is open",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Strict delegation** -- ALL implementation via Task tool",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 3 tied to a situation, all bullet points. The agent may ask clarifying questions and asks the user whenever in doubt: whether an unknown task ID was meant as a new task, which of several unblocked sub-issues to take, whether to continue with the next one, and what to do about a task missing from the breakdown.",
+    "statements": [
+      {
+        "quote": "Ask clarifying questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user: `\"Did you mean to create a new task? You can re-run with the description as free text.\"`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Else, if multiple unblocked `unstarted` sub-issues exist, use `AskUserQuestion` to let the user choose: pick one, or delegate N in parallel via parallel agents.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Offer to continue with the next one in this session, or stop here.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If implementation reveals a missing task, surface it to the user; they decide whether to run `/breakdown` again or add an ad-hoc sub-issue.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**When in doubt, ask the user**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly bullet points. When uncertain or when several approaches exist the agent convenes a council and waits for the user's approval, it gets approval before spawning implementation agents, and it starts work under a closed or archived parent only on the user's explicit override.",
+    "statements": [
+      {
+        "quote": "If the parent is `completed`, `canceled`, or archived, refuse to start unless the user explicitly asks to override the protected parent state.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**When uncertain** -- convene council, present results, **wait for user approval**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When multiple valid approaches exist: spawn council (5-7 agents, odd), present results, **wait for approval**, then spawn implementation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Get user approval** before spawning",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Get user approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, all bullet points. The agent verifies that the invocation was logged, all code changes were delegated, the journal was kept updated and spec artifacts were closed out before the pull request, and checks that a sub-issue's blockers are done before starting it.",
+    "statements": [
+      {
+        "quote": "The invocation is logged to the project journal before implementation work begins — no session start step, no \"active session\" precondition",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All code changes delegated via Task tool -- no direct edits by orchestrator",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The journal is continuously updated with spawns, progress, and decisions as work happens",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Spec artifacts closed out on branch before PR creation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Pre-flight: verify `blockedBy` is clear.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. If all remaining sub-issues are blocked, or a sub-issue's blockers are not done, the agent refuses to start and shows the blockers, and it reports an error if promoting the parent issue fails.",
+    "statements": [
+      {
+        "quote": "Else (all remaining sub-issues are blocked), refuse with a summary:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Refuse to start.** Do not begin work. Do not move the issue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the child update succeeds but parent promotion fails, report a reconciliation error naming the parent issue before continuing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

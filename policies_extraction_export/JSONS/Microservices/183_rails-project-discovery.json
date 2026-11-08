@@ -1,0 +1,171 @@
+{
+  "name": "rails-project-discovery",
+  "mechanism": "Escalate",
+  "repo": "sandeepmvl/rails-skills",
+  "path": "skills/00-rails-project-discovery/SKILL.md",
+  "author": {
+    "owner": "sandeepmvl",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00a3a4e9941e1023bb9bbca8ad82be5e8a3b3977.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Distributed Systems",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "rails-project-discovery (Escalate) specifies 2 of 5 categories: 4 autonomy limits, 6 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "rails-project-discovery interviews a developer about their Rails project (app type, database, frontend, jobs, deployment, version) and loads the matching downstream skills. Its rules make the interview come first: no code or generation before it, confirmation of anything inferred, and no silent changes to Rails defaults. It sets no approval gates, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly running text. The agent writes no Rails code, generates no files and runs no `rails new` until the first interview group is done and the right skills are loaded. For existing apps it inspects the code instead of asking, and it never produces a one-shot upgrade patch.",
+    "statements": [
+      {
+        "quote": "Do not start writing Rails code, generating files, or running `rails new` until the interview is complete and the relevant downstream skills are loaded.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Inspect rather than ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not generate an \"upgrade in one shot\" patch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not** start running `rails new` or generating code before completing at least Group 1 of the interview.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly running text. The agent interviews the developer in grouped questions, always asking about the project shape, waits for full answers, confirms anything it inferred, and never silently swaps Rails default components without asking.",
+    "statements": [
+      {
+        "quote": "Ask the questions below in order.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user's full answer before proceeding to the next group.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user has already answered some questions earlier in the conversation, skip them and confirm what you inferred.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Group 1: Project shape (always ask)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Then confirm what you inferred with the user before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not** silently swap Solid Queue → Sidekiq, Solid Cache → Redis, or Hotwire → React without asking.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

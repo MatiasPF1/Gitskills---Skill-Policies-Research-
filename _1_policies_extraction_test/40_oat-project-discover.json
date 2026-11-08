@@ -1,0 +1,182 @@
+{
+  "name": "oat-project-discover",
+  "mechanism": "Ask",
+  "repo": "tkstang/skills",
+  "path": ".agents/skills/oat-project-discover/SKILL.md",
+  "author": {
+    "owner": "tkstang",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/004d2c1bd35132e8e0f93af300109245d7b3e562.md",
+  "conclusion": "oat-project-discover (Ask) specifies 5 of 5 categories: 2 autonomy limits, 3 clarification rules, 9 approval gates, 3 validation rules, 7 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter: allowed tools; writing code during discovery.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash(git:*), Bash(oat:*), Bash(pnpm:*), Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "❌ No code writing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly list: continuing or switching the active project; gray areas to clarify; one question at a time.",
+    "statements": [
+      {
+        "quote": "Ask user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present as multi-select question using AskUserQuestion tool:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask targeted questions **one at a time** — let each answer inform the next question",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "9 approval gates (9 mandatory, 0 advisory; 3 conditional), mostly prose: continuing discovery once the gate passes; splitting into multiple projects; HiLL approval of the discovery artifact.",
+    "statements": [
+      {
+        "quote": "When the gate passes, summarize the active project and ask before continuing discovery.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask user: \"Continue with stale knowledge or refresh first?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`high` — both load-bearing signals 1 and 2 fired. Use high-confidence wording and ask directly: \"This looks like multiple independent projects. Split now, do one round of broad cross-cutting discovery",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user confirms split, invoke the `oat-project-split` skill with a `SplitPayload` using `origin: \"detected-mid-stream\"`, `interactive: true`, the active discovery path as `priorDiscovery.path`, a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the approaches to the user and get explicit buy-in on the chosen direction before moving to decisions and boundaries.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For interactive runs, show an always-visible scope-check confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `\"discovery\"` is in `oat_hill_checkpoints`, require explicit user approval before advancing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "\"Discovery artifact is ready. Approve discovery and unlock `oat-project-design`?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop and report: \"Discovery draft saved; awaiting HiLL approval.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly prose: running the configured gate before completion; completing only after the gate passes.",
+    "statements": [
+      {
+        "quote": "After artifact finalization and any configured HiLL approval, run the configured gate as the last check before the completion boundary:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Reach this completion boundary only after the configured gate passes or resolves according to its `onFailure` policy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Report completion only after the configured gate passes or resolves according to its `onFailure` policy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (6 mandatory, 1 advisory; 2 conditional), mostly list: missing active project or knowledge base; unverifiable staleness; gate failures after exhausted attempts.",
+    "statements": [
+      {
+        "quote": "Tell the user an active project is required for discovery.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If missing:** Block and require the `oat-repo-knowledge-index` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Warn that staleness could not be verified",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`block`: read gate feedback, remediate, and re-run the gate up to `maxAttempts` attempts (default `2`). If attempts are exhausted, escalate to the human with accumulated feedback and append that feedb",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "`prompt`: surface the gate failure and ask the human how to proceed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Unresolved Critical review findings always stop autonomous discovery progression, regardless of a less restrictive gate failure setting; record the blocker and leave the project resumable.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "A gate that ends in `block` after attempts are exhausted, or at an unresolved `prompt` boundary, means the completion steps below MUST NOT run; the phase stays `in_progress` and resumable.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

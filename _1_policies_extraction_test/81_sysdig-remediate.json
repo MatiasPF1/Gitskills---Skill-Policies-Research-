@@ -1,0 +1,260 @@
+{
+  "name": "sysdig-remediate",
+  "mechanism": "Escalate",
+  "repo": "sysdig/skills",
+  "path": "plugins/headless-cloud-security/skills/sysdig-remediate/SKILL.md",
+  "author": {
+    "owner": "sysdig",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/0099f8e381a4f00acb54ee54d89fcb20b1071089.md",
+  "conclusion": "sysdig-remediate (Escalate) specifies 5 of 5 categories: 8 autonomy limits, 8 clarification rules, 10+ approval gates, 2 validation rules, 9 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "8 autonomy limits (8 mandatory, 0 advisory; 1 conditional), mostly prose: allowed tools; proceeding after the preamble; commits or PRs to unowned repos.",
+    "statements": [
+      {
+        "quote": "allowed-tools:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "After presenting the preamble, proceed directly to step 0b — the preamble is informational, do not ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "NEVER commit or open PRs/MRs to repos that are not owned by the user or by an org/group the user belongs to.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "No branch, no commit, no push — the user reviews and applies the diff themselves.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not run `git commit`, `git push`, or modify any branch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never remove or modify the existing description.** Always append new information below the existing content.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never create tickets in this skill.** Ticket creation lives in `/sysdig-investigate`. This skill only updates the ticket referenced by the optional `ticket` input argument.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When updating an existing ticket, NEVER remove or modify the original description — always append below a separator (`----`).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "8 clarification rules (7 mandatory, 1 advisory; 6 conditional), mostly list: missing image; resume suggestion from remediation history; multiple ticket matches.",
+    "statements": [
+      {
+        "quote": "Interactively: if no image is provided, ask the user to specify one or run `/sysdig-investigate` to select from the investigation list.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `remediation_history` has at least one entry from the last 14 days, surface a resume summary to the user before continuing — name the most recent image, the date, the PR or ticket key if present, a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Multiple matches** — present the top 3 and let the user pick one or skip.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If found and less than 30 days old, propose it to the user for confirmation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If no confident match is found, ask one question at a time:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "First, present the top candidate repos: _\"I found these repositories that might own this image: `<list>`. Which one, or none of these?\"_",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only if the user picks \"none of these\", ask the follow-up: _\"Switch to local-folder mode? Provide a path, or cancel.\"_",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never guess a repo mapping — if not confident, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 3 conditional), mostly list: skill handoffs; writes such as branches, commits and PRs; searching for an open ticket.",
+    "statements": [
+      {
+        "quote": "**Announce every skill handoff.** Before invoking another skill, name it explicitly and summarize what it'll do, then wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Pause for confirmation before any write.** Branch creation, commits, PR/MR opens, and ticket updates all require an explicit user yes. Read-only queries do not.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Otherwise, ask the user (default **No**): _\"No ticket was passed. Search for an open ticket related to `<image_name>` first?\"_",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Exactly one match** — show its key, summary, and assignee; ask the user to confirm adopting it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "IMPORTANT: If the repo does not belong to the user or any of their organizations/groups, WARN the user and ask whether to continue.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Store `suggested_reviewers` and present them to the user for confirmation before setting them — the user can accept, change, or skip.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the user with the proposed action before doing anything:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If a PR is possible (Case A or B) and the user confirms, go to step 4a.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Show the diff before opening.** Print the full file diff (`git diff <default-branch>..HEAD`) and the rendered PR body inline, then pause for an explicit user yes. A summary is not a substitute for t",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Reviewers:** if `suggested_reviewers` was populated in step 3b, request review from those users (after confirming with the user).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list: fix versions introducing new vulnerabilities; fix chain analysis before upgrades.",
+    "statements": [
+      {
+        "quote": "Before proposing any fix, verify that the candidate fix version does not itself introduce new Critical or High vulnerabilities.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always run the fix chain analysis (step 3c) before proposing any version upgrade — never suggest a fix version without first verifying it is clean.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "9 escalation rules (9 mandatory, 0 advisory; 8 conditional), mostly prose: Sysdig MCP authentication preflight; failed Sysdig MCP check; failed source control check.",
+    "statements": [
+      {
+        "quote": "**Sysdig MCP authentication preflight** — required. Run the preflight in [`references/auth-preflight.md`](references/auth-preflight.md) and follow its instructions exactly. If it tells you to abort, a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the **Sysdig MCP** check fails, do not proceed — the diagnostic checklist above will have already reported the specific problem and fix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the **source control** check fails (no forge configured and the user cannot provide a local folder), stop with:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Skip the search strategies below, verify the working tree is clean (`git status --porcelain` empty — refuse if dirty), and go to step 3a.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "| C | No safe fix version available | No PR — append analysis to ticket (if set), otherwise stop and refer to `/sysdig-investigate` |",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "| D | Repo not located within configured source | No PR — offer local mode, otherwise escalate via ticket / `/sysdig-investigate` |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "If the ticket update fails, report it in the canonical what / why / fix shape, then continue — do not block on the ticket update:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "In Case C/D (no PR possible) with no ticket key set (neither passed via `ticket:` nor adopted in step 1b), stop and tell the user to run `/sysdig-investigate` to file a tracking ticket.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**When a ticket is needed but none is set** (Case C/D, no `ticket:` argument, no adoption in step 1b): _\"Pausing remediation — handing off to `/sysdig-investigate` to file a tracking ticket. I'll resu",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "name": "feature-workflow",
+  "mechanism": "Escalate",
+  "repo": "fatsecret-group/fatsecret-workflow",
+  "path": "skills/feature-workflow/SKILL.md",
+  "author": {
+    "owner": "fatsecret-group",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0035fca06fa75da2d46c37817ea45d4517c46e05.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "feature-workflow (Escalate) specifies 5 of 5 categories: 3 autonomy limits, 5 clarification rules, 6 approval gates, 4 validation rules, 4 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "feature-workflow orchestrates a feature from story analysis through design, test plan, implementation plan, build and branch completion, invoking other skills in sequence. A human gate stands at every step, and commits need a fresh same-turn OK. The agent confirms names and strategy instead of assuming, verifies tests before shipping, and halts and surfaces escalated review issues to the human.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. The agent does not run per-phase merges or pull requests unless asked, skips the phase-mode question when the project is already set up in phases, and subagents never commit.",
+    "statements": [
+      {
+        "quote": "don't run a per-phase merge/PR unless the human asked for one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "phase mode is already in effect — skip the question and proceed with the named phase.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Subagents NEVER commit;",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly running text. The agent collects stories and designs from the user, confirms the output folder name and the branch strategy instead of assuming them, offers phase mode for large work, and asks for a missing design rather than planning UI without one.",
+    "statements": [
+      {
+        "quote": "The feature folder name is confirmed with the user in Step 1.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "but confirm this rather than assuming it",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present this to the user and collect input:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When the threshold is met, use `AskUserQuestion` to offer the choice:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any UI element cannot be matched to a Figma node, ask the user for the design before including it in the plan.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly running text. Every step has a human gate: the agent waits for explicit confirmation of the design, test plan and implementation plan, confirms with the human before building UI without a design, and never commits or pushes without an explicit OK given in the same turn.",
+    "statements": [
+      {
+        "quote": "Each step has a human gate before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for human confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for human confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you must make assumptions and build UI without a design, confirm with the human first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Every step with a human gate requires explicit user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never run `git commit` / `git push` without an explicit human OK given in the *same* turn.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly running text. Before each task the agent checks the previous one committed cleanly, a review verdict unlocks each commit, and before shipping it verifies test-plan coverage and runs the full unit-test suite.",
+    "statements": [
+      {
+        "quote": "Before starting each new task, run `git status` to confirm the prior task committed cleanly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`review-task` produces the `APPROVED` verdict that unlocks the task's final commit + `TaskUpdate(completed)` step.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify coverage against implementation. Informational — does not block.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run the full unit-test suite (`xcodebuildmcp` `test`, target `Calorie Counter Tests`) as part of this verification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, evenly split between running text and bullet points. The agent tells the user when required skills are missing, halts a task and surfaces the issues when review escalates after 3 rounds, and reports a suite that cannot be built rather than silently skipping it.",
+    "statements": [
+      {
+        "quote": "If superpowers skills are missing, tell the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "On `ESCALATED`, halt the task and surface the issues to the human.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The review-fix loop (iterate on issues until APPROVED, capped at 3 rounds before ESCALATED) lives inside `review-task`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the target can't be built/run (e.g., a non-app worktree), surface that rather than silently skipping.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

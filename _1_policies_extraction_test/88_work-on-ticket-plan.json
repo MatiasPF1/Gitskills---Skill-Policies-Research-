@@ -1,0 +1,206 @@
+{
+  "name": "work-on-ticket-plan",
+  "mechanism": "Escalate",
+  "repo": "shysssthanhtri/AI-tools",
+  "path": "skills/work-on-ticket-plan/SKILL.md",
+  "author": {
+    "owner": "shysssthanhtri",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/01411ee853142b95da734a5d50c7672266f455c8.md",
+  "conclusion": "work-on-ticket-plan (Escalate) specifies 5 of 5 categories: 4 autonomy limits, 1 clarification rule, 9 approval gates, 7 validation rules, 7 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list: files outside the current phase; staging only listed files; commits covering only this phase.",
+    "statements": [
+      {
+        "quote": "Do not modify files outside the scope of the current phase.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stage only the files listed under **Files to be committed** in the Step 5 report (re-verify with `git status` if the tree changed since the report):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "The commit should cover only this phase's changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Committing only the current phase's changes using the `conventional-commit` skill before advancing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list: Jira ticket key.",
+    "statements": [
+      {
+        "quote": "The user **must** provide a Jira ticket key (e.g. `CM-4873`). If not provided, ask for it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "9 approval gates (9 mandatory, 0 advisory; 4 conditional), mostly list: phase details before coding; writing code before approval; starting the next phase.",
+    "statements": [
+      {
+        "quote": "Step 3 — Present Phase Details for Approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**Do NOT write any code until the user explicitly approves.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT start the next phase until the user explicitly replies to proceed.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Presenting task details and waiting for approval before coding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Waiting for user sign-off before starting the next phase.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT create the PR until the user explicitly approves the summary.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never write code before user approves a phase** (except Step 2b baseline capture and Step 6a regression fixes, which are required engineering work).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never start the next phase before user confirms the previous phase is reviewed.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "| User skips a phase | Warn that phases may have dependencies; proceed only if user confirms |",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 3 conditional), mostly list: full project test suite; relevant tests; same full test command.",
+    "statements": [
+      {
+        "quote": "From the worktree root, run the **full** project test suite using the same command the repo uses in CI or `README` (e.g. `composer test`, `phpunit`, `npm test`, or monorepo equivalent). Capture the ex",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run the relevant tests to verify correctness:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "From the worktree root, run the **same full** test command used in Step 2b.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Compare failures to the **Test baseline (pre-implementation)** list in `progress.md` (and `plan.md` if duplicated):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Re-run the full suite until it matches policy: all tests pass **or** the only failures are the documented pre-existing baseline failures (no new regressions).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** present the Step 7 final summary until Step 6a is satisfied (full suite green, or green aside from known baseline failures).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never present the final summary (Step 7) before Step 6a** — full suite run and regression handling — is complete.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (7 mandatory, 0 advisory; 7 conditional), mostly list: missing worktree directory; missing plan.md; missing progress.md.",
+    "statements": [
+      {
+        "quote": "Verify the worktree directory exists. If not, stop and instruct the user to run the `setup-new-work` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Verify `docs/<ticket-id>/plan.md` exists inside the worktree. If not, stop and instruct the user to run the `plan-jira-ticket` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Verify `docs/<ticket-id>/progress.md` exists inside the worktree. If not, stop and instruct the user to run the `plan-jira-ticket` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the full suite cannot be run (missing deps, env), stop, report the blocker, and do not proceed with implementation until the user resolves it or explicitly accepts a narrower baseline (document tha",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**New or changed failure:** Not in the baseline, or clearly the same area but now failing differently → treat as a **regression from this work**; **fix** the code or tests until resolved, or stop and ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a blocker is found during implementation, stop, mark the task 🔴 Blocked in progress.md, and report it to the user before continuing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "| Tests fail after implementation | Stop, report failures, do not mark phase as complete until resolved |",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  }
+}

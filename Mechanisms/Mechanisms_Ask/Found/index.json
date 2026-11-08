@@ -1,0 +1,802 @@
+[
+  {
+    "file_sha": "01659384667f97eea5b2f301e248fb69d34ab5b1",
+    "keywords": 7,
+    "repo": "nolood/planpipe",
+    "path": "skills/task-preparation/SKILL.md",
+    "owner": "nolood",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0061e11b82c468db45c7b0905615c0081122e471",
+    "keywords": 6,
+    "repo": "jwbron/egg",
+    "path": "skills/sdlc/SKILL.md",
+    "owner": "jwbron",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0074ad6c4c20509c0fbc57ba723e591647f95a60",
+    "keywords": 6,
+    "repo": "OrestesK/pi",
+    "path": "skills/goal-crafter/SKILL.md",
+    "owner": "OrestesK",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01349d7d3124b0b1f1000e400404087b4f237403",
+    "keywords": 6,
+    "repo": "silviobeer/agentic-development-skill-chain",
+    "path": "claude/skills/1_brainstorming/SKILL.md",
+    "owner": "silviobeer",
+    "commit_author": null
+  },
+  {
+    "file_sha": "001ad1a3fa82f6da90cf28eaea61a5d7fb6e96e5",
+    "keywords": 5,
+    "repo": "Heavy-Chain-Engineering/etc",
+    "path": "skills/architect/SKILL.md",
+    "owner": "Heavy-Chain-Engineering",
+    "commit_author": null
+  },
+  {
+    "file_sha": "001f33032dbd264a15935603a600f7e0f4b5aa89",
+    "keywords": 5,
+    "repo": "jdinkla/user-story-skills",
+    "path": "skills/story-questions/SKILL.md",
+    "owner": "jdinkla",
+    "commit_author": null
+  },
+  {
+    "file_sha": "002ab7ef9b1758208c56b1b9dec95282974335f0",
+    "keywords": 5,
+    "repo": "shogo-labs/shogo-ai",
+    "path": "packages/agent-runtime/templates/virtual-engineering-team/.shogo/skills/gstack-investigate/SKILL.md",
+    "owner": "shogo-labs",
+    "commit_author": null
+  },
+  {
+    "file_sha": "003690e9f992f780a1b39f8e583ca60568816f45",
+    "keywords": 5,
+    "repo": "kaitranntt/kai-personal-claude",
+    "path": "skills/maintainer/SKILL.md",
+    "owner": "kaitranntt",
+    "commit_author": null
+  },
+  {
+    "file_sha": "003d8229f7a6ecf4b7ea72fdf7378b3f09d781bc",
+    "keywords": 5,
+    "repo": "RelevanceAI/relevance-builder-kit",
+    "path": ".claude/skills/eval/SKILL.md",
+    "owner": "RelevanceAI",
+    "commit_author": "3a0e75b8e07f561f"
+  },
+  {
+    "file_sha": "004d2c1bd35132e8e0f93af300109245d7b3e562",
+    "keywords": 5,
+    "repo": "tkstang/skills",
+    "path": ".agents/skills/oat-project-discover/SKILL.md",
+    "owner": "tkstang",
+    "commit_author": null
+  },
+  {
+    "file_sha": "005c7c4f2539976d6e74469e690cfe96a3fcbbed",
+    "keywords": 5,
+    "repo": "telum-ai/speck",
+    "path": ".cursor/skills/project-specify/SKILL.md",
+    "owner": "telum-ai",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0073bc62873a24729a376342d880d804c89838a3",
+    "keywords": 5,
+    "repo": "tkstang/skills",
+    "path": ".agents/skills/oat-project-quick-start/SKILL.md",
+    "owner": "tkstang",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00936e15908faa5dcb7c162cc9f507c95827529c",
+    "keywords": 5,
+    "repo": "a2mus/smart-da3m",
+    "path": ".agents/skills/speckit-checklist/SKILL.md",
+    "owner": "a2mus",
+    "commit_author": null
+  },
+  {
+    "file_sha": "009567cf89aca72f9eee4eb83673d938b1249e6d",
+    "keywords": 5,
+    "repo": "weisberg/agile_agentic_analytics",
+    "path": "plugins/ab-testing/skills/experiment-report/SKILL.md",
+    "owner": "weisberg",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00d99584ad458e30f16ed30d2a08a3dc826e64a8",
+    "keywords": 5,
+    "repo": "LLTOMZHOU/personal_website",
+    "path": "skills/photo-ingestion-upload-serve/SKILL.md",
+    "owner": "LLTOMZHOU",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00f9a2f5c1647829d837f13ae723ffb0f7d5a239",
+    "keywords": 5,
+    "repo": "Franck-Fernandez-pro/inout",
+    "path": ".claude/skills/fix-pr-tests/SKILL.md",
+    "owner": "Franck-Fernandez-pro",
+    "commit_author": "c1bb2249a09e8c05"
+  },
+  {
+    "file_sha": "01020c64c4e8d8e33f60f3f5288ed79c0a62b978",
+    "keywords": 5,
+    "repo": "tkstang/open-agent-toolkit",
+    "path": ".agents/skills/oat-brainstorm/SKILL.md",
+    "owner": "tkstang",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0116825ec35c58069dbefd1e8deae917749c86db",
+    "keywords": 5,
+    "repo": "estevanhernandez-stack-ed/vibe-cartographer",
+    "path": "plugins/vibe-cartographer/skills/reflect/SKILL.md",
+    "owner": "estevanhernandez-stack-ed",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0152acf569ae145b9d4a44ce16487465b24446a8",
+    "keywords": 5,
+    "repo": "trrad/pytyche",
+    "path": ".claude/skills/opsx:ff/SKILL.md",
+    "owner": "trrad",
+    "commit_author": "f6b1b58f0712279a"
+  },
+  {
+    "file_sha": "0156c650dfd7c4a963524c9f8d27dc8e79f703c8",
+    "keywords": 5,
+    "repo": "unknown-studio-dev/epic-to-feature-specs",
+    "path": "skills/epic-to-feature-specs/SKILL.md",
+    "owner": "unknown-studio-dev",
+    "commit_author": null
+  },
+  {
+    "file_sha": "017c4952b9ce8c766ea6c35a386f4a1fffbfc281",
+    "keywords": 5,
+    "repo": "jlissner/lissner.io",
+    "path": ".claude/skills/grimoire-draft/SKILL.md",
+    "owner": "jlissner",
+    "commit_author": "72d35bce50226d98"
+  },
+  {
+    "file_sha": "01945c036de682b6b5104b0fb7f9ba8a3f060b8b",
+    "keywords": 5,
+    "repo": "kbroflovski21/lumii-fieldwork",
+    "path": ".claude/skills/plan-design-review/SKILL.md",
+    "owner": "kbroflovski21",
+    "commit_author": "f1e99f8219fa5623"
+  },
+  {
+    "file_sha": "0197a44de250ab0fa69bbb38c81f81801ee79ac3",
+    "keywords": 5,
+    "repo": "duc01226/EasyPlatform",
+    "path": ".claude/skills/refine/SKILL.md",
+    "owner": "duc01226",
+    "commit_author": "243440c1cbcda100"
+  },
+  {
+    "file_sha": "01a3901d4c93cd27268e9ecab8e5ab77dc1a1725",
+    "keywords": 5,
+    "repo": "levifig/loaf",
+    "path": "content/skills/implement/SKILL.md",
+    "owner": "levifig",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01af27dd98aedc33ea1d8681373dda61d73e0661",
+    "keywords": 5,
+    "repo": "grailautomation/claude-plugins",
+    "path": "spec-kit/skills/specify/SKILL.md",
+    "owner": "grailautomation",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01b2984d489d8017f53a72f3259aae97edff9500",
+    "keywords": 5,
+    "repo": "boinger/zorille",
+    "path": "issue-forensics/SKILL.md",
+    "owner": "boinger",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00044ee8a88593dc1cc7430161a60cb870046222",
+    "keywords": 4,
+    "repo": "majiayu000/claude-skill-registry-data",
+    "path": "testing/bugfix-chrisallenlane-claude-swe-workflows/SKILL.md",
+    "owner": "majiayu000",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00199a1f67a983aa3d64974b92a99b57e5a13c42",
+    "keywords": 4,
+    "repo": "diegosouzapw/awesome-omni-skill",
+    "path": "skills/cli-automation/prompt-engineer-dhavanesh24cs412/SKILL.md",
+    "owner": "diegosouzapw",
+    "commit_author": null
+  },
+  {
+    "file_sha": "001b5d0c5e70427d11ce28fdf5809c871dc550b3",
+    "keywords": 4,
+    "repo": "barkleesanders/claude-code-starter",
+    "path": "skills/printing-press-amend/SKILL.md",
+    "owner": "barkleesanders",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0027b0fe0a5ef36dc4e7df907f3199a3ec5dfacc",
+    "keywords": 4,
+    "repo": "GeorgeDoors888/GB-Power-Market-JJ",
+    "path": "openclaw-skills/skills/cuixiaoyang123/qwencloud-model-selector/SKILL.md",
+    "owner": "GeorgeDoors888",
+    "commit_author": null
+  },
+  {
+    "file_sha": "002ca455d76e62c66cb6c4e5f4d6941a37805ecf",
+    "keywords": 4,
+    "repo": "ahgraber/skills",
+    "path": "skills/code-review/SKILL.md",
+    "owner": "ahgraber",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00321777292ea202ee3d90fb177b3861e193dfe7",
+    "keywords": 4,
+    "repo": "wesvetter/.dotfiles",
+    "path": "codex/generated/skills/commit-message/SKILL.md",
+    "owner": "wesvetter",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0034beac5990c00383f399917f07971aa8c7bce8",
+    "keywords": 4,
+    "repo": "autonomous-ai/autonomous-vibe",
+    "path": "skills/cadcode/SKILL.md",
+    "owner": "autonomous-ai",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0038fd25034c5287bbf3372fb308dd9ba1afee14",
+    "keywords": 4,
+    "repo": "codemie-ai/docs",
+    "path": ".claude/skills/tech-writer/SKILL.md",
+    "owner": "codemie-ai",
+    "commit_author": "e98be5d8daa722f7"
+  },
+  {
+    "file_sha": "003a5b5ed66dfd1622d66f091181ccb9a1955404",
+    "keywords": 4,
+    "repo": "PrimeBrains/sdd-workshop",
+    "path": ".claude/skills/kiro-spec-requirements/SKILL.md",
+    "owner": "PrimeBrains",
+    "commit_author": "3bcddfc650eeeb34"
+  },
+  {
+    "file_sha": "003bf729c486a4c91eb7d55e648f95752c7bf701",
+    "keywords": 4,
+    "repo": "greencm/gstuck",
+    "path": "output/gstack/ios-qa/SKILL.md",
+    "owner": "greencm",
+    "commit_author": null
+  },
+  {
+    "file_sha": "004bf8774a7e8ab17679d6578a09c928f9696481",
+    "keywords": 4,
+    "repo": "davzucky/iceberg-explorer",
+    "path": ".opencode/skill/ralph/SKILL.md",
+    "owner": "davzucky",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00551c0ea5f1c42f93d75fee443cc22410710069",
+    "keywords": 4,
+    "repo": "Nikhilesh515/django-agentic-workflow",
+    "path": "skills/brainstorming/SKILL.md",
+    "owner": "Nikhilesh515",
+    "commit_author": null
+  },
+  {
+    "file_sha": "005d870dd427395436a75b4d479d827aab20626e",
+    "keywords": 4,
+    "repo": "rolopez23/agent-harness",
+    "path": "skills/problem-spec/SKILL.md",
+    "owner": "rolopez23",
+    "commit_author": null
+  },
+  {
+    "file_sha": "006039220493d12d0d7509dd003847d5772c3a72",
+    "keywords": 4,
+    "repo": "Aadilmalik70/serpstrategistagent",
+    "path": ".github/skills/ce-brainstorm/SKILL.md",
+    "owner": "Aadilmalik70",
+    "commit_author": null
+  },
+  {
+    "file_sha": "006125f8e7c26121839336bce0bb0e9b533f7d67",
+    "keywords": 4,
+    "repo": "GustavoGutierrez/engineering-skills",
+    "path": "skills/prd-writer/SKILL.md",
+    "owner": "GustavoGutierrez",
+    "commit_author": null
+  },
+  {
+    "file_sha": "008deee119e956cd4f0410ec0b4311d46a406801",
+    "keywords": 4,
+    "repo": "asabina-de/kb",
+    "path": "skills/issue/SKILL.md",
+    "owner": "asabina-de",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0091c64593355e188d6b2705616aa2276f33cd9e",
+    "keywords": 4,
+    "repo": "modbender/skill-library-mcp",
+    "path": "data/lb-bmad-skill/SKILL.md",
+    "owner": "modbender",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00946186f5e261efb0bd4fc8c19835b9b336a230",
+    "keywords": 4,
+    "repo": "ku5ic/dotfiles",
+    "path": "claude/skills/flow-quick/SKILL.md",
+    "owner": "ku5ic",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00a5f0f2eca49fa4b3e676f0d1fbd046b1849a6f",
+    "keywords": 4,
+    "repo": "huyonghui666/QuickArt",
+    "path": ".claude/skills/design-consultation/SKILL.md",
+    "owner": "huyonghui666",
+    "commit_author": "8d83032f350020fb"
+  },
+  {
+    "file_sha": "00ad9eba9e2f08d5c39f82d30ae4e806d21f5b33",
+    "keywords": 4,
+    "repo": "billydeeii136/black-opps-gstack",
+    "path": "devex-review/SKILL.md",
+    "owner": "billydeeii136",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00b7cae4c29101ee2b8487d6f2138bcbf5688a9b",
+    "keywords": 4,
+    "repo": "nhattran998/personal-athlete-agent",
+    "path": ".agents/skills/gstack-skillify/SKILL.md",
+    "owner": "nhattran998",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00c0cdd64ca4039846bd7a1773f4c019316d64ea",
+    "keywords": 4,
+    "repo": "sjmyuan/prompts",
+    "path": "skills/draft-user-story/SKILL.md",
+    "owner": "sjmyuan",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00d68458f03891ecd2a8ef00d1d5ff3cf8ee9170",
+    "keywords": 4,
+    "repo": "Fleron/Claude-plugins",
+    "path": "skills/claude-scaffolding/skills/brainstorm/SKILL.md",
+    "owner": "Fleron",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00dd342cae66f71afbdcd63c087debbaa1e7bb39",
+    "keywords": 4,
+    "repo": "axross/ptcgp.axross.dev",
+    "path": ".claude/skills/address/SKILL.md",
+    "owner": "axross",
+    "commit_author": "de553ef0c64ecbe5"
+  },
+  {
+    "file_sha": "00de65935c24419f8fe57d233129a068ec08bbcf",
+    "keywords": 4,
+    "repo": "stayconnectquick/gstack",
+    "path": "investigate/SKILL.md",
+    "owner": "stayconnectquick",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00e2fd3f4a726f3b09c7236ecdcda0516ab25cca",
+    "keywords": 4,
+    "repo": "zrosenfield/sharepoint-ai-skills",
+    "path": "Skills/documents/brainstorming-design-docs/SKILL.md",
+    "owner": "zrosenfield",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00f18927b795f1ed3cdfe1cf267ef418c1f74635",
+    "keywords": 4,
+    "repo": "MikeCheng1208/BattleTree",
+    "path": ".agents/skills/spec-prd-creator/SKILL.md",
+    "owner": "MikeCheng1208",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00f251fa565448ed1a3f3a0f838d8ed4d8b083fb",
+    "keywords": 4,
+    "repo": "narailabs/narai-primitives",
+    "path": "plugins/connector-creator/skills/connector-creator/SKILL.md",
+    "owner": "narailabs",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01040fa22554503b31637330780fb410483c9631",
+    "keywords": 4,
+    "repo": "MikeCheng1208/BattleTree",
+    "path": ".agents/skills/mypa/SKILL.md",
+    "owner": "MikeCheng1208",
+    "commit_author": "e543ffb89bb8aab1"
+  },
+  {
+    "file_sha": "01162a03ba6f2cd5f2c791e4f84dfcd8195dfd44",
+    "keywords": 4,
+    "repo": "Negentropy-Laby/Constitution-Driven-Development",
+    "path": ".claude/skills/reverse-document/SKILL.md",
+    "owner": "Negentropy-Laby",
+    "commit_author": "4b753175b29a7c3a"
+  },
+  {
+    "file_sha": "011c780e56e0fdf645f9fa4210244dc51ec581af",
+    "keywords": 4,
+    "repo": "Rabbit-Ivan/Ivan-skills",
+    "path": "skills/hai-architecture/SKILL.md",
+    "owner": "Rabbit-Ivan",
+    "commit_author": null
+  },
+  {
+    "file_sha": "011fa0c3817c050784482dd4977d7a6060d5dea4",
+    "keywords": 4,
+    "repo": "majiayu000/claude-skill-registry-data",
+    "path": "development/domain-sidnovais-healthcore/SKILL.md",
+    "owner": "majiayu000",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01303586fb7c9dc02b3addc9da53ee4281d097db",
+    "keywords": 4,
+    "repo": "kjelly/hufu",
+    "path": ".agents/skills/team-builder/SKILL.md",
+    "owner": "kjelly",
+    "commit_author": null
+  },
+  {
+    "file_sha": "014670884185f0ea754e6a3d7cc0e9edceb50c16",
+    "keywords": 4,
+    "repo": "cody-hutson/pmo-platform",
+    "path": "operations/skills/intake-desk/SKILL.md",
+    "owner": "cody-hutson",
+    "commit_author": "02dbea5f12e463c1"
+  },
+  {
+    "file_sha": "01470bf1f10e9716627d8b5cf8c4a2259fd3cc07",
+    "keywords": 4,
+    "repo": "audunstrand/status-app",
+    "path": ".github/skills/tdd-process/SKILL.md",
+    "owner": "audunstrand",
+    "commit_author": null
+  },
+  {
+    "file_sha": "015044f0c168c9a61683f7299bbc68b4099421b7",
+    "keywords": 4,
+    "repo": "iltan987/jetadisyon",
+    "path": ".claude/skills/speckit-specify/SKILL.md",
+    "owner": "iltan987",
+    "commit_author": "db05b6df44e6e4bc"
+  },
+  {
+    "file_sha": "016427dc8d0bcbc7dcc8c745598f43065d808120",
+    "keywords": 4,
+    "repo": "dnichyparuk/lift-sdlc",
+    "path": "skills/execute-plan-sdlc/SKILL.md",
+    "owner": "dnichyparuk",
+    "commit_author": null
+  },
+  {
+    "file_sha": "016ac1b9bd31f8d35ba23b476ecab39acef5c8e6",
+    "keywords": 4,
+    "repo": "AbdullahMalik17/Digital-FTE",
+    "path": ".claude/skills/project-designer/SKILL.md",
+    "owner": "AbdullahMalik17",
+    "commit_author": "c710165e85882175"
+  },
+  {
+    "file_sha": "016ac902bba6de01935000464404b783351236fc",
+    "keywords": 4,
+    "repo": "fyrsmithlabs/marketplace",
+    "path": "plugins/fs-dev/skills/roadmap-discovery/SKILL.md",
+    "owner": "fyrsmithlabs",
+    "commit_author": null
+  },
+  {
+    "file_sha": "017016541e8f14c9456034c6ed090ec87e8827b6",
+    "keywords": 4,
+    "repo": "Danhvb/my-ba-skills",
+    "path": "multi-agent-ba/.agent/skills/senior-ba/ba-best-practices/SKILL.md",
+    "owner": "Danhvb",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0171b5a2cc113b1f509f2cefce53caf99e2ae06f",
+    "keywords": 4,
+    "repo": "All-The-Vibes/ATV-StarterKit",
+    "path": ".github/skills/ce-work/SKILL.md",
+    "owner": "All-The-Vibes",
+    "commit_author": null
+  },
+  {
+    "file_sha": "017dd486e60f262dc5997bd4947602d195b2d5ca",
+    "keywords": 4,
+    "repo": "DouglasHennrich/orcamentos-cli",
+    "path": ".specify/extensions/spex/.specify-dev/agent-commands/claude/speckit-spex-evolve/SKILL.md",
+    "owner": "DouglasHennrich",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0182b9ac6ce39964f099ea4f2e0206aca10bfec7",
+    "keywords": 4,
+    "repo": "family3253/skill",
+    "path": "skills/opencode-agent-creator/SKILL.md",
+    "owner": "family3253",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0184af508c7c2c722069dd282de12152410142e2",
+    "keywords": 4,
+    "repo": "LJT-520/openClaw-backup",
+    "path": "skills/jcools1977/negative-space/SKILL.md",
+    "owner": "LJT-520",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01857d534824afc920229b8e456cff67446e7cac",
+    "keywords": 4,
+    "repo": "greencm/gstuck",
+    "path": "output/gstack/context-save/SKILL.md",
+    "owner": "greencm",
+    "commit_author": "71de0f2e5f620065"
+  },
+  {
+    "file_sha": "019d26e86ceef20923d5217b1a783f5bd9ff571e",
+    "keywords": 4,
+    "repo": "majiayu000/claude-skill-registry-data",
+    "path": "data/ralph-claude/SKILL.md",
+    "owner": "majiayu000",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01a1309ac2767e21e10449ce36c27ee0633d1db4",
+    "keywords": 4,
+    "repo": "David-Li0406/meta-skill-evloving",
+    "path": "skill-flow/data/skills-refined-agentskillos-36k/skillsmp/nexus-1/SKILL.md",
+    "owner": "David-Li0406",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01a2869c4310d4b51843faa21b5a44c3ee304fd5",
+    "keywords": 4,
+    "repo": "diegosouzapw/awesome-omni-skill",
+    "path": "skills/development/architecting/SKILL.md",
+    "owner": "diegosouzapw",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01a52bebfdd95f3d073e79b802dcf6c5e5326d5e",
+    "keywords": 4,
+    "repo": "willyamjarcand/dotfiles",
+    "path": "pi/skills/watch-pr/SKILL.md",
+    "owner": "willyamjarcand",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01a8cc444333817b9c851848bbf67cac8a98230d",
+    "keywords": 4,
+    "repo": "cic8822-cpu/20260710",
+    "path": "13.\uc2e4\uc2b5-bikit \uc0ac\uc6a9\ubc95/bkit-claude-code/skills/pdca/SKILL.md",
+    "owner": "cic8822-cpu",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01ae65c449821c071e2c44cf578735218c73c002",
+    "keywords": 4,
+    "repo": "suwandre/my-codex-config",
+    "path": "skills/prd/SKILL.md",
+    "owner": "suwandre",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01b20f3adfe06201bd91f3f8e81fb4ace7006a41",
+    "keywords": 4,
+    "repo": "gvkhosla/compound-engineering-pi",
+    "path": "skills/ce:work/SKILL.md",
+    "owner": "gvkhosla",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0001d10314508f89794ef70298d5c57b517ecb7f",
+    "keywords": 3,
+    "repo": "xpickey/ice-skills-claude-plugin",
+    "path": "plugins/ice-tools/skills/graphify/SKILL.md",
+    "owner": "xpickey",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00025728e4e0f1431826156dc6784b7747e46ca8",
+    "keywords": 3,
+    "repo": "anantham/LexiconForge",
+    "path": "issues/_meta/proposed-skill/SKILL.md",
+    "owner": "anantham",
+    "commit_author": "40fe68465efa1a35"
+  },
+  {
+    "file_sha": "00047f1233836f3c38bce543a1ccd924f61b8052",
+    "keywords": 3,
+    "repo": "MikeCheng1208/BattleTree",
+    "path": ".agents/skills/fullstack-feature/SKILL.md",
+    "owner": "MikeCheng1208",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0004cb0f19bebca7036b2373a8eacd8ced30726e",
+    "keywords": 3,
+    "repo": "dealroom-ai/agent-skills",
+    "path": "skills/linear-issue-writing/SKILL.md",
+    "owner": "dealroom-ai",
+    "commit_author": null
+  },
+  {
+    "file_sha": "000c3e23fe4e5c843513ae690f80f7693cccb3fa",
+    "keywords": 3,
+    "repo": "probabl-ai/ibm-workshop",
+    "path": ".bob/skills/data-science-python-stack/SKILL.md",
+    "owner": "probabl-ai",
+    "commit_author": null
+  },
+  {
+    "file_sha": "000df8b3b3b716a8f2ba9647ed6815495866aede",
+    "keywords": 3,
+    "repo": "qmfpdls4908/Vigos-s-Paradox",
+    "path": ".opencode/skills/conversation-filter/SKILL.md",
+    "owner": "qmfpdls4908",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00146596e3aa19fb0db7f83705ee21a351991352",
+    "keywords": 3,
+    "repo": "zjykzj/ModelFlow",
+    "path": ".claude/skills/spec/SKILL.md",
+    "owner": "zjykzj",
+    "commit_author": "fd17f5cdf20185ab"
+  },
+  {
+    "file_sha": "0023f9c4faba5ff243a47e135b33b6859554eb18",
+    "keywords": 3,
+    "repo": "lhotari/pulsar-contributor-toolbox",
+    "path": "claude-code/skills/investigate-ci/SKILL.md",
+    "owner": "lhotari",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0030599956ac0f83e3e8c7c92c4d23e54d2accbd",
+    "keywords": 3,
+    "repo": "majiayu000/claude-skill-registry-data",
+    "path": "planning/speci5-plan/SKILL.md",
+    "owner": "majiayu000",
+    "commit_author": null
+  },
+  {
+    "file_sha": "003342c27dfdbb997e7bacebeed553b8a8b0aeac",
+    "keywords": 3,
+    "repo": "arthurflachs/.dotfiles",
+    "path": ".claude/skills/claude-expert/SKILL.md",
+    "owner": "arthurflachs",
+    "commit_author": "049f7779bc2625c7"
+  },
+  {
+    "file_sha": "00345951cf433bfc039849f8971e6605e97844e0",
+    "keywords": 3,
+    "repo": "majiayu000/claude-skill-registry-data",
+    "path": "development/whip-debug/SKILL.md",
+    "owner": "majiayu000",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0035e6bdd47bfd6410d250ed100ea4cf9d44313f",
+    "keywords": 3,
+    "repo": "jarredkenny/agency-ai",
+    "path": "roles/orchestrator/skills/receiving-code-review/SKILL.md",
+    "owner": "jarredkenny",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0036926cd984f6d2ea6c61bd591d92f53c6a8f2b",
+    "keywords": 3,
+    "repo": "bzellman/earp-kit",
+    "path": "skills/system/prd-taskmaster/SKILL.md",
+    "owner": "bzellman",
+    "commit_author": null
+  },
+  {
+    "file_sha": "003b7be36841e8987e658bc0b379a51bc5bb41ed",
+    "keywords": 3,
+    "repo": "h2nguyen/Arc42-Node-MCP-Server",
+    "path": ".claude/skills/arc42-docs-mcp/SKILL.md",
+    "owner": "h2nguyen",
+    "commit_author": "98f20f86c65486e1"
+  },
+  {
+    "file_sha": "003f7f49781a6bb0a092315be1eb2ad19392e509",
+    "keywords": 3,
+    "repo": "muhamedaw/nour",
+    "path": "builderos/skills/creative-ideation/SKILL.md",
+    "owner": "muhamedaw",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00458bbb2e880dda0a9977863af914d01021f94f",
+    "keywords": 3,
+    "repo": "diegosouzapw/awesome-omni-skill",
+    "path": "skills/development/research-hack-ink/SKILL.md",
+    "owner": "diegosouzapw",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00496675d4308aadd690b5205af81cfef5a5516a",
+    "keywords": 3,
+    "repo": "nhattran998/personal-athlete-agent",
+    "path": ".agents/skills/gstack-autoplan/SKILL.md",
+    "owner": "nhattran998",
+    "commit_author": null
+  },
+  {
+    "file_sha": "004999d648fa0140eeae98d4639784e2e918ca04",
+    "keywords": 3,
+    "repo": "edithatogo/conductor-next",
+    "path": "conductor-vscode/skills/conductor-newtrack/conductor-newtrack/SKILL.md",
+    "owner": "edithatogo",
+    "commit_author": null
+  },
+  {
+    "file_sha": "004fba599f813453c98eb26dcfd5bd6edb054063",
+    "keywords": 3,
+    "repo": "LeoYeAI/openclaw-master-skills",
+    "path": "skills/listenhub/SKILL.md",
+    "owner": "LeoYeAI",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0051523f81c6cf3b769bc4dba8114bcb1c02092a",
+    "keywords": 3,
+    "repo": "A-Comm-Tech/a-comm-claude-skills",
+    "path": "skills/a-comm-diagram/SKILL.md",
+    "owner": "A-Comm-Tech",
+    "commit_author": null
+  },
+  {
+    "file_sha": "005444150ede7d59991fc37006b5cb779865bb5d",
+    "keywords": 3,
+    "repo": "opencue/skills",
+    "path": "skills/gstack/sync-gbrain/SKILL.md",
+    "owner": "opencue",
+    "commit_author": null
+  },
+  {
+    "file_sha": "005a2a569dd4c0e01ed8928760f517c2eefeb94a",
+    "keywords": 3,
+    "repo": "delicb/dotfiles",
+    "path": "home/dot_agents/skills/commit/SKILL.md",
+    "owner": "delicb",
+    "commit_author": null
+  }
+]

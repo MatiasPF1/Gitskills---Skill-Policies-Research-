@@ -1,0 +1,274 @@
+{
+  "name": "Nexus",
+  "mechanism": "Ask",
+  "repo": "David-Li0406/meta-skill-evloving",
+  "path": "skill-flow/data/skills-refined-agentskillos-36k/skillsmp/nexus-1/SKILL.md",
+  "author": {
+    "owner": "David-Li0406",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01a1309ac2767e21e10449ce36c27ee0633d1db4.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Distributed Systems",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "Nexus (Ask) specifies 5 of 5 categories: 7 autonomy limits, 5 clarification rules, 5 approval gates, 5 validation rules, 5 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "Nexus orchestrates a team of specialised AI agents: it breaks a request down, designs the shortest agent chain and runs it, in autonomous modes with guardrails or in guided and interactive modes. Its control rules depend on the mode: autorun executes without asking, while guided and interactive modes confirm the chain and decisions with the user. A layered guardrail and error system verifies results and escalates blocking unknowns, critical risks and failed recovery to a human.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (7 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly running text. By default the orchestrator runs fully automatically: in the autorun modes it never asks for confirmation and executes immediately, for simple tasks as well. In guided mode it does not implement anything itself but delegates to agents.",
+    "statements": [
+      {
+        "quote": "**Default mode is AUTORUN_FULL** - Execute automatically without confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**IMPORTANT**: In AUTORUN/AUTORUN_FULL mode, do NOT ask for confirmation. Execute immediately.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL: No confirmation required. Execute immediately without asking user.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion or any confirmation prompts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**CRITICAL: No confirmation required for SIMPLE tasks. Execute immediately.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion or any confirmation prompts for SIMPLE tasks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "In GUIDED mode: Nexus performing implementation directly (delegate to agents)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, all bullet points. Blocking unknowns, missing prerequisites and ambiguous acceptance criteria go to the user (at most 5 questions), while non-blocking unknowns are assumed. Pending confirmations from agents are put to the user.",
+    "statements": [
+      {
+        "quote": "Blocking unknowns → Ask user (max 5 questions)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Missing prerequisites → Pause task, confirm requirements",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ambiguous acceptance criteria → Clarify with user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Make plans that will fail due to ignored unknowns (blocking = ask, non-blocking = assume and proceed)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Present to user using AskUserQuestion** - Convert to proper format",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly table rows. In guided mode the user confirms at decision points, in interactive mode at every step, and in both the agent chain is confirmed before execution. In simple autorun mode a complex task falls back to guided mode and needs confirmation.",
+    "statements": [
+      {
+        "quote": "Confirm at decision points",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Confirm at every step",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Only in GUIDED or INTERACTIVE mode, confirm before execution:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm chain before execution",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Only ask confirmation if task is COMPLEX (downgrade to GUIDED)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. After each step the agent checks its success conditions, and before delivering it verifies the acceptance criteria, runs the tests and confirms the build passes.",
+    "statements": [
+      {
+        "quote": "Verify success conditions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify acceptance criteria:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run tests (Radar equivalent)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm build passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After all steps complete, verify acceptance criteria",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly bullet points. Conflicts between parallel branches are resolved or escalated, an ambiguous spec goes to the user, critical security or data risks stop and roll back, and recovery that fails after 3 attempts asks for human guidance.",
+    "statements": [
+      {
+        "quote": "If file conflicts detected, resolve or escalate",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Builder detects ON_AMBIGUOUS_SPEC → Escalate to user or return to Spark for clarification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Immediate stop, rollback",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Level 4 - ESCALATE (Human Required)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Recovery failed after 3 attempts → Request human guidance",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

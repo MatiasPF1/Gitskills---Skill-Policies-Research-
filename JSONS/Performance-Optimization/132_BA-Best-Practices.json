@@ -1,0 +1,96 @@
+{
+  "name": "BA Best Practices",
+  "mechanism": "Ask",
+  "repo": "Danhvb/my-ba-skills",
+  "path": "multi-agent-ba/.agent/skills/senior-ba/ba-best-practices/SKILL.md",
+  "author": {
+    "owner": "Danhvb",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/017016541e8f14c9456034c6ed090ec87e8827b6.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Scalability",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "BA Best Practices (Ask) specifies 3 of 5 categories: 1 clarification rule, 2 approval gates, 1 escalation rule; none for autonomy limits, validation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "BA Best Practices is a reference of business-analysis practices for requirements documents, reviews, approvals and stakeholder management. Its few control rules concern disagreement and validation: ask clarifying questions, escalate unresolved conflicts to a decision-maker, and get sign-off instead of assuming understanding. It sets no autonomy limits or checks on the agent's own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When stakeholders disagree, the agent asks clarifying questions to understand both sides.",
+    "statements": [
+      {
+        "quote": "Ask clarifying questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. In an escalated conflict the decision-maker decides, and requirements are confirmed with stakeholders and signed off rather than assumed.",
+    "statements": [
+      {
+        "quote": "Let decision-maker decide",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Solution**: Always confirm understanding, use prototypes, get sign-off",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. When stakeholders cannot agree, the conflict is escalated, with options presented to a decision-maker.",
+    "statements": [
+      {
+        "quote": "**Escalate if Needed**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

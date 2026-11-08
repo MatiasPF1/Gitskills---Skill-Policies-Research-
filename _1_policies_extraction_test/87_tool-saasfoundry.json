@@ -1,0 +1,182 @@
+{
+  "name": "tool-saasfoundry",
+  "mechanism": "Escalate",
+  "repo": "DiamondForgeFr/SaaSFoundry",
+  "path": "scaffolds/skills-templates/tool-saasfoundry/SKILL.md",
+  "author": {
+    "owner": "DiamondForgeFr",
+    "commit_author": "fec515b07d74d74b",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/013e39a15675f6479f05102c3efd39c1936229ae.md",
+  "conclusion": "tool-saasfoundry (Escalate) specifies 5 of 5 categories: 4 autonomy limits, 5 clarification rules, 10+ approval gates, 3 validation rules, 2 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly list: bypassing the CLI with direct file generation; mutating during Project Awareness; writing anything in read-only mode.",
+    "statements": [
+      {
+        "quote": "Never bypass the CLI with direct file generation — it is the source of truth for blueprints, overlays, modules, and workflow configuration.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When the user asks a question about the *current* state of their SaaSFoundry project, the skill answers from a consolidated snapshot — it never writes, never installs, never mutates anything.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Don't write anything.** Project Awareness is read-only by design; mutations live in Phase 2C (`sf new`) and Phase 2D (`sf update`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never bypass the CLI.** If the user asks for a file or layout that the CLI can generate, generate it via `sf`. Do not hand-write blueprints.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (5 mandatory, 0 advisory; 2 conditional), mostly list: fields the user stated or confirmed; missing report fields instead of guessing; MEDIUM-tier catalogue matches.",
+    "statements": [
+      {
+        "quote": "**Gather intent** — build a JSON object matching the `fields` in `reference/new-flags.json`. Only include fields the user has either stated or confirmed via a recommendation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Gather intent** — build a JSON object matching `fields` in `reference/update-flags.json`. Only include fields the user has confirmed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Answer from the report** — never invent facts about the project; if a field is missing in the report, tell the user you don't know rather than guessing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "`MEDIUM` (score 3–5) → Surface the candidate, ask the user to confirm it matches their intent (use `AskUserQuestion`), and only then propose `sf update`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Don't guess the label.** If the source is `manual` and you can't tell whether it's `cli` or `scaffold`, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 1 conditional), mostly list: running the planned sf new command; flipping dry-run off after approval; running the sf update command.",
+    "statements": [
+      {
+        "quote": "**Confirm and execute** — wait for explicit user approval before running.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Dry-run first** — set `dryRun: true` in the intent and show the output to the user. Only rebuild the intent with `dryRun: false` after explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Present and confirm** — show the command + a human summary of what will be added + which credentials were captured (redact secret values). Wait for approval before running.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**`dryRun`** (boolean) — recommend `true` for the first round; flip to `false` only after user approves the plan",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Don't skip the dry-run round** unless the user explicitly waives it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never let a \"tell me about…\" thread slip into a mutation without explicit intent.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with the user before finalizing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`file-request` → Present the emitted `sf feedback request …` command, get explicit approval, then run it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The skill must never file silently: detection is a proposal, the user is the gate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`userConfirmed` — `true` ONLY after the user explicitly approved filing. Any other value forces a refusal.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list: dry-run before mutating; re-running read-project.sh after changes; showing what would change.",
+    "statements": [
+      {
+        "quote": "Before mutating, always prefer `--dry-run` where available (notably `sf update --dry-run`) to preview the plan for the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Don't trust a stale snapshot across turns.** Re-run `read-project.sh` when the user signals they've made changes (commits, CLI runs, etc.).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Prefer `--dry-run` before mutations.** Especially for `sf update`, always show the user what would change before doing it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list: bootstrap-gh.sh failures; sf commands failing or builds breaking.",
+    "statements": [
+      {
+        "quote": "**Always gate `gh`-backed flows behind `bootstrap-gh.sh`** — on failure, surface its stderr verbatim to the user and stop rather than retrying blindly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When something goes wrong — a `sf` command exits non-zero, a generated project fails to build, a three-way merge produces something weird — the skill **passively notices** and offers to file a bug.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

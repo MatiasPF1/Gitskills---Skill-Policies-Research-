@@ -1,0 +1,284 @@
+{
+  "name": "fullstack-feature",
+  "mechanism": "Ask",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/fullstack-feature/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00047f1233836f3c38bce543a1ccd924f61b8052.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "fullstack-feature (Ask) specifies 5 of 5 categories: 9 autonomy limits, 5 clarification rules, 5 approval gates, 10+ validation rules, 1 escalation rule. Strongest: validation rules.",
+  "conclusion_qualitative": "fullstack-feature orchestrates agents to build a complete feature across database, API, UI and tests in seven phases, with a runtime engine driving review and fix cycles. How much the user is involved depends on the mode: in collaborative mode the agent confirms requirements and the commit message, while in autonomous mode it proceeds and commits alone, pausing only for ambiguity. Its largest group of rules are per-phase checks and definitions of done. It leaves review to the runtime engine and reports escalations to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "9 autonomy limits (9 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, none tied to a situation, mostly running text. In the autonomous \"justvibes\" mode the agent moves through every phase and commits with a generated message without user input. It must not spawn reviewers or fix agents itself or add reviewer tasks by hand; those come only from the runtime engine's directives.",
+    "statements": [
+      {
+        "quote": "The orchestrator does NOT manually spawn reviewers or fix agents.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Justvibes**: Auto-proceed to Phase 3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Justvibes**: Auto-proceed to Phase 4.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Justvibes**: Auto-proceed to Phase 5.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Justvibes**: Auto-proceed; runtime handles review cycles.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Justvibes**: Auto-commit with generated message.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Auto-proceeds** through all phases without user input",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Auto-commits in Phase 7 (generates commit message)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not add reviewer tasks to Phase 6 manually.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly running text. Before spawning any work agents the agent clarifies the requirements with the user (functionality, users, acceptance criteria, constraints). Even in autonomous mode it pauses to ask when requirements are ambiguous or a critical decision is needed.",
+    "statements": [
+      {
+        "quote": "Ensure you have complete clarity on what to build before spawning work agents.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Clarify requirements** with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Justvibes**: Auto-proceed if requirements are clear. (Pause for clarification if ambiguous.)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Pauses only if requirements are ambiguous or critical decisions are needed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Clarify requirements first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly bullet points. In the collaborative \"vibecoding\" mode the agent confirms with the user after the requirements phase and confirms the commit message before the final commit, and it pauses for approval when uncertainties arise.",
+    "statements": [
+      {
+        "quote": "**Vibecoding**: Confirm with user before proceeding to Phase 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Vibecoding**: Confirm commit message with user before committing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confirms** after Phase 1 (Understand) before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirms** commit message before final commit in Phase 7",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Pauses for approval if uncertainties arise",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, all bullet points. The agent verifies migrations succeed and are tested, checks the generated types and runs `tsc`, and each phase has a definition of done, such as the schema existing with migrations applied, types exported, `npm run typecheck` passing, all files committed and API endpoints implemented and validated.",
+    "statements": [
+      {
+        "quote": "Verify migration success",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify types are generated",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Test migration before completing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify types are correct (spot check generated code)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run `tsc` to confirm no type errors",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Database schema exists, migrations applied",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Types generated and exported",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`npm run typecheck` passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All files committed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All API endpoints implemented and validated",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When the runtime engine issues an escalation (for example after fix attempts run out), the agent reports the reason to the user and does not try to fix that chain itself.",
+    "statements": [
+      {
+        "quote": "On `escalate` directive: report to user with the escalation reason; do not attempt to fix the chain manually",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

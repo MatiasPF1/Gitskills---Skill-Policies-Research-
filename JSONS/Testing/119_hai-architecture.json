@@ -1,0 +1,126 @@
+{
+  "name": "hai-architecture",
+  "mechanism": "Ask",
+  "repo": "Rabbit-Ivan/Ivan-skills",
+  "path": "skills/hai-architecture/SKILL.md",
+  "author": {
+    "owner": "Rabbit-Ivan",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/011c780e56e0fdf645f9fa4210244dc51ec581af.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "hai-architecture (Ask) specifies 3 of 5 categories: 2 clarification rules, 1 approval gate, 4 validation rules; none for autonomy limits, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "hai-architecture reviews code architecture or guides a design decision through the lens of deep modules and related principles, focused on the most painful boundaries. Its central rule is an evidence gate: every claim must be grounded in code the agent read, with inference labeled as such. It asks the user when the boundary is unclear and runs a multi-agent audit only with the user's opt-in. It sets no autonomy limits or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between running text and a bullet point. When the boundary under review is unclear from the code and docs, or different assumptions would change the recommendation, the agent asks the user rather than inventing or silently choosing one.",
+    "statements": [
+      {
+        "quote": "If it is unclear from code and docs, ask the user rather than inventing one, and state the assumed boundary explicitly.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If different assumptions would produce different recommendations, ask the user rather than silently choosing a convenient boundary.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent does not escalate to a multi-agent audit on its own; that requires the user's explicit opt-in.",
+    "statements": [
+      {
+        "quote": "Do not auto-escalate to Tier 3. It requires the user's explicit opt-in (they asked for a workflow / multi-agent orchestration, or said \"audit everything\").",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, all bullet points. Every cited `file:line` must come from a file the agent actually read, call chains must be traced with a stated search rather than guessed, and inferences are labeled as unverified. In a full audit a skeptic agent tries to refute each finding, defaulting to \"refuted\" when evidence is thin.",
+    "statements": [
+      {
+        "quote": "**Read what you cite.** Every `file:line` reference must come from a file you actually opened this session. If you have not read it, do not cite it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Trace, don't guess, call chains.** Before claiming \"a change here forces edits across N packages,\" grep for the callers/implementations and confirm the chain exists. State the search you ran.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Mark unverified reasoning as such.** If a claim rests on inference rather than code you read, label it explicitly (\"unverified — would need to check X\"). Never let inference wear the costume of evid",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify (adversarial, per finding):** for each finding, a skeptic agent tries to *refute* it — is the `file:line` real, is the change-amplification claim true, does the proposed merge actually hide i",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "name": "update-contrib",
+  "mechanism": "Escalate",
+  "repo": "ClickHouse/ClickHouse",
+  "path": ".claude/skills/update-contrib/SKILL.md",
+  "author": {
+    "owner": "ClickHouse",
+    "commit_author": "cf29dd9a4931ab9d",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00fea6b3389ac3cc76433543e1f6a8c58b0ee9fd.md",
+  "topics": [
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "update-contrib (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 5 approval gates, 4 validation rules, 1 escalation rule; none for clarification rules. Strongest: approval gates.",
+  "conclusion_qualitative": "update-contrib updates a ClickHouse third-party library to a new version: fork management, submodule bumps, CMake adaptation, source fixes, build verification and a pull request. The user confirms the target version and approves every push, which comes only after a validated build. Manual GitHub work is handed to the user. It sets no clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The front matter limits the agent to `Agent`, `Task`, `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep`, `WebFetch` and `AskUserQuestion`. It never rebases or amends, adding new commits instead, and never commits to the master branch.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Agent, Task, Bash, Read, Write, Edit, Glob, Grep, WebFetch, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do not use rebase or amend — add new commits",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not commit to the master branch — always use a feature branch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The user confirms the current and target versions before work starts. No branch, in the main repository or a fork, is pushed until the build is validated and the user explicitly confirms pushing, and the pull request is opened only after that.",
+    "statements": [
+      {
+        "quote": "Present the current and target versions to the user with `AskUserQuestion` for confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not push any branch yet.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "the user explicitly confirms that it is ok to push now",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only after the build is validated successfully should you ask the user whether it is ok to push now. Until the user confirms, keep both the main repo branch and any fork branch local-only.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Before creating the PR, ensure any required branches have been pushed and that the user has already confirmed pushing is ok.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, evenly split between running text and bullet points. After the fixes the agent verifies the build, repeating fixes until it passes, and runs the submodule and CMake CI checks.",
+    "statements": [
+      {
+        "quote": "After all fixes, verify the build succeeds:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the build fails, fix the errors and repeat.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Run `check_submodules.sh` which validates:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run `check_cpp.sh` which validates",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. When fork management needs manual work on GitHub, the agent tells the user what to do and waits for confirmation.",
+    "statements": [
+      {
+        "quote": "If the fork management requires manual work on GitHub (creating branches, cherry-picking in the fork), use `AskUserQuestion` to instruct the user on what to do, then wait for confirmation before proce",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

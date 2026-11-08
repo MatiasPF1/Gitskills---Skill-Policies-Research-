@@ -1,0 +1,52 @@
+{
+  "name": "story-questions",
+  "mechanism": "Ask",
+  "repo": "jdinkla/user-story-skills",
+  "path": "skills/story-questions/SKILL.md",
+  "author": {
+    "owner": "jdinkla",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/001f33032dbd264a15935603a600f7e0f4b5aa89.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "story-questions (Ask) specifies 1 of 5 categories: 1 clarification rule; none for autonomy limits, approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "story-questions surfaces the unknowns, assumptions and clarifying questions in a user story before implementation, producing 5 to 10 prioritized questions with suggested answers. The questions are output for the team rather than asked by the agent, so its only control rule is asking the user for the story when none is available. It sets no approval gates, autonomy limits, checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If no user story is passed in, referenced as a file or selected, the agent asks the user to paste it or point to a file.",
+    "statements": [
+      {
+        "quote": "If none of the above, ask the user to paste the story or point to a file.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

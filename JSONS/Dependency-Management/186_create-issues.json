@@ -1,0 +1,99 @@
+{
+  "name": "create-issues",
+  "mechanism": "Escalate",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/tools/create-issues/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00b111a9f5cb60693cf1422da098a1ad5a2a2023.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "create-issues (Escalate) specifies 2 of 5 categories: 2 autonomy limits, 6 approval gates; none for clarification rules, validation rules, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "create-issues turns a requirement into a set of dependency-aware GitHub issues: analysing the codebase, breaking the work down, proposing detailed issues and creating them. Its control rules center on one mandatory approval gate before any issue is created. It works with a fixed tool set and sets no clarification rules, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between the front matter and running text. The front matter limits the agent to `Read`, `Grep`, `Glob` and `Bash`, and it never runs the two issue-processing workflows on the same issues at once.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Grep, Glob, Bash",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do NOT run `/run-issues` and `awkit kickoff` simultaneously on the same issues.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly bullet points. A mandatory approval gate stands before issue creation: the agent shows the full proposal details, waits for confirmation and never creates issues without the user's explicit approval.",
+    "statements": [
+      {
+        "quote": "It follows a 5-phase workflow with a mandatory user approval gate before creating any issues.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present proposals and wait for confirmation:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Only proceed if user explicitly approves**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER create issues without user approval**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**ALWAYS show full proposal details before asking for approval**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for user confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

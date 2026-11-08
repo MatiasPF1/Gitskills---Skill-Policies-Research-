@@ -1,0 +1,145 @@
+{
+  "name": "check-tasks",
+  "mechanism": "Act",
+  "repo": "kalkatos/godot-base",
+  "path": ".agents/skills/check-tasks/SKILL.md",
+  "author": {
+    "owner": "kalkatos",
+    "commit_author": null,
+    "declared": "Hermes Agent"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0192afe11d2a509d4f14a4fa05241f087a94e734.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "check-tasks (Act) specifies 4 of 5 categories: 4 autonomy limits, 3 clarification rules, 7 validation rules, 1 escalation rule; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "check-tasks finds open tasks assigned to the agent's persona across all projects in a workspace, from GitHub pull requests and project backlogs. The agent acts on clearly matching tasks without asking, using safe fast-forward pulls and approving pull requests only under its own identity. When it finds nothing it asks the user what to do and never invents work, and it reports projects where GitHub access is missing. A closing checklist verifies that its search was complete. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly running text. When pulling the latest changes the agent uses fast-forward-only pulls to avoid merge conflicts. When it finds tasks that clearly match its role, it starts them at once without asking, since running the skill counts as permission, and it approves a pull request only if its GitHub identity differs from the author's.",
+    "statements": [
+      {
+        "quote": "Use `--ff-only` to avoid merge conflicts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When tasks are found that clearly match the agent's known role (e.g., @Griffin reviewing a milestone PR, @Imp writing tests for @Angel's code), **proceed to execute the task immediately**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask the user \"want me to do this?\" — the `/check-tasks` invocation is the authorization to discover and act on assigned work.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Submit via `gh pr review --comment` (or `--approve` if the agent has a distinct GitHub identity from the PR author)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly running text. If no tasks are found in any project, the agent tells the user and asks what to work on, waiting for the user's direction instead of inventing tasks.",
+    "statements": [
+      {
+        "quote": "If **no tasks are found across any project**, respond with:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user's direction — do NOT invent tasks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Making up tasks when nothing is found.** The skill ends with asking the user, not inventing work. The user decides the next action.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (6 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (worded \"when appropriate\"), 1 tied to a situation, all bullet points. A final checklist confirms that the agent identified its persona name, found every project, checked `gh` access per project, searched pull requests in more than one way, checked backlogs, deduplicated the results and, when nothing was found, notified the user with options.",
+    "statements": [
+      {
+        "quote": "Agent persona name identified from identity",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All projects in workspace discovered",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`gh` availability checked per project",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Open PRs searched with both mention and title/body strategies",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Backlog checked where applicable",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Results deduplicated and structured",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Empty-results fallback triggered when appropriate (user notified, options offered)",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the `gh` tool is missing or not logged in, the agent skips pull-request checks for that project and reports \"no PR access\" instead of failing.",
+    "statements": [
+      {
+        "quote": "If `gh` is not installed or not authenticated, skip PR checks for that project (do not fail — report it as \"no PR access\").",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

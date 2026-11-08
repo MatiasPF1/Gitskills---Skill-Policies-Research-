@@ -1,0 +1,197 @@
+{
+  "name": "nextjs-cdk-deploy",
+  "mechanism": "Escalate",
+  "repo": "accolver/skill-maker",
+  "path": "workspaces/skill-maker-workspace/iteration-1/eval-nextjs-deploy-skill/with_skill/outputs/nextjs-cdk-deploy/SKILL.md",
+  "author": {
+    "owner": "accolver",
+    "commit_author": null,
+    "declared": "skill-maker"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0032d7f3279c82e41fece44c4af6775082dd0b43.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "approval_gates",
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "nextjs-cdk-deploy (Escalate) specifies 4 of 5 categories: 2 autonomy limits, 4 approval gates, 10+ validation rules, 2 escalation rules; none for clarification rules. Strongest: validation rules.",
+  "conclusion_qualitative": "nextjs-cdk-deploy deploys a Next.js app to AWS with CDK through a staging-then-production pipeline, with rollback procedures at each stage. Its largest group of rules are checks: diff review, staging and production verification and a deployment checklist. A manual approval gate stands before production, and unexpected deletions or production issues lead to a stop or a rollback. It sets no clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a table row and a bullet point. The agent never destroys production stacks, using rollback instead, and never skips staging.",
+    "statements": [
+      {
+        "quote": "Never destroy in production; use rollback strategies instead",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Staging before production, always.** Never skip staging.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly running text. The production deployment needs the user's explicit approval after staging, and the agent does not proceed without it.",
+    "statements": [
+      {
+        "quote": "**This step is critical.** Before deploying to production, the user must explicitly approve.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT proceed to production deployment without explicit user approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after explicit approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "User explicitly approves production deployment",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent reviews the synthesized diff, then verifies staging after deployment (URL, server-rendered routes, API connections, logs) and does the same checks on production.",
+    "statements": [
+      {
+        "quote": "Review the diff output carefully.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After deployment, verify staging works:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Check the staging URL loads correctly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Test SSR routes return proper content",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify API connections work with staging backend",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Check CloudWatch logs for errors",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After production deployment:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify the production URL loads correctly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Check CloudWatch for errors in the first 5 minutes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm SSR routes work",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, all in running text. If the diff shows unexpected resources, especially deletions, the agent stops and investigates, and if production shows problems it rolls back immediately.",
+    "statements": [
+      {
+        "quote": "If unexpected resources appear (especially deletions), stop and investigate before deploying.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If issues are found, proceed to rollback immediately.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "name": "wiki-init",
+  "mechanism": "Escalate",
+  "repo": "codeisme621/learnermax-course-app",
+  "path": ".claude/skills/wiki-init/SKILL.md",
+  "author": {
+    "owner": "codeisme621",
+    "commit_author": "6d6fd66ff913ea5d",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0074d36e56820e6379cb9036a5cafb0e75f5254f.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "wiki-init (Escalate) specifies 3 of 5 categories: 6 autonomy limits, 4 clarification rules, 3 approval gates; none for validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "wiki-init is a guided, one-time setup of a standalone LLM-maintained knowledge wiki (its own git repository with ingest, query and lint commands) for a problem domain. The agent explains and confirms with the user before every write or git operation, asks rather than guesses about location and domain, and never touches the app codebase or an existing wiki. It sets no checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. The wiki is always external: the agent never writes into the app codebase or derives the wiki from a codebase scan, never clobbers an existing wiki, and never deletes or rewrites existing content on a re-run.",
+    "statements": [
+      {
+        "quote": "Refuse to clobber an existing wiki at that path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not scan a codebase**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never delete or rewrite existing `raw/` or `wiki/` content on a re-run.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never write into the app codebase.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never derive the wiki from a codebase scan.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never clobber an existing wiki.** A populated target path means re-run, diff, ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all in running text. The agent never guesses: it asks the human for the wiki path on every run, confirms the name, and interviews the human about the domain, taxonomy and sources.",
+    "statements": [
+      {
+        "quote": "Narrate from the references in plain language; never guess.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask the human for the path every run**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm the name (`<name>` is usually the domain, e.g. `survey-ready`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Interview the human:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all in running text. Every step that writes to disk or runs git follows explain, confirm with the user, then act. The agent stops for approval of the scaffold plan (unless --yolo is passed) and confirms before the first commit.",
+    "statements": [
+      {
+        "quote": "**explain what you're about to do and why → confirm with the user → do it → show the result → take feedback and adjust.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Stop and wait for approval**, unless `--yolo` was passed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm with the user before committing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

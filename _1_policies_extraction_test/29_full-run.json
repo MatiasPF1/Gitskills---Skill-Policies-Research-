@@ -1,0 +1,128 @@
+{
+  "name": "full-run",
+  "mechanism": "Act",
+  "repo": "olympix/olympix-claude-plugin",
+  "path": "skills/full-run/SKILL.md",
+  "author": {
+    "owner": "olympix",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/019d3bf63c93378391291355dd176710936f6d96.md",
+  "conclusion": "full-run (Act) specifies 5 of 5 categories: 4 autonomy limits, 2 clarification rules, 2 approval gates, 1 validation rule, 6 escalation rules. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly list: allowed tools; background agents calling AskUserQuestion; fully non-interactive background runs.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Glob, Grep, Bash, Write, Skill, Agent, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Background agents must NEVER call `AskUserQuestion` — for anything.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Run FULLY NON-INTERACTIVELY — you are a background agent with NO user. Do NOT call `AskUserQuestion` for anything (scan mode, session name, scope, docs). Use the scan mode passed to you (`{BUGPOCER_",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm scope + validation items; answer security questions from the repo per the bug-pocer skill's deterministic rule (do NOT blindly skip them); skip docs — all without prompting any user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list: scan mode; session names.",
+    "statements": [
+      {
+        "quote": "**If they opt in, ask the scan mode now too** (full-repo vs diff) with AskUserQuestion, and if diff, the base ref — because the background BugPocer agent has no user to prompt.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Name every session** and pass the title in `new_session` so the user can find them in the CLI later; always ask the user, suggesting a default.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly prose: base name confirmation; running BugPocer.",
+    "statements": [
+      {
+        "quote": "Pick a base name and **ask the user to confirm or change it, suggesting a sensible default** (use the repo identity, e.g. `<org>/<repo>@<short-sha>` from git, or the repo folder name).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user with AskUserQuestion whether to run BugPocer (options: \"Yes, run it\" / \"Skip for now\"), noting it incurs backend scan cost.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly heading: repository builds.",
+    "statements": [
+      {
+        "quote": "Step 1: Verify Repository Builds",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "6 escalation rules (6 mandatory, 0 advisory; 4 conditional), mostly prose: Olympix CLI not installed; legacy CLI rejecting --agent; CLI still lacking --agent.",
+    "statements": [
+      {
+        "quote": "If `NOT_INSTALLED`, **HARD STOP** — tell the user to install the Olympix CLI from https://olympix.github.io/installation/ and rerun this skill.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `LEGACY_CLI` (the `--agent` flag is rejected), the CLI is pre-agent-mode — tell the user to run `olympix update`, then re-probe.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**HARD STOP** if the CLI still lacks `--agent`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**HARD STOP** if the repo cannot be made to compile — no tool can run without it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "| `--agent` flag rejected | CLI is pre-agent-mode — tell the user to run `olympix update`, then re-probe |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| One tool fails mid-run | Relay the failure, keep the other agents running — do not abort |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

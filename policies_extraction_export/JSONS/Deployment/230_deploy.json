@@ -1,0 +1,133 @@
+{
+  "name": "deploy",
+  "mechanism": "Escalate",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/devops/deploy-sofer/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": "d8c1587f920f4897",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0183164c713c3579ae79c374c4f3c43f9e08e28f.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "autonomy_limits",
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates",
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "deploy (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 2 approval gates, 4 validation rules, 3 escalation rules; none for clarification rules. Strongest: validation rules.",
+  "conclusion_qualitative": "deploy ships merged code to staging, production or another environment: pre-deployment checks, build, migrations, deployment and verification. Production migrations need explicit human approval, deployments are verified, and failures trigger rollback and escalation. It sets no clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. Production migrations are applied during deployment after merge, never before.",
+    "statements": [
+      {
+        "quote": "Production migrations must be applied AFTER merge and DURING deployment, never before merge.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. A production migration plan needs explicit human approval at a mandatory checkpoint.",
+    "statements": [
+      {
+        "quote": "**Human approval**: Present migration plan for explicit approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "This is a mandatory human-in-the-loop checkpoint",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, evenly split between running text and bullet points. The agent verifies readiness before deploying, dry-runs migrations, confirms the schema afterwards and confirms the deployment succeeded.",
+    "statements": [
+      {
+        "quote": "Verify readiness before deploying:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Validate**: Dry-run migration against staging/production-like environment",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify**: Confirm schema is correct",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm deployment succeeded:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. If a migration fails the agent rolls it back immediately, halts the deployment and escalates, and it follows a failure procedure when a deployment fails.",
+    "statements": [
+      {
+        "quote": "**On failure**: Execute rollback migration immediately",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Then halt deployment and escalate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If deployment fails:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

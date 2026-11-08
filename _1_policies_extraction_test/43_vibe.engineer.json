@@ -1,0 +1,85 @@
+{
+  "name": "vibe.engineer",
+  "mechanism": "Ask",
+  "repo": "asalbright/claude-repo",
+  "path": "claude-repo/skills/vibe.engineer/SKILL.md",
+  "author": {
+    "owner": "asalbright",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/0063b386426fe81c00a1d9936a0ea8e24a8aa7d7.md",
+  "conclusion": "vibe.engineer (Ask) specifies 4 of 5 categories: 3 autonomy limits, 2 clarification rules, 2 approval gates, 1 escalation rule; none for validation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose: allowed tools; batching bd CLI calls; starting implementation in this session.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Glob, Grep, Agent, AskUserQuestion, Skill",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do NOT batch (`bd` CLI lock — concurrent calls fail).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Once the plan and issues exist, do NOT start implementation in this session.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly heading: clarifying before planning; scope, constraints and definition of done.",
+    "statements": [
+      {
+        "quote": "1. Clarify before planning [P1]",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Ask the user clarifying questions until scope, constraints, and definition of done are unambiguous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly prose: creating issues; writing any code.",
+    "statements": [
+      {
+        "quote": "Get explicit approval before creating issues.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for a direct instruction before writing any code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: SessionStart status not beads ready.",
+    "statements": [
+      {
+        "quote": "Refuse to proceed if SessionStart status ≠ `beads: ready`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

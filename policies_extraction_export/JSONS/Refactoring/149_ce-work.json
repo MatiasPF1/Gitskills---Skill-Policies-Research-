@@ -1,0 +1,213 @@
+{
+  "name": "ce:work",
+  "mechanism": "Ask",
+  "repo": "gvkhosla/compound-engineering-pi",
+  "path": "skills/ce:work/SKILL.md",
+  "author": {
+    "owner": "gvkhosla",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01b20f3adfe06201bd91f3f8e81fb4ace7006a41.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ce:work (Ask) specifies 4 of 5 categories: 1 autonomy limit, 6 clarification rules, 4 approval gates, 10+ validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "ce:work (an earlier version of ce-work) executes a work plan end to end: clarifying, setting up the branch, implementing in tasks (inline or with subagents), testing and preparing the pull request. The agent clarifies and gets approval before starting, asks about branches and never commits to the default branch without permission. Its largest group of rules are checks: test-first verification, continuous testing and a final validation. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent uses agent teams only when the user explicitly asks for them and the platform supports it.",
+    "statements": [
+      {
+        "quote": "Do not attempt to use agent teams unless the user explicitly requests swarm mode or agent teams, and the platform supports it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, all bullet points. The agent asks clarifying questions at the start rather than building the wrong thing, without waiting for perfect understanding, and asks whether to continue on the current branch or create a new one.",
+    "statements": [
+      {
+        "quote": "If anything is unclear or ambiguous, ask clarifying questions now",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not skip this** - better to ask questions now than build the wrong thing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask: \"Continue working on `[current_branch]`, or create a new branch?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Get clarification once at the start, then execute",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't wait for perfect understanding - ask questions and move",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Skipping clarifying questions** - Ask now, not after building wrong thing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all bullet points. The agent gets the user's approval before proceeding with the plan, and never commits directly to the default branch without explicit permission (\"yes, commit to [default branch]\").",
+    "statements": [
+      {
+        "quote": "Get user approval to proceed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Requires explicit user confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only proceed after user explicitly says \"yes, commit to [default_branch]\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never commit directly to the default branch without explicit permission",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. Each unit's verification field marks it done, new tests must be seen failing before the fix, and the agent runs a system-wide test check, tests after each significant change and fixes failures immediately. Before submitting it runs the quality checks and confirms all tasks are complete, all tests pass and linting passes.",
+    "statements": [
+      {
+        "quote": "Use each unit's `Verification` field as the primary \"done\" signal for that task",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not skip verifying that a new test fails before implementing the fix or feature",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**System-Wide Test Check** — Before marking a task done, pause and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run relevant tests after each significant change",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't wait until the end to test",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Fix failures immediately",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Always run before submitting:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All tasks marked completed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All tests pass",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Linting passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

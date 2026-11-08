@@ -1,0 +1,148 @@
+{
+  "name": "code-review",
+  "mechanism": "Ask",
+  "repo": "ahgraber/skills",
+  "path": "skills/code-review/SKILL.md",
+  "author": {
+    "owner": "ahgraber",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/002ca455d76e62c66cb6c4e5f4d6941a37805ecf.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "code-review (Ask) specifies 3 of 5 categories: 5 autonomy limits, 4 clarification rules, 2 approval gates; none for validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "code-review gives a structured, prioritized review of staged changes or a branch diff, optionally with a code graph and parallel review subagents. It is review-only by default: the agent asks for missing context and intent instead of guessing, and changes code only when the user explicitly asks, limited to the discussed fixes. Extra refactors and an architecture subagent need the user's approval. It sets no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly bullet points. The agent must not modify code during a review unless explicitly asked. It applies changes only when the user asks for fixes, and then only the changes discussed in the review, with minimal, targeted edits.",
+    "statements": [
+      {
+        "quote": "Do NOT modify code unless explicitly asked.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Step 4 — Apply Changes (Only on Explicit Request)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Proceed only when the user asks to \"apply changes\", \"fix issues\", \"implement suggestions\", or similar.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Apply only changes discussed in Step 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Make minimal, targeted edits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly bullet points. The agent never guesses missing code or behavior but asks for the missing context. It asks when the review scope is ambiguous, clarifies the author's intent before dispatching subagents, and asks clarifying questions before judging code whose intent is unclear.",
+    "statements": [
+      {
+        "quote": "Do NOT guess missing code or behavior; ask for missing context.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask if ambiguous, especially when default branch detection fails.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Clarify author intent with the user before dispatching; subagents have no conversation history.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If intent is unclear, ask clarifying questions before judging.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and bullet points. When the agent decides on its own that an architecture subagent is needed, it confirms with the user before dispatching it, and it makes no refactors beyond the discussed changes without the user's approval.",
+    "statements": [
+      {
+        "quote": "Include the architecture subagent when: pre-merge / pre-PR review, the user mentions \"merge\", the user explicitly requests architectural review, or you judge it necessary (confirm with the user before",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not introduce additional refactors without user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

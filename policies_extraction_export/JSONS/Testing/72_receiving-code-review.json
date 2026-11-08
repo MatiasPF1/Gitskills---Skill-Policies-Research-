@@ -1,0 +1,120 @@
+{
+  "name": "receiving-code-review",
+  "mechanism": "Ask",
+  "repo": "jarredkenny/agency-ai",
+  "path": "roles/orchestrator/skills/receiving-code-review/SKILL.md",
+  "author": {
+    "owner": "jarredkenny",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0035e6bdd47bfd6410d250ed100ea4cf9d44313f.md",
+  "topics": [
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "receiving-code-review (Ask) specifies 3 of 5 categories: 4 clarification rules, 3 validation rules, 2 escalation rules; none for autonomy limits, approval gates. Strongest: clarification rules.",
+  "conclusion_qualitative": "receiving-code-review guides how the agent responds to code review feedback: with technical evaluation and verification rather than performative agreement. It asks before assuming, clarifying unclear items before implementing any of them, and checks each suggestion against the codebase, testing items one at a time. Architectural disagreements and suggestions it cannot verify go back to the human. It sets no approval gates or autonomy limits outside its fenced examples.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. The agent asks before assuming: it asks clarifying questions instead of agreeing performatively, still asks when the scope of trusted feedback is unclear, and clarifies all review items before implementing any of them.",
+    "statements": [
+      {
+        "quote": "Ask before assuming.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask clarifying questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Still ask** if scope unclear",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Clarify all items first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly table rows. The agent verifies review feedback against the codebase before implementing it, and implements items one at a time, testing each.",
+    "statements": [
+      {
+        "quote": "**Core principle:** Verify before implementing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify against codebase first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "One at a time, test each",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a bullet point and a table row. When pushback concerns an architectural decision the agent involves its human partner, and when it cannot verify a suggestion it states the limitation and asks for direction.",
+    "statements": [
+      {
+        "quote": "Involve your human partner if architectural",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "State limitation, ask for direction",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

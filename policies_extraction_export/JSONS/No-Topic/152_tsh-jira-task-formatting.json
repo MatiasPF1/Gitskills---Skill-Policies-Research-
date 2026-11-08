@@ -1,0 +1,225 @@
+{
+  "name": "tsh-jira-task-formatting",
+  "mechanism": "Escalate",
+  "repo": "TheSoftwareHouse/copilot-collections",
+  "path": ".github/skills/tsh-jira-task-formatting/SKILL.md",
+  "author": {
+    "owner": "TheSoftwareHouse",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/000e51241f4463c725b6ab2b4bba8bd26006fca1.md",
+  "topics": [],
+  "conclusion_quantitative": "tsh-jira-task-formatting (Escalate) specifies 5 of 5 categories: 5 autonomy limits, 6 clarification rules, 9 approval gates, 7 validation rules, 3 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "tsh-jira-task-formatting turns extracted epics and user stories into Jira-ready tasks following a benchmark template, pushes them to Jira and can import existing issues back. Two user gates (formatting review and push approval) frame the work, uncertain fields are asked about one by one, and protected tasks are never changed. The result is checked against the template and verified in Jira after the push, with failures reported to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly bullet points. Tasks with a protected status (Done, Cancelled, PO APPROVE) are read-only: the agent does not reformat them, ask about them, send updates for them or change them, and it never updates the issue type or parent link unless the user asks.",
+    "statements": [
+      {
+        "quote": "preserve its content exactly as imported. Do not reformat, reword, or modify any fields.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not flag or ask the user about fields on tasks with a protected status (Done, Cancelled, PO APPROVE).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the status is Done, Cancelled, or PO APPROVE, **skip this task** — do not send any update to Jira.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Fields NOT to update: Issue Type, Parent link (unless the user explicitly requests re-linking)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not apply the change locally or in Jira. Stop here.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 3 tied to a situation, all in running text. The agent flags uncertain fields and asks the user about each one, one question per task, before going on to review. In import mode it asks what to import and flags descriptions it cannot restructure.",
+    "statements": [
+      {
+        "quote": "**Step 5: Flag uncertain fields and ask user**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `askQuestions` to get user input.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed to the review gate until all flags are resolved.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to specify what to import.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use one `askQuestions` call to determine the import scope if the user hasn't specified it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If an imported description cannot be cleanly restructured into the benchmark format, flag it for user review using one `askQuestions` call per flagged task.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "9 approval gates (9 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, none tied to a situation, mostly running text. The user reviews and explicitly approves the formatted tasks before they are saved, confirms the target project and approves a sync summary before anything is pushed to Jira, and is asked before each later change is pushed.",
+    "statements": [
+      {
+        "quote": "Present the formatted output to the user for review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "ask one workflow-level question: \"All formatting is complete. Are you happy with these tasks? Any final changes before I proceed to save and push?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The user must explicitly approve before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Step 8: Push Approval — User approves Jira push**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before creating any issues in Jira, confirm with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "This is the final gate — after this, issues will be created in Jira.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Get explicit user approval before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask the user**: \"Do you want to push this change to Jira now?\" (using one `askQuestions` call)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask: \"Does this imported task look correct?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. The agent cross-checks every formatted task against the benchmark template (required fields, structure, verifiable acceptance criteria, business language, consistent priorities and labels) and, after pushing, reads the issues back from Jira to verify them.",
+    "statements": [
+      {
+        "quote": "Cross-check every formatted task against the benchmark template:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Are all required fields populated?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do descriptions follow the expected structure?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Are acceptance criteria written as verifiable conditions?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Is the language business-oriented (not technical jargon)?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Are priorities and labels consistent across related tasks?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After the Jira sync succeeds, read back the created or updated issues and verify at least the following for each task:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, all tied to a situation, mostly running text. If an update or creation fails, or the read-back finds mismatches, the agent tells the user, does not claim the push is verified, and asks how to proceed or offers to create the missing issue.",
+    "statements": [
+      {
+        "quote": "If an update fails because the issue no longer exists in Jira, inform the user and offer to create a new issue instead",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If verification finds mismatches, surface them clearly and do not claim the push is fully verified until the differences are resolved or explicitly acknowledged by the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any issue creation or update fails, inform the user immediately and ask how to proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

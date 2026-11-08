@@ -1,0 +1,179 @@
+{
+  "name": "intake-desk",
+  "mechanism": "Ask",
+  "repo": "cody-hutson/pmo-platform",
+  "path": "operations/skills/intake-desk/SKILL.md",
+  "author": {
+    "owner": "cody-hutson",
+    "commit_author": "02dbea5f12e463c1",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/014670884185f0ea754e6a3d7cc0e9edceb50c16.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "approval_gates",
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "intake-desk (Ask) specifies 5 of 5 categories: 2 autonomy limits, 6 clarification rules, 7 approval gates, 2 validation rules, 2 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "intake-desk is the front door for intake, turning a half-formed idea into one well-formed, correctly typed and placed work item in the tracker. It assumes and then confirms with the user, asks only what the item type needs, and never fabricates answers. Nothing is filed without the user's explicit approval, except in a bounded non-interactive mode that still never auto-creates human-reserved work. The 5-test gates every item, and unresolved levels are flagged for a human reviewer.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and a table row. The agent creates exactly one item and never auto-creates child issues, noting them for later slicing instead. In the non-interactive \"bounded auto\" setting it authors, validates and creates items without the confirmation step.",
+    "statements": [
+      {
+        "quote": "note the candidate child work as a decomposition callout in the body for later agents to validate and slice — never auto-create child issues.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Author → validate → create** without the interactive confirm gate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. The agent proposes the idea's level as an assumption for the user to confirm, asks for the fields that type of item needs in small batches until it is clear, and asks once whether to shape an idea from scratch or check an existing draft. It never invents a confident answer or silently drops an unknown.",
+    "statements": [
+      {
+        "quote": "**Meet the idea at its altitude — by assumption, then confirmation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "There is no hard follow-up cap — ask in small batches and stop on clarity.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never invent a confident answer and never silently drop the unknown.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask once: \"Do you want me to help shape this from scratch, or check a draft you already have?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Meet at altitude (assume + confirm)** — open with run-the-business vs change-the-business, propose an assumed specific altitude, state it back, and confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Elicit type/level fields** — ask for the fields THIS type at THIS altitude needs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly running text. The human confirms what gets logged: the agent proposes and renders the item, and the user approves the body through an explicit yes/no question before anything is filed. The agent never substitutes its own judgment for that confirmation, and items touching tasks reserved for humans are never auto-created at any level.",
+    "statements": [
+      {
+        "quote": "applies the 5-test rule live, and confirms before logging.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "You do not improvise scratch files; you do not over-define; you do not substitute your judgment for the user's confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "You assist and propose; the human confirms what gets logged.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**The human confirms what gets logged.** This skill is Autonomy Tier 1 — it renders and proposes; the user approves the body via an explicit binary AskUserQuestion before anything is filed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Modes A and B are the interactive front door — a human is present and confirms every filed item via an explicit binary AskUserQuestion (Autonomy Tier 1).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confirm and emit** — render the item body, run the 5-test, present it, obtain an explicit binary approval via AskUserQuestion, then emit per `references/output-contract.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A signal whose **implied work item** would touch any Irreducible Human Task is **never auto-created at any level**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both bullet points. Elicitation stops only when the item passes the 5-test for its type, and the agent never emits a malformed item or silently drops a signal.",
+    "statements": [
+      {
+        "quote": "**The 5-test is the stop condition, not a question count.** Exit when the 5-test passes for the type at this altitude and every remaining unknown is legitimately downstream (deferred-with-marker or an",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never** emit a malformed typed item; **never** silently drop the signal.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both bullet points. When the user cannot settle the item's level, the agent flags it as an assumption for a human reviewer at triage rather than stalling.",
+    "statements": [
+      {
+        "quote": "If the user genuinely cannot align, carry the altitude as a flagged `[ASSUMPTION – CONFIRM]` to a human reviewer at triage — do not stall the loop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Unresolved → carry as a flagged `[ASSUMPTION – CONFIRM]` to triage.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

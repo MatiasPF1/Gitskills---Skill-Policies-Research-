@@ -1,0 +1,252 @@
+{
+  "name": "autoresearch",
+  "mechanism": "Act",
+  "repo": "erfanzar/Xerxes-Agents",
+  "path": "xerxes/skills/autoresearch/SKILL.md",
+  "author": {
+    "owner": "erfanzar",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0036fb0494de2d83b4c38db8e5fee7592ba6eb1c.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "autoresearch (Act) specifies 5 of 5 categories: 2 autonomy limits, 10+ clarification rules, 2 approval gates, 5 validation rules, 6 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "autoresearch runs an autonomous loop on any task (change something, measure it, keep or discard, repeat), with subcommands for planning, debugging, fixing, security, shipping and more. Its largest group of rules makes the agent ask for any missing setting with `AskUserQuestion` before running, and it gets the user's confirmation before starting the loop. It checks work only with measured metrics and dry runs, rolls back failed changes, and goes back to the user when progress stalls or the verify command fails. It may go ahead alone when the full setup is given, but must use `git revert` instead of `git reset --hard`.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one bullet point and one in running text. When the user gives the goal, scope, metric and verify command up front, the agent takes them and goes ahead without asking. To undo changes it must use `git revert`, not `git reset --hard`, so failed experiments stay visible in the history.",
+    "statements": [
+      {
+        "quote": "**If the user provides Goal, Scope, Metric, and Verify inline** → extract them and proceed to step 5.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `git revert` (not `git reset --hard`) for rollbacks so failed experiments remain visible in history.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly table rows. If any required setting is missing, the agent must collect it with `AskUserQuestion` before running anything and must not go ahead without the user's input. A table lists, for each subcommand (such as `/autoresearch:plan`, `/autoresearch:debug` or `/autoresearch:fix`), which settings are required and how many grouped questions to ask.",
+    "statements": [
+      {
+        "quote": "**If ANY required context is missing → you MUST use `AskUserQuestion` to collect it BEFORE proceeding to any execution phase.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "DO NOT proceed without user input.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`/autoresearch` | Goal, Scope, Metric, Direction, Verify | Batch 1 (4 questions) + Batch 2 (3 questions) from Setup Phase below",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:plan` | Goal | Ask via `AskUserQuestion` per `references/plan-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:debug` | Issue/Symptom, Scope | 4 batched questions per `references/debug-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:fix` | Target, Scope | 4 batched questions per `references/fix-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:security` | Scope, Depth | 3 batched questions per `references/security-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:ship` | What/Type, Mode | 3 batched questions per `references/ship-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:scenario` | Scenario, Domain | 4-8 adaptive questions per `references/scenario-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`/autoresearch:predict` | Scope, Goal | 3-4 batched questions per `references/predict-workflow.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one bullet point and one in running text. Before starting its loop the agent shows the user the setup and gets confirmation. After the first successful run it asks the user before starring the GitHub repo with `gh api`.",
+    "statements": [
+      {
+        "quote": "**Confirm and go** — Show user the setup, get confirmation, then BEGIN THE LOOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user: *\"If autoresearch helped, would you like to star the repo on GitHub to support the project? I can run `gh api -X PUT /user/starred/uditgoenka/autoresearch` for you.\"*",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly bullet points. Every security finding needs code evidence (file and line plus an attack scenario), and the verify command must pass a dry run before it is accepted. The agent dry-runs the verify command after setup, measures a baseline (starting score) before changing anything, and relies only on measured metrics, never on a subjective \"looks good\".",
+    "statements": [
+      {
+        "quote": "Every finding requires **code evidence** (file:line + attack scenario) — no theoretical fluff",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify command MUST pass a dry run on the current codebase before accepting",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**After Batch 2:** Dry-run the verify command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Establish baseline** — Run verification on current state AND guard (if set).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Mechanical verification only** — No subjective \"looks good\".",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (6 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 5 tied to a situation, evenly split between bullet points and running text. Failed changes are rolled back at once. When the metric stops improving for 15 iterations in a row, the agent pauses and asks the user whether to stop, continue or change strategy, and a documentation fix loop goes to the user after 3 failed retries. If the verify command fails it asks the user to fix it or pick another, and it asks for help only when blocked by missing access or permissions.",
+    "statements": [
+      {
+        "quote": "Validation-fix loop capped at 3 retries — escalates to user if unresolved",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "By default, autoresearch loops until the metric plateaus (no improvement to the best metric for 15 consecutive measured iterations), then asks the user whether to stop, continue, or change strategy.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If 15 consecutive measured iterations pass without a new best, the loop pauses and asks the user to decide: stop, continue, or change strategy.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it fails, ask user to fix or choose a different command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Automatic rollback** — Failed changes revert instantly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't ask for help unless truly blocked by missing access/permissions",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

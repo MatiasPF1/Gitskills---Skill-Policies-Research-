@@ -1,0 +1,169 @@
+{
+  "name": "watch-pr",
+  "mechanism": "Ask",
+  "repo": "willyamjarcand/dotfiles",
+  "path": "pi/skills/watch-pr/SKILL.md",
+  "author": {
+    "owner": "willyamjarcand",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01a52bebfdd95f3d073e79b802dcf6c5e5326d5e.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "watch-pr (Ask) specifies 4 of 5 categories: 5 autonomy limits, 1 clarification rule, 1 validation rule, 10+ escalation rules; none for approval gates. Strongest: escalation rules.",
+  "conclusion_qualitative": "watch-pr is a long-running side agent that watches a GitHub pull request and addresses review comments and CI failures by committing small fixes, or by logging why a comment is not relevant. It never speaks on GitHub, force-pushes or touches unrelated code. Anything ambiguous, risky or persistently failing goes to a notes file for the user, and it stops when CI is green and the pull request is approved. It sets no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. The watcher never replies to or resolves review threads on GitHub, touches only code tied to a specific comment or CI failure, leaves the .gitignore change staged instead of committing it, and does not modify code for comments it judges not relevant.",
+    "statements": [
+      {
+        "quote": "**NEVER reply on GitHub.** Do not call `gh pr review`, `gh pr comment`, `gh api .../reviews/.../comments`, `gh pr review --comment`, or anything that posts to GitHub conversation threads. The user wil",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER resolve threads on GitHub.** No `gh api graphql` mutations to mark threads resolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER touch unrelated code.** Each commit must address one specific review comment or CI failure.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "append the pattern but DO NOT commit the .gitignore change — leave it staged for the user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT modify code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent never guesses what an ambiguous review comment means; it logs the comment to the notes file and skips it.",
+    "statements": [
+      {
+        "quote": "**NEVER assume.** If a comment is ambiguous, log it to the notes file and skip — do not guess intent.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Before stopping, the agent checks that all stop conditions hold: CI green, the pull request approved and no unresolved threads or new comments.",
+    "statements": [
+      {
+        "quote": "**Check stop conditions.** All of the following must be true:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (9 mandatory, 1 advisory; 6 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"should\"), 6 tied to a situation, mostly bullet points. The agent stops and asks the user to take over through the notes file when a force-push would be needed, the branch does not match, a merge conflict is non-trivial or a reviewer asks a direct question. Fixes that still fail after 3 attempts and CI failures outside the pull request's scope are logged instead of forced.",
+    "statements": [
+      {
+        "quote": "**NEVER force-push.** Use plain `git push`. If a force-push is genuinely needed (e.g. rebase to fix conflicts), STOP and write to the notes file asking the user to take over.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `headRefName` does not match `BRANCH`, abort and write to notes:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Run the relevant tests/linter for the touched files. If they fail, iterate up to 3 times. If still failing, log to notes and skip.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If it's caused by something outside this PR's scope (flaky test unrelated to changed files, infra outage, wrong base branch), do NOT touch code. Log to notes:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When to stop and ask the user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "heading"
+      },
+      {
+        "quote": "Write to notes and stop polling (write the `.done` sentinel with reason `needs-user`) if:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Force-push would be required.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A merge conflict appears that's non-trivial.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A reviewer asks a direct question (this is \"not relevant\" for committing, but you should also surface it prominently).",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Same CI failure persists after 3 fix attempts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

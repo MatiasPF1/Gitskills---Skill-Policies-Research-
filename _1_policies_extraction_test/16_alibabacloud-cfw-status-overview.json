@@ -1,0 +1,151 @@
+{
+  "name": "alibabacloud-cfw-status-overview",
+  "mechanism": "Act",
+  "repo": "aibot88/sec_skill_store",
+  "path": "skills/claudskills/alibabacloud-cfw-status-overview/SKILL.md",
+  "author": {
+    "owner": "aibot88",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00b81cedb04216d9ed1f3c673f4e3bf6f7ad3e7c.md",
+  "conclusion": "alibabacloud-cfw-status-overview (Act) specifies 4 of 5 categories: 10+ autonomy limits, 1 clarification rule, 3 validation rules, 5 escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly prose: searching workspace files or asking for input; SSH or server access; displaying or requesting AK/SK credentials.",
+    "statements": [
+      {
+        "quote": "**DO NOT search for log files, security data, or any files in the workspace.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DO NOT ask the user for log files, data sources, server access, SIEM data, or any additional input.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DO NOT attempt to SSH, access, or connect to any server or IP address.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**The ONLY way to get data is by running `aliyun cloudfw ...` CLI commands** as defined in the Core Workflow section below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Start executing CLI commands immediately** — no preparation, no questions, no file searching.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT search the workspace for files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT ask the user for anything.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEVER** read, echo, print, cat, or display AK/SK values under any circumstances",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEVER** ask the user to input AK/SK directly in the conversation or command line",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEVER** use `aliyun configure set` with literal credential values",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly prose: inferring missing API response field values.",
+    "statements": [
+      {
+        "quote": "**IMPORTANT: Do NOT infer or hallucinate field values.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose: attempting every API call before reporting; checking traffic trend data points; valid JSON responses as success.",
+    "statements": [
+      {
+        "quote": "Before generating the final summary report, verify that you have attempted ALL of the following API calls: > 1.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Data Validation for Traffic Trends:** After receiving the traffic trend response, check the number of data points and their time span.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Quick verification: If all CLI commands return valid JSON responses without error codes, the skill executed successfully.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "5 escalation rules (5 mandatory, 0 advisory; 2 conditional), mostly prose: no valid credential profile; missing permissions or inactive service; reporting every error including retried ones.",
+    "statements": [
+      {
+        "quote": "**If no valid profile exists, STOP here.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Abort and prompt user if any permission is missing",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Inform the user: \"Cloud Firewall service is not activated in this region. Please activate it at https://yundun.console.aliyun.com/?p=cfwnext\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Skip all subsequent steps since the service is not available.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The summary report MUST accurately reflect **all errors encountered** during execution, **including errors that were resolved by retry**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

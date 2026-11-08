@@ -1,0 +1,240 @@
+{
+  "name": "issue",
+  "mechanism": "Ask",
+  "repo": "asabina-de/kb",
+  "path": "skills/issue/SKILL.md",
+  "author": {
+    "owner": "asabina-de",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/008deee119e956cd4f0410ec0b4311d46a406801.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Distributed Systems",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "issue (Ask) specifies 5 of 5 categories: 3 autonomy limits, 5 clarification rules, 10+ approval gates, 4 validation rules, 4 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "issue turns design-note action items into Linear issues, iterates on existing issues through comments, or files freeform issues. Its core is an in-chat confirmation gate: nothing is created or posted without the user's approval, and duplicates, routing and scope questions are put to the user. Titles and scope are checked mechanically before presentation. The agent never commits, and it warns, refuses or stops with a report on missing permissions, settled notes and partial failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, one in the front matter, one bullet point and one running-text line. The front matter limits the agent to reading and editing tools, `AskUserQuestion`, `Skill`, and specific Linear and GitHub read and save tools. It never commits, since git stays with the human, and handles mixed requests in one pass instead of asking for clarification first.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash Glob Grep Read Edit WebFetch AskUserQuestion Skill mcp__claude_ai_Linear__list_issues mcp__claude_ai_Linear__get_issue mcp__claude_ai_Linear__save_issue mcp__claude_ai_Linear__list",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Do not commit** — git is HITL.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "For mixed intents, address all of them in a single pass rather than asking for clarification upfront.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 4 tied to a situation, mostly bullet points. The agent asks the user to choose how to resolve a ticket that may duplicate an existing one, which note to use when several match, and which team or project when routing is unclear. When the scope gate fires it offers to file, park or defer, and when the user wants to exclude tickets it asks one follow-up to pick them.",
+    "statements": [
+      {
+        "quote": "If the triage surfaces a match, ask the user to choose:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If multiple match, ask in Phase 2.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Otherwise: include team/project as a question in the confirmation gate (Phase 3).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Only if the scope gate fired on a candidate:** offer its outcome in the same batch — **File as-is** / **Park as not-yet-implementable** (closest existing readiness signal; representation per KB-96) ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the user chooses \"Exclude some\", ask one follow-up question with multiSelect listing the candidates so the user can deselect.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly running text. The agent shows proposed tickets in chat and creates them only on the user's approval, proceeds past duplicate triage only after the user confirms, and asks whether to continue when edit permissions are not pre-approved. It always asks before creating the batch, stops if the user bails, and shows iteration drafts before asking for confirmation.",
+    "statements": [
+      {
+        "quote": "**Confirm in chat, not via files.** The skill prints proposed tickets in the conversation, confirms with the user in one shot, and creates on approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed to filing after the user confirms the triage result.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to choose: **Proceed with prompts** / **Bail — I'll configure first**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Phase 3 — Confirm and create",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Confirm",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Confirm with the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Always ask:** \"Create these {N} tickets?\" with options: **Yes, create all** / **Exclude some — let me pick** / **Bail**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user bails, stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Print both drafts in chat before asking for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all in running text. Before presenting tickets the agent checks each title with a cold-reader self-check, and every title must pass the title quality checklist and every ticket the scope gate checks.",
+    "statements": [
+      {
+        "quote": "**Cold-reader self-check:** Before presenting the proposal, the skill must simulate a zero-context reader for each title.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Every title — whether derived from a design note action item, drafted in freeform mode, or proposed as an iteration refinement — must pass through this gate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run this mechanically before presenting any title to the user. Every box must pass.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run this mechanically for each candidate ticket before presenting it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly bullet points. The agent warns the user when the note's edit permission is missing, refuses to file from a settled design record, and when ticket creation fails partway it stops without rolling back and reports which tickets succeeded and which failed.",
+    "statements": [
+      {
+        "quote": "If the grant is missing, warn the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it's `decided`, `superseded`, or `deprecated`, **refuse** with: \"This record is in status `{status}`. Settled records are read-only. Did you mean a different one?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Stop the loop. Do not roll back successful tickets.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Print which tickets succeeded and which failed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "name": "alpha-insights",
+  "mechanism": "Act",
+  "repo": "AshminDhungana/AI-Skillkit",
+  "path": "data-analysis-skills/alpha-insight/SKILL.md",
+  "author": {
+    "owner": "AshminDhungana",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/006720c53d025490b7b321a61c553567253ee1c9.md",
+  "conclusion": "alpha-insights (Act) specifies 5 of 5 categories: 6 autonomy limits, 4 clarification rules, 8 approval gates, 9 validation rules, 7 escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly prose: invoking external skills; calling state_manager advance during cascades; writing to the skill installation directory.",
+    "statements": [
+      {
+        "quote": "**Invoking any external SKILL is prohibited** (e.g., weavefox-xhs-intel, data-analysis, mckinsey-consultant, etc.).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "During cascade execution, `_state.json` remains at the current Stage — do NOT call `state_manager advance`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Writing to SKILL installation directory is prohibited**: The SKILL source directory is read-only, not the workspace",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "| **Fatal gap** (evidence/direction gap from a fatal challenge) | ⛔ **Supplement immediately, do NOT ask user** — fatal challenges can overturn core logic; proceeding without supplementation means a f",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Using the Write tool to output HTML is absolutely prohibited.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Adding all chapters in a single Bash call is prohibited.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (4 mandatory, 0 advisory; 1 conditional), mostly list: report tier; 2-4 clarification questions at once; interview progress.",
+    "statements": [
+      {
+        "quote": "**Tier Selection**: Use AskUserQuestion to confirm report tier",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Interactive Clarification**: Use AskUserQuestion, **asking 2-4 questions at once** (with options + descriptions, supporting multi-select). Question directions: decision purpose, target audience, spe",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "⛔ **Interview Collection Checkpoint**: After all other tracks complete and before generating `evidence_base.md`, if Stage 3.5 was activated, must ask user about interview progress.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "⛔ **Question boundary**: Only ask the user what they **can** answer — their industry experience, strategic priorities, observed phenomena.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "8 approval gates (8 mandatory, 0 advisory; 2 conditional), mostly prose: continuing an in-progress research workspace; selected frameworks; research definition sub-questions.",
+    "statements": [
+      {
+        "quote": "If an active workspace exists, **prioritize asking the user whether to continue that research** rather than starting a new one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**☑️ User confirms frameworks → Load framework detail files**: After confirmation, deep-load the selected frameworks' `.md` files to obtain each framework's dimension structure (e.g., PESTEL's 6 dimen",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "→ **☑️ User confirmation** (sub-questions + lens assignment + N/A dimensions)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**☑️ User Confirmation** (using AskUserQuestion, accomplishing two things at once).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "⛔ The interview decision is part of the confirmation flow and cannot be skipped. Even if recommending against interviews, the user must make the choice.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**☑️ User Confirmation (after Rule 7, before Red/Blue Team, ⛔ must use AskUserQuestion)**:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "⛔ User confirms insight direction before Red/Blue Team review begins, to avoid reviewing insights the user doesn't endorse.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "| **Non-fatal gap** (evidence/direction gap from substantive/addressable challenges) | → AskUserQuestion to let user decide whether to supplement |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "9 validation rules (9 mandatory, 0 advisory; 3 conditional), mostly prose: structure validation blocking transitions; resolving every check failure before proceeding; manual gate checks without Bash.",
+    "statements": [
+      {
+        "quote": "| Structure validation BLOCKED | Fix per checklist items; transition prohibited |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Any single failure must be handled per the table above before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**When Bash Is Unavailable**: Manually verify per the gate conditions table above; do not block the workflow.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**🔍 IQR Review**: After user confirmation and before entering Stage 3, load the Stage 2 IQR template from `resources/quality_review.md` and launch an independent Subagent to assess research definition",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**⛔ Hypothesis Self-check (Before Writing)**: Each hypothesis must pass these 4 checks; failures are corrected immediately:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**🔍 IQR Review**: Before entering Stage 5, load the Stage 4 IQR template from `resources/quality_review.md` and launch an independent Subagent to assess evidence base quality.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Red/Blue Team Round 2 (⛔ must re-run after supplementary search)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "⛔ **If any ❌ (gap) exists**: Must not enter Stage 6.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**When citing headline numbers, chart data, or key recommendations, include a `claim_id`, `evidence_id`, or `source_id` back-link**. If no back-link exists, return to Stage 4 and complete the Evidence",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (7 mandatory, 0 advisory; 4 conditional), mostly prose: user rejection of results; failed stage gates; blocked validation results.",
+    "statements": [
+      {
+        "quote": "| User rejection | Discuss disagreements → Roll back to corresponding Stage |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "FAIL → **Transition prohibited** — fix or roll back.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**BLOCKED ❌** (detailed report): List each failure item + explain remediation action, then re-validate after fix",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If Track A works but ≥2 other planned tracks fail, pause and inform user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If there are ❌ or ⚠️ items, discuss with the user whether rollback and fixes are needed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "if IQR identifies insufficient evidence or flawed insights, follow cascade rules and ask the user whether to return to S4/S5 for supplementation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "| Tool failure | Fall back by priority: search engine → web scraping → direct URL; inform user when all tools unavailable |",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  }
+}

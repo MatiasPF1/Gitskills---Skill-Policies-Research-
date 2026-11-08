@@ -1,0 +1,74 @@
+{
+  "name": "diagnose-errors",
+  "mechanism": "Escalate",
+  "repo": "rhys117/ai-setup",
+  "path": "claude-setup/skills/diagnose-errors/SKILL.md",
+  "author": {
+    "owner": "rhys117",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00cc99ae3abc8ed95368df008a4d49a2be3ec651.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "diagnose-errors (Escalate) specifies 1 of 5 categories: 4 approval gates; none for autonomy limits, clarification rules, validation rules, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "diagnose-errors fetches production errors from Sentry and Better Stack, classifies them as mundane (with silencing recommendations) or genuine, and investigates the genuine ones. Its control rules are all approval gates: the user chooses which errors to investigate and approves any fix. It sets no autonomy limits, clarification rules, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (3 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"should\"), none tied to a situation, evenly split between running text and bullet points. After triage the agent stops, presents its findings and waits for the user to confirm which genuine errors to investigate before starting a worktree, and proposes fixes without implementing them unless the user approves.",
+    "statements": [
+      {
+        "quote": "**STOP HERE and present findings to the user before proceeding.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for user confirmation on which genuine errors to investigate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Propose a fix (but do not implement without user approval)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The user should confirm which genuine errors to investigate before you start a worktree",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

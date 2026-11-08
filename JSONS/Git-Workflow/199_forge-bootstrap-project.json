@@ -1,0 +1,132 @@
+{
+  "name": "forge-bootstrap-project",
+  "mechanism": "Escalate",
+  "repo": "McFuzzySquirrel/repo-dungeon",
+  "path": ".github/skills/forge-bootstrap-project/SKILL.md",
+  "author": {
+    "owner": "McFuzzySquirrel",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00ee7e37ac46d9cf3f44ab723d86acf4783f32d8.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "forge-bootstrap-project (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 4 clarification rules, 9 approval gates; none for validation rules, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "forge-bootstrap-project chains the Forge skills from a one-line idea to a reviewed PRD and a generated agent team, optionally with model assignment. Its whole purpose is to keep the human review gates: every pause requires an explicit approval keyword and is never skipped. It sets no checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent does not answer the PRD interview on the user's behalf or collapse it into a single batch.",
+    "statements": [
+      {
+        "quote": "do not answer on the user's behalf and do not collapse its interview into a single batch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. The agent echoes the idea back for the user to confirm, asks whether to keep, replace or extend an existing PRD, and confirms the build mode when existing agents or a product vision change it.",
+    "statements": [
+      {
+        "quote": "**Echo the idea back** in one or two sentences so the user can confirm you understood it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If yes, ask whether to keep, replace, or extend it before running Step 1.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "warn that Step 2 will run in **Feature Increment Mode** rather than Full Build, and confirm whether the user wants that.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Step 2 will run in **Vision + Features Mode**; confirm with the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "9 approval gates (9 mandatory, 0 advisory; 7 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 7 tied to a situation, mostly running text. The review gates are mandatory: the agent never skips a pause even if told to do everything, waits for confirmation before starting, and invokes the next skill only after an explicit approval keyword. Model assignment runs only if the user opts in, and applying it needs an explicit request.",
+    "statements": [
+      {
+        "quote": "and only continue when the user explicitly approves.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never skip a pause.** Even if the user says \"just do everything,\" you still stop at each gate, present the checklist, and require an explicit \"approved\" / \"continue\" / \"looks good\" before moving on.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Wait for confirmation.** Do not proceed to Step 1 until the user says to start.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not silently continue into Step 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not invoke `forge-build-agent-team` until the user responds with an approval keyword (e.g., `approved`, `continue`, `looks good`, `proceed`).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not invoke `forge-assign-models` unless the user explicitly opts in at this gate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run this step if the user explicitly opted in at Pause 2.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Default to its **Recommend** mode — which produces `docs/MODEL-PLAN.md` without modifying agent files — unless the user explicitly asked for **Apply**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never collapse a pause into a \"looks fine, moving on\" message.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "speckit-checklist",
+  "mechanism": "Ask",
+  "repo": "MAminn/NECKLINE-V2",
+  "path": ".kimi/skills/speckit-checklist/SKILL.md",
+  "author": {
+    "owner": "MAminn",
+    "commit_author": null,
+    "declared": "github-spec-kit"
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/010bbf5205a7bfcf206f5918b2465dad98b28391.md",
+  "conclusion": "speckit-checklist (Ask) specifies 2 of 5 categories: 1 autonomy limit, 4 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list: deleting or replacing existing checklist content.",
+    "statements": [
+      {
+        "quote": "Never delete or replace existing checklist content - always preserve and append",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (3 mandatory, 1 advisory; 2 conditional), mostly list: clarifying questions on checklist intent; uncertain scope categories; missing context without hallucinating.",
+    "statements": [
+      {
+        "quote": "**Clarify intent (dynamic)**: Derive up to THREE initial contextual clarifying questions (no pre-baked catalog). They MUST:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Avoid speculative categories (no hallucination). If uncertain, ask explicitly: \"Confirm whether X belongs in scope.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After answers: if ≥2 scenario classes (Alternate / Exception / Recovery / Non-Functional domain) remain unclear, you MAY ask up to TWO more targeted follow‑ups (Q4/Q5) with a one-line justification ea",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Infer any missing context from spec/plan/tasks (do NOT hallucinate)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

@@ -1,0 +1,402 @@
+[
+  {
+    "file_sha": "0164037f22ae456201eb3b5fb58797b555cabec1",
+    "keywords": 6,
+    "repo": "ConcertoNotes/codex-plugins",
+    "path": "plugins/community/agentops/skills-codex/evolve/SKILL.md",
+    "owner": "ConcertoNotes",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00b437cb1004792562842dd8a74719d519aa8550",
+    "keywords": 5,
+    "repo": "diegosouzapw/awesome-omni-skill",
+    "path": "skills/tools/commit-howarewoo/SKILL.md",
+    "owner": "diegosouzapw",
+    "commit_author": "d8c1587f920f4897"
+  },
+  {
+    "file_sha": "019d3bf63c93378391291355dd176710936f6d96",
+    "keywords": 5,
+    "repo": "olympix/olympix-claude-plugin",
+    "path": "skills/full-run/SKILL.md",
+    "owner": "olympix",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00479a8ffda45b5346eabc8995584575bad46d8c",
+    "keywords": 4,
+    "repo": "him55710-sudo/uni-foli",
+    "path": ".agents/skills/gstack-plan-design-review/SKILL.md",
+    "owner": "him55710-sudo",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00d5344aabe4e1020cc30f0d2c4a19bfd83f6e27",
+    "keywords": 4,
+    "repo": "David-Li0406/meta-skill-evloving",
+    "path": "skill-flow/data/skills-refined-36k/skillsmp/loki-mode/SKILL.md",
+    "owner": "David-Li0406",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01087618e4d9d9116a6905a50e81bceee6f85b65",
+    "keywords": 4,
+    "repo": "christyjacob4/claude-tricks",
+    "path": "skills/auto-research/SKILL.md",
+    "owner": "christyjacob4",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01889daaa853a73ce22c555e8ebda82724c720ec",
+    "keywords": 4,
+    "repo": "HyperionBurn/searchv1beta",
+    "path": ".github/skills/self-improve/SKILL.md",
+    "owner": "HyperionBurn",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0036fb0494de2d83b4c38db8e5fee7592ba6eb1c",
+    "keywords": 3,
+    "repo": "erfanzar/Xerxes-Agents",
+    "path": "xerxes/skills/autoresearch/SKILL.md",
+    "owner": "erfanzar",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0090752c3455438f9e0e0cc7673bd495cd40ecd2",
+    "keywords": 3,
+    "repo": "olaafrossi/FoamPilot",
+    "path": ".claude/skills/plan-ceo-review/SKILL.md",
+    "owner": "olaafrossi",
+    "commit_author": "0816499ed8d2d3ad"
+  },
+  {
+    "file_sha": "00a0f996bf7922e0680b5a5fccca16ba2462c36d",
+    "keywords": 3,
+    "repo": "psprowls/agent-research",
+    "path": "plugins/graph-wiki/skills/writing-plans/SKILL.md",
+    "owner": "psprowls",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00b8c146b3947edbd73c335dd0ec931d9a6b5f10",
+    "keywords": 3,
+    "repo": "slipalison/jdi-cli",
+    "path": "runtimes/antigravity/skills/jdi-issue/SKILL.md",
+    "owner": "slipalison",
+    "commit_author": null
+  },
+  {
+    "file_sha": "010b6fd86b766b521e825a29392a65802b4d952f",
+    "keywords": 3,
+    "repo": "hightemp/gosearch-ai",
+    "path": ".codex/skills/aif-implement/SKILL.md",
+    "owner": "hightemp",
+    "commit_author": null
+  },
+  {
+    "file_sha": "010d5a8c4fc542a48ebd3031288beb461a1219ed",
+    "keywords": 3,
+    "repo": "modbender/skill-library-mcp",
+    "path": "data/long-research/SKILL.md",
+    "owner": "modbender",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01144cbf9add10c5c8ac424a0f17c680720aa636",
+    "keywords": 3,
+    "repo": "shekohex/dotai",
+    "path": "skills/long-running-agent/SKILL.md",
+    "owner": "shekohex",
+    "commit_author": null
+  },
+  {
+    "file_sha": "012330795f12e16c2fd5f9390e018204f39df204",
+    "keywords": 3,
+    "repo": "Analog-Labs/pixelport-launchpad",
+    "path": ".claude/skills/gstack/.agents/skills/gstack-plan-eng-review/SKILL.md",
+    "owner": "Analog-Labs",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0192afe11d2a509d4f14a4fa05241f087a94e734",
+    "keywords": 3,
+    "repo": "kalkatos/godot-base",
+    "path": ".agents/skills/check-tasks/SKILL.md",
+    "owner": "kalkatos",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0194dd4f1795cd981a366438a9da281341963d7d",
+    "keywords": 3,
+    "repo": "no-session/pstack",
+    "path": "plan-eng-review/SKILL.md",
+    "owner": "no-session",
+    "commit_author": "6158ae348b5ef944"
+  },
+  {
+    "file_sha": "0002f269842027a15e23170ea95264d55a525443",
+    "keywords": 2,
+    "repo": "pinkroosterai/PinkRoosterMcp",
+    "path": ".claude/skills/pm-brainstorm/SKILL.md",
+    "owner": "pinkroosterai",
+    "commit_author": "89cb35d1db4ceca5"
+  },
+  {
+    "file_sha": "0013c5c045695429c44e75f8240984b264149eb2",
+    "keywords": 2,
+    "repo": "Bruce188/pipelinekit",
+    "path": "claude/skills/pipeline/SKILL.md",
+    "owner": "Bruce188",
+    "commit_author": null
+  },
+  {
+    "file_sha": "002ad93f92a57cee81a366aa15dcdda49bfa470e",
+    "keywords": 2,
+    "repo": "Adamuuuu/medical_evaluation_system",
+    "path": ".claude/skills/gh-issues/SKILL.md",
+    "owner": "Adamuuuu",
+    "commit_author": "ef316c9a57ff0ec0"
+  },
+  {
+    "file_sha": "002af3d1ef08a1f713d362b9d55f666dda9ea69d",
+    "keywords": 2,
+    "repo": "diegosouzapw/awesome-omni-skill",
+    "path": "skills/data-ai/engram-qwexs/SKILL.md",
+    "owner": "diegosouzapw",
+    "commit_author": "d8c1587f920f4897"
+  },
+  {
+    "file_sha": "00409fb163f463644f4cf4496df5c94dbdd23f3a",
+    "keywords": 2,
+    "repo": "Mark7766/ai-coding-ok",
+    "path": "SKILL.md",
+    "owner": "Mark7766",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0044695b460d2367dda6ffa7666211740674df8c",
+    "keywords": 2,
+    "repo": "dvcrn/openclaw-skills-marketplace",
+    "path": "plugins/calvinxhk--botlearn-selfoptimize/skills/botlearn-selfoptimize/SKILL.md",
+    "owner": "dvcrn",
+    "commit_author": null
+  },
+  {
+    "file_sha": "005f33bb81391b85b9c0d1bb64f0694294b55f8a",
+    "keywords": 2,
+    "repo": "opencue/skills",
+    "path": "skills/gstack/gstack-upgrade/SKILL.md",
+    "owner": "opencue",
+    "commit_author": null
+  },
+  {
+    "file_sha": "006d64f4679055686a2813f2be294e917515abed",
+    "keywords": 2,
+    "repo": "solarmist/claude-skills",
+    "path": "review-branch/SKILL.md",
+    "owner": "solarmist",
+    "commit_author": null
+  },
+  {
+    "file_sha": "007042cd79b4c341a648e3d754e3b1618edb5447",
+    "keywords": 2,
+    "repo": "alexeu00999/vpsbench",
+    "path": ".gemini/skills/aif-evolve/SKILL.md",
+    "owner": "alexeu00999",
+    "commit_author": null
+  },
+  {
+    "file_sha": "009f9ed6fe1eac60618e8c4fb6705535da0a0aff",
+    "keywords": 2,
+    "repo": "anortham/razorback",
+    "path": "skills/executing-plans/SKILL.md",
+    "owner": "anortham",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00ab206a57e89d8cd0ab9839a1359057445be7a2",
+    "keywords": 2,
+    "repo": "MikeCheng1208/BattleTree",
+    "path": ".agents/skills/verify-issue/SKILL.md",
+    "owner": "MikeCheng1208",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00aba9a72733ed213548002316d2dc33eae9ef02",
+    "keywords": 2,
+    "repo": "sambeau/kanbanzai",
+    "path": "internal/kbzinit/skills/task-execution/orchestrate-development/SKILL.md",
+    "owner": "sambeau",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00ba7348224cf6865ef247c9b60f06184a27378b",
+    "keywords": 2,
+    "repo": "ayehiaa/my-travel-assistant",
+    "path": ".claude/skills/build-feature/SKILL.md",
+    "owner": "ayehiaa",
+    "commit_author": "4a69354a0db2d2b3"
+  },
+  {
+    "file_sha": "00bc340b5a0db1994e6ab20c1573109ffd117dee",
+    "keywords": 2,
+    "repo": "growilabs/growi",
+    "path": ".claude/skills/investigate-issue/SKILL.md",
+    "owner": "growilabs",
+    "commit_author": "17c12d0c9a182bfc"
+  },
+  {
+    "file_sha": "00bfd0c0c3b815b3587b084ad2756a35ab817c64",
+    "keywords": 2,
+    "repo": "ayush488-glitch/mlops-stack",
+    "path": "skills/mlops-tabular/SKILL.md",
+    "owner": "ayush488-glitch",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00c8866b11b02778b6705cd9d3b2e7a2d99a7cb3",
+    "keywords": 2,
+    "repo": "EvilBit-Labs/DaemonEye",
+    "path": ".claude/skills/rust-testing/SKILL.md",
+    "owner": "EvilBit-Labs",
+    "commit_author": "29d438e42b52d8d1"
+  },
+  {
+    "file_sha": "00ca6bd2a61a48da307444b75dab6e4260bdb67e",
+    "keywords": 2,
+    "repo": "azigler/dotfiles",
+    "path": "agents/skills/fix/SKILL.md",
+    "owner": "azigler",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00e9b674297ddd5a4285fc14a0f263762608e928",
+    "keywords": 2,
+    "repo": "xiaoyuge886/harness_assistance",
+    "path": "apps/agent-mesh/data/plugins/github/EveryInc-compound-engineering-plugin/plugins/compound-engineering/skills/ce-review/SKILL.md",
+    "owner": "xiaoyuge886",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00fe16d9123bfb3755314f864bbf8a2a8dbe294b",
+    "keywords": 2,
+    "repo": "dvcrn/openclaw-skills-marketplace",
+    "path": "plugins/vichard998--trae-orchestrator/skills/trae-orchestrator/SKILL.md",
+    "owner": "dvcrn",
+    "commit_author": null
+  },
+  {
+    "file_sha": "00ff6bb91ee8e6bfa40ae35c0dc37a56e1248c07",
+    "keywords": 2,
+    "repo": "0x2kNJ/cpo",
+    "path": "SKILL.md",
+    "owner": "0x2kNJ",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01021389057438d6132c1bdd4b881ca56410715c",
+    "keywords": 2,
+    "repo": "ruskibeats/t1d",
+    "path": ".pi/skills-archive/t1d-grill-me/SKILL.md",
+    "owner": "ruskibeats",
+    "commit_author": "cf1ea8ec90d4f606"
+  },
+  {
+    "file_sha": "011823d9cf8b10c77c0004637f36ee2652c09649",
+    "keywords": 2,
+    "repo": "Q00/ouroboros",
+    "path": "skills/run/SKILL.md",
+    "owner": "Q00",
+    "commit_author": "7ef6af9deacbe1c0"
+  },
+  {
+    "file_sha": "0136bab819af3f6bb0475c76ab7082cad00719ee",
+    "keywords": 2,
+    "repo": "w0lzard/Wolzard-s-Marketplace",
+    "path": "plugins/personal-skills/skills/shepherd/SKILL.md",
+    "owner": "w0lzard",
+    "commit_author": null
+  },
+  {
+    "file_sha": "015abed180d0a65a2da9b90c9d80334b16475ea5",
+    "keywords": 2,
+    "repo": "SriramGandhiS/Skills",
+    "path": "skills/subagent-driven-development/SKILL.md",
+    "owner": "SriramGandhiS",
+    "commit_author": null
+  },
+  {
+    "file_sha": "0165a2e0f8ac7446162dccc7d42f1172b22b1383",
+    "keywords": 2,
+    "repo": "mizan0515/driftless",
+    "path": "profiles/shared/skills/parallel-ticket-planner/SKILL.md",
+    "owner": "mizan0515",
+    "commit_author": null
+  },
+  {
+    "file_sha": "017947adbfca24d35af851ccff8091d0e564b58f",
+    "keywords": 2,
+    "repo": "nexuslabs-ai/nexus",
+    "path": ".claude/skills/implement-guide/SKILL.md",
+    "owner": "nexuslabs-ai",
+    "commit_author": "35044cf582609101"
+  },
+  {
+    "file_sha": "0179bd4b87f0c89b247ac745b2bb6df65b5422f7",
+    "keywords": 2,
+    "repo": "CoreyRDean/clauck",
+    "path": "plugins/clauck/skills/clauck/SKILL.md",
+    "owner": "CoreyRDean",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01904f6c4a95d5b125f7a51b79593fc438d3b5be",
+    "keywords": 2,
+    "repo": "Hollow468/dotfile",
+    "path": ".claude/skills/team/SKILL.md",
+    "owner": "Hollow468",
+    "commit_author": "87202475dd0bc255"
+  },
+  {
+    "file_sha": "0197209d6d4cebe310e31119d17192a410124a64",
+    "keywords": 2,
+    "repo": "sundarshahi/drydock",
+    "path": "skills/qa-engineer/SKILL.md",
+    "owner": "sundarshahi",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01a1699ae50e35fab733ca48a0bf1a7ccc95b30c",
+    "keywords": 2,
+    "repo": "Uniquecrete/ThinkFasterv1",
+    "path": "Skills/zo-create-slidedeck/SKILL.md",
+    "owner": "Uniquecrete",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01a19234eaaa9fe742e7a6df89f9ae6a58ee572c",
+    "keywords": 2,
+    "repo": "keturk/datrix",
+    "path": "claude-config/.claude/skills/operationalize-design/skill.md",
+    "owner": "keturk",
+    "commit_author": "d66beb65ae5fd5a4"
+  },
+  {
+    "file_sha": "01a3b92d664a8dc250245a9e87dc1065dd068d1c",
+    "keywords": 2,
+    "repo": "LaPaGaYo/nexus",
+    "path": "skills/support/setup-browser-cookies/SKILL.md",
+    "owner": "LaPaGaYo",
+    "commit_author": null
+  },
+  {
+    "file_sha": "01b32911eab28fa44281996986731354fdd6fca0",
+    "keywords": 2,
+    "repo": "mattwynne/yaks",
+    "path": "skills/yak-mapping/SKILL.md",
+    "owner": "mattwynne",
+    "commit_author": null
+  }
+]

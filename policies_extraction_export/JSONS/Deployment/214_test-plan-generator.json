@@ -1,0 +1,135 @@
+{
+  "name": "test-plan-generator",
+  "mechanism": "Escalate",
+  "repo": "dundas/agentbootup-public",
+  "path": "templates/.claude/skills/test-plan-generator/SKILL.md",
+  "author": {
+    "owner": "dundas",
+    "commit_author": "152e96744f7a24c6",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/013dfa6a847b845bf88849beec95208e133a64cc.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "test-plan-generator (Escalate) specifies 2 of 5 categories: 7 clarification rules, 2 approval gates; none for autonomy limits, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "test-plan-generator writes executable end-to-end test plans from requirement documents, task lists or descriptions, with environment-aware prerequisites and issue tracking. Its control rules are gates that put the user in charge of the target environment, test accounts and user journey, with a blocking confirmation for production. It sets no autonomy limits, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. The agent never assumes the environment: it always asks explicitly which environment is targeted and does not proceed without confirmation, asks about the test account strategy, and has the user confirm or correct the proposed user journey before going on.",
+    "statements": [
+      {
+        "quote": "**GATE: Environment Declaration (REQUIRED)**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user explicitly:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT proceed without explicit confirmation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**GATE: Test Account Strategy**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Please confirm or correct:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Environment Gate** - ALWAYS ask explicitly, never assume",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. Testing against production is a blocking gate that requires deployment verification and the user's explicit confirmation.",
+    "statements": [
+      {
+        "quote": "**BLOCKING GATE:** Require deployment verification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Production Gate** - BLOCKING confirmation required",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

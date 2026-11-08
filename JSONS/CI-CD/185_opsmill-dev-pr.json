@@ -1,0 +1,178 @@
+{
+  "name": "opsmill-dev-pr",
+  "mechanism": "Escalate",
+  "repo": "opsmill/infrahub-sdk-python",
+  "path": ".agents/skills/opsmill-dev-pr/SKILL.md",
+  "author": {
+    "owner": "opsmill",
+    "commit_author": null,
+    "declared": "OpsMill"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00ae43b8e6dbad552950ace03fc77651f3ed3315.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "opsmill-dev-pr (Escalate) specifies 5 of 5 categories: 4 autonomy limits, 1 clarification rule, 6 approval gates, 4 validation rules, 2 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "opsmill-dev-pr takes the current branch to an open, CI-monitored pull request: branch safety, optional commit, documentation check, a business-focused description and PR creation, then a background CI monitor. The user approves every step and the final draft, and protected branches are never committed to. An independent judge checks the diff against the intent, and unsafe states stop the workflow.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. Without the commit argument the agent makes no commits and only warns about uncommitted changes. It never commits to the default, integration or release branches, and never skips pre-commit hooks.",
+    "statements": [
+      {
+        "quote": "**Without this argument, no commits are made**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run pre-commit hooks (no `--no-verify`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "This skill will NEVER commit to the default branch, a long-standing integration branch, or a release branch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If uncommitted changes exist and `commit` was not passed, warn but do not commit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. When the branch state is ambiguous, the agent asks the user.",
+    "statements": [
+      {
+        "quote": "When ambiguous, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. The workflow requires the user's approval at every step: the branch name, the commit message and documentation changes are confirmed, and the full pull request draft is shown and explicitly approved before the PR is created.",
+    "statements": [
+      {
+        "quote": "requires user approval at every step.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "propose a conventional feature branch name (`feat/…`, `fix/…`, etc.) for user approval before creating it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Draft a conventional-commit message and confirm it with the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present proposed doc changes to the user for approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**IMPORTANT: Always present the full PR draft to the user for review BEFORE creating it.** Never create a PR without explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user's explicit approval or requested changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. The agent confirms the tree is clean and the branch published, always checks documentation is current, and runs an independent judge that confirms the diff delivers the stated intent before creating the PR.",
+    "statements": [
+      {
+        "quote": "confirm the working tree is clean and the branch is published before continuing to Phase 3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run the ship gate per `../quality-gates/gates/primitives/independent-judge.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Stale docs are worse than no docs — always check before opening a PR.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A fresh judge, given the issue/spec verbatim and `git diff <base>...HEAD`, confirms the branch delivers the stated intent with no unrelated scope.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between a bullet point and running text. On an unsafe branch without the commit argument the agent stops and tells the user how to proceed, and it warns when uncommitted changes will be left out of the PR.",
+    "statements": [
+      {
+        "quote": "**If `commit` was NOT passed:** STOP. There's no feature branch to open a PR from.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If there are uncommitted changes and `commit` was not provided, warn the user that uncommitted changes exist but will not be included in the PR.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

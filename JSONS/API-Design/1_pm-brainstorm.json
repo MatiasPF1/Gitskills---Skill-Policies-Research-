@@ -1,0 +1,137 @@
+{
+  "name": "pm-brainstorm",
+  "mechanism": "Act",
+  "repo": "pinkroosterai/PinkRoosterMcp",
+  "path": ".claude/skills/pm-brainstorm/SKILL.md",
+  "author": {
+    "owner": "pinkroosterai",
+    "commit_author": "89cb35d1db4ceca5",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0002f269842027a15e23170ea95264d55a525443.md",
+  "topics": [
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "pm-brainstorm (Act) specifies 4 of 5 categories: 1 autonomy limit, 9 clarification rules, 1 approval gate, 3 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "pm-brainstorm guides the user from a vague idea to well-formed feature requests through conversation, web research and a look at the codebase. Most of its control rules make the agent ask the user questions with `AskUserQuestion` at each step of the brainstorm. Before creating anything it checks for duplicates among already-tracked items, gets the user's confirmation of which feature requests to create, and creates at most 5 per session. It never says what to do when something goes wrong.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one rule, treated as strict (it has no softening word), it applies at all times, and it is a bullet point. It limits the agent to creating at most 5 feature requests (written proposals for new features) per brainstorming session.",
+    "statements": [
+      {
+        "quote": "Maximum 5 FRs per brainstorm session.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "9 clarification rules (8 mandatory, 1 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, 8 strict and 1 only a suggestion (worded with \"should\"), 4 of them tied to a situation, mostly running text. They make the agent ask the user questions with the `AskUserQuestion` tool: to find or narrow the topic, to explore and refine directions in each round, and to check whether anything is missing from the summary of the idea. It also asks whether to update an existing feature request or create a new one when they overlap, and asks what to do next at the end.",
+    "statements": [
+      {
+        "quote": "**If arguments were provided**, acknowledge the topic and ask a focusing question:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Question: Based on the topic, ask something that narrows scope without closing off possibilities.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If no arguments**, use `AskUserQuestion` to discover the topic:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `AskUserQuestion` to explore:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `AskUserQuestion` to refine:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Otherwise, use one more round to nail down specifics:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Question: Present a concise summary of the emerging feature idea(s) and ask if anything is missing or should change",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If overlap exists with an existing FR, use `AskUserQuestion` to ask whether to update the existing item or create a new one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `AskUserQuestion` for follow-up:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. It makes the agent use `AskUserQuestion` to get the user's confirmation of which of the proposed feature requests to create.",
+    "statements": [
+      {
+        "quote": "Use `AskUserQuestion` to confirm:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. They make the agent cross-reference the feature requests, issues and work packages already tracked, and check its list of tracked items before creating each new request, to avoid duplicates.",
+    "statements": [
+      {
+        "quote": "**Cross-reference existing items.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before each creation, check the deduplication list.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always cross-reference existing FRs/issues/WPs to avoid duplicates.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

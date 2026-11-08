@@ -1,0 +1,214 @@
+{
+  "name": "setup-browser-cookies",
+  "mechanism": "Act",
+  "repo": "LaPaGaYo/nexus",
+  "path": "skills/support/setup-browser-cookies/SKILL.md",
+  "author": {
+    "owner": "LaPaGaYo",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01a3b92d664a8dc250245a9e87dc1065dd068d1c.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "setup-browser-cookies (Act) specifies 5 of 5 categories: 9 autonomy limits, 4 clarification rules, 4 approval gates, 2 validation rules, 6 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "setup-browser-cookies imports cookies from the user's real Chromium browser into a headless browsing session so logged-in pages can be tested, using a picker where the user selects domains. Its rules mostly limit side effects: a small tool set, no unrequested skills, no automatic commits and no printing of cookie values. It asks the user to choose execution routes and preferences, and asks permission before the one-time build. It verifies the import, requires evidence before calling work done, and stops and escalates after repeated failures or on security doubts.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "9 autonomy limits (9 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 5 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read` and `AskUserQuestion`. When proactive mode is off it runs only the skills the user types. It does not change the Nexus configuration when the user keeps the governed setup, does not ask for local-provider settings in governed mode, adds routing guidance to `CLAUDE.md` only if it is not already there and never commits that file itself. It uses Codex only when the route allows it or the user asks, and never prints cookie values.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest Nexus commands AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: do not change Nexus config.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When `EXECUTION_MODE=governed_ccb`, do not ask the user to configure `PRIMARY_PROVIDER` or `PROVIDER_TOPOLOGY`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If A: Append this section to the end of CLAUDE.md only when the file does not already contain equivalent Nexus routing guidance:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not auto-commit the file.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`codex exec` / `codex review` only when the active provider route allows Codex or the user explicitly asks for Codex; in `local_provider` with a non-Codex primary, use the host/local subagent path ins",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never print cookie values.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, mostly running text. The agent asks the user to choose an execution route when the configured one cannot run in this session, asks whether to save an execution preference after an upgrade, asks about proactive behavior during setup, and says exactly what it needs when information is missing.",
+    "statements": [
+      {
+        "quote": "If `EXECUTION_MODE=governed_ccb` and `CURRENT_SESSION_READY` is `no` and `LOCAL_PROVIDER_READY` is `yes`, use AskUserQuestion before moving into lifecycle work:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `JUST_UPGRADED <from> <to>` is present and `EXECUTION_MODE_CONFIGURED` is `no` and `GOVERNED_READY` is `yes`, use AskUserQuestion to persist the execution preference:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (3 mandatory, 1 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 only a suggestion (worded with \"might\"), 2 tied to a situation, mostly running text. Instead of starting a skill on its own it offers it and waits for confirmation, and it follows an ask-first flow for upgrades. Agreement with another AI model is only a recommendation; the user decides. Before the one-time build of the browse tool it asks \"OK to proceed?\" and stops to wait.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/nexus/nexus-upgrade/SKILL.md` and follow the release-based \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Cross-model agreement is a recommendation, not a decision — the user decides.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Tell the user: \"nexus browse needs a one-time build (~10 seconds). OK to proceed?\" Then STOP and wait.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, one heading and one bullet point. A task counts as done only when every step is complete with evidence for each claim, and after the user finishes picking cookies the agent verifies the import.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "4. Verify",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (5 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 counted as a suggestion (it contains \"should\"), 3 tied to a situation, mostly bullet points. The agent reports concerns or blockers, saying what blocks it and what it tried. It may always stop and say a task is too hard, and it must stop and escalate after 3 failed attempts, when unsure about a security-sensitive change, or when the work goes beyond what it can verify.",
+    "statements": [
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "name": "cpln",
+  "mechanism": "Escalate",
+  "repo": "controlplane-docs/docs",
+  "path": "skill.md",
+  "author": {
+    "owner": "controlplane-docs",
+    "commit_author": null,
+    "declared": "controlplane"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00c5ffb2c08ca903c32782bd3314fc2a503e5faa.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "cpln (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 2 clarification rules, 4 approval gates, 2 escalation rules; none for validation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "cpln deploys and manages containerized workloads across clouds with Control Plane: workloads, secrets, identities, firewalls, autoscaling and domains. Its rules guard against costly mistakes: confirm the target before mutating, get explicit confirmation of destructive operations, surface constraint conflicts rather than silently downgrading, and diagnose failures rather than re-waiting. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. The front matter limits the agent to the `cpln` tool. It never silently downgrades a setting to work around a constraint and never polls long-running operations from the AI layer.",
+    "statements": [
+      {
+        "quote": "allowed-tools: cpln",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Never silently downgrade to `disabled` / `none` / `1 replica` / `manual`**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never poll status from the AI layer.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. Before any state-changing command the agent establishes the target org, profile and GVC; if any is missing it stops and asks instead of falling back to the active profile.",
+    "statements": [
+      {
+        "quote": "If any is missing, **stop and ask. Never silently fall back to the active CLI profile.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Otherwise ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all in running text. Before any destructive operation the agent presents a structured summary and waits for explicit confirmation, even when permissions auto-approve; anything but an unambiguous yes means stop, a delete-and-recreate technique needs its own confirmation, and destructive steps are never bundled with harmless ones.",
+    "statements": [
+      {
+        "quote": "Before any destructive operation, present a structured summary AND wait for explicit confirmation — **even when permissions auto-approve.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "(3) confirm — the user authorized the *goal*, not the *technique*.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Anything but an unambiguous yes means stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "don't bundle destructive with non-destructive to slip it through.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. When a platform constraint blocks the user's intent, the agent surfaces it with alternatives, and on a failed or timed-out deployment it diagnoses the error instead of waiting again.",
+    "statements": [
+      {
+        "quote": "When a compatibility constraint blocks the user's intent (concurrency autoscaling on stateful, scale-to-zero on cron, snapshots on `shared` volume sets, Capacity AI with CPU metric), surface it and pr",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Hard rule — on FAILED / killed / timeout: diagnose, don't re-wait.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

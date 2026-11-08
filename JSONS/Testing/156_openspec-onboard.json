@@ -1,0 +1,98 @@
+{
+  "name": "openspec-onboard",
+  "mechanism": "Escalate",
+  "repo": "cenmiao/openspec-pro",
+  "path": ".claude/skills/openspec-onboard/SKILL.md",
+  "author": {
+    "owner": "cenmiao",
+    "commit_author": "e2c3ad9d528174dd",
+    "declared": "openspec"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0015d862487f7a2c46e0460f4bd6e2054599b820.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "openspec-onboard (Escalate) specifies 3 of 5 categories: 3 clarification rules, 3 approval gates, 1 escalation rule; none for autonomy limits, validation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "openspec-onboard walks a user through a first complete OpenSpec cycle on their own codebase (task selection, proposal, specs, design, tasks, implementation and archive), explaining each step. It pauses for acknowledgment at key points and waits for approval of the proposal and confirmation before implementing. It stops when the CLI is missing. It sets no autonomy limits or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. If the codebase scan finds no small task, the agent asks what the user wants to build, and it pauses for the user's acknowledgment at the marked teaching points.",
+    "statements": [
+      {
+        "quote": "**If nothing found:** Fall back to asking what the user wants to build:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**PAUSE** - Wait for user acknowledgment before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Pause for acknowledgment** at marked points, but don't over-pause",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. The agent waits for the user's approval of the drafted proposal before saving it, and for confirmation that the user is ready before implementing the tasks.",
+    "statements": [
+      {
+        "quote": "**PAUSE** - Wait for user approval/feedback.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After approval, save the proposal:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**PAUSE** - Wait for user to confirm they're ready to implement.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the OpenSpec CLI is not installed, the agent tells the user and stops.",
+    "statements": [
+      {
+        "quote": "Stop here if not installed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

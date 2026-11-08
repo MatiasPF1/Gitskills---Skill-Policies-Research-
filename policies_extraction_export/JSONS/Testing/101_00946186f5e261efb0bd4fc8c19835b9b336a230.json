@@ -1,0 +1,178 @@
+{
+  "name": null,
+  "mechanism": "Ask",
+  "repo": "ku5ic/dotfiles",
+  "path": "claude/skills/flow-quick/SKILL.md",
+  "author": {
+    "owner": "ku5ic",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00946186f5e261efb0bd4fc8c19835b9b336a230.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "autonomy_limits",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "unknown (Ask) specifies 4 of 5 categories: 10+ autonomy limits, 1 clarification rule, 4 validation rules, 3 escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) implements a small new feature end to end without a plan artifact, applying per-file quality gates. Its rules mostly set hard limits: as soon as the work outgrows a small change, the agent stops and hands it to the full planning workflow. It confirms its understanding of the request first, verifies its changes narrowly before reporting, and stops to surface wrong assumptions or failed checks instead of continuing silently.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly bullet points. The agent must not refactor unrelated code or add or upgrade dependencies outside its stated approach. It stops and hands off to the full planning workflow, without silently expanding, when it cannot find the target files or the change touches more than 5 files, needs a new module, changes a public API, edits project config or reveals a design choice worth recording.",
+    "statements": [
+      {
+        "quote": "If the target files cannot be identified from $ARGUMENTS alone with one quick search, stop and escalate to `/flow-plan`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not refactor unrelated code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not upgrade or add dependencies unless the approach statement in step 4 explicitly includes them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Stop immediately and escalate to `/flow-plan` (do not continue, do not silently expand) if any of these become true during execution:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "The change touches more than 5 files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The change requires creating a new module, component, route, or top-level directory.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The change touches a public API surface (exported types, exported functions, route handlers, public component props).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The change requires editing project-level config (`tsconfig`, `next.config`, `eslint.config`, `package.json` scripts, CI workflows, `settings.py`, equivalents).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The work reveals a design choice worth recording (more than one viable approach, tradeoffs worth naming).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A drive-by fix becomes load-bearing for the feature. Note the drive-by, do not absorb it; escalate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent restates the feature in one sentence to confirm its understanding, and stops to ask if the request is missing or too ambiguous.",
+    "statements": [
+      {
+        "quote": "State the feature in one sentence in your own words to confirm understanding. If $ARGUMENTS is missing or ambiguous beyond one focused clarifying question, stop and ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (3 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"optional\", in \"not optional\"), 1 tied to a situation, all bullet points. After editing the agent runs narrow verification (type checks, nearby tests and the linter on touched files), checks whether a senior reviewer would accept the change, and never declares the task complete with failing checks.",
+    "statements": [
+      {
+        "quote": "Run narrow verification: type check on the touched files, the closest tests, the project's linter on the touched files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Self-check before reporting: would a senior reviewer accept this on first pass? If no, fix it before reporting.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Quality gates are not optional under time pressure.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not declare the task complete with failing checks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 3 tied to a situation, all bullet points. The agent stops and surfaces the problem when it finds itself syncing two data stores or its stated approach turns out to be wrong, rather than pivoting silently, and when verification fails it fixes it or reports the failure and stops.",
+    "statements": [
+      {
+        "quote": "If you find yourself synchronizing two stores, stop and surface.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the approach statement in step 4 turns out to be wrong once editing begins (a target file does not contain what was assumed, an API does not match memory), stop and surface. Do not pivot silently.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If verification fails, fix it or report the failure and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

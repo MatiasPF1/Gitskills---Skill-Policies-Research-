@@ -1,0 +1,84 @@
+{
+  "name": "team-builder",
+  "mechanism": "Ask",
+  "repo": "kjelly/hufu",
+  "path": ".agents/skills/team-builder/SKILL.md",
+  "author": {
+    "owner": "kjelly",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01303586fb7c9dc02b3addc9da53ee4281d097db.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "team-builder (Ask) specifies 3 of 5 categories: 1 clarification rule, 1 approval gate, 2 validation rules; none for autonomy limits, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "team-builder scaffolds an agent team for the hufu tool, writing the team file and each agent's definition from a catalog of team templates. The agent asks for the team's name and purpose when missing, asks before touching an existing team folder, and validates the new team after writing it. It sets no autonomy limits or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the user has not given a team name or purpose, the agent asks.",
+    "statements": [
+      {
+        "quote": "**Clarify intent.** If the user has not specified a team name or purpose, ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent never overwrites existing files: if the team folder already exists, it asks the user before proceeding.",
+    "statements": [
+      {
+        "quote": "Never overwrite existing files — if the team directory already exists, ask the user before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. After creating a team the agent checks that it is discovered and all its agents parse, and verifies that it works.",
+    "statements": [
+      {
+        "quote": "**Validate.** Run `hufu list <team-name>` to confirm the team is discovered and all agents parse.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After creating a team, verify it works:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

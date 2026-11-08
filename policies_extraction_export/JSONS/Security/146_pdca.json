@@ -1,0 +1,173 @@
+{
+  "name": "pdca",
+  "mechanism": "Ask",
+  "repo": "cic8822-cpu/20260710",
+  "path": "13.실습-bikit 사용법/bkit-claude-code/skills/pdca/SKILL.md",
+  "author": {
+    "owner": "cic8822-cpu",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01a8cc444333817b9c851848bbf67cac8a98230d.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "pdca (Ask) specifies 4 of 5 categories: 2 autonomy limits, 5 clarification rules, 4 approval gates, 5 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "pdca runs a feature through a Plan-Do-Check-Act cycle (planning, design, implementation, gap analysis, iteration, QA and report), with documents and tasks for each phase. Five checkpoints put the user in control: confirming requirements, answering clarifying questions, choosing the architecture, approving implementation and deciding on review findings. The check phase verifies the work against requirements and design, and iteration stops at a 90% match. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between the front matter and a bullet point. The front matter limits the agent to `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, the task tools and `AskUserQuestion`, and the automatic improvement loop stops at a 90% match rate or after 5 iterations.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Task, TaskCreate, TaskUpdate, TaskList, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Stop when >= 90% reached or max iterations (5) hit",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. At fixed checkpoints the agent confirms its understanding of the requirements, asks clarifying questions about underspecified parts, has the user choose among three architecture designs and decide how to handle review findings, waiting for the answer each time.",
+    "statements": [
+      {
+        "quote": "**Checkpoint 1 — Requirements Confirmation**: Present understanding of the feature (problem, scope, constraints) and use AskUserQuestion: \"요구사항 이해가 맞나요? 빠진 건 없나요?\" Wait for user confirmation before pr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Checkpoint 2 — Clarifying Questions**: Identify underspecified elements (edge cases, error handling, integration points, compatibility). Present organized question list. Wait for answers before gene",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Checkpoint 3 — Architecture Selection**: Use AskUserQuestion: \"3가지 설계안 중 어떤 걸 선택하시겠습니까?\" Include recommendation. Wait for user selection.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Checkpoint 5 — Review Decision**: Present issues by severity (Critical/Important only, confidence ≥80%). Use AskUserQuestion with options:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for user decision before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all bullet points. Implementation never starts without the user's approval of the scope, and the agent confirms with the user before starting a team strategy, cleaning up archived features and moving to the next phase.",
+    "statements": [
+      {
+        "quote": "**Checkpoint 4 — Implementation Approval**: Present scope summary and use AskUserQuestion: \"이 범위로 구현을 시작해도 되겠습니까?\" **DO NOT START IMPLEMENTATION WITHOUT USER APPROVAL.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Show strategy and confirm with AskUserQuestion before starting",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask user for confirmation via AskUserQuestion (FR-06)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with user via AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, all bullet points. In the check phase the agent verifies the implementation against the product requirements, the plan's success criteria and the design, checks strategic alignment first, and before reporting confirms the match rate is at least 90%.",
+    "statements": [
+      {
+        "quote": "Read PRD (`docs/00-pm/{feature}.prd.md`) — verify strategic alignment (was the right problem solved?)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Read Plan (`docs/01-plan/features/{feature}.plan.md`) — verify Requirements fulfillment + Success Criteria",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Read Design (`docs/02-design/features/{feature}.design.md`) — verify structural implementation match",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Strategic Alignment Check (Phase 3)**: Before structural gap analysis, verify:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify Check >= 90% (warn if below)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

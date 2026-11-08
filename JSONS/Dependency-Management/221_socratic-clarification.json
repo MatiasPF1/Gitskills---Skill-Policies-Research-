@@ -1,0 +1,125 @@
+{
+  "name": "socratic-clarification",
+  "mechanism": "Escalate",
+  "repo": "Sighthesia/just-demand",
+  "path": ".agents/skills/socratic-clarification/SKILL.md",
+  "author": {
+    "owner": "Sighthesia",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0162655902189fa3d5ebce84b880327c6bd0ae27.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "socratic-clarification (Escalate) specifies 2 of 5 categories: 5 clarification rules, 6 approval gates; none for autonomy limits, validation rules, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "socratic-clarification forces progressive clarification and design approval before any implementation: intent, current reality and constraints, then 2-3 compared approaches and a final artifact. Its rules are all clarification and approval: nothing is executed until the user explicitly approves, and no request is too simple to skip this. It sets no autonomy limits, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly running text. The agent clarifies before implementing, never as it goes, treating blocking questions as blockers. It asks only the rounds that still have unknowns, preferably as options, and challenges a weak premise in the user's framing before giving narrower advice.",
+    "statements": [
+      {
+        "quote": "\"I can fix this while clarifying\" -- no. Clarify first, then implement.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "\"I'll clarify as I go\" -- no. Blocking questions are promotion blockers.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user's frame is weak, incomplete, or contradicted by stronger explanations, challenge the premise before proposing narrower advice.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask only the rounds that still contain unknowns.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use the `question` tool to gather intent and expected outcomes when the answer can be expressed as options.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, evenly split between running text and bullet points. Approval is a hard gate: no task is promoted, no subagent dispatched, no file edited and no plan finalized until the user explicitly approves the final artifact, even for simple requests or when the user says to just do it.",
+    "statements": [
+      {
+        "quote": "Do NOT promote a task, dispatch a subagent, edit files, or finalize an implementation plan until you have presented a final expected effect, compared 2-3 approaches, captured the chosen approach and f",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "\"Simple\" requests still need a short final artifact and explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "\"The user said to just do it\" -- you still present the final expected effect and get explicit approval before code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Get user approval** -- explicit approval on the final artifact before any execution.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Promote or execute** -- only after approval, promote to a formal task when no ready task exists",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for the user to choose or approve your recommendation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

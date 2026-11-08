@@ -1,0 +1,239 @@
+{
+  "name": "data-science-python-stack",
+  "mechanism": "Ask",
+  "repo": "probabl-ai/ibm-workshop",
+  "path": ".bob/skills/data-science-python-stack/SKILL.md",
+  "author": {
+    "owner": "probabl-ai",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/000c3e23fe4e5c843513ae690f80f7693cccb3fa.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "autonomy_limits",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "data-science-python-stack (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 2 approval gates, 3 validation rules, 3 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "data-science-python-stack is an opinionated index of Python data-science and ML libraries in tiers (mandatory, user choice, optional, transitive) that decides which library to install or recommend. Its rules center on asking: whenever two libraries compete for a job the user must pick through a structured question, and the agent may never pick silently or substitute. Missing dependencies are a hard stop reported to the user, followed by waiting for confirmation, and the agent audits its own turn for unrecorded choices. Other rules stop it from re-asking recorded decisions, auto-switching libraries, pinning versions or adding extra libraries without a request.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 5 tied to a situation, mostly bullet points. When an import fails the agent installs the library rather than rewriting the code with a substitute. It does not re-ask decisions already recorded in the journal, never changes a recorded library choice unless the user says so, does not pre-install optional or transitive libraries, does not pin versions unless asked and does not add a second library for a covered job without the user's request. Notebook tooling is installed without asking.",
+    "statements": [
+      {
+        "quote": "**Transitive** — already pulled in by the mandatory tier; do not install explicitly, but know they're available.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No substitute when import fails.** When code in this stack needs a library but `import` fails, install it; do not rewrite to a non-stack equivalent (see § \"Missing dependency\").",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "On future sessions, **read Status first**; do not re-ask a recorded decision.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do **not** rewrite the code to use a non-stack equivalent (`sklearn.Pipeline` for `skrub`, `cross_val_score` + handwritten metric prints for `skore`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tier 2 decisions are immutable *unless the user explicitly says so*.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "A pivot is a user-driven event; the skill never auto-pivots even if a newer library would obviously be a better fit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Add these only when the task calls for them. Do not pre-install.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Always installed; no per-project ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Versions:** don't pin unless the user asks or there's a known incompatibility.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**One tool per job:** don't introduce a second library for a task already covered without explicit user request.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 5 tied to a situation, mostly bullet points. Whenever two or more libraries in the stack fit the same job, the user picks through `AskUserQuestion` before any import or install; the agent never picks silently, even when one option is already installed, and urgency phrases or \"no clarifying questions\" hints do not waive the question. A reply that names no library does not count as an answer, and when no stack entry fits, the agent surfaces the gap to the user instead of substituting.",
+    "statements": [
+      {
+        "quote": "Don't silently substitute one library for another; if no entry fits, surface the gap to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**User choice (competing-library jobs)** — multiple valid libraries for the same job; the user picks via `AskUserQuestion` before any import lands.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No silent pick on a competing-library job.** Whenever the stack offers two or more libraries for the same job (see § \"Competing libraries — general rule\" and the Tier 2 table), the user picks via `A",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Harness-level \"no clarifying questions\" hints do NOT waive the competing-library `AskUserQuestion`.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**`AskUserQuestion` before any import or install.** Use the options listed for the job in the competing-jobs table; do not editorialize the option labels.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No silent default.** Even when one option is \"free\" (already pulled in transitively) and the other costs an install, never pick silently.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No library named** (\"make it fast\", \"you pick\", \"whatever\", \"no preference\", \"quick baseline\"): does **NOT** resolve. Fall through to the structured `AskUserQuestion`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If a sensible default cannot be named, the job does not belong in the table; surface the gap to the user and pick per-project via a free-form `AskUserQuestion`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't substitute libraries silently. If no entry fits the task, surface the tradeoff to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "The user picks via `AskUserQuestion` before any import or install (see § \"Competing libraries — general rule\" above).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. If the user says \"you pick\" or has no preference, the agent proposes the default and asks for confirmation instead of choosing silently. When a dependency is missing it stops and waits for confirmation before doing anything else.",
+    "statements": [
+      {
+        "quote": "**\"You pick\" / \"no preference\" specifically** — surface the **default-on-no-preference** for the job (from the Tier 2 table) and ask for confirmation. Never silently pick; never skip the confirmation ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Stop and wait for confirmation before doing anything else.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (2 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (it contains \"should\"), none tied to a situation, mostly bullet points. Before ending the turn the agent checks that every library choice made has a recorded answer or journal decision. Projects should pass `ruff check`, and each approved experiment needs a passing smoke test before it can be marked done.",
+    "statements": [
+      {
+        "quote": "**Post-hoc audit — required before ending the turn.** Before declaring the turn complete, verify each competing-library job invoked in this turn has either (a) an `AskUserQuestion` answer recorded thi",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "every project Claude touches should pass `ruff check`.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Every approved experiment must have a passing `tests/smoke/test_NN_<short_name>.py` before its row in `JOURNAL.md` can flip to `done`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. If a library choice was made without a recorded answer, the agent tells the user in its final message rather than hiding it. A failed import is treated as a hard stop: the agent reports the missing dependency to the user with the exact install command.",
+    "statements": [
+      {
+        "quote": "If any competing-library job ran without one of those, surface the non-compliance to the user explicitly as part of your final message — do not hide it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Surface the missing dependency to the user with the exact install command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Reaching for a substitute because the dependency is missing is the most common way the stack gets silently undone, so treat the missing import as a hard stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

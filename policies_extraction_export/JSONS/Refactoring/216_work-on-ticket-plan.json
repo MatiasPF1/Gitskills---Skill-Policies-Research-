@@ -1,0 +1,146 @@
+{
+  "name": "work-on-ticket-plan",
+  "mechanism": "Escalate",
+  "repo": "shysssthanhtri/AI-tools",
+  "path": "skills/work-on-ticket-plan/SKILL.md",
+  "author": {
+    "owner": "shysssthanhtri",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01411ee853142b95da734a5d50c7672266f455c8.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "work-on-ticket-plan (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 1 clarification rule, 3 approval gates, 3 validation rules, 5 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "work-on-ticket-plan executes an existing implementation plan for a Jira ticket phase by phase, with a test baseline before and a full-suite check after. Each phase needs the user's approval before coding and before moving on, and the pull request waits for approval of the summary. Missing prerequisites, an unrunnable suite and out-of-scope regressions stop the work and go to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent does not modify files outside the scope of the current phase.",
+    "statements": [
+      {
+        "quote": "Do not modify files outside the scope of the current phase.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the user gives no Jira ticket key, the agent asks for it.",
+    "statements": [
+      {
+        "quote": "If not provided, ask for it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, all tied to a situation, all in running text. The agent writes no code until the user approves the phase, does not start the next phase until the user replies to proceed, and creates the pull request only after the user approves the final summary.",
+    "statements": [
+      {
+        "quote": "**Do NOT write any code until the user explicitly approves.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT start the next phase until the user explicitly replies to proceed.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT create the PR until the user explicitly approves the summary.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly bullet points. After each phase the agent runs the relevant tests, and before the final summary it re-runs the full suite until it passes or shows only the failures recorded in the baseline.",
+    "statements": [
+      {
+        "quote": "Run the relevant tests to verify correctness:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-run the full suite until it matches policy: all tests pass **or** the only failures are the documented pre-existing baseline failures (no new regressions).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** present the Step 7 final summary until Step 6a is satisfied (full suite green, or green aside from known baseline failures).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, all tied to a situation, mostly bullet points. The agent stops and tells the user which setup skill to run when the worktree, plan or progress file is missing, stops and reports when the full test suite cannot run, and escalates with evidence when a regression fix is out of scope.",
+    "statements": [
+      {
+        "quote": "If not, stop and instruct the user to run the `setup-new-work` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If not, stop and instruct the user to run the `plan-jira-ticket` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If not, stop and instruct the user to run the `plan-jira-ticket` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the full suite cannot be run (missing deps, env), stop, report the blocker, and do not proceed with implementation until the user resolves it or explicitly accepts a narrower baseline",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "or stop and escalate with evidence if the fix is out of scope.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

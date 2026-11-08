@@ -1,0 +1,115 @@
+{
+  "name": "skill-creator",
+  "mechanism": "Act",
+  "repo": "andrelucassvt/CleanMacForDevsWeb",
+  "path": ".claude/skills/skill-creator/SKILL.md",
+  "author": {
+    "owner": "andrelucassvt",
+    "commit_author": "ed67a8912893f247",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/008695c2239c7ef3aa4fb1f350443643a08dc087.md",
+  "conclusion": "skill-creator (Act) specifies 4 of 5 categories: 2 autonomy limits, 2 clarification rules, 6 approval gates, 3 validation rules; none for escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list: other testing skills; editing the installed skill path.",
+    "statements": [
+      {
+        "quote": "Do NOT use `/skill-test` or any other testing skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Copy to a writeable location before editing.** The installed skill path may be read-only. Copy to `/tmp/skill-name/`, edit there, and package from the copy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly prose: edge cases, formats and success criteria; inline feedback on test outputs.",
+    "statements": [
+      {
+        "quote": "Proactively ask questions about edge cases, input/output formats, example files, success criteria, and dependencies.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask for feedback inline: \"How does this look?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "6 approval gates (4 mandatory, 2 advisory; 1 conditional), mostly list: confirming the captured intent; reviewing test prompts and the eval set; human review before revising or optimizing.",
+    "statements": [
+      {
+        "quote": "The user may need to fill the gaps, and should confirm before proceeding to the next step.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Share them with the user: [you don't have to use this exact language] \"Here are a few test cases I'd like to try. Do these look right, or do you want to add more?\" Then run them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user to review and tell you they're done",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present the eval set to the user for review using the HTML template:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For whatever reason, the Cowork setup seems to disincline Claude from generating the eval viewer after running the tests, so just to reiterate: whether you're in Cowork or in Claude Code, after runnin",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Description optimization (`run_loop.py` / `run_eval.py`) should work in Cowork just fine since it uses `claude -p` via subprocess, not a browser, but please save it until you've fully finished making ",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (2 mandatory, 1 advisory; 1 conditional), mostly list: grading each run; analyst pass on benchmark data; iterating until the user is happy.",
+    "statements": [
+      {
+        "quote": "**Grade each run** — spawn a grader subagent (or grade inline) that reads `agents/grader.md` and evaluates each assertion against the outputs. Save results to `grading.json` in each run directory. The",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do an analyst pass** — read the benchmark data and surface patterns the aggregate stats might hide. See `agents/analyzer.md` (the \"Analyzing Benchmark Results\" section) for what to look for — things",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Keep going until:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

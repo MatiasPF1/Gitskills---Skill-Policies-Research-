@@ -1,0 +1,178 @@
+{
+  "name": "writing-plans",
+  "mechanism": "Act",
+  "repo": "psprowls/agent-research",
+  "path": "plugins/graph-wiki/skills/writing-plans/SKILL.md",
+  "author": {
+    "owner": "psprowls",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00a0f996bf7922e0680b5a5fccca16ba2462c36d.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "writing-plans (Act) specifies 3 of 5 categories: 7 autonomy limits, 3 clarification rules, 7 validation rules; none for approval gates, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "writing-plans turns a spec into a detailed, step-by-step implementation plan before any code is written. The agent works without asking the user questions while writing, must not use plan mode, and must not start implementing tasks itself. When the plan is done, it asks the user with `AskUserQuestion` how to execute it. It checks the plan against the spec and its own format rules. It has no approval gates and no rules for what to do when something goes wrong.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (7 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly running text. The agent must never call `EnterPlanMode` or `ExitPlanMode` (Claude Code's plan-mode switches). It must not ask the user questions while writing the plan, and must not turn its note about user gates into a question. Once the user picks how to execute, it must not implement tasks itself (no reading files, editing or updating task status) and may only start the chosen execution skill.",
+    "statements": [
+      {
+        "quote": "**You MUST NOT call `EnterPlanMode` or `ExitPlanMode` at any point during this skill.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT turn this into an `AskUserQuestion`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "DO NOT call EnterPlanMode or ExitPlanMode.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT implement tasks yourself — do NOT read files, make edits, or update task statuses.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Your ONLY permitted action is invoking the skill below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT start working on tasks directly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT ask the user questions during write-plan.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all in running text. When the plan is complete, the agent's only allowed next step is to ask the user with `AskUserQuestion`, in a fixed format, how the plan should be executed; if it is about to call `ExitPlanMode`, it must ask instead.",
+    "statements": [
+      {
+        "quote": "You MUST call AskUserQuestion below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Your ONLY permitted next action is calling `AskUserQuestion` with this EXACT structure:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If you are about to call ExitPlanMode, STOP — call AskUserQuestion instead.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, all in running text. After writing the plan the agent checks it against the spec: every requirement must map to a task, no placeholders such as \"TBD\" may remain, and names and types must match across tasks. It also checks that each gated task is marked the same way in the plan and in the task tracker, re-reads each gated task's goal on its own to see if it is testable, and confirms every task description has all required sections.",
+    "statements": [
+      {
+        "quote": "After writing the complete plan, look at the spec with fresh eyes and check the plan against it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the \"No Placeholders\" section above. Fix them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFull",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Self-check before moving on: for each task, the plan doc section and the TaskCreate description must both either have `userGate: true` + banner + fence, or have none of them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Step 5 — Per-task isolation self-check.** For every task where you set `userGate: true` and DIDN'T set `requiresUserSpecification: true`, re-read ONLY that task's **Goal** sentence in isolation — pr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Self-check before finishing the skill.** After TaskCreate for every task, open the task description (via TaskGet or by reading `<plan>.tasks.json`) and confirm all four section headers (`**Goal:**`,",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

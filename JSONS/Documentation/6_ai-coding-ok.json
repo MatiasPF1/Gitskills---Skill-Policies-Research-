@@ -1,0 +1,208 @@
+{
+  "name": "ai-coding-ok",
+  "mechanism": "Act",
+  "repo": "Mark7766/ai-coding-ok",
+  "path": "SKILL.md",
+  "author": {
+    "owner": "Mark7766",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00409fb163f463644f4cf4496df5c94dbdd23f3a.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ai-coding-ok (Act) specifies 5 of 5 categories: 5 autonomy limits, 3 clarification rules, 5 approval gates, 6 validation rules, 3 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "ai-coding-ok installs and maintains a three-tier project memory that is read before each coding task and updated after it, so new changes do not break earlier work. Its rules mostly guard the user's files: the agent works with a fixed tool set, never silently overwrites files, and asks for permission or confirmation before overwriting settings, deleting sections or applying an upgrade. It checks its work by running tests and verifying installed and upgraded files, stops and reports when files already exist, and asks the user a few setup questions such as the template language and source folders.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly bullet points (tied with running text). The front matter limits the agent to `Read`, `Write`, `Edit`, `Bash`, `Glob` and `Grep`. It must never silently overwrite existing files, and when `.claude/settings.local.json` already has hooks (scripts that run automatically) or user content, it only adds or replaces its own hook entries. When unsure between two technical choices, it picks the simpler one on its own and records it in `decisions-log.md`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Bash, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Never silently overwrite existing files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the file already has a `hooks` section (from a prior install or user config), merge: only add hooks that don't already exist",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the file has user-authored content outside the ai-coding-ok hooks, preserve all of it and only add/replace the ai-coding-ok hook entries.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When uncertain about a choice (e.g. \"SQLite vs Postgres?\"), pick the simpler one and note it in `decisions-log.md` as ADR-001.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (2 mandatory, 1 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (its quoted question contains \"should\"), 1 tied to a situation, all in running text. During install the agent asks the user, once and only when in doubt, whether to use the English or Chinese templates, asks one plain-language question about what they are building, and asks where their source code lives.",
+    "statements": [
+      {
+        "quote": "When in doubt, ask the user once: \"Should I install the English or Chinese template? (en/zh)\"",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Instead, ask a single plain-language question:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The agent confirms the target project with the user only when the folder is clearly not a project or files would be overwritten, and never overwrites the user's `.claude/settings.local.json` without permission. During an upgrade it asks before deleting a section, shows the planned changes and asks whether to continue, and never applies the upgrade without the user's confirmation.",
+    "statements": [
+      {
+        "quote": "Confirm with the user only if:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "⚠️ CRITICAL: Never overwrite a user's existing `.claude/settings.local.json` without permission.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Removed section**: removed from template, still in project → ask the user before deleting",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Show the change list to the user and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "⚠️ **Never auto-apply** — upgrade modifies existing files and must be user-confirmed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. After copying templates the agent verifies the files are present. In its coding loop it runs tests and checks that unrelated features did not break. After an upgrade it confirms the version markers were updated, project-specific content was kept, and no `{{placeholders}}` were left in project files.",
+    "statements": [
+      {
+        "quote": "Verify the target files/dirs are present.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Check** — Run tests.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify no regression in unrelated features.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm version markers in all files are updated",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm project-specific content (architecture diagrams, module lists, tech stack) was preserved",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm no `{{placeholders}}` leaked into project files",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, all tied to a situation, all in running text. If any file it would install already exists, the agent stops and reports to the user, and if copied files are missing it fails loudly. If context limits stop it from editing files, it writes the needed memory updates as text and tells the user to apply them by hand.",
+    "statements": [
+      {
+        "quote": "If context limits prevent direct file edits, output the required updates as text and tell the user to apply them manually.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If **any** exist, STOP and report to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Fail loudly if any are missing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

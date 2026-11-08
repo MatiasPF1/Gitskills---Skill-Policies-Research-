@@ -1,0 +1,183 @@
+{
+  "name": "ce-brainstorm",
+  "mechanism": "Ask",
+  "repo": "Aadilmalik70/serpstrategistagent",
+  "path": ".github/skills/ce-brainstorm/SKILL.md",
+  "author": {
+    "owner": "Aadilmalik70",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/006039220493d12d0d7509dd003847d5772c3a72.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ce-brainstorm (Ask) specifies 4 of 5 categories: 4 autonomy limits, 10+ clarification rules, 3 approval gates, 1 validation rule; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "ce-brainstorm explores requirements and approaches through dialogue with the user and writes a right-sized requirements document for planning. Its rules are dominated by how to ask: one question at a time, mostly through a blocking question tool, with probes for weak evidence or vague users. The user confirms resuming earlier work and the scope before the document is written, except for small clear requests. The agent verifies codebase claims and does not write code; it sets no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly running text. The agent does not implement code and never dispatches the Slack researcher on its own. For small, clear requests it announces the scope and writes the document without asking for confirmation, and it updates the project glossary silently.",
+    "statements": [
+      {
+        "quote": "This skill does not implement code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Slack context** (opt-in, Standard and Deep only) — never auto-dispatch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "No other sections, no confirmation question. Do NOT end the turn waiting for acknowledgment.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Apply edits silently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 9 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"prefer\"), 9 tied to a situation, mostly bullet points. The agent asks one question per turn through the platform's blocking question tool, preferring single-select choices and using open questions only when the question is genuinely open. It asks for a feature description if none was given and does not proceed without one, asks one question when the scope is unclear, and probes evidence and specificity gaps by asking what someone has already done and who exactly benefits.",
+    "statements": [
+      {
+        "quote": "**Ask one question at a time** - One question per turn, even when sub-questions feel related.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Prefer single-select multiple choice** - Use single-select when choosing one direction, one priority, or one next step.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Use multi-select rarely and intentionally** - Use it only for compatible sets such as goals, constraints, non-goals, or success criteria that can all coexist.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Default to the platform's blocking question tool** - Use `AskUserQuestion` in Claude Code (call `ToolSearch` with `select:AskUserQuestion` first if its schema isn't loaded), `request_user_input` in ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Use an open-ended question only when the question is genuinely open**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If the feature description above is empty, ask the user:** \"What would you like to explore? Please describe the feature, problem, or improvement you're thinking about.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed until you have a feature description from the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the scope is unclear, ask one targeted question to disambiguate and then proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When present, ask for the most concrete thing someone has already done about this.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When present, ask the user to name a specific person or narrow segment, and what changes for that person when this ships.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (2 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (it contains \"should\", in the quoted question), none tied to a situation, mostly bullet points. The agent confirms with the user before resuming an existing requirements document, and shows a scoping summary before writing the document, with a confirmation gate whenever questions were asked or the work is beyond lightweight.",
+    "statements": [
+      {
+        "quote": "Confirm with the user before resuming: \"Found an existing requirements doc for [topic]. Should I continue from this, or start fresh?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Surface a scoping synthesis to the user before Phase 3 writes the requirements doc — the user's last opportunity to correct scope before the artifact lands.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Path B — at least one blocking question fired, OR tier is Standard / Deep-feature / Deep-product**: full tier-aware scoping synthesis with confirmation gate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. Before claiming something exists or is missing in the codebase, the agent reads the relevant source files to confirm it.",
+    "statements": [
+      {
+        "quote": "**Verify before claiming** — When the brainstorm touches checkable infrastructure (database tables, routes, config files, dependencies, model definitions), read the relevant source files to confirm wh",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

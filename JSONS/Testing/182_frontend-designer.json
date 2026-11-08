@@ -1,0 +1,150 @@
+{
+  "name": "frontend-designer",
+  "mechanism": "Escalate",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "design/frontend-designer-coignite-aps-businesslogic/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00a23455a293438cf1c630921ccaf6fbd9c6c012.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "frontend-designer (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 2 clarification rules, 10+ validation rules; none for approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "frontend-designer researches, evaluates and builds interfaces from evidence-based design principles, auditing existing UI with Chrome DevTools and documenting the reasons for each decision. It runs as a sub-agent with a fixed tool set, asks about the users and goals first, and finishes with a usability, visual, accessibility and performance checklist. It sets no approval gates or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Read`, `Write`, `Edit`, `Bash`, `Glob`, `Grep`, `WebSearch`, `WebFetch` and a set of Chrome DevTools tools.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fi",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. Without arguments the agent asks whether to build, review or improve, and before designing it asks or determines who the users are, what they do, where and how often.",
+    "statements": [
+      {
+        "quote": "No args: Interactive mode — ask what the user wants (build, review, or improve)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask or determine:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. Before design work counts as complete it must pass a quality checklist: Nielsen heuristics, clear visual hierarchy, interactive, error, loading and empty states, an 8-point spacing grid, a type scale and design-token colors.",
+    "statements": [
+      {
+        "quote": "Before considering any design work complete:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Passes all 10 Nielsen heuristics (no score below 3)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Visual hierarchy guides user to primary action within 3 seconds",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All interactive elements have visible hover/focus/active states",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Error states provide recovery guidance",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Loading states prevent user confusion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Empty states guide users on what to do",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All spacing follows 8pt grid (multiples of 4px minimum)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Typography uses defined scale (no arbitrary sizes)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Colors come from design tokens (zero hardcoded hex values)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

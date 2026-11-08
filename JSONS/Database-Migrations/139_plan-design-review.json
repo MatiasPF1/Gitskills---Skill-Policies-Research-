@@ -1,0 +1,324 @@
+{
+  "name": "plan-design-review",
+  "mechanism": "Ask",
+  "repo": "kbroflovski21/lumii-fieldwork",
+  "path": ".claude/skills/plan-design-review/SKILL.md",
+  "author": {
+    "owner": "kbroflovski21",
+    "commit_author": "f1e99f8219fa5623",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01945c036de682b6b5104b0fb7f9ba8a3f060b8b.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "plan-design-review (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 6 approval gates, 2 validation rules, 9 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "plan-design-review reviews a plan's design like a senior product designer: it rates seven dimensions from 0 to 10, generates visual mockups and edits the plan to fix gaps before implementation (gstack). A long shared preamble asks the user about setup choices and gets a yes before upgrades or other skills, while sessions spawned by an orchestrator decide alone. The review itself stops for the user after rating the plan and asks one question per issue. It sets few checks on its own work and escalates after repeated failures, security doubts or work it cannot verify.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (9 mandatory, 1 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"recommended\"), 4 tied to a situation, mostly running text. The front matter limits the agent to `Read`, `Edit`, `Grep`, `Glob`, `Bash` and `AskUserQuestion`. When proactive mode is off the agent runs only the skills the user types. In sessions spawned by an orchestrator it skips feature prompts and setup questions and picks the recommended option instead of asking. It auto-commits only in continuous checkpoint mode, pushes only when that is switched on, and auto-decides questions the user has set to \"never ask\".",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Edit, Grep, Glob, Bash, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**In spawned sessions (`SPAWNED_SESSION` = \"true\"): SKIP feature discovery entirely.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion for interactive prompts. Auto-choose the recommended option.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT run upgrade checks, telemetry prompts, routing injection, or lake intro.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"continuous\"` (from preamble output): auto-commit work as you go with `WIP:` prefix so session state survives crashes and context switches.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Push ONLY if `CHECKPOINT_PUSH` is `\"true\"` (default is false).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"explicit\"` (the default): no auto-commit behavior. Commit only when the user explicitly asks, or when a skill workflow (like /ship) runs a commit step.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "`AUTO_DECIDE` → auto-choose the recommended option, tell user inline \"Auto-decided [summary] → [option] (your preference). Change with /plan-tune.\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 6 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"try\"), 6 tied to a situation, mostly running text. During setup the agent asks about new features, the writing style, telemetry, proactive behavior and cross-project learnings. On a high-stakes ambiguity it stops, presents options and asks rather than guessing, and it says exactly what it needs when information is missing. After rating the plan it stops until the user responds, and it confirms its reading of the mockup feedback before proceeding.",
+    "statements": [
+      {
+        "quote": "For each per-feature marker below, if the marker file is missing AND the feature is plausibly useful for this user, use AskUserQuestion to let them try it.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user once about the new default writing style.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: After telemetry is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "STOP. Name the ambiguity in one sentence. Present 2-3 options with tradeoffs. Ask the user. Do not guess on architectural or data model decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**STOP.** Do NOT proceed until user responds.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion to verify before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CROSS_PROJECT` is `unset` (first time): Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (5 mandatory, 1 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 only a suggestion (worded with \"might\"), 3 tied to a situation, all in running text. Instead of starting skills, upgrades or the essay link on its own, the agent asks and waits for a yes. Advice from another AI model is presented as a recommendation for the user to decide, and ambiguous preference changes are confirmed.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/gstack/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never say \"the outside voice is right\" and act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Say \"the outside voice recommends X — do you want to proceed?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For ambiguous free-form, confirm:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. The agent does not commit with broken tests, and a task counts as done only when every step is complete with evidence.",
+    "statements": [
+      {
+        "quote": "Do NOT commit with known-broken tests. Fix first, then commit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "9 escalation rules (7 mandatory, 2 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, 7 strict and 2 counted as suggestions (they contain \"consider\" and \"should\"), 4 tied to a situation, mostly bullet points. The agent stops and reassesses when it goes in circles, tells the user when a preference write is rejected, flags anything that looks wrong, and reports concerns or blockers. It may always stop, and must stop and escalate after 3 failed attempts, on doubts about a security-sensitive change, or when it cannot verify the work.",
+    "statements": [
+      {
+        "quote": "If you notice you're going in circles — repeating the same diagnostic, re-reading the same file, or trying variants of a failed fix — STOP and reassess. Consider escalating or calling /context-save to",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Exit code 2 = write rejected as not user-originated. Tell the user plainly; do not retry.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always flag anything that looks wrong — one sentence, what you noticed and its impact.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

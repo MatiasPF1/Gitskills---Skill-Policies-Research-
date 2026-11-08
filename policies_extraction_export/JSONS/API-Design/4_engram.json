@@ -1,0 +1,125 @@
+{
+  "name": "engram",
+  "mechanism": "Act",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/data-ai/engram-qwexs/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": "d8c1587f920f4897",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/002af3d1ef08a1f713d362b9d55f666dda9ea69d.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "engram (Act) specifies 2 of 5 categories: 10+ autonomy limits, 1 escalation rule; none for clarification rules, approval gates, validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "engram sets up a memory system for agents with a knowledge graph, memory kept apart per session, fading of old memories and a hybrid search tool. Most of its control rules limit what the agent may do alone: it keeps each session's memory separate, never deletes facts, never writes the facts file directly and leaves some jobs to the periodic heartbeat. When a subagent domain misses its schedule, it raises an alert. It never tells the agent to ask the user for information, get approval, or check its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. They keep memory separated by session: the agent must never cross-reference memory between sessions, group chats cannot see `MEMORY.md` or `life/` (the knowledge graph, a structured store of facts), and every `qmd` search must name its collection with `-c`. The agent must not run `qmd embed` by hand, leaves watermarks (markers of what was already extracted) to the heartbeat (a periodic background run), never deletes facts and never writes `items.json` directly. During the heartbeat it approves low-risk proposals on its own.",
+    "statements": [
+      {
+        "quote": "**NEVER cross-reference** memory between sessions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Group chats **CANNOT see** MEMORY.md or life/",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Always specify `-c <collection>` in QMD queries",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Main session only — group chats do not have access to the Knowledge Graph (`life/`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always use `-c` flag for session isolation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT run `qmd embed` manually (heartbeat handles it)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Only heartbeat writes watermarks** — inline extraction does NOT (dedup handles overlap)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**PROPOSAL review** — `qmd query \"PROPOSAL\" -c domains` → auto-approve low-risk, alert user for high-risk",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No-Deletion Rule:** Facts are NEVER deleted.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Write Pipeline Rule:** NEVER write `items.json` directly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. During the heartbeat the agent reads each domain's `status.md` and raises an alert if a domain has missed its schedule more than twice.",
+    "statements": [
+      {
+        "quote": "**Liveness check** — read each domain's `status.md`, alert if missed >2x schedule",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

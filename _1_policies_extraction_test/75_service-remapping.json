@@ -1,0 +1,170 @@
+{
+  "name": "service-remapping",
+  "mechanism": "Escalate",
+  "repo": "datadog-labs/agent-skills",
+  "path": "dd-apm/service-remapping/SKILL.md",
+  "author": {
+    "owner": "datadog-labs",
+    "commit_author": null,
+    "declared": "datadog-labs"
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/005a1725d1157e2f109137d81b4dd538ee3e54bf.md",
+  "conclusion": "service-remapping (Escalate) specifies 5 of 5 categories: 2 autonomy limits, 5 clarification rules, 6 approval gates, 5 validation rules, 4 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter: pup tools; raw API keys in files or chat.",
+    "statements": [
+      {
+        "quote": "tools: pup",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Never write a raw API key into any file or chat message — always use `$DD_API_KEY` and `$DD_APP_KEY`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly table: environment, entity type and target name; which service names to remap; assuming prod.",
+    "statements": [
+      {
+        "quote": "| `ENV` | Required before creating the rule (Step 4). Ask the user — do NOT assume `prod`. Read-only verification and impact preview do not need `ENV` and should run first. |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `ENTITY_TYPE` | Instrumented service (`rule_type: 0`) or inferred entity (`rule_type: 1`)? Ask if unclear — see Domain Knowledge |",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "| `TARGET_NAME` | The desired new service name — ask the user |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Ask the user to confirm which names they want remapped before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never assume `prod` as the environment — always confirm with the user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "6 approval gates (6 mandatory, 0 advisory; 0 conditional), mostly prose: showing and confirming the planned rule; updating or deleting rules.",
+    "statements": [
+      {
+        "quote": "Show the user the planned rule and confirm before creating.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Show the proposed changes to the user and confirm before running:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Show the user the rule's name and filter first, then ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never create or delete a rule without explicit user confirmation — show the full rule before creating",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never run DELETE without showing the user the rule's name and filter first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 2 conditional), mostly prose: impact preview before acting; peer.service before inferred remaps; rule active after propagation.",
+    "statements": [
+      {
+        "quote": "**Before acting:** Surface an impact preview (monitors/dashboards referencing the old service name) before presenting the planned rule.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user wants to remap an inferred entity, verify `peer.service` is set before proceeding — see the prerequisite in Domain Knowledge.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Before constructing the JSON, check what will be affected:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Allow 2–5 minutes for the rule to propagate, then confirm it is active.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Exit when ALL of the following are true:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "4 escalation rules (3 mandatory, 1 advisory; 2 conditional), mostly prose: peer.service not set on spans; missing write credentials; conflicting existing rules.",
+    "statements": [
+      {
+        "quote": "If zero results — the tracer is not setting `peer.service`. Ask the user to add `DD_TRACE_PEER_SERVICE_DEFAULTS_ENABLED=true` to their service's environment and redeploy before continuing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user to set credentials, then re-run the check above before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If it is not set, stop and ask the user to enable `DD_TRACE_PEER_SERVICE_DEFAULTS_ENABLED=true` first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "| **Conflicting rules** | Existing rules targeting the same service may be overridden. Show conflicts and ask the user to confirm. |",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

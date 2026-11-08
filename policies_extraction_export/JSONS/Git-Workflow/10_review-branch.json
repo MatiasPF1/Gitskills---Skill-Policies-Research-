@@ -1,0 +1,222 @@
+{
+  "name": "review-branch",
+  "mechanism": "Act",
+  "repo": "solarmist/claude-skills",
+  "path": "review-branch/SKILL.md",
+  "author": {
+    "owner": "solarmist",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/006d64f4679055686a2813f2be294e917515abed.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "review-branch (Act) specifies 4 of 5 categories: 6 autonomy limits, 2 clarification rules, 10+ validation rules, 4 escalation rules; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "review-branch reviews the current git branch against its base with several reviewer subagents and writes a report with a PASS or FAIL verdict. The agent must not touch the project: it writes only in its reviews folder, never commits or pushes, and leaves the merge decision to the user. Its largest group of rules are checks: it runs the project's tests, lint, builds and security scans, and only verified findings can change the verdict. It asks the user only when several base branches are possible, and it stops, or records the reason, when it is outside a git repo or tools are missing. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly running text. The front matter limits the agent to a fixed tool set, and it must never modify tracked source: it writes only under `.claude/reviews/`, with no commits, pushes or edits to project files, and must not edit `.gitignore` itself. The merge decision is left to the user and their CI (automated checks). Each command it runs is capped at 180 seconds, and when no spec (a description of what the branch should do) is found, it records that and moves on without asking.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Grep, Glob, Agent, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Never modify tracked source.** The skill writes only under `<repo_root>/.claude/reviews/`. No commits, no pushes, no edits to project files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Advisory, not blocking.** You produce a verdict and a report. The merge decision belongs to the user and their CI.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Check whether that path is gitignored (`git check-ignore -q .claude/reviews/ || echo not-ignored`); if not, note once in the terminal summary that the user may want to ignore or deliberately commit it",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Cap each at 180 seconds.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If nothing is found, do NOT ask — record \"Spec: skipped, no source found\" in the coverage table and move on.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, both bullet points. When more than one possible base branch exists, the agent must not pick one silently; it asks the user with `AskUserQuestion`, offering the candidates it found or a free-text option.",
+    "statements": [
+      {
+        "quote": "If more than one exists, do NOT pick silently — go to step 4 with the found candidates as options.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask** via `AskUserQuestion`, offering the candidates found (or a free-text option if none).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 3 conditional), mostly table.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly table rows. Only findings that pass a verification step can change the verdict. A table tells the agent which checks to run for each kind of project: tests, lint, type checks and builds for JavaScript, Python, Go and Rust, plus dependency audits when lockfiles change. It also runs secret scanners (`gitleaks` or `trufflehog`) and `semgrep` (a code-pattern scanner).",
+    "statements": [
+      {
+        "quote": "**Verified verdicts.** Only findings that pass the verification gate (Phase 4.3) can flip the verdict. Unverified findings are still reported, clearly labeled.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`package.json` AND diff touches JS/TS | From `scripts`, only names matching `test`, `test:unit`, `lint`, `typecheck`, `tsc`, `build`. Runner: pnpm if `pnpm-lock.yaml`, yarn if `yarn.lock`, else npm. S",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "Python project files AND diff touches `.py` | `pytest --tb=short -q` (never `-x` — a review needs the full failure count, not the first one); `ruff check <changed .py files>` (changed files only — rep",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "`go.mod` AND diff touches `.go` | `go build ./...`, `go vet ./...`, `go test ./...`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "`Cargo.toml` AND diff touches `.rs` | `cargo check`, `cargo clippy -- -D warnings`, `cargo test`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Lockfile in `--name-status` | Matching dep audit: `npm audit --omit=dev`, `pip-audit`, `cargo audit`, `govulncheck ./...`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "gitleaks | `gitleaks detect --log-opts=\"<MERGE_BASE>..HEAD\" --no-banner --redact -f json`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "trufflehog (fallback if no gitleaks) | `trufflehog git file://. --since-commit <MERGE_BASE> --only-verified --json` — note: `--only-verified` live-tests candidate secrets against provider APIs; mentio",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "semgrep | `semgrep --config=p/ci --metrics=off --baseline-commit <MERGE_BASE> --json --quiet --timeout=120` — pinned ruleset, no registry phone-home",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Project checks from 1.6 | As queued",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. Missing tools, tests, specs or config are recorded with the reason they were skipped, never hidden. The agent stops if it is not inside a git repository, and exits cleanly when there are no commits to review, or when the base branch cannot be found and the user cancels.",
+    "statements": [
+      {
+        "quote": "**Graceful degradation.** Missing tools, tests, specs, or config are all OK — record what was skipped and why, never fail silently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the first returns anything but `true`, stop: this must run inside a git repo.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Not a git repo / no commits vs base → exit cleanly, one line, no report.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Base unresolvable and user cancels the ask → exit cleanly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

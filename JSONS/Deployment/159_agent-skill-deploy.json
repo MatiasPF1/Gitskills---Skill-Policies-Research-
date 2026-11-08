@@ -1,0 +1,184 @@
+{
+  "name": "agent-skill-deploy",
+  "mechanism": "Escalate",
+  "repo": "webmaxru/ai-native-dev",
+  "path": ".agents/skills/agent-skill-deploy/SKILL.md",
+  "author": {
+    "owner": "webmaxru",
+    "commit_author": null,
+    "declared": "webmaxru"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0025ec06c824f8cd3576230bda9bbdb0e7ab780f.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "agent-skill-deploy (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 1 clarification rule, 5 approval gates, 4 validation rules, 9 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "agent-skill-deploy publishes a skill collection to GitHub releases and several plugin marketplaces: pre-flight checks, commit analysis, version bumping and per-surface deployment. The user chooses the version and surfaces and approves before anything is pushed. A dry run and read-back verify the changes, and most of its rules say how to stop and report each kind of failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Bash`, `Read`, `Glob`, `Task` and `AskUserQuestion`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Glob, Task, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent presents the change analysis and asks the user to choose the version and the target surfaces.",
+    "statements": [
+      {
+        "quote": "Present the analysis summary and ask the user to choose a version and target surfaces.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly running text. Irreversible operations sit behind user approval: the agent always pauses before pushing, shows a summary, asks for confirmation and pushes only after the user approves.",
+    "statements": [
+      {
+        "quote": "User approval gates before irreversible operations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Step 8: User Approval Before Push",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**CRITICAL: Always pause here for user approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present a summary and ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after user approves:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (3 mandatory, 1 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"recommended\"), 1 tied to a situation, mostly running text. The agent does a dry run before making changes, addresses any issues it reveals, and reads the version files back to verify the bump.",
+    "statements": [
+      {
+        "quote": "Step 4: Dry Run (Recommended)",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Before making changes, perform a dry run to verify what will happen:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the dry run reveals issues, address them before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify all files were updated correctly by reading them back.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "9 escalation rules (9 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 4 tied to a situation, mostly bullet points. The agent stops immediately when a step or pre-flight check fails and reports the problem with a suggested fix. It reports missing tools, version mismatches, existing tags and push failures without retrying, continues past a single failed surface, and pauses to report any divergence from the dry run.",
+    "statements": [
+      {
+        "quote": "Follow these steps in order. Stop immediately if any step fails.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If checks fail, report the problem and suggest a fix. Do not proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**No `/skills` directory:** Report that the repository does not follow the expected skill collection layout and stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Missing tools:** Report which tools are missing for which surfaces.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Version mismatch across surfaces:** Report the mismatch and suggest running the bump step to synchronize all config files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Tag already exists:** Report the conflict and suggest either choosing a different version or deleting the existing tag with user confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Push failure:** Report the error. Do not retry automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Surface deploy failure:** If one surface fails, report it but continue with remaining surfaces.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Dry-run divergence:** If the actual execution differs from the dry run, pause and report the divergence to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

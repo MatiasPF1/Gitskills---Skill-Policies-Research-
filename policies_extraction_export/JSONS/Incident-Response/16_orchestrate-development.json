@@ -1,0 +1,265 @@
+{
+  "name": "orchestrate-development",
+  "mechanism": "Act",
+  "repo": "sambeau/kanbanzai",
+  "path": "internal/kbzinit/skills/task-execution/orchestrate-development/SKILL.md",
+  "author": {
+    "owner": "sambeau",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00aba9a72733ed213548002316d2dc33eae9ef02.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "orchestrate-development (Act) specifies 4 of 5 categories: 10+ autonomy limits, 2 clarification rules, 10+ validation rules, 10+ escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "conclusion_qualitative": "orchestrate-development coordinates several sub-agents to build one feature: it dispatches tasks in parallel, monitors them, handles failures and closes out the feature. The agent dispatches work only through the `handoff` tool, does not read code itself, and in fast-track mode never stops for confirmation. It checks dependencies, task status, tests before and after merging, and branch cleanup. It escalates to the human or stops when tasks fail beyond retry, tests on `main` fail, the plan is missing or unclear, or changes would conflict. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly running text. The agent must generate every sub-agent prompt with the `handoff` tool and never write one by hand, and must not read source code or workflow state itself before dispatching. It tells each sub-agent which files it must not touch, does not create worktrees (separate working copies) for the next group of features until the previous group is cleanly merged, does not use `override: true` without a reason, and never confirms tier 3 knowledge entries. In fast-track mode it never stops for confirmation.",
+    "statements": [
+      {
+        "quote": "**INV-001 — Handoff-only dispatch.** Always use `handoff(task_id: \"TASK-xxx\", role: \"implementer-go\")` to generate sub-agent prompts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not create worktrees for later cohorts until the preceding cohort's merge checkpoint is confirmed clean.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**INV-004 · No Code Investigation (ℋ):** Do not read source files, trace call paths, search the code graph, or shell-read `.kbz/state/` before dispatching.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Rule:** Always use `handoff(task_id: \"TASK-xxx\", role: \"implementer-go\")` to generate sub-agent prompts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never compose implementation prompts manually — manual composition silently omits graph project context, knowledge entries, and spec sections.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Include file scope boundaries in the dispatch — tell each agent which files it owns and which it must not modify (because a parallel agent owns them).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not use `override: true` unless `override_reason` is provided and the prerequisite is genuinely inapplicable.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Tier 3 entries:** Do NOT call `confirm` on tier 3 entries.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not create cohort-N+1 worktrees until the cohort-N merge checkpoint is confirmed clean: no open feature branches from cohort N remain (`git branch | grep FEAT` returns only cohort-N+1 or later bran",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "You will NOT stop for confirmation at any point.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one bullet point and one in running text. If the development plan is unclear, the agent flags it instead of reading code to fill the gaps, and a spec ambiguity that cannot be resolved without human input is one of the few reasons to stop in fast-track mode.",
+    "statements": [
+      {
+        "quote": "The sub-agent receives everything needed via `handoff`; if the dev-plan is unclear, flag it — do not read code or workflow state to compensate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Spec ambiguity cannot be resolved without human input",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent verifies that a task's dependencies are done before dispatching it, checks every task's status after each round, and confirms file scopes do not overlap. It confirms the test suite on `main` passes before dispatching and again after merging. At close-out it verifies all tasks are finished and that the worktree and feature branch are gone.",
+    "statements": [
+      {
+        "quote": "**Resolve:** Verify all `depends_on` entries are `done` before adding a task to the dispatch batch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Resolve:** After each dispatch cycle, check every task's status.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verified file scope boundaries for parallel dispatch (no overlaps)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Monitored outcomes — confirmed done or handled failures",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Test-health gate:** Before dispatching any cohort, call `test(action: \"verify\")` to confirm the test suite on `main` is green.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify it reached `done` (not `needs-rework` or still `active`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify all tasks are terminal.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Post-merge test verification:** After the merge, call `test(action: \"run\")` to confirm the test suite passes on `main`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with `git worktree list` that the worktree directory is gone.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify branch is gone.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 8 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 8 tied to a situation, mostly bullet points. When a task fails the agent blocks everything that depends on it, and it escalates to the human when a failure cannot be fixed or retries run out. It stops when tests on `main` fail, when the development plan is missing, when a build failure needs changes beyond its scope or a missing dependency blocks all work, and when unrelated uncommitted changes would cause merge conflicts. It flags tasks marked done whose work does not exist, and features under review that still have open tasks.",
+    "statements": [
+      {
+        "quote": "**Resolve:** When a task fails, block all dependents.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If tests are failing, bail — do not dispatch sub-agents until the test suite is fixed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "IF the dev-plan is missing or the feature has no tasks → STOP.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "IF the failure is not recoverable (spec ambiguity, design gap, circular dependency discovered) OR the retry budget is exhausted → escalate to the human via a checkpoint.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "A build failure requires code changes beyond the orchestrator's scope",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A missing dependency blocks all remaining tasks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If tests are failing on `main`, bail — the first job is to fix the test suite, not to start new work.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a task is `done` but its deliverable does not exist, flag it — the task state is unreliable.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a feature is in `reviewing` via override but still has non-terminal tasks, surface that as a blocker.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not proceed if the working tree contains unrelated implementation changes that would create merge conflicts.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

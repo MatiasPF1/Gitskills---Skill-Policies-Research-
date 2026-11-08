@@ -1,0 +1,65 @@
+{
+  "name": "evolve",
+  "mechanism": "Act",
+  "repo": "zhushanwen321/xyz-pi-extensions",
+  "path": "extensions/evolve-daily/skills/evolve/SKILL.md",
+  "author": {
+    "owner": "zhushanwen321",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00bbc581b9522ef10d0b7d22618a04c1f898b9b6.md",
+  "conclusion": "evolve (Act) specifies 2 of 5 categories: 2 autonomy limits, 3 escalation rules; none for clarification rules, approval gates, validation rules. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list: asking clarifying questions about unclear intent; suggestion target paths under ~/.pi/agent.",
+    "statements": [
+      {
+        "quote": "**Fallback**: If intent cannot be determined from the natural language input, default to last 7 days, all dimensions. Do not ask clarifying questions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "targetPath MUST be under `~/.pi/agent/` and end with `.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly prose: daily-report JSON failing to parse; no usage data for the period; pending.json write failing.",
+    "statements": [
+      {
+        "quote": "If daily-reports JSON fails to parse (corrupt/malformed), skip that file and note it in the suggestion output, but continue with other files",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No data scenario:** If no daily-reports exist for the requested range, tell the user: \"No usage data available for the requested period. Ensure the evolve-daily extension is installed and has had ti",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If write fails**: Tell the user the write failed and the suggestions were not persisted.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

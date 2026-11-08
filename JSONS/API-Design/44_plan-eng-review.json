@@ -1,0 +1,342 @@
+{
+  "name": "plan-eng-review",
+  "mechanism": "Act",
+  "repo": "no-session/pstack",
+  "path": "plan-eng-review/SKILL.md",
+  "author": {
+    "owner": "no-session",
+    "commit_author": "6158ae348b5ef944",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0194dd4f1795cd981a366438a9da281341963d7d.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "plan-eng-review (Act) specifies 5 of 5 categories: 6 autonomy limits, 10+ clarification rules, 10+ approval gates, 1 validation rule, 10+ escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "plan-eng-review (in its pstack version) reviews an implementation plan like an engineering manager (architecture, code quality, test coverage and performance) before code is written. Most of its rules make the agent consult the user, one question per issue, and it needs explicit approval before acting on another AI model's advice, starting other skills or upgrading. It works with a fixed tool set and flags rather than fixes problems in shared repositories. It requires evidence before calling work done, and stops and escalates after repeated failures, on security doubts, or when it cannot verify the work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly running text. The front matter limits the agent to `Read`, `Write`, `Grep`, `Glob`, `AskUserQuestion`, `Bash` and `WebSearch`. When proactive mode is off it runs only the skills the user types, and in shared repositories it flags problems instead of fixing them. It moves on without asking when the scope check finds nothing overbuilt, and adds a regression test to the plan without asking whenever it finds a regression.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Grep, Glob, AskUserQuestion, Bash, WebSearch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest pstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**`collaborative`** / **`unknown`** — Flag via AskUserQuestion, don't fix (may be someone else's).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the complexity check does not trigger, present your Step 0 findings and proceed directly to Section 1.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "No AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly running text. The agent asks the user about proactive behavior during setup, says exactly what it needs when information is missing, and asks for the user's input on every issue instead of assuming a direction. When the plan looks overbuilt it asks whether to reduce scope; after each review section it stops and asks one question per issue; and it asks about each disagreement with the outside AI reviewer and each possible TODO.",
+    "statements": [
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "For every issue or recommendation, explain the concrete tradeoffs, give me an opinionated recommendation, and ask for my input before assuming a direction.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the complexity check triggers (8+ files or 2+ new classes/services), proactively recommend scope reduction via AskUserQuestion — explain what's overbuilt, propose a minimal version that achieves th",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP.** For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one As",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP.** For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one As",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP.** For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one As",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP.** For each issue found in this section, call AskUserQuestion individually. One issue per call. Present options, state your recommendation, explain WHY. Do NOT batch multiple issues into one As",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each substantive tension point, use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After all review sections are complete, present each potential TODO as its own individual AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (9 mandatory, 1 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 only a suggestion (worded with \"might\"), 4 tied to a situation, all in running text. Instead of starting skills, upgrades or the essay link on its own, the agent asks and waits for a yes, and it confirms the scope of AI evaluation runs with the user. Advice from an outside AI model stays informational until the user approves each item: the agent presents it as a recommendation and must not apply any change without explicit approval.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/pstack/pstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never say \"the outside voice is right\" and act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Say \"the outside voice recommends X — do you want to proceed?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Then use AskUserQuestion to confirm the eval scope with the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**User Sovereignty:** Do NOT auto-incorporate outside voice recommendations into the plan.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "You may state which argument you find more compelling, but you MUST NOT apply the change without explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Outside voice findings are INFORMATIONAL until the user explicitly approves each one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT incorporate outside voice recommendations into the plan without presenting each finding via AskUserQuestion and getting explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. A task counts as done only when every step is complete with evidence for each claim.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (8 mandatory, 2 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 8 strict and 2 counted as suggestions (they contain \"should\" and, in a quoted message, \"could\"), 5 tied to a situation, mostly bullet points. The agent flags anything that looks wrong and reports concerns or blockers. It must stop and escalate after 3 failed attempts, on doubts about a security-sensitive change, or when it cannot verify the work. When a needed skill file, web search or the outside reviewer's login fails, it tells the user and carries on.",
+    "statements": [
+      {
+        "quote": "Always flag anything that looks wrong — one sentence, what you noticed and its impact.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the Read fails (file not found), say: \"Could not load /validate — proceeding with standard review.\"",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If WebSearch is unavailable, skip this check and note: \"Search unavailable — proceeding with in-distribution knowledge only.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Auth failure (stderr contains \"auth\", \"login\", \"unauthorized\"): \"Codex auth failed. Run \\`codex login\\` to authenticate.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

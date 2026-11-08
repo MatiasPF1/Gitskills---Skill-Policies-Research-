@@ -1,0 +1,163 @@
+{
+  "name": "commit-message",
+  "mechanism": "Ask",
+  "repo": "wesvetter/.dotfiles",
+  "path": "codex/generated/skills/commit-message/SKILL.md",
+  "author": {
+    "owner": "wesvetter",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00321777292ea202ee3d90fb177b3861e193dfe7.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "commit-message (Ask) specifies 5 of 5 categories: 3 autonomy limits, 5 clarification rules, 2 approval gates, 1 validation rule, 1 escalation rule. Strongest: clarification rules.",
+  "conclusion_qualitative": "commit-message drafts a git commit message in the house style, lints it and copies it to the clipboard. The agent asks which repository to use and what to stage whenever these are unclear, and asks before writing one message for unrelated changes. It never runs the commit itself unless asked, though it may stage an obvious single change. It lints the draft until it passes and tells the user if the clipboard copy fails.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly bullet points. The agent drafts the message to the clipboard and does not run `git commit` unless explicitly asked. When unstaged changes clearly form one logical unit it stages them itself and lists the files in its report so the user can correct it.",
+    "statements": [
+      {
+        "quote": "The deliverable is a clean message in the user's clipboard; do **not** run `git commit` unless explicitly asked.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Clearly one logical unit?** (e.g. all changes belong to a single feature, fix, or migration) — stage them yourself with `git add` and proceed. Surface the file list in your final report so the user ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Suggested `git commit -F -` invocation, but **don't run it yourself** unless asked.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (4 mandatory, 1 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"try\"), 4 tied to a situation, all bullet points. The agent asks which repository to target when the argument is not a git repository, matches no or several folders, or is missing and the current folder is not a repository, rather than guessing. When unstaged changes are ambiguous or mixed, it stops and asks what to stage.",
+    "statements": [
+      {
+        "quote": "**Argument is an absolute or `~/`-prefixed path** (e.g. `~/local-dev/foo-service`) — if it's inside a git repo, use it. If not, ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Argument is a bare name** (e.g. `foo-service`) — try `~/local-dev/<name>`, then any other workspace dirs you can see. If 0 or >1 match, ask.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No argument** — if `pwd` is inside a git repo, use it. Otherwise, ask the user which repo to target; do not guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ambiguous or mixed?** Stop and ask the user what to stage before drafting.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Nothing staged**: see step 1 — stage yourself if the unstaged/untracked changes are clearly one logical unit; otherwise ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both bullet points. When the diff mixes unrelated changes, the agent tells the user and suggests splitting, and proceeds with a single message only if the user confirms.",
+    "statements": [
+      {
+        "quote": "**Sanity-check atomicity.** If the diff covers multiple unrelated changes (e.g. dep bump + bug fix + reformat), tell the user before drafting and suggest splitting. Only proceed with one message if th",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Multiple unrelated changes detected**: stop, suggest splitting, wait for the user's call.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent runs the draft through the commit-message linter and iterates until it passes, never accepting fixable errors.",
+    "statements": [
+      {
+        "quote": "Iterate until exit 0. The 50-char \"recommended max\" warning is acceptable but try to clear it; never accept fixable errors.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If copying to the clipboard fails, the agent prints the final message and tells the user it could not be copied.",
+    "statements": [
+      {
+        "quote": "If `clipcopy` exits non-zero (no backend available — e.g. headless Pi outside tmux), print the final message and tell the user it couldn't be copied.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

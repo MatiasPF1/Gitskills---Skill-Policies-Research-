@@ -1,0 +1,176 @@
+{
+  "name": "safe-commit-push",
+  "mechanism": "Escalate",
+  "repo": "PR3MM/Agentic-skills",
+  "path": "git-pr/safe-commit-push/SKILL.md",
+  "author": {
+    "owner": "PR3MM",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/000262ba2de1490f8bc2193b1bdf2158454c1714.md",
+  "conclusion": "safe-commit-push (Escalate) specifies 5 of 5 categories: 4 autonomy limits, 1 clarification rule, 10+ approval gates, 1 validation rule, 7 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list: pushing to main or master; committing secrets or skipping hooks; committing on a detached HEAD.",
+    "statements": [
+      {
+        "quote": "**Never push to `main` or `master`** — always use a feature branch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never commit secrets** — scan staged files for `.env`, `*.pem`, `*.key`, `credentials*`, `*secret*`, `token` patterns. Warn and exclude if found.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never skip pre-commit hooks** — no `--no-verify`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "branch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: the branch name when not provided.",
+    "statements": [
+      {
+        "quote": "Ask the user for a branch name if not provided.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 2 conditional), mostly prose: destructive git actions; the detected scenario and commit message; rebase, force-push and amend.",
+    "statements": [
+      {
+        "quote": "**No destructive action without explicit approval.** Destructive means: `--force`, `--force-with-lease`, `reset --hard`, `clean -fd`, `rebase`, `commit --amend` (when pushed), `push --delete`, `branch",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Based on pre-flight, auto-detect and confirm with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "State which scenario you detected: *\"It looks like Scenario B — you have uncommitted changes on `fix/PROJ-12345`. I'll stage, commit, and push. Sound right?\"* — wait for confirmation before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Show and ask for approval before committing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after the user approves the message:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Before proceeding, require explicit approval:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after \"yes\" / \"approved\":",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only when the user explicitly asks to amend.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after **explicit, specific** approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose: reviewing the staged diff.",
+    "statements": [
+      {
+        "quote": "Run `git diff --staged --stat`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (7 mandatory, 0 advisory; 5 conditional), mostly prose: merge or rebase conflicts; diverged main and rejected pushes; failed commits and a missing origin remote.",
+    "statements": [
+      {
+        "quote": "**Conflict = full stop** — if any operation produces a merge conflict, stop immediately, show the conflicted files, and ask the user how to proceed. Never auto-resolve.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `--ff-only` fails, **stop** — local main has diverged.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the commit fails (pre-commit hook rejection, etc.), show the error and help fix it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Push rejected** (remote has new commits) → offer options:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If conflicts → **full stop**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If conflicts → **full stop** with the same conflict handling as D4a, but using `git rebase --abort` and `git rebase --continue`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**No `origin` remote** → tell user to add fork remote before pushing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

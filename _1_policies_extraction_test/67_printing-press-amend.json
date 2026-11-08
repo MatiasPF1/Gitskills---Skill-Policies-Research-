@@ -1,0 +1,218 @@
+{
+  "name": "printing-press-amend",
+  "mechanism": "Escalate",
+  "repo": "barkleesanders/claude-code-starter",
+  "path": "skills/printing-press-amend/SKILL.md",
+  "author": {
+    "owner": "barkleesanders",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/001b5d0c5e70427d11ce28fdf5809c871dc550b3.md",
+  "conclusion": "printing-press-amend (Escalate) specifies 5 of 5 categories: 5 autonomy limits, 6 clarification rules, 6 approval gates, 6 validation rules, 7 escalation rules. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 1 conditional), mostly prose: allowed tools; absolute binary path for every invocation; sniffing only when the user named it.",
+    "statements": [
+      {
+        "quote": "allowed-tools:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Every subsequent `cli-printing-press ...` invocation in this skill must use that absolute path**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Sniff is opt-in per run — never invoked unless the user named it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "This phase runs unattended between checkpoints 1 and 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All edits in this phase happen INSIDE `$CLI_DIR`. Never touch `$PRESS_LIBRARY/<slug>/` — that's a different working copy and editing it would not flow to the PR.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "6 clarification rules (6 mandatory, 0 advisory; 2 conditional), mostly list: ambiguous input mode; resolved session transcript path; auto-detected target CLI.",
+    "statements": [
+      {
+        "quote": "Ask the user via `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "ALWAYS confirm the resolved path with the user via `AskUserQuestion` before reading — wrong-file selection ingests friction from the wrong session.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with `AskUserQuestion` (single CLI: simple yes/no; multiple close: pick from list).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "if absent, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ambiguous verbs (`update X` without specifics) trigger an `AskUserQuestion` clarification rather than a guess.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If neither field is set, ask the user inline:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "6 approval gates (6 mandatory, 0 advisory; 0 conditional), mostly prose: upgrading a below-floor binary; custom-selected finding subset; re-adding deferred findings.",
+    "statements": [
+      {
+        "quote": "Offer a one-click upgrade via `AskUserQuestion` — **Yes — upgrade now** (run `go install github.com/mvanhorn/cli-printing-press/v4/cmd/cli-printing-press@latest`, re-capture `PRINTING_PRESS_BIN`, then",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For the **custom selection** path: present a multi-select with each finding's id + category + one-line rationale; confirm the user-checked subset before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "do not silently re-add — always present and confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Show the user EVERYTHING that's about to ship before any `gh` command fires.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "AskUserQuestion: open / edit / hold / abort",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "For **edit then open**: present the title and body as separate editable blocks, accept the user's revisions, re-display the full draft, confirm before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "6 validation rules (6 mandatory, 0 advisory; 3 conditional), mostly prose: consolidated publish validator after edits; re-running validate after failures; missing or empty patch manifest.",
+    "statements": [
+      {
+        "quote": "After all edits land, run the consolidated validator (replace `<PRINTING_PRESS_BIN>` with the absolute path captured at setup):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `publish validate` reports failures, parse the error categories from the JSON, attempt targeted fixes, re-run validate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Missing or empty patch manifest → fix locally before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before Phase 4 can emit a pass, inspect the confirmed findings and final diff for every new, renamed, or changed user-facing command, flag, workflow, runtime mode, or MCP-visible action.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run `python3 .github/scripts/verify-skill/verify_skill.py --dir \"$CLI_DIR\"` from the public-library checkout when that path exists; otherwise run the packaged verifier equivalent available in the chec",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not move to the PR-draft checkpoint until the checklist is empty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (7 mandatory, 0 advisory; 6 conditional), mostly prose: setup advisories such as low disk; binary older than the minimum version; failed upgrade command.",
+    "statements": [
+      {
+        "quote": "If setup emitted `[go-toolchain-old]` or `[low-disk]`, surface the advisory to the user and continue unless setup also emitted `[setup-error]`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the installed binary is older than the minimum, stop immediately and tell the user: \"cli-printing-press binary vX.Y.Z is older than the minimum required vA.B.C. Run `go install github.com/mvanhorn/",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the upgrade command fails, surface it and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `local_ver` is older than `published` (semver comparison), abort cleanly:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Surface the final error log to the user, do NOT auto-open the PR, exit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any required doc edit or verifier result is missing, stop with a blocking checklist.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any match is found, treat as BLOCKING — pause and require user resolution before Phase 6.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

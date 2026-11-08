@@ -1,0 +1,139 @@
+{
+  "name": "draft-release-blog",
+  "mechanism": "Escalate",
+  "repo": "obot-platform/obot",
+  "path": ".claude/skills/draft-release-blog/SKILL.md",
+  "author": {
+    "owner": "obot-platform",
+    "commit_author": "69f7127f6302c939",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/00000f2a9d8359900f2075b536b435ca9473a5b9.md",
+  "conclusion": "draft-release-blog (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 4 clarification rules, 7 approval gates, 3 validation rules; none for escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose: publishing, modifying the release or committing after drafting.",
+    "statements": [
+      {
+        "quote": "Do not run any publish/upload commands.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not modify the GitHub release.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not commit anything to the repo.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (4 mandatory, 0 advisory; 1 conditional), mostly prose: inventing statistics, quotes or claims; which release the blog covers; personal POV lines and callback URLs.",
+    "statements": [
+      {
+        "quote": "Do not invent statistics, customer quotes, partner endorsements, or technical claims not grounded in the PRs, issues, code, or docs you have actually read.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with the user which release the blog is for.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before drafting, identify 2-4 places in the planned structure where personal POV would belong, then ask the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If auto-completion doesn't fire after they authorize, ask for the full callback URL from their browser and pass it to `mcp__obot-wordpress__complete_authentication`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "7 approval gates (6 mandatory, 1 advisory; 5 conditional), mostly prose: posting to Wordpress only on request; publishing live instead of draft; blog shape and plan before writing.",
+    "statements": [
+      {
+        "quote": "Posting to Wordpress (step 8) is opt-in: only do it when the user explicitly asks.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When posting to Wordpress, the post status MUST be `draft` unless the user explicitly confirms `publish`. Never default to publishing live.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If no release exists yet, ask the user whether to run `draft-release` first, or proceed by surveying commits directly.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the recommended shape to the user before drafting and let them override.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation or adjustments before writing prose.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Skip this step unless the user explicitly asks for it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "`status`: `\"draft\"`. Never `\"publish\"` unless the user has explicitly confirmed publishing live.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list: em dash, HTML and title checks before posting.",
+    "statements": [
+      {
+        "quote": "**Sanity checks before posting:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run `grep -nF $'\\xe2\\x80\\x94' /tmp/release-blog-<VERSION>.md` (or `grep -nF $'—'`) to confirm no em dashes slipped in. The hard constraints forbid them; the markdown editor sometimes auto-substitutes ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm the title in the frontmatter matches the title you're sending to `create_post`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

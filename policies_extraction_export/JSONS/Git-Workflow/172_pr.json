@@ -1,0 +1,111 @@
+{
+  "name": "pr",
+  "mechanism": "Escalate",
+  "repo": "jiroamato/new-repo",
+  "path": ".claude/skills/pr/SKILL.md",
+  "author": {
+    "owner": "jiroamato",
+    "commit_author": "4f36a1bce3b16079",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00671e71d4e9569d454f1f116b5767f2f7f46336.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "pr (Escalate) specifies 4 of 5 categories: 1 clarification rule, 1 approval gate, 6 validation rules, 1 escalation rule; none for autonomy limits. Strongest: validation rules.",
+  "conclusion_qualitative": "pr creates a pull request following the project template and commit format. Its main control is a pre-flight check of branch, tests, types, linting and a clean tree, stopping on any failure. It asks for the issue number when needed and confirms before targeting main. It sets no autonomy limits.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent asks the user for the issue number when it is not clear from the branch name or commits.",
+    "statements": [
+      {
+        "quote": "Ask the user for the issue number if not obvious from the branch name or commit trail.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent confirms with the user before targeting the main branch, which is reserved for releases.",
+    "statements": [
+      {
+        "quote": "Confirm with the user before targeting `main` (reserved for releases).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. Before creating the pull request the agent verifies it is not on a protected branch, the tests pass with the coverage gate, type checks and linters pass, and the working tree is clean.",
+    "statements": [
+      {
+        "quote": "Before creating the PR, verify:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Not on a protected branch: `git branch --show-current` — must not be `main` or `dev`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All tests pass: `make test` (90% coverage gate enforced).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Type check passes: `make typecheck`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Linters pass: `make lint`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Working tree is clean: `git status`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If any pre-flight check fails, the agent stops and fixes the issues before proceeding.",
+    "statements": [
+      {
+        "quote": "If any check fails, stop and fix the issues before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

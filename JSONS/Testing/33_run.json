@@ -1,0 +1,194 @@
+{
+  "name": "run",
+  "mechanism": "Act",
+  "repo": "Q00/ouroboros",
+  "path": "skills/run/SKILL.md",
+  "author": {
+    "owner": "Q00",
+    "commit_author": "7ef6af9deacbe1c0",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/011823d9cf8b10c77c0004637f36ee2652c09649.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "run (Act) specifies 5 of 5 categories: 10+ autonomy limits, 2 clarification rules, 3 approval gates, 1 validation rule, 6 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "run executes a Seed specification through the Ouroboros workflow engine as a background job, with an observer subagent relaying progress. Most of its rules limit what the agent and its observer may touch: a separate branch for code changes, a read-only observer, no competing polls and no invented tool calls. Changes to the approved specification need explicit user approval, and the agent asks the user only for the efficiency choice or to break genuine ties. Quality checks and a formal evaluation run after the job, and the agent surfaces blockers, stops before risky changes it cannot verify, and reports failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, evenly split between bullet points and running text. When the project uses pull requests and the agent is on `main`, all code changes go to a new feature branch. The agent does not ask the efficiency question again on resume, never turns on strict proof mode just because efficient mode was chosen, and does not hold up the run waiting for an answer about the dashboard. The observer subagent stays read-only; the main session must not poll a job the observer owns or let its wait loop call job tools, and it checks for overlap before writing to the active workspace. It never asks the user for internal IDs and never invents a mutating tool call.",
+    "statements": [
+      {
+        "quote": "All code changes go to this branch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never enable it merely because efficient execution was chosen.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not ask again on resume; the server restores the persisted policy and rejects an attempted resume-time change.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Offer to open it, but do not block the run waiting for an answer.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "remain read-only: no repository edits, execution control, or worker fan-out;",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The main session must not poll the same job while the observer owns it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before writing to the active run's workspace, check for overlap with worker files or isolate the work.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "This wait loop must never call Ouroboros job tools or compete for the observer's cursor.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Synapse intent refinement:** When the user gives additive implementation intent during an active run, the main session owns target selection; never ask the user for internal AC/session IDs.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never invent a mutating tool call.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, both bullet points. Before a fresh run, if the user has not chosen an efficiency policy, the agent asks them to choose between efficient and quality-first execution. When a mid-run request matches several targets equally, it asks a short clarifying question.",
+    "statements": [
+      {
+        "quote": "Before a fresh start, when the user has not already chosen an efficiency policy, ask in outcome language:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "With multiple targets, select only when one is materially more relevant; ask a short user-language clarification only for genuine ties.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. Approved goals, acceptance criteria, constraints and non-goals may not be changed through mid-run signals; a specification change needs explicit user approval, and corrective actions must keep the approved contract unless the user approved the change.",
+    "statements": [
+      {
+        "quote": "Never use Synapse to change approved goals, ACs, constraints, or non-goals; those require an approved shared successor or replacement contract.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For a specification change in run mode, obtain explicit user approval and bind its receipt.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A corrective successor must preserve the approved contract unless the user approved the shared specification change.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After a run, quality checks (QA) and a formal evaluation run automatically.",
+    "statements": [
+      {
+        "quote": "**Post-execution QA and formal evaluation** (automatic):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (6 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 4 tied to a situation, mostly bullet points. The agent immediately surfaces blockers and rejected or uncertain mid-run signals, asking the user only when human judgment is needed. It stops before changing anything if it cannot verify an attention item, never silently retries a failed action, shows a manual retry command when the evaluation job fails, and tells the user when the MCP server is not available.",
+    "statements": [
+      {
+        "quote": "`attention_required`: surface the blocker or pending decision immediately and ask the user only when human judgment is required.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Synapse `.rejected` / `.delivery_uncertain`: surface immediately and never claim the AC changed course.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the host has no verifier primitive, surface the attention and stop before mutation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not silently retry a failed conductor action.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the evaluate job failed or timed out, keep the run success intact and show `Next: ooo evaluate <session_id>` as the manual retry",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the MCP server is not available, inform the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

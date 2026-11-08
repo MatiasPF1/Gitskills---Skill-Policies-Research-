@@ -1,0 +1,239 @@
+{
+  "name": "oat-brainstorm",
+  "mechanism": "Ask",
+  "repo": "tkstang/open-agent-toolkit",
+  "path": ".agents/skills/oat-brainstorm/SKILL.md",
+  "author": {
+    "owner": "tkstang",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01020c64c4e8d8e33f60f3f5288ed79c0a62b978.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "oat-brainstorm (Ask) specifies 4 of 5 categories: 10+ autonomy limits, 7 clarification rules, 8 approval gates, 4 escalation rules; none for validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "oat-brainstorm is a brainstorming dispatcher that runs a conversational, one-question-at-a-time exploration and hands the result to the right OAT destination (idea, backlog item, project, document or inline summary). The agent may only explore and ask: code, specs and premature routing are blocked, and it stops itself if it drifts. The user chooses the destination and confirms the payload before anything is written, including overwrites and directories outside the repository. Failed commits, missing tools and unwritable paths are surfaced to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The front matter limits the agent to `Read`, `Write`, `Bash`, `Glob`, `Grep` and `AskUserQuestion`. While brainstorming it writes no code, specs or designs and does not route to a destination before the conversation converges; it stops itself if it starts coding, forces a destination, or commits on a dirty tree without a preflight or with broad staging.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "No implementation code, no scaffolding, no actual feature changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No formal requirements / specs / architectural designs (the design phase belongs to `oat-project-design`, not here).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No auto-routing to a destination before convergence — the destination is identified at the end of the conversation, not the beginning.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No fold-back commit on a dirty working tree without running the preflight `git status` check first (see Process step 9 active-project branches).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing implementation code or running build/test commands → STOP.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Forcing a destination before convergence → STOP.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Running the fold-back commit on a dirty working tree without preflight → STOP.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Staging with `-A` or a directory glob during fold-back → STOP.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not invoke `oat-idea-ideate` automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (7 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 1 tied to a situation, mostly bullet points. The agent asks a boundary question in declared mode and then one question at a time, asking whether added scope earns its place. When a message fits several destinations, or when the conversation converges, it asks the user to choose, and it asks for a filename when the given path is a directory.",
+    "statements": [
+      {
+        "quote": "In declared mode, ask this boundary question before ordinary free brainstorming:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**One question at a time.** Never bundle multiple questions in a single message.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**YAGNI ruthlessly.** When the user adds scope, ask whether it earns its place; do not pad the conversation with hypothetical features.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Multiple matches → ask before committing.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present the filtered list to the user. Wait for selection.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Whichever path triggered convergence, ask the user one question — no exceptions:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Path is a directory** → ask the user for a filename, do not write.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "8 approval gates (8 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 1 tied to a situation, mostly bullet points. The agent waits for the user's answer to the visual-companion offer and asks the user to confirm a likely destination. Before writing, the user confirms the synthesized payload field by field or at least the slug, path or file, and the agent asks before creating directories outside the repository or overwriting an existing file.",
+    "statements": [
+      {
+        "quote": "The message contains only the offer wording below and waits for the user's response before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for the user's response.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Single confident match → surface immediately.** \"Sounds like you want to track this as a backlog item — confirm?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Step 8: Synthesis with Confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "The user confirms or revises each field before any write happens.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**`minimal`** (most destinations): confirm only the slug / path / which artifact / which idea / filename, depending on the destination.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If outside the current repo, require explicit confirmation** before creating any directory tree",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**File already exists** → ask whether to overwrite or pick a different filename. Do not silently overwrite.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. The agent surfaces a failed fold-back commit and lets the user resolve it, notes when the visual companion is unavailable, warns when the active project's state cannot be read, and surfaces unwritable paths and asks for another.",
+    "statements": [
+      {
+        "quote": "Printing the fold-back handoff prompt before the commit succeeds → STOP. Surface the commit error and let the user resolve it before the prompt is emitted.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Log a one-line note in the conversation that the visual companion is unavailable in this environment (a state `oat-doctor` can pick up later: \"visual companion suppressed — node not on PATH\").",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Print a single warning line and continue with the standard pack-filtered terminal-state picker.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Path is unwritable** (permission denied, read-only filesystem, etc.) → surface the OS error verbatim and ask for an alternative path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

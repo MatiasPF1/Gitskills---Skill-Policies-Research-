@@ -1,0 +1,40 @@
+{
+  "name": "story-questions",
+  "mechanism": "Ask",
+  "repo": "jdinkla/user-story-skills",
+  "path": "skills/story-questions/SKILL.md",
+  "author": {
+    "owner": "jdinkla",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/001f33032dbd264a15935603a600f7e0f4b5aa89.md",
+  "conclusion": "story-questions (Ask) specifies 1 of 5 categories: 1 clarification rule; none for autonomy limits, approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list: the user story when none is provided.",
+    "statements": [
+      {
+        "quote": "If none of the above, ask the user to paste the story or point to a file.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

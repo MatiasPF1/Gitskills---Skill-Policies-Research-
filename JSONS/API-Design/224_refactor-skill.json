@@ -1,0 +1,130 @@
+{
+  "name": "refactor-skill",
+  "mechanism": "Escalate",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/refactor-skill/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0166e558cf57dadc9d40000daf90ed85847a69ac.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "refactor-skill (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 1 clarification rule, 2 approval gates, 5 validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "refactor-skill assesses oversized or multi-domain agent skills and either extracts reference files or splits them into specialist skills behind a facade. Splitting needs the user's approval of the plan, and the result is verified for completeness, fidelity and compatibility. It stops when splitting is not warranted and sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the assessment finds that splitting the skill is not warranted, the agent reports the finding with an alternative and stops.",
+    "statements": [
+      {
+        "quote": "**STOP condition:** If the Phase 0 assessment concludes that skill splitting is not warranted, output the finding, recommend the appropriate alternative (references/ extraction or no action), and STOP",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If no path is given, the agent stops and asks for one.",
+    "statements": [
+      {
+        "quote": "If no path is provided STOP and say: \"No path provided. Please provide a path to a skill or plugin to refactor.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all in running text. The agent stops and presents the split plan, and creates the new skills only after the user approves.",
+    "statements": [
+      {
+        "quote": "**STOP and present plan to user before proceeding.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "AFTER user approval, create new skills:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. The agent re-runs the validator to confirm the token count, verifies the refactoring is complete with every original section in exactly one new skill, and checks backwards compatibility of all references.",
+    "statements": [
+      {
+        "quote": "Re-run the validator to confirm token count is now below the warning threshold.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "VERIFY refactoring completeness:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Every original section MUST appear in exactly one new skill.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verify backwards compatibility**:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm all existing references will continue to work",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

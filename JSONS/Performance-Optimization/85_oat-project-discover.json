@@ -1,0 +1,314 @@
+{
+  "name": "oat-project-discover",
+  "mechanism": "Ask",
+  "repo": "tkstang/skills",
+  "path": ".agents/skills/oat-project-discover/SKILL.md",
+  "author": {
+    "owner": "tkstang",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/004d2c1bd35132e8e0f93af300109245d7b3e562.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "oat-project-discover (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 8 approval gates, 3 validation rules, 8 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "oat-project-discover runs the discovery phase of a spec-driven OAT project, gathering requirements through dialogue before any spec or design. The agent may only ask and document: writing code, designs or plans is blocked. The user picks the project, the topics and the approach, confirms any split, and approves discovery at a human-in-the-loop checkpoint when one is configured. A configured gate checks the result before completion, and missing prerequisites, stale knowledge or repeated gate failures are reported or escalated to the human.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. The front matter limits the agent to reading, writing, `git`, `oat` and `pnpm` commands, `Glob`, `Grep` and `AskUserQuestion`. Discovery is talk-only: no code, design documents, implementation plans, technical specifications or concrete deliverable lists, and the agent stops itself if it catches itself writing code, designs or plans. In non-interactive runs it neither shows the split offer nor silently chooses.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash(git:*), Bash(oat:*), Bash(pnpm:*), Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "❌ No code writing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "❌ No design documents",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "❌ No implementation plans",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "❌ No technical specifications",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "❌ No concrete deliverables list (specific scripts, file paths, function names)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing code or implementation details → STOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Drafting technical designs → STOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Creating detailed plans → STOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Non-interactive branch:** if `OAT_NON_INTERACTIVE=1` and detection triggers (`confidence` is `high` or `soft`), do not show an offer prompt and do not silently choose.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (7 mandatory, 3 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 8 strict and 2 counted as suggestions (they contain \"prefer\" and \"may\"), 2 tied to a situation, mostly bullet points. The agent asks whether to continue with the active project or switch, and waits until the user picks one; it asks whether to continue with stale knowledge or refresh it. It lets the user pick which gray areas to discuss, asks targeted questions one at a time, preferably multiple choice and framed around its own view, and asks whether to split the work when it looks like several projects.",
+    "statements": [
+      {
+        "quote": "Return to asking questions about requirements",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop here until the user has selected/created the intended project.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask user: \"Continue with stale knowledge or refresh first?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present as multi-select question using AskUserQuestion tool:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask targeted questions **one at a time** — let each answer inform the next question",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Prefer **multiple choice** questions when feasible to reduce cognitive load, with an \"Other\" escape hatch",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Lead with your perspective** — frame questions around what you think the answer should be and ask the user to confirm or redirect",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`high` — both load-bearing signals 1 and 2 fired. Use high-confidence wording and ask directly: \"This looks like multiple independent projects. Split now, do one round of broad cross-cutting discovery",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`soft` — at least two signals fired, but not both load-bearing signals. Use soft wording: \"This may be multiple projects. Split, do one round of broad cross-cutting discovery first, or keep it as one ",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "8 approval gates (8 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 5 tied to a situation, mostly running text. The agent asks before continuing discovery, splits the project only if the user confirms, and gets explicit buy-in on the chosen approach. Interactive runs always end with a scope-check confirmation, and when discovery is a human-in-the-loop checkpoint it requires the user's explicit approval, otherwise saving the draft and waiting.",
+    "statements": [
+      {
+        "quote": "When the gate passes, summarize the active project and ask before continuing discovery.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user confirms split, invoke the `oat-project-split` skill with a `SplitPayload` using `origin: \"detected-mid-stream\"`, `interactive: true`, the active discovery path as `priorDiscovery.path`, a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the approaches to the user and get explicit buy-in on the chosen direction before moving to decisions and boundaries.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Step 11: Human-in-the-Loop Lifecycle (HiLL) Gate (If Configured)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "heading"
+      },
+      {
+        "quote": "For interactive runs, show an always-visible scope-check confirmation. The prompt is required even when no mid-stream offer fired:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `\"discovery\"` is in `oat_hill_checkpoints`, require explicit user approval before advancing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Approval prompt (required):**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop and report: \"Discovery draft saved; awaiting HiLL approval.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. After any approval the agent runs the configured gate as the last check, and the completion steps must not run while the gate is blocked or awaiting a prompt; discovery completes only after the gate passes or resolves by its policy.",
+    "statements": [
+      {
+        "quote": "After artifact finalization and any configured HiLL approval, run the configured gate as the last check before the completion boundary:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "A gate that ends in `block` after attempts are exhausted, or at an unresolved `prompt` boundary, means the completion steps below MUST NOT run; the phase stays `in_progress` and resumable.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Reach this completion boundary only after the configured gate passes or resolves according to its `onFailure` policy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "8 escalation rules (7 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"could\"), 3 tied to a situation, mostly bullet points. The agent stops and tells the user when no active project exists or the knowledge base is missing, and warns when the knowledge base is stale or its staleness cannot be checked. When the gate keeps failing it escalates to the human with the feedback or asks how to proceed, and unresolved critical review findings always stop autonomous progress.",
+    "statements": [
+      {
+        "quote": "Tell the user an active project is required for discovery.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop here until `activeProject` in `.oat/config.local.json` is set to a valid project directory.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If missing:** Block and require the `oat-repo-knowledge-index` skill first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Display prominent warning with specifics (days old, files changed)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Warn that staleness could not be verified",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If attempts are exhausted, escalate to the human with accumulated feedback and append that feedback to `implementation.md`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "`prompt`: surface the gate failure and ask the human how to proceed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Unresolved Critical review findings always stop autonomous discovery progression, regardless of a less restrictive gate failure setting; record the blocker and leave the project resumable.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

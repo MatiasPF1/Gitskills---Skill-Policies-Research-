@@ -1,0 +1,99 @@
+{
+  "name": "tdd",
+  "mechanism": "Escalate",
+  "repo": "juanibiapina/dotfiles",
+  "path": "agents/skills/tdd/SKILL.md",
+  "author": {
+    "owner": "juanibiapina",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/002c524e1999660462b0a55fbb3c014bedf2596e.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "tdd (Escalate) specifies 3 of 5 categories: 4 clarification rules, 1 approval gate, 2 validation rules; none for autonomy limits, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "tdd guides test-driven development in vertical slices: one test, one implementation, repeat, then refactor. Before coding the agent confirms the interface and the behaviors to test with the user and gets the plan approved. Tests run after every refactoring step, and refactoring happens only on green. It sets no autonomy limits or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (3 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"should\", in a quoted question), none tied to a situation, evenly split between bullet points and running text. Before writing code the agent confirms with the user which interface changes are needed and which behaviors matter most to test.",
+    "statements": [
+      {
+        "quote": "Confirm with user what interface changes are needed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with user which behaviors to test (prioritize)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask: \"What should the public interface look like? Which behaviors are most important to test?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm with the user exactly which behaviors matter most.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent gets the user's approval of the plan before writing code.",
+    "statements": [
+      {
+        "quote": "Get user approval on the plan",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. The agent runs the tests after each refactoring step and never refactors while a test is failing.",
+    "statements": [
+      {
+        "quote": "Run tests after each refactor step",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never refactor while RED.** Get to GREEN first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

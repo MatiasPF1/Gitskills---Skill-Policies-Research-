@@ -1,0 +1,272 @@
+{
+  "name": "goal-crafter",
+  "mechanism": "Ask",
+  "repo": "OrestesK/pi",
+  "path": "skills/goal-crafter/SKILL.md",
+  "author": {
+    "owner": "OrestesK",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0074ad6c4c20509c0fbc57ba723e591647f95a60.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Distributed Systems",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "goal-crafter (Ask) specifies 5 of 5 categories: 7 autonomy limits, 5 clarification rules, 3 approval gates, 10+ validation rules, 1 escalation rule. Strongest: validation rules.",
+  "conclusion_qualitative": "goal-crafter writes a single paste-ready /goal command for Pi's goal supervisor from the current session, memory and repository evidence, without starting or implementing the work. It researches freely without asking permission, but collects material decisions and asks the user once before rendering, never deciding them silently. Saved preferences and material assumptions need the user's approval. A quality checklist gates the final goal, and safety blockers are raised to the user immediately.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (7 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 3 tied to a situation, mostly running text. Once the user has asked for goal crafting, the agent does not ask permission for safe local research, subagent review or the requested skill files, and does not ask for anything a tool can verify. It does not implement the task or start the goal unless the user asks after seeing it, and makes assumptions only for mechanical, reversible defaults.",
+    "statements": [
+      {
+        "quote": "When the user explicitly asked for goal crafting, goal-skill iteration, broad session-history mining, or research for goal design, do not ask permission for safe local read-only research, subagent res",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not implement the underlying task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not start the goal for the user unless the user explicitly asks after seeing it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not ask for approval for routine local research, artifact notes, or requested local skill-file creation/update when goal crafting or goal-skill iteration is already the task.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Inspect what tools can answer before asking.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask for information tools can verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only make assumptions for mechanical, reversible defaults already implied by current instructions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The agent asks whether the user wants a goal instead of triggering itself, and never makes material product, API, scope or workflow decisions silently. It researches first, then asks once for all unresolved material decisions, one focused item each, and does not render the goal while a material question is open.",
+    "statements": [
+      {
+        "quote": "Do not auto-trigger merely because work is messy, long-running, or resumable. In those cases, ask whether the user wants a `/goal`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not make material product/API/scope/workflow decisions silently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Research first. Collect unresolved material questions instead of interrupting the user one by one. Immediately before rendering, ask once for all still-unresolved related material decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Prefer a structured review UI when available, with each item limited to one focused decision; never combine unrelated questions into a broad multipart questionnaire.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not render while a material contract question remains unresolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (2 mandatory, 1 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (it contains \"may\"), none tied to a situation, all in running text. The agent saves only preferences the user explicitly confirmed or asked for, needs the user's approval before editing the skill or memory based on inferred preferences, and never bakes unapproved material assumptions into the goal.",
+    "statements": [
+      {
+        "quote": "Persist only explicitly user-confirmed durable preferences or preference edits the user explicitly requested.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Inferred preferences may guide research, but require user approval before editing this skill or user memory.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not bake material unapproved assumptions into the command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. Before output the agent checks the goal against a quality bar: one bounded objective, preserved style constraints, an adversarial verdict when the best approach was requested, settled or deferred design decisions, named deferrals, safety constraints, observable acceptance items and coverage of risky edge behavior.",
+    "statements": [
+      {
+        "quote": "Before output, check:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "One objective, not a bundle of unrelated missions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Scope is bounded enough to audit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The goal preserves explicit user style constraints such as clean, elegant, simple, compact, or comprehensive/resource-maximal.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A request to verify the best/cleanest/simplest approach received an adversarial proposal verdict before that approach was encoded.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Placement/design decisions are either already implied, explicitly deferred, or handled by a reconnaissance/review criterion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Any intentionally deferred edge case, race, or non-goal is named with a reason and final-report requirement.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Constraints include user/project/tool safety rules that matter.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Minimum acceptance items are observable, atomic, bounded, and evidence-backed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Relevant failure, edge, permission, compatibility, or boundary behavior is covered when the task risk justifies it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. A safety or permission blocker that prevents safe research is surfaced to the user immediately rather than deferred.",
+    "statements": [
+      {
+        "quote": "A direct safety or permission blocker that prevents safe research must be surfaced immediately rather than deferred.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

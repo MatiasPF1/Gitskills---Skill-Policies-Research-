@@ -1,0 +1,164 @@
+{
+  "name": "releasing",
+  "mechanism": "Escalate",
+  "repo": "whatwedo/dde",
+  "path": ".claude/skills/releasing/SKILL.md",
+  "author": {
+    "owner": "whatwedo",
+    "commit_author": "945835469511b842",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/010e83f8d494a687cbf83c21ebc4dbda8d154047.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "releasing (Escalate) specifies 3 of 5 categories: 4 autonomy limits, 4 approval gates, 10+ validation rules; none for clarification rules, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "releasing runs the dde release process: choose the version, write the changelog entry, make a signed commit and signed tag, push after approval, then update the GitHub release. Pushing is never automatic because it triggers a public release workflow; the user confirms the version and the push. Signatures and the release page are verified against a checklist. It sets no clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly running text. The agent never pushes automatically, never edits the version placeholder by hand, always signs and signs off commits without skipping hooks, and never rewrites a published tag.",
+    "statements": [
+      {
+        "quote": "Never push automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do **not** touch `src/Application.php`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Sign-off is required (AGENTS.md: \"Never use `--no-verify`, `--no-gpg-sign`\").",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always a new commit; never rewrite a published tag.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly running text. The user confirms the target version before anything is written, and because the tag triggers a costly public release the agent never pushes on its own but asks and waits for explicit confirmation.",
+    "statements": [
+      {
+        "quote": "**Ask the user to confirm** the target version before writing anything",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never push on your own.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "and wait for explicit confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The release workflow is expensive and public; always confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent checks the commit and tag signatures and the published release page, and runs a checklist: confirmed version, user-visible changelog only, correct date, placeholder untouched, signed commit and tag, no push without approval and release notes filled.",
+    "statements": [
+      {
+        "quote": "Commit signature must show `Good signature`; tag must start with `tag v<new-version>` and carry a PGP block.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify in the browser at `https://github.com/whatwedo/dde/releases/tag/v<version>`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "User confirmed target version",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "CHANGELOG entry lists only user-visible changes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Today's date, ISO format",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`src/Application.php` NOT modified (placeholder is injected by CI)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Commit signed + signed-off, subject `chore(release): document v<version>`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Annotated tag signed, subject exactly `v<version>`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No push without explicit user approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "GitHub release notes populated from CHANGELOG section",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

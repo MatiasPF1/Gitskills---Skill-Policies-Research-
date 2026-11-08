@@ -1,0 +1,240 @@
+{
+  "name": "evolve",
+  "mechanism": "Act",
+  "repo": "ConcertoNotes/codex-plugins",
+  "path": "plugins/community/agentops/skills-codex/evolve/SKILL.md",
+  "author": {
+    "owner": "ConcertoNotes",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0164037f22ae456201eb3b5fb58797b555cabec1.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "evolve (Act) specifies 5 of 5 categories: 10+ autonomy limits, 1 clarification rule, 2 approval gates, 9 validation rules, 6 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "evolve is an always-on loop that measures what is wrong in a repository, fixes the worst thing through full `$rpi` cycles, and repeats. The agent works with no human intervention, never asking for confirmation or pausing, but stays out of immutable scope and needs a supervisor only for edits to critical skills and a confirmed checklist before release tagging. It checks every cycle with builds, tests and validation commands, treating failures as regressions. It stops or warns on broken setup files, releases or reverts failed work, and stops after a failed post-mortem review.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly running text. The agent runs fully autonomously: it never asks the user for confirmation, clarification or approval, never pauses or waits between cycles, and always runs `$rpi` in `--auto` mode so its human checkpoints are skipped. It must not widen scope into files marked immutable, treats such work as ineligible and turns it into follow-up work instead, and must not write per-cycle fitness files.",
+    "statements": [
+      {
+        "quote": "Do NOT ask the user for confirmation, clarification, or approval at any point.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT pause between cycles.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT summarize and wait.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user anything during execution | Evolve is fully autonomous — questions break the loop | Make best judgment, report in teardown",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Run `$rpi` without `--auto` | Non-auto `$rpi` has human gates that halt the loop | Always pass `--auto` to `$rpi`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Pause between cycles to explain progress | The user wants results, not narration | Log cycle results, immediately start next cycle",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Do not silently widen scope around immutable files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT write per-cycle `fitness-{N}-pre.json` files.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "candidate work that clearly requires immutable-scope edits is not eligible for direct execution",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "if the selected item is inherently out of scope, escalate it or convert it into durable follow-up work instead of invoking `$rpi` and hoping discovery widens scope",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When the repo execution profile is missing required fields, the agent must not quietly invent the repository's policy.",
+    "statements": [
+      {
+        "quote": "Do not silently invent repo policy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one bullet point and one in running text. Critical skills reject unattended edits, and the override flag may be used only while a named person (Bo) supervises the edit. On release branches the operator must run the pre-release checklist and confirm it is green before tagging.",
+    "statements": [
+      {
+        "quote": "Critical skills listed in `docs/contracts/critical-skills.txt` reject unattended edits; use `--allow-critical` only when Bo is supervising that critical edit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Instead, emit the explicit pre-release checklist below — the operator must run these AND confirm green before tagging:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "9 validation rules (9 mandatory, 0 advisory; 6 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 6 tied to a situation, mostly running text. After each cycle the agent runs the project's build and tests plus any validation commands from the repo profile or program contract. A cycle that breaks immutable scope or fails those commands counts as a regression, and work is marked done only after the stop conditions and regression gate pass. The loop ends when a convergence check passes, and after 5 pull requests the agent must run a deep post-mortem review and wait for its verdict.",
+    "statements": [
+      {
+        "quote": "After execution, run the project build+test bundle.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the repo execution profile declared `validation_commands`, run them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a repo-local program contract exists, run its `validation_commands` too, de-duplicated and in declared order after the repo bootstrap checks.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "if the cycle breached immutable scope, treat it as regressed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "if program validation commands fail, treat it as regressed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Treat program `stop_conditions` as per-cycle done criteria.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not mark claimed work consumed, completed, or productive until both the stop conditions and the regression gate pass.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When `converged` is true (default criteria: CI green streak ≥ 3, unconsumed HIGH+MEDIUM ≤ 1, fitness baseline captured), break the loop and run Teardown.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Mandatory checkpoint #6 — session-PR threshold (NOT terminal, gates next cycle):** at `session_pr_count >= 5` (soc-waxr default), invoke `$post-mortem --deep`, wait for verdict file.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (6 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 4 tied to a situation, mostly bullet points. If the repo profile or program contract is missing fields or invalid, the agent stops or downgrades with an explicit warning. When a cycle fails, regresses or is interrupted, it releases its claim on the work item, and it reverts changes when a revert rule fires. A failed post-mortem review makes it write a stop file.",
+    "statements": [
+      {
+        "quote": "If the repo execution profile is present but missing required fields, stop or downgrade with an explicit warning before cycle 1.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the program file exists but is structurally invalid, stop or downgrade with an explicit warning before cycle 1.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the cycle fails, regresses, or is interrupted before success, release the claim and leave the item available for the next cycle.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "if the decision policy declares a revert rule that fired, revert before consuming claimed work or advancing the queue",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**failure/regression:** clear `claim_status`, `claimed_by`, and `claimed_at`; keep `consumed: false`; record the release in `session-state.json`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "FAIL or non-convergence → write STOP citing the verdict path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

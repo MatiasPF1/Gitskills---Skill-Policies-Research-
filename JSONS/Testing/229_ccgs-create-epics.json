@@ -1,0 +1,140 @@
+{
+  "name": "ccgs-create-epics",
+  "mechanism": "Escalate",
+  "repo": "arkilstsko/Codex-Game-Studio",
+  "path": "codex-adapter/skills/ccgs-create-epics/SKILL.md",
+  "author": {
+    "owner": "arkilstsko",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01803e4ae3ea04fd74d94089804606240377aba6.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ccgs-create-epics (Escalate) specifies 5 of 5 categories: 2 autonomy limits, 2 clarification rules, 4 approval gates, 2 validation rules, 2 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "ccgs-create-epics turns approved game design documents and architecture decisions into epics, one per architectural module, in a game-studio workflow. The agent asks which layer to work on, passes the epics through a producer review gate, and writes each epic file only after the user confirms. It warns about untraced requirements and never goes on to create stories.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. The agent uses subagents only when the user asks for parallel work, and never creates stories, stopping at the epic level.",
+    "statements": [
+      {
+        "quote": "use Codex subagents only when the user explicitly asks for parallel agent work.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never create stories** — this skill stops at the epic level",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. Without an argument the agent asks which layer or system to create epics for, and without web tools it asks the user for source URLs.",
+    "statements": [
+      {
+        "quote": "If web tools are unavailable, ask the user for the source URL or state the limitation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "No argument — ask: \"Which layer or system would you like to create epics for?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (3 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"may\"), none tied to a situation, evenly split between running text and bullet points. The agent presents one epic at a time and asks \"May I write the epic file?\" before writing each one, writing only after the user confirms.",
+    "statements": [
+      {
+        "quote": "After approval, ask: \"May I write the epic file to `production/epics/[epic-slug]/EPIC.md`?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After user confirms, write:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**One epic at a time** — present each epic definition before asking to create it",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask before writing** — per-epic approval before writing any file",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. A producer review gate checks the epic structure, and no epic file is written until that gate resolves.",
+    "statements": [
+      {
+        "quote": "load the `producer` role reference and perform that role pass using gate **PR-EPIC**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not write epic files until the producer gate resolves.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. The agent warns about untraced requirements before proceeding.",
+    "statements": [
+      {
+        "quote": "**Untraced requirements**: TR-IDs with no ADR — warn before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Warn on gaps** — flag untraced requirements before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "name": "self-improve",
+  "mechanism": "Act",
+  "repo": "HyperionBurn/searchv1beta",
+  "path": ".github/skills/self-improve/SKILL.md",
+  "author": {
+    "owner": "HyperionBurn",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/01889daaa853a73ce22c555e8ebda82724c720ec.md",
+  "conclusion": "self-improve (Act) specifies 5 of 5 categories: 4 autonomy limits, 6 clarification rules, 5 approval gates, 5 validation rules, 2 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly list: stopping or pausing to ask during the loop; confirmation between iterations; resuming automatically after a crash.",
+    "statements": [
+      {
+        "quote": "**NEVER stop or pause to ask the user during the improvement loop.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask for confirmation between iterations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Once the improvement loop begins (after gate passes), run fully autonomously — no hooks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`running`: crashed — resume automatically",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "6 clarification rules (6 mandatory, 0 advisory; 4 conditional), mostly list: user decisions during setup; target repo path; Socratic goal interview.",
+    "statements": [
+      {
+        "quote": "**MANDATORY**: Use `vscode_askQuestions` for all user decisions during setup (when available).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `vscode_askQuestions` is NOT available (e.g., Copilot CLI), present numbered options in markdown and ask the user to respond with a number or freeform text.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "| Step 1: Repo path | Confirm or select target repo |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| Step 5: Goal interview | Socratic goal-setting questions (Objective, Metric, Target, Scope) |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Check if target repo path exists. If not configured: **HOOK**: Ask user for target repo path via `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If goal not set → **HOOK: Socratic goal interview** via sequential `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly list: benchmark execution consent; harness rule confirmation; resuming a user-stopped run.",
+    "statements": [
+      {
+        "quote": "| Step 4: Trust confirmation | Confirm benchmark execution consent |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| Step 7: Harness rules | Confirm/customize harness rules |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**HOOK: Trust confirmation** (mandatory) via `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If harness not set → **HOOK: Confirm harness rules** via `vscode_askQuestions`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "`user_stopped`: ask to resume",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly list: validating the benchmark three times; architecture and critic plan reviews; no-regression check and re-benchmark.",
+    "statements": [
+      {
+        "quote": "If benchmark not set → Survey repo, create/wrap benchmark, validate 3x, record baseline.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**6a. Architecture Review**: @architect with 6-point checklist (testability, novelty, scope, target files, implementation clarity, expected outcome). Advisory only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**6b. Critic Review**: @critic with harness rules (H001: one hypothesis, H002: no approach_family streak ≥3, H003: intra-round diversity). Sets `critic_approved: true/false`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No-regression check vs `best_score`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-benchmark on merged state",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (0 mandatory, 2 advisory; 2 conditional), mostly list: regression after a merge; merge conflicts.",
+    "statements": [
+      {
+        "quote": "If regression: revert merge, try next",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If conflict: abort merge, try next",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

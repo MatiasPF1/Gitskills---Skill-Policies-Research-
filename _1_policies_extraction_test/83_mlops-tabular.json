@@ -1,0 +1,188 @@
+{
+  "name": "mlops-tabular",
+  "mechanism": "Escalate",
+  "repo": "ayush488-glitch/mlops-stack",
+  "path": "skills/mlops-tabular/SKILL.md",
+  "author": {
+    "owner": "ayush488-glitch",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/00bfd0c0c3b815b3587b084ad2756a35ab817c64.md",
+  "conclusion": "mlops-tabular (Escalate) specifies 5 of 5 categories: 2 autonomy limits, 3 clarification rules, 10+ approval gates, 9 validation rules, 1 escalation rule. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter: allowed tools; generating code before Phase 1 is complete.",
+    "statements": [
+      {
+        "quote": "allowed-tools:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Never generate code before Phase 1 is complete.** Problem framing first, always.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly prose: vague answers asked once more; one question at a time.",
+    "statements": [
+      {
+        "quote": "If the first answer is vague, ask once more. If the second answer is still vague, work with what you have — don't interrogate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**One question at a time.** Never dump 5 questions on the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Questions ONE AT A TIME.** Never batch multiple questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 0 conditional), mostly list: explicit permission before executing; creating any file; writing any code.",
+    "statements": [
+      {
+        "quote": "**CONFIRM** — Ask for explicit permission via AskUserQuestion before executing. \"Does this approach look right? Any changes?\" Options always include: A) Looks good, proceed. B) I want to change someth",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**EXECUTE** — Only after confirmation: write the code, run it, show the output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Creating any file → explain what it will contain, ask permission first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing any code → describe the approach first, ask permission first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Running any command → say what you're running and why, ask permission first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Making any design decision → present options with recommendation, user picks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Moving to the next step → summarize what was done, show progress, ask to continue",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Get explicit approval before moving to Phase 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Get confirmation before moving on.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "9 validation rules (9 mandatory, 0 advisory; 0 conditional), mostly list: running and verifying each pipeline step; data loading output; re-running a fix after failure.",
+    "statements": [
+      {
+        "quote": "Build one pipeline step, run it, verify it works, explain what happened, then move to the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run it. Verify output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Re-run and verify** the fix works.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Read `references/capabilities/production-readiness.md` and run through the checklist:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "[ ] All pipeline steps execute without errors",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Metrics meet or exceed the baseline from Phase 1",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Code is tested (at minimum: data validation, preprocessing, model loading)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never generate all the code at once.** Build step by step, verify at each checkpoint.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Always run code after generating it.** Don't assume it works — verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list: version or API mismatch in generated code.",
+    "statements": [
+      {
+        "quote": "**If version/API mismatch**: Use WebFetch to check current docs for the installed version. Show the user: \"This failed because [library] version [X] uses a different API than what I generated. Let me ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

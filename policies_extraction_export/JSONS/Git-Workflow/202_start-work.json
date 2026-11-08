@@ -1,0 +1,174 @@
+{
+  "name": "start-work",
+  "mechanism": "Escalate",
+  "repo": "MattVOLTA/outworkos_diy",
+  "path": "skills/start-work/SKILL.md",
+  "author": {
+    "owner": "MattVOLTA",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00ff7aecd191c45769f29568c2889e93080b27b3.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "start-work (Escalate) specifies 3 of 5 categories: 4 approval gates, 1 validation rule, 10+ escalation rules; none for autonomy limits, clarification rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "start-work begins work on a GitHub issue: pre-flight checks, branch creation, syncing with main, build and test baselines, then implementation with test-driven development and UI checks when required. Most of its rules say when to stop and report. UI changes need the user's confirmation in the browser before shipping. It sets no autonomy limits or clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, mostly bullet points. When the issue affects the UI, browser confirmation is mandatory and never skipped: the agent shows screenshots, asks the user to confirm and repeats until the user approves.",
+    "statements": [
+      {
+        "quote": "**This step is MANDATORY when `UI_AFFECTED = true`.** Do not skip it. Do not ship without it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confirm with the user:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-capture and re-confirm (repeat until approved)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER skip browser confirmation when `UI_AFFECTED = true`, even if the code change seems trivial",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. When implementation is complete, the agent visually verifies UI changes in the browser.",
+    "statements": [
+      {
+        "quote": "When implementation is complete and the dev server is running, use the Claude in Chrome browser tools to visually verify the changes:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 3 conditional), mostly table.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly table rows. The agent stops and reports if any step fails: on uncommitted changes, a missing issue, or conflicts when syncing. If the build fails on main it asks whether to continue, it blocks implementation that skips required test-driven development, and without browser tools it asks the user to verify manually.",
+    "statements": [
+      {
+        "quote": "Execute these steps in order. **STOP and report if any step fails.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Show the uncommitted files and STOP.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If conflicts or errors:** Report and STOP.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Show errors and ask: \"Continue anyway or fix first?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If Chrome browser tools are unavailable, ask the user to manually verify and confirm before proceeding to /ship-it",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "STOP - user must commit/stash first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "STOP - verify issue number",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "STOP - report conflict",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "WARN - note baseline, ask to continue",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "BLOCK - do not allow implementation without TDD",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

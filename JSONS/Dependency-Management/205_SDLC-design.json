@@ -1,0 +1,160 @@
+{
+  "name": "SDLC-design",
+  "mechanism": "Escalate",
+  "repo": "DYAI2025/Astro-Noctum",
+  "path": ".claude/skills/SDLC-design/SKILL.md",
+  "author": {
+    "owner": "DYAI2025",
+    "commit_author": "f7e1809d3a7be815",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0106e930d8d61ac385443b2965c4d13ca65b7801.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "SDLC-design (Escalate) specifies 3 of 5 categories: 6 approval gates, 6 validation rules, 4 escalation rules; none for autonomy limits, clarification rules. Strongest: approval gates.",
+  "conclusion_qualitative": "SDLC-design drafts or updates architecture, data model and API design documents from approved objectives, aiming for the simplest design that satisfies every requirement. A phase gate stops it when objectives are not ready, and the user confirms drafts and changes before anything is written. Requirement and constraint coverage are verified throughout. It sets no autonomy limits or clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (5 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 counted as a suggestion (it contains \"may\" and \"could\"), 1 tied to a situation, all bullet points. Design work goes ahead without a gap analysis, or past the design phase, only on the user's explicit confirmation. The draft is presented and written only after approval, and changes to existing documents are reported with their downstream effects and wait for confirmation.",
+    "statements": [
+      {
+        "quote": "Proceed only on explicit user confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Warn** that modifying Design artifacts may impact downstream tasks or deployed code. If the user confirms, proceed but flag downstream dependencies that could be affected.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Present the draft** to the user for review before writing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**After user approval**, write the document.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Report these to the user before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Wait for user confirmation** before applying changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, evenly split between running text and bullet points. Before presenting, the agent checks every approved requirement is satisfiable and no constraint is violated, treating an uncovered must-have or a violated constraint as an incomplete design, and assesses coverage and compliance across all design documents.",
+    "statements": [
+      {
+        "quote": "Before presenting the draft, cross-reference the design against approved requirements **and** constraints:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each approved requirement, confirm it is satisfiable by the proposed design.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "For each constraint in `1-objectives/constraints/`, confirm the design does not violate it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If a Must-have requirement is not covered or a constraint is violated, the design is incomplete — address it before proceeding, or explicitly flag it as a gap that needs resolution.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Cross-reference **all** approved requirements against the full set of design documents — not just the current session's work.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify no design choice across any document violates a constraint.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, mostly bullet points. The agent stops when the project is not initialized or approved goals and requirements are missing, warns about designing against draft artifacts, and surfaces conflicts between design choices and constraints.",
+    "statements": [
+      {
+        "quote": "**Stop**, recommend `/SDLC-init`, and do not proceed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If (a) or (b) are not met** — elicitation is incomplete. **Stop**, list what is missing, recommend `/SDLC-elicit`, and do not proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Flag draft artifacts**: if any requirements or user stories relevant to the current design work are still in `Draft` status, warn the user before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a design choice is in tension with a constraint, surface the conflict and explain the trade-off.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

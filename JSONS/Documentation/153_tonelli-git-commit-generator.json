@@ -1,0 +1,185 @@
+{
+  "name": "tonelli-git-commit-generator",
+  "mechanism": "Escalate",
+  "repo": "TonelliMG/tonelli-claude-skills",
+  "path": "Pessoais/skills/tonelli-git-commit-generator/SKILL.md",
+  "author": {
+    "owner": "TonelliMG",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0010452981d1a1ecde724533ecfb8b27a771e351.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "tonelli-git-commit-generator (Escalate) specifies 4 of 5 categories: 4 autonomy limits, 1 clarification rule, 4 approval gates, 6 escalation rules; none for validation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "tonelli-git-commit-generator writes a Conventional Commits message in Brazilian Portuguese from the actual staged diff and, after explicit approval, makes the commit. It aborts on an invalid repository, missing staged changes or suspected secrets, asks before committing to sensitive branches, and stops at the first commit failure. It does nothing beyond the commit itself and sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly running text. The agent works only with staged files, never creates an empty commit unless asked, and only creates new commits: no amending, branching, pushing, code edits or conflict resolution.",
+    "statements": [
+      {
+        "quote": "Work **only with staged files**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never use `--allow-empty`** or generate an empty commit, unless the user explicitly asks to push an empty commit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "This skill only handles **new commits**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "This skill exists **only** to generate and, with approval, execute the commit described above. Don't do anything else (don't create branches, don't push, don't edit code, don't resolve conflicts) unle",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When the staged changes are unrelated, the agent points this out and offers one message per logical group.",
+    "statements": [
+      {
+        "quote": "**Multiple unrelated staged changes**: point this out to the user before forcing a single message; offer to generate one message per logical group.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly running text. The agent commits only after the user explicitly confirms the proposal, asks before leaving unstaged files out, and needs explicit authorisation to commit to a sensitive branch (qa, master or main).",
+    "statements": [
+      {
+        "quote": "warn the user that these files will be left out of the commit, list them, and ask `[y]` to continue with only what's staged or `[n]` to cancel. Only proceed to the semantic analysis after this confirm",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the current branch is `qa`, `master`, or `main` (case-insensitive comparison, e.g. `Main` also counts), tell the user they're about to commit directly to a sensitive branch and ask for explicit con",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "10. Execute only after explicit confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "If the user confirms with \"y\"/\"sim\", execute the commit safely:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (6 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 5 tied to a situation, mostly running text. The agent cancels with a clear message when the repository is invalid, stuck mid-operation or has nothing staged, cancels and alerts the user when secrets appear in the diff, and on a failed commit stops and reports the error without retrying or forcing.",
+    "statements": [
+      {
+        "quote": "1. Validate repository state (abort on failure)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Check, in this order, and cancel with a clear message to the user if anything fails:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If not, report it and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If nothing is staged, tell the user and stop (do not run `git add` yourself unless the user asks).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you find either, **cancel the commit and alert the user** instead of proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the commit fails, **stop immediately and report the error to the user**. Don't retry, don't force it (`--no-verify` etc.), don't try to fix the problem yourself.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "name": "plan-design-review",
+  "mechanism": "Act",
+  "repo": "him55710-sudo/uni-foli",
+  "path": ".agents/skills/gstack-plan-design-review/SKILL.md",
+  "author": {
+    "owner": "him55710-sudo",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00479a8ffda45b5346eabc8995584575bad46d8c.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "plan-design-review (Act) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 6 approval gates, 3 validation rules, 7 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "plan-design-review reviews the design side of a plan, rates each design dimension from 0 to 10 and edits the plan to close the gaps. The agent works with a fixed tool set, must not change code or start implementing, and saves design files only in its own folder, though it generates mockups without asking. It asks the user many questions (about setup, focus areas, feedback and real design choices) and waits for confirmation before running other skills or acting on another model's advice. It checks mockups for quality, requires evidence before calling work done, and stops and escalates after repeated failures, on security doubts, or when it cannot verify the work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly running text. The front matter limits the agent to `Read`, `Edit`, `Grep`, `Glob`, `Bash` and `AskUserQuestion`. When proactive mode is off it runs only the skills the user types, and in shared repositories it flags problems instead of fixing them. During the review it must not change code or start implementing, must save design files only under `~/.gstack/projects/$SLUG/designs/`, and may run only a listed set of commands. It generates mockups without asking permission.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Edit, Grep, Glob, Bash, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**`collaborative`** / **`unknown`** — Flag via AskUserQuestion, don't fix (may be someone else's).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT make any code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT start implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't ask permission.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL PATH RULE:** All design artifacts (mockups, comparison boards, approved.json) MUST be saved to `~/.gstack/projects/$SLUG/designs/`, NEVER to `.context/`, `docs/designs/`, `/tmp/`, or any pr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask permission.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Allowed commands under this exception:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 5 tied to a situation, mostly running text. The agent asks the user about telemetry and proactive behavior during setup, says exactly what it needs when information is missing, and asks which design areas to focus on, then stops until the user answers. It waits for the user's feedback on the mockup comparison board, confirms it understood the feedback before going on, and asks when there is a real design choice to make.",
+    "statements": [
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: After telemetry is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "AskUserQuestion: \"I've rated this plan {N}/10 on design completeness. The biggest gaps are {X, Y, Z}. I'll generate visual mockups next, then review all 7 dimensions. Want me to focus on specific area",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP.** Do NOT proceed until user responds.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After the board is serving, use AskUserQuestion to wait for the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**AskUserQuestion again** with the same board URL to wait for the next round of feedback.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use AskUserQuestion to verify before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "AskUserQuestion if there's a genuine design choice to resolve",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (5 mandatory, 1 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 only a suggestion (worded with \"might\"), 3 tied to a situation, all in running text. Instead of starting a skill on its own it offers it and waits for confirmation, follows an ask-first flow for upgrades, and opens the essay link only if the user says yes. When it and another AI model agree on a change, it presents that as a recommendation and asks whether to proceed, never acting on it directly. It asks before regenerating mockups after the review.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `$GSTACK_ROOT/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with 4 options,",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never say \"the outside voice is right\" and act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Say \"the outside voice recommends X — do you want to proceed?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "AskUserQuestion: \"The review passes changed [list major design changes]. Want me to regenerate mockups to reflect the updated plan? This ensures the visual reference matches what we're actually buildi",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. A task counts as done only when every step is complete with evidence for each claim. The agent runs a cross-model quality check (a check by a different AI model) on each generated mockup and checks the mockups against a list of generic \"AI slop\" design patterns.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After generation, run a cross-model quality check on each variant:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If visual mockups were generated in Step 0.5, evaluate them against the AI slop blacklist above.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "7 escalation rules (6 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (it contains \"should\"), 3 tied to a situation, mostly bullet points. The agent flags anything that looks wrong and reports concerns or blockers, saying what blocks it and what it tried. It may always stop and say a task is too hard, and it must stop and escalate after 3 failed attempts, when unsure about a security-sensitive change, or when the work goes beyond what it can verify.",
+    "statements": [
+      {
+        "quote": "Always flag anything that looks wrong — one sentence, what you noticed and its impact.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

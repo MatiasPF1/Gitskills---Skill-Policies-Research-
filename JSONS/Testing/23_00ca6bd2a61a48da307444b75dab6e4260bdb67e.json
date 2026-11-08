@@ -1,0 +1,89 @@
+{
+  "name": null,
+  "mechanism": "Act",
+  "repo": "azigler/dotfiles",
+  "path": "agents/skills/fix/SKILL.md",
+  "author": {
+    "owner": "azigler",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00ca6bd2a61a48da307444b75dab6e4260bdb67e.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "unknown (Act) specifies 2 of 5 categories: 4 autonomy limits, 1 validation rule; none for clarification rules, approval gates, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) is a fix-and-guard workflow: it records a bug as a tracked item, has a subagent fix it, and adds or repairs a regression test so the bug cannot return unnoticed. The agent fixes bugs on its own without asking permission, but must use a separate worktree instead of `main` unless the fix is a production hotfix. It runs the regression test and confirms it passes before committing. It never tells the agent to ask the user for information, wait for approval, or what to do when something fails.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, evenly split between bullet points and running text. When the agent notices a bug mid-session it must not ask permission or ask \"should I fix this?\"; it starts the fix right away. It must not fix on `main` when working in a worktree (a separate working copy) would be safe, unless it is a real production hotfix, and must not clutter the team's external tracker with one-line fixes.",
+    "statements": [
+      {
+        "quote": "You (the orchestrator) notice a problem mid-session — **don't ask permission, fire `/fix`** and route the work",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't gate behind \"should I fix this?\" — if it's a bug, fix it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For routine fixes (typos, small logic bugs caught in review), the bead itself is the record — don't clutter the external tracker with one-line fixes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Fix on main when worktree isolation would have been safe** — unless it's a true production hotfix, use the worktree.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When fixing files outside a worktree, the agent runs the regression test and confirms it passes before committing.",
+    "statements": [
+      {
+        "quote": "Run the test and confirm it passes before commit",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

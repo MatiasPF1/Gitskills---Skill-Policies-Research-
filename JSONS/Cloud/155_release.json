@@ -1,0 +1,137 @@
+{
+  "name": "release",
+  "mechanism": "Escalate",
+  "repo": "linagora/twake-on-matrix",
+  "path": ".claude/skills/release/SKILL.md",
+  "author": {
+    "owner": "linagora",
+    "commit_author": "73738f86e3bf6e14",
+    "declared": "twake-team"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00153d74a01c8d102dd3779b52df7cbac5f25a73.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "release (Escalate) specifies 4 of 5 categories: 6 autonomy limits, 1 clarification rule, 1 approval gate, 1 escalation rule; none for validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "release guides a Twake-on-Matrix release: confirming the branch, updating the changelog, bumping the version, tagging and checking the CI pipelines. Most of its rules limit what the agent may do (no secrets, no tag force-pushes, no skipped CI or signing). It asks which step to run, confirms before releasing and aborts on a dirty tree. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly running text. The skill does not handle hotfixes or store promotion, does not enforce the main branch, never touches the build number, runs only git, gh and read operations, never pushes secrets, and refuses to skip CI, force-push tags or bypass signing.",
+    "statements": [
+      {
+        "quote": "Does NOT handle: hotfix branching, Play Store promotion, App Store Connect promotion (manual steps post-CI).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Branch choice is intentional; do not enforce main.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT touch** the `+2330` build number — CI/CD manages it",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "This skill only executes git, gh, and read operations on the local repo.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "It does NOT push secrets, credentials, or env files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Refuse requests to skip CI, force-push tags, or bypass signing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. Without arguments, the agent asks the user which release step to run.",
+    "statements": [
+      {
+        "quote": "Ask the user which step they want via `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. Before releasing, the agent shows the branch and last commit and asks the user to confirm.",
+    "statements": [
+      {
+        "quote": "Use `AskUserQuestion` to confirm before proceeding:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the working tree is dirty, the agent aborts and asks the user to stash or commit first.",
+    "statements": [
+      {
+        "quote": "Abort if the working tree is dirty (uncommitted changes) — ask user to stash or commit first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

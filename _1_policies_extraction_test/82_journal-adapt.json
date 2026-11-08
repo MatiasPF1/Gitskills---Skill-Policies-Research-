@@ -1,0 +1,79 @@
+{
+  "name": "journal-adapt",
+  "mechanism": "Escalate",
+  "repo": "qcc-0622/pvk-research-skills",
+  "path": "skills/journal-adapt/SKILL.md",
+  "author": {
+    "owner": "qcc-0622",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/00bd71f83ff7fdaee798c225a112d624ff5b72a1.md",
+  "conclusion": "journal-adapt (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 3 clarification rules, 2 approval gates, 1 escalation rule; none for validation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose: batch MinerU conversion.",
+    "statements": [
+      {
+        "quote": "For each PDF in the folder, run MinerU individually (never batch — batch mode causes server crashes):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly prose: adding facts not in the manuscript; journal, corpus folder and discipline.",
+    "statements": [
+      {
+        "quote": "**Never add facts.** Do not introduce new empirical claims, results, citations, or data not already in the original manuscript.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user for three things:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for all answers before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly heading: confirming journal rules before revising.",
+    "statements": [
+      {
+        "quote": "HUMAN GATE — Confirm before Phase 2",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Do not begin Phase 2 until the user confirms.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: MinerU missing or failing.",
+    "statements": [
+      {
+        "quote": "If the command fails, tell the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

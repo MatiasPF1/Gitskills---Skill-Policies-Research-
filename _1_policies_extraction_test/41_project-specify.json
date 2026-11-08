@@ -1,0 +1,89 @@
+{
+  "name": "project-specify",
+  "mechanism": "Ask",
+  "repo": "telum-ai/speck",
+  "path": ".cursor/skills/project-specify/SKILL.md",
+  "author": {
+    "owner": "telum-ai",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/005c7c4f2539976d6e74469e690cfe96a3fcbbed.md",
+  "conclusion": "project-specify (Ask) specifies 2 of 5 categories: 3 autonomy limits, 6 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 2 conditional), mostly prose: asking the user to repeat the description; running project-specify on completed projects; waiting before the readme refresh.",
+    "statements": [
+      {
+        "quote": "Do not ask the user to repeat it unless they provided an empty command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL**: If this project is already completed or validated, and the user is requesting a directional pivot, strategic contract change, or redesigned feature, **do NOT run `/project-specify`**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not wait for the user to ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "6 clarification rules (6 mandatory, 0 advisory; 3 conditional), mostly prose: project archetype; vague or missing project details; specialized domain and strategic gaps.",
+    "statements": [
+      {
+        "quote": "Before play level detection, infer or ask for the **Project Archetype** from the project's description or conversation context:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If unclear, ask: \"Which archetype best describes this project's target architecture?",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If empty or too vague, ask: \"What would you like to build?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "The project template needs specific information.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask if domain is specialized:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask targeted questions to fill gaps that **cannot be discovered from code**:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

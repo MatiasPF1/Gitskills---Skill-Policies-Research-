@@ -1,0 +1,199 @@
+{
+  "name": "architecting",
+  "mechanism": "Ask",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/development/architecting/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": null,
+    "declared": "Nebula Framework Team"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01a2869c4310d4b51843faa21b5a44c3ee304fd5.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Scalability",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "architecting (Ask) specifies 4 of 5 categories: 2 autonomy limits, 1 clarification rule, 3 approval gates, 10+ validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "architecting designs system architecture: data models, API contracts, JSON schemas and decision records, from product requirements. The agent has freedom on trade-off analysis but little on data models and contracts, where field changes and final targets need the user's approval. Its largest group of rules is a self-validation loop of cross-checks before done. It asks when requirements are ambiguous and sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, one in the front matter and one in a table. The front matter limits the agent to `Read`, `Write`, `Edit` and `AskUserQuestion`, and it has high freedom to use its own judgment on technology trade-offs.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Use judgment to evaluate alternatives, weigh pros/cons, and recommend approaches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. When the product requirements are ambiguous, the agent asks clarifying questions.",
+    "statements": [
+      {
+        "quote": "Ask clarifying questions if requirements are ambiguous",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly table rows. The agent does not add or remove data-model fields without the user's approval, the user approves final non-functional targets, and API changes need architect approval and a spec update first.",
+    "statements": [
+      {
+        "quote": "Do not add/remove fields without user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Propose measurable targets based on context. User approves final values.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Changes require architect approval and spec update first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (9 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"should\"), 3 tied to a situation, mostly bullet points. The agent validates the product deliverables, then before declaring work complete checks that API specs and JSON schemas are valid and consistent with the data model, fixes and re-validates any inconsistency, and declares done only when every cross-check passes and service boundaries are clear.",
+    "statements": [
+      {
+        "quote": "**Validate PM deliverables**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before declaring work complete, verify each deliverable:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Validate OpenAPI specs are syntactically correct (if tooling available)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Validate JSON Schemas parse without errors",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Cross-check data model entities against API contracts — every entity with CRUD should have matching endpoints",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Cross-check JSON Schemas against OpenAPI request/response definitions — schemas must align",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If inconsistencies found → fix, re-validate",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Only declare Definition of Done when all cross-checks pass",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Service boundaries clear",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Data model complete",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

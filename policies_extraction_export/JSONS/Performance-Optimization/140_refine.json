@@ -1,0 +1,175 @@
+{
+  "name": "refine",
+  "mechanism": "Ask",
+  "repo": "duc01226/EasyPlatform",
+  "path": ".claude/skills/refine/SKILL.md",
+  "author": {
+    "owner": "duc01226",
+    "commit_author": "243440c1cbcda100",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0197a44de250ab0fa69bbb38c81f81801ee79ac3.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "refine (Ask) specifies 4 of 5 categories: 1 autonomy limit, 9 clarification rules, 1 approval gate, 3 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "refine turns ideas into product backlog items: it validates the problem hypothesis, adds acceptance criteria and estimates the work. Most of its rules make the user decide: a mandatory validation interview, more questions on domain rules, the user's call on a large re-estimate and on next steps, and no skipped or reordered steps without approval. The generated item must pass a quality check. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent uses the plan's context and does not ask again about anything answered in earlier steps.",
+    "statements": [
+      {
+        "quote": "Use plan context — don't re-ask questions answered in prior steps",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "9 clarification rules (9 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, none tied to a situation, mostly bullet points. The user, never the AI, decides assumptions, scope and dependencies: the agent never skips validating the hypothesis, always runs a 3-5 question interview, asks more often about domain boundaries and business rules, but never about the tech stack. A re-estimate off by more than half goes to the user before the item is written, and the agent always asks which next step to take.",
+    "statements": [
+      {
+        "quote": "the user decides assumptions, scope, and dependencies, never the AI.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "NEVER skip hypothesis validation for new features",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Validation interview NOT optional — always ask 3-5 questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Increase AskUserQuestion frequency — validate domain boundaries, entity relationships, business rules",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**[CRITICAL] NEVER ask about tech stack during refinement.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Validate hypothesis with user via AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Generate 3-5 questions covering assumptions, scope, dependencies, edge cases. Use AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Surface to user via `AskUserQuestion` BEFORE Phase 8 writes the PBI",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "use `AskUserQuestion` to present these options. NEVER skip",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent runs the steps in their declared order and never skips, reorders or merges them without the user's explicit approval.",
+    "statements": [
+      {
+        "quote": "**[BLOCKING]** Execute skill steps in declared order. NEVER skip, reorder, or merge steps without explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. Every completed or skipped step needs evidence or a reason, and the generated backlog item must meet the M1-M5 quality criteria, including a check that a competent team could rebuild the feature from it, or be reworked.",
+    "statements": [
+      {
+        "quote": "**[BLOCKING]** Every completed/skipped step MUST include brief evidence or explicit skip reason.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The generated PBI MUST satisfy M1-M5 or be reworked before Phase 8 writes it:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Rebuild-from-scratch validation (M5):** Before emitting, confirm a competent team",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

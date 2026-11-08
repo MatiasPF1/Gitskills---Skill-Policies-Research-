@@ -1,0 +1,211 @@
+{
+  "name": "investigation-pipeline",
+  "mechanism": "Ask",
+  "repo": "anantham/LexiconForge",
+  "path": "issues/_meta/proposed-skill/SKILL.md",
+  "author": {
+    "owner": "anantham",
+    "commit_author": "40fe68465efa1a35",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00025728e4e0f1431826156dc6784b7747e46ca8.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "investigation-pipeline (Ask) specifies 5 of 5 categories: 2 autonomy limits, 3 clarification rules, 6 approval gates, 10+ validation rules, 1 escalation rule. Strongest: validation rules.",
+  "conclusion_qualitative": "investigation-pipeline triages and investigates a queue of bug claims, classifying each against the specs and recording evidence, themes and regression-test obligations. The agent works from the code rather than asking the user what the system does, but never picks a side on ambiguous or conflicting specs and escalates them instead. Pushing, opening pull requests, changing production code during investigation and closing issues all need the user's explicit authorization. Its largest group of rules are checks: reproduction evidence before fixing, and failing-then-passing regression tests before an issue counts as fixed.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. The agent must not ask the user whether the system already does something but read the codebase itself, and it cannot start the development server on its own.",
+    "statements": [
+      {
+        "quote": "**Code-first.** Don't ask the user \"does the system already do X?\" — read the codebase.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The skill cannot start the dev server unilaterally.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all bullet points. When a spec is contradictory or ambiguous, or two readings imply different fixes, the agent must not pick a side: it records the disagreement and escalates it to a human.",
+    "statements": [
+      {
+        "quote": "**`needs-human-clarification`** — spec is contradictory, two reasonable interpretations imply different fixes, ADR's spirit is unclear. **DO NOT pick a side.** Document the disagreement in §8.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`escalate_to_human` — spec ambiguous; don't pick a side",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**ADRs aren't sacred.** Genuine ambiguity → escalate, don't pick a side.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. Without the user's explicit authorization the agent does not change production code outside `issues/` and `tests/` during investigation, push commits, open pull requests, mark an issue fixed before every closing check is ticked, or promote a draft theme into the official ADR (architecture decision record) folder.",
+    "statements": [
+      {
+        "quote": "What the agent does NOT do without explicit user authorization",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Modify production code outside `issues/` and `tests/` during the investigation phase.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Push commits to remote branches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Open PRs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Mark an issue `fixed` while §9a's checkboxes aren't all ticked.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Promote a theme draft into `docs/adr/` (that's a human ratification step).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (9 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (worded with \"may\"), 1 tied to a situation, mostly bullet points. An issue can move to ready-for-fix only with observed reproduction evidence; otherwise the verdict is \"cannot reproduce\". Every defect needs a named regression test that fails on the buggy code, passes with the fix and lands in the same pull request, and before marking an issue fixed the agent checks that the fix is in and every required test is written and passing.",
+    "statements": [
+      {
+        "quote": "You may set `verdict=real-bug` provisionally based on static analysis, but **`triaged → ready-for-fix` requires §2 (Reproduction) to be filled in with observed evidence.**",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you can't reproduce by any of these, the verdict is `cannot-reproduce`, not `real-bug`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Fixed = test in. No issue closes as `fixed` without a regression test that would have failed against the bug.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**For every defect** identified in §3-§5, name the **specific regression test** that must exist before this issue can transition `investigated → fixed`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Fail against the buggy code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Pass against the fix.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Be committed in the same PR as the fix. **No \"test in a follow-up PR.\"**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before marking the issue `fixed`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Fix is implemented (or PR linked)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Every regression test obligation has been written and is passing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If two ADRs disagree or an ADR's intent is unclear, the agent escalates instead of deciding.",
+    "statements": [
+      {
+        "quote": "ADRs are not sacred. If two ADRs disagree or an ADR's spirit feels confused, escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

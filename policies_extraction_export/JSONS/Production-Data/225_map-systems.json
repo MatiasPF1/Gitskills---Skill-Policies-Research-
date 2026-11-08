@@ -1,0 +1,140 @@
+{
+  "name": "map-systems",
+  "mechanism": "Escalate",
+  "repo": "NhomNhem/afterimage-tokyo",
+  "path": ".agents/skills/map-systems/SKILL.md",
+  "author": {
+    "owner": "NhomNhem",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0168bf8ed32c596256c397291e416f53ac8d9c6b.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "approval_gates",
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "map-systems (Escalate) specifies 4 of 5 categories: 5 clarification rules, 5 approval gates, 2 validation rules, 2 escalation rules; none for autonomy limits. Strongest: clarification rules.",
+  "conclusion_qualitative": "map-systems breaks a game concept into its systems, maps their dependencies, sets design priorities and writes a systems index. The user approves each step (the system list, ordering, priorities and the file write) and chooses what to design next, while director agents review the results through gates. It stops on a missing concept or a declined write and sets no autonomy limits.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly running text. The agent asks the user about the game concept, collects feedback on the system list, and asks which system to design next and whether to continue or stop.",
+    "statements": [
+      {
+        "quote": "Use `AskUserQuestion` to ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Then use `AskUserQuestion` to capture feedback:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `AskUserQuestion` for: \"Start designing [system-name] now, pick a different system, or stop here?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After `/design-system` completes, use `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After the systems index is created (or after designing some systems), present next actions using `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (4 mandatory, 1 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"may\"), 1 tied to a situation, all in running text. The user approves the system list, the dependency ordering and the priorities, and the agent asks \"May I write the systems index?\" and writes only after a yes.",
+    "statements": [
+      {
+        "quote": "Iterate until the user approves the enumeration.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `AskUserQuestion` to ask: \"Does this dependency ordering look right?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use `AskUserQuestion` to ask: \"Do these priority assignments match your vision?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"May I write the systems index to `design/gdd/systems-index.md`?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for approval. Write the file only after \"yes.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all in running text. After the dependency mapping and the priorities are approved, director agents review them through formal gates before the agent continues.",
+    "statements": [
+      {
+        "quote": "**After dependency mapping is approved, spawn `technical-director` via Task using gate TD-SYSTEM-BOUNDARY (`.Codex/docs/director-gates.md`) before proceeding to priority assignment.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**After priorities are approved, spawn `producer` via Task using gate PR-SCOPE (`.Codex/docs/director-gates.md`) before writing the index.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between a bullet point and running text. The agent fails with a clear message when the game concept is missing, and reports itself blocked when the user declines the write.",
+    "statements": [
+      {
+        "quote": "Read `design/gdd/game-concept.md` — **fail with a clear message if missing**:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the user declined: **Verdict: BLOCKED** — user did not approve the write.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

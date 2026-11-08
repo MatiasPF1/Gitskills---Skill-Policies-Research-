@@ -1,0 +1,95 @@
+{
+  "name": null,
+  "mechanism": "Ask",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "development/domain-sidnovais-healthcore/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/011fa0c3817c050784482dd4977d7a6060d5dea4.md",
+  "topics": [
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Ask) specifies 4 of 5 categories: 1 autonomy limit, 2 clarification rules, 3 validation rules, 1 escalation rule; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) implements a complete domain feature in an HC.LIS module (business rules, domain events, aggregate changes and unit tests) following the project's DDD conventions. The agent asks the user for the module or any uncertain detail rather than guessing, stops on a missing module, and builds and fixes compilation errors before reporting success. It works with a fixed tool set and sets no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Bash`, `Read`, `Write`, `Edit`, `Glob` and `Grep`.",
+    "statements": [
+      {
+        "quote": "tools: Bash, Read, Write, Edit, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between a bullet point and running text. If no module is named, the agent lists the modules and asks the user to pick one, and when the feature is uncertain it asks one focused question instead of writing speculative code.",
+    "statements": [
+      {
+        "quote": "If not provided: list the subdirectories of `src/HC.LIS/HC.LIS.Modules/` and ask the user to pick one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If uncertain, ask the user one focused question. Do not generate speculative code.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. After writing all files the agent builds the solution and fixes any compilation errors before reporting success.",
+    "statements": [
+      {
+        "quote": "Phase 5 — Verify",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "After writing all files, run:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Fix any compilation errors before reporting success.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the named module does not exist, the agent stops with a clear error instead of guessing or creating it.",
+    "statements": [
+      {
+        "quote": "If provided but the directory `src/HC.LIS/HC.LIS.Modules/{ModuleName}/` does not exist: stop with a clear error — do not guess or create the module.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

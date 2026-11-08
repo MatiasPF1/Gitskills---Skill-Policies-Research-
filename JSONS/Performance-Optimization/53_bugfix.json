@@ -1,0 +1,347 @@
+{
+  "name": "bugfix",
+  "mechanism": "Ask",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "testing/bugfix-chrisallenlane-claude-swe-workflows/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00044ee8a88593dc1cc7430161a60cb870046222.md",
+  "topics": [
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "bugfix (Ask) specifies 5 of 5 categories: 8 autonomy limits, 5 clarification rules, 8 approval gates, 10+ validation rules, 10+ escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "bugfix coordinates specialist agents through a full bug-fixing cycle: clarify, reproduce with a failing test, diagnose, fix, verify, review and document. The agent starts by questioning the user until the bug is clear, and asks the user before skipping security findings, finishing the workflow, updating tickets or rebasing. Checks dominate: failing-then-passing tests, full test runs and practical re-runs of the reported scenario. It limits itself to narrow fixes and small review clean-ups, and escalates to the user after repeated failed reproductions or fixes.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, none tied to a situation, all bullet points. The agent must not refactor unrelated code, runs command-line checks in a subshell while skipping destructive operations, and runs one agent at a time with a safety limit of 12 agent spawns. The peer reviewer may make only small clean-ups: no architectural changes, no re-implementing features and no changing the approach the first specialist chose.",
+    "statements": [
+      {
+        "quote": "Don't refactor unrelated code (that's a separate workflow)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "CLI tools: Run commands in subshell (skip destructive operations)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Small cleanups and nits only",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No architectural changes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No re-implementing features",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No changing approaches or patterns chosen by original SME",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Agents run one at a time (no parallel spawning)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Overall workflow: 12 total agent spawns (safety limit)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly running text. The agent gathers bug details from the user (symptoms, expected behavior, reproduction steps, environment), asks clarifying questions when needed and goes back to the user until the bug is clearly understood, including when reproduction fails. It asks for the ticket number if the user said one exists.",
+    "statements": [
+      {
+        "quote": "**Gather bug details from user:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask clarifying questions if needed:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Loop back to user until the bug is clearly understood.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Return to step 1 for more information from the user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask user for ticket number if not found and they indicated a ticket exists",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "8 approval gates (7 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"should\"), 3 tied to a situation, mostly bullet points. Security findings must be fixed, or skipped only with the user's explicit approval, and the user can approve going ahead despite remaining issues. After the summary the agent asks whether to finish the workflow, and it asks before updating or closing the ticket and before rebasing the branch on `main`.",
+    "statements": [
+      {
+        "quote": "**Has authority to demand changes** - security issues should block or require explicit user approval",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Security findings**: Must address or get explicit user approval to skip",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Critical/High severity: Must address in step 7 or get explicit user approval to skip",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "User can approve proceeding despite issues if acceptable",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**After presenting summary from step 11, ask user if they want to complete the workflow.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If user confirms, perform housekeeping tasks:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask user: \"Do you want to update and/or close ticket #456?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask user: \"Your branch is behind main. Would you like to rebase on main?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly bullet points. The agent writes tests that reproduce the bug and verifies they fail; the bug counts as fixed when they pass. After the fix it checks the original tests pass, runs the full suite for regressions, practically re-runs the reported scenario, reviews code only after verification passes, re-checks the tests after later changes and verifies documentation examples still work.",
+    "statements": [
+      {
+        "quote": "Run the tests and **verify they actually fail**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**This is the contract.** When these tests pass, the bug is fixed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "SME verifies: the originally-failing test(s) from step 2 now pass",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "SME runs the full test suite to check for regressions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ensure all new and existing tests pass",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Agent performs **practical verification first** — actually reproducing the originally-reported scenario and confirming it's fixed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The originally-reported bug must be demonstrably fixed (practical test) AND tests must pass to proceed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Only proceed to code review if fix verification passed.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verify implementations from steps 7 and 8 didn't break tests** - catches issues from refactoring, security fixes, or peer review cleanups",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify code examples in affected docs still work",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, all bullet points. When reproduction fails the agent reports what it tried, and after 2 failed reproductions or 3 failed fix verifications it escalates to the user with its findings. Deeper problems found in peer review are flagged or escalated to the user rather than fixed, and peer-review changes that break tests are reverted.",
+    "statements": [
+      {
+        "quote": "Report what was tried and why reproduction failed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Max 2 reproduction attempts before escalating to user with findings",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Track iteration count (max 3 attempts before escalating to user)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If something seems wrong at a deeper level, flag it rather than fix it",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Max 2 reproduction attempts before escalating to user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Track iteration count (max 3 attempts before escalating to user)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Report specific failures (which tests still fail, what practical verification showed)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If peer review changes break tests: revert peer review changes and proceed (nits aren't worth breaking functionality)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If peer review flags deeper issues: escalate to user for decision",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Tests broken by changes from step 8: Revert step 8 changes (peer review nits shouldn't break tests)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

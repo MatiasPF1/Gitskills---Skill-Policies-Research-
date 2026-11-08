@@ -1,0 +1,183 @@
+{
+  "name": "mikado-loop",
+  "mechanism": "Escalate",
+  "repo": "vordimous/mikado-skills",
+  "path": "plugins/mikado/skills/mikado-loop/SKILL.md",
+  "author": {
+    "owner": "vordimous",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01665964c0381de3c4b618c4191b801b0db599ac.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "mikado-loop (Escalate) specifies 4 of 5 categories: 5 autonomy limits, 4 clarification rules, 4 validation rules, 5 escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "conclusion_qualitative": "mikado-loop executes one leaf of a Mikado refactoring goal per invocation (pick, implement, commit, mark done) and is meant to run under a loop driver. It commits but never pushes, proceeds on recorded defaults and stops for the user only on genuine ambiguity. Unsafe repository states and unsatisfiable prerequisites stop the loop, and each leaf is verified before it is checked off. It sets no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. The front matter limits the agent to `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Agent`, `EnterWorktree`, `ExitWorktree`, `TodoWrite` and `AskUserQuestion`. Each invocation handles exactly one leaf, commits but never pushes, ignores unrelated issues, and proceeds with recorded defaults instead of stopping to re-confirm.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Glob, Grep, Agent, EnterWorktree, ExitWorktree, TodoWrite, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do NOT fix unrelated issues encountered along the way",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "proceed with that default and note the choice in the leaf's commit body. Do not stop the loop to re-confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Commit the leaf; never push.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never run more than one leaf per invocation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, mostly bullet points. The agent stops and asks when reconciliation needs user input, confirms a fuzzy-matched leaf, and stops the loop for the user only on genuine ambiguity, not on every open question.",
+    "statements": [
+      {
+        "quote": "If reconciliation would require user input, stop and ask; do not silently alter the graph.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the user supplied `/mikado-loop <leaf-phrase>`, use fuzzy-match to that phrase and confirm before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Stop the loop and surface to the user only when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Stop on ambiguity, not on every open question.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. Each leaf must pass its narrowest verification with no new failures, the commit is verified to have landed, and the reconciliation check is never skipped.",
+    "statements": [
+      {
+        "quote": "Narrowest verification passes (compile for refactors, targeted test for logic changes)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No new failures anywhere touched",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If it completed and committed the leaf: verify the commit landed (`git log -1 --oneline`), then update the graph to check the leaf off.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never skip the reconciliation check.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, all tied to a situation, all bullet points. The agent stops when the goal is missing or lives in another worktree, the working tree is dirty or the branch is protected, and stops without committing when a leaf reveals prerequisites it cannot satisfy, reporting them.",
+    "statements": [
+      {
+        "quote": "If any are found, surface them and stop:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If no sibling worktrees contain a goal file, stop with the original message: `No Mikado goal found. Run /mikado <goal> first.`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If not, stop: \"Working tree dirty. Commit or stash before running /mikado-loop.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Must not be a protected branch. If it is, stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the leaf reveals its own prerequisites you cannot satisfy within its scope, STOP, report the sub-prerequisites as a list, and do not commit anything.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "name": "ralpr",
+  "mechanism": "Escalate",
+  "repo": "Archethect/ralpr",
+  "path": "skills/ralpr/SKILL.md",
+  "author": {
+    "owner": "Archethect",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01364d6e66d9857754cfaef574941620053fbd19.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ralpr (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 1 approval gate, 5 escalation rules; none for clarification rules, validation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "ralpr runs one iteration of an autonomous loop that takes an issue or pull request through implementation, review and refactor. It fixes review findings by default and needs the user's approval to skip critical ones. When a fix seems impossible, docs and scripts disagree, or tests keep failing, it stops, releases the item and reports to the user. It sets no clarification rules or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent always works in worktrees so parallel agents do not collide on a branch.",
+    "statements": [
+      {
+        "quote": "**Critical** - ALWAYS work in worktrees (described in every phase), otherwise parallel agents might work on the same branch resulting in collisions!",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. Critical and high review findings agreed by two reviewers are fixed, and skipping one needs the user's approval.",
+    "statements": [
+      {
+        "quote": "CRITICAL/HIGH — fix if >= 2 reviewers agree (no skip without user approval).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, evenly split between bullet points and table rows, with one in running text. The agent flags discrepancies between scripts and docs to the user, stops and asks when a fix seems impossible, stops after failed tests or invalid agent output, and never leaves an item assigned but inactive.",
+    "statements": [
+      {
+        "quote": "If script behavior or output contradicts docs, follow docs and flag the discrepancy to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a fix seems impossible (e.g., missing infrastructure, out-of-scope dependency), STOP and ask the user — never rationalize skipping.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Fix & retry, or RELEASE and STOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Retry once, then STOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Rule:** Never leave assigned and inactive. Either fix or release.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

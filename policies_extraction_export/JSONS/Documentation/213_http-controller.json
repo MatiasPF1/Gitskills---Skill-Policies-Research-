@@ -1,0 +1,100 @@
+{
+  "name": "http-controller",
+  "mechanism": "Escalate",
+  "repo": "detain/phlix-server",
+  "path": ".opencode/skills/http-controller/SKILL.md",
+  "author": {
+    "owner": "detain",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/013d36afef5c07f8847c3fcd85c5c42a01fc0ba5.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "http-controller (Escalate) specifies 1 of 5 categories: 5 validation rules; none for autonomy limits, clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "http-controller creates HTTP controller classes following the project's request and response pattern, registers the route and wires dependency injection. Its only control rules are checks on the agent's work: parsing, route registration, a required unit test and a smoke test. It sets no autonomy limits, clarification rules, approval gates or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, all bullet points. The agent checks the router for similar routes, verifies the controller parses, confirms the new route is registered exactly once, adds a unit test before the task counts as complete, and smoke-tests the endpoint.",
+    "statements": [
+      {
+        "quote": "Every new controller needs a matching unit test in `tests/Unit/Server/Http/Controllers/` before the task is complete.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify by grepping the existing router file for similar routes before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify the controller parses with `php -l src/Server/Http/Controllers/<Name>Controller.php` before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify by grepping the router for the new path: it must appear exactly once.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Smoke-test the route.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

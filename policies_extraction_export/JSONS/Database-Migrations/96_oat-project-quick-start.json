@@ -1,0 +1,302 @@
+{
+  "name": "oat-project-quick-start",
+  "mechanism": "Ask",
+  "repo": "tkstang/skills",
+  "path": ".agents/skills/oat-project-quick-start/SKILL.md",
+  "author": {
+    "owner": "tkstang",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0073bc62873a24729a376342d880d804c89838a3.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "oat-project-quick-start (Ask) specifies 5 of 5 categories: 8 autonomy limits, 10+ clarification rules, 7 approval gates, 6 validation rules, 4 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "oat-project-quick-start creates or resumes a lightweight OAT project and turns a request into a runnable plan with minimal ceremony. It asks only the questions needed and lets the user choose the approach, design depth and other options, but does not advance past its gates without an explicit choice. It writes no code and stays within quick-mode artifacts, with autonomous branches for unattended runs. A review loop and a configured gate check the plan before completion, and repeated gate failures are escalated to the human.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 4 tied to a situation, mostly bullet points. The front matter limits the agent to `Read`, `Write`, `Bash`, `Glob`, `Grep` and `AskUserQuestion`. Quick start writes no implementation code and no spec-driven documents unless the user asks to promote, and the agent stops itself if it drifts into either. Clear requests skip the design-depth decision, and in autonomous mode it proceeds past the dirty-tree and design-depth choices on its own, leaving unrelated files unstaged.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "No spec-driven spec/design authoring unless the user explicitly asks to promote, or `OAT_AUTONOMOUS=1` selects promotion through the documented design-depth heuristic.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "No implementation code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Expanding into spec-driven lifecycle documentation → STOP and keep scope to quick workflow artifacts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing implementation code → STOP and return to plan authoring.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When `OAT_AUTONOMOUS=1`, use that existing proceed-anyway branch, record gate `QS-01`, and leave all unrelated working-tree files unstaged.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Auto-advance rule:** If the request was classified as **well-understood** in Step 2a and discovery surfaced no architecture decisions, component boundary questions, or unexpected complexity, skip th",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Autonomous resolution:** If `OAT_AUTONOMOUS=1` and the auto-advance rule did not apply, do not present the choice below.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 5 tied to a situation, mostly bullet points. The agent asks for a project description when only a name was given, and never guesses requirements from the name or the codebase. It asks only the minimum questions needed, one at a time, proposes 2 to 3 distinct approaches, and lets the user choose the design depth, the dispatch ladder's scope and whether to add a phase gate review, asking in plain chat if the question tool is unavailable.",
+    "statements": [
+      {
+        "quote": "If `$ARGUMENTS` contains only a bare `{project-name}` (for example a slug or short title) without a substantive description, ask the user for a short project description before scanning the repo or dr",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not infer requirements from the project name alone or go exploring the codebase to guess what the project means.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If neither field is available, ask for both the project name and a short project description.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask only the minimum additional questions needed to remove blockers for a quality plan.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Propose 2-3 distinct approaches** — not minor variations, but genuinely different strategies.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**One question at a time** — ask focused clarifying questions sequentially, not as a batch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Otherwise**, present the user with a choice about how to proceed:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `AskUserQuestion` is unavailable but chat is available, ask the mode-choice question as a plain chat message and wait for the user's reply.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the effective ladder is missing or incomplete, show the full bundled recommendation and ask the user to select its owning scope before running exactly one command:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When that contract offers a choice, render its required question verbatim:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, evenly split between bullet points and running text. When the working tree is dirty the agent offers to commit, proceed or abort and does not advance without an explicit choice, even if it must ask in plain chat. It gets explicit buy-in on the chosen approach, runs a requirements gate before planning without auto-confirming, and offers rather than silently applies minor review fixes.",
+    "statements": [
+      {
+        "quote": "Offer three choices via `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `AskUserQuestion` is unavailable but chat is available, present the three choices as a plain chat message and wait for the user's reply.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not advance past this gate without an explicit choice.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Incremental validation** — after exploring the solution space and converging on an approach, summarize the chosen direction and get explicit user buy-in before moving to decisions and constraints.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Step 2.6: Requirements Gate (Straight-to-Plan Path)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Do not auto-confirm just because the structured question tool is missing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Apply Critical and Important artifact-local fixes when unambiguous; offer Medium and Minor fixes instead of silently applying them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly running text. The agent runs an artifact-review loop on the plan until it is clean or retries run out, then runs the configured gate as the last check. Completion steps must not run while the gate is blocked, and a partially reviewed plan is never handed to implementation.",
+    "statements": [
+      {
+        "quote": "Invoke the shared `Auto Artifact-Review Loop` from `oat-project-plan-writing` with target `plan` before syncing project state or handing off to implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-dispatch after rewrites until clean or the retry bound is exhausted.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After artifact finalization and plan artifact review, run the configured gate as the last check before plan and project completion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "A gate that ends in `block` after attempts are exhausted, or at an unresolved `prompt` boundary, means the completion steps below MUST NOT run; the phase stays `in_progress` and resumable.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Reach this completion boundary only after the configured gate passes or resolves according to its `onFailure` policy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never expose a partially reviewed quick plan to `oat-project-implement`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, evenly split between running text and bullet points. The agent warns once when no formatting command can be found, stops at a product-judgment boundary when the evidence cannot support an autonomous choice, and escalates to the human or asks how to proceed when the gate keeps failing.",
+    "statements": [
+      {
+        "quote": "If no command is discoverable, warn once with `no format command discovered in repo instructions; skipping`, then continue.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop at a product-judgment boundary if the available evidence cannot support the choice.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If attempts are exhausted, escalate to the human with accumulated feedback and append that feedback to `implementation.md`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "`prompt`: surface the gate failure and ask the human how to proceed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

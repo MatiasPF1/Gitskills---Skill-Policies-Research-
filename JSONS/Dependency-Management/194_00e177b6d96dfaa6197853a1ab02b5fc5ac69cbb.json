@@ -1,0 +1,192 @@
+{
+  "name": null,
+  "mechanism": "Escalate",
+  "repo": "oprogramadorreal/optimus-claude",
+  "path": "skills/how-to-run/SKILL.md",
+  "author": {
+    "owner": "oprogramadorreal",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00e177b6d96dfaa6197853a1ab02b5fc5ac69cbb.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Escalate) specifies 5 of 5 categories: 4 autonomy limits, 4 clarification rules, 2 approval gates, 7 validation rules, 1 escalation rule. Strongest: validation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) generates or updates a HOW-TO-RUN.md that teaches a new developer to set up and run the project, from detected toolchains, dependencies, services and configuration. It may write only that one file and never runs commands itself. The user confirms the detected context, unverifiable items and any changes to an existing file, and every fact is verified against the codebase.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. The only file the agent may create or modify is HOW-TO-RUN.md; it never executes commands for the user, writes a new file without asking, and never deletes content outside the sections it replaces.",
+    "statements": [
+      {
+        "quote": "**Write scope:** The only file this skill is ever permitted to create or modify is `HOW-TO-RUN.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "You run the commands locally; I never execute anything for you.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If `HOW-TO-RUN.md` does not exist yet:** write it directly without asking for approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never delete** existing content outside the sections being replaced.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, evenly split between running text and bullet points. The agent asks the user to confirm the detected project context, flags and asks about unusual existing content instead of silently including or dropping it, asks how to proceed when the file exists, and asks where to place content in an unusual structure.",
+    "statements": [
+      {
+        "quote": "Use `AskUserQuestion` — header \"Context review\", question \"Does this capture the project correctly?\":",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Caution rule:** For existing content that seems intentionally unusual or whose purpose is beyond what the codebase reveals — **flag explicitly and ask** rather than silently including or excluding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If `HOW-TO-RUN.md` exists** (whether all aspects are \"Found & accurate\", partial, or stale): use `AskUserQuestion`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the existing `HOW-TO-RUN.md` structure is too unusual to safely update a section, show the generated content to the user and ask where to place it manually.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a bullet point. The agent asks before including any unverifiable documented item, and when the file exists it shows the full diff and waits for approval before writing.",
+    "statements": [
+      {
+        "quote": "For each \"Documented but unverifiable\" item from the audit, use `AskUserQuestion` to ask whether to include it in `HOW-TO-RUN.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If `HOW-TO-RUN.md` already exists:** show the full diff (section-by-section when updating, full content when replacing) and wait for user approval before writing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. Every fact from existing docs is verified against the codebase; versions, counts, paths and ports are never guessed but taken from detected evidence, and the written file is verified (package-manager prefixes and more) after writing.",
+    "statements": [
+      {
+        "quote": "the skill learns from them but always verifies every fact against the actual codebase before using it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Version numbers from manifest / build-file constraints only — never guess versions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify before including:** any content sourced from existing docs (README.md, CONTRIBUTING.md, etc.) must match the detector's Context Detection Results.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Reject unverifiable exact counts.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never assert an unobserved path.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never guess runtime ports.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify:** all commands use the correct package manager prefix",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If a verification check fails, the agent shows the correction to the user, waits for approval, applies it and re-verifies.",
+    "statements": [
+      {
+        "quote": "**If any check fails:** show the correction to the user, wait for approval, apply it, then re-verify.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

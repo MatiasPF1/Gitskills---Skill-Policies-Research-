@@ -1,0 +1,168 @@
+{
+  "name": "seobuild-onpage",
+  "mechanism": "Escalate",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "marketing/seobuild-onpage/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0019f4f20332088e520cdec837db11431eab1a48.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "seobuild-onpage (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 1 clarification rule, 3 approval gates, 5 validation rules, 3 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "seobuild-onpage writes SEO pages meant to rank on Google and be cited by AI answer engines, from live search data and strict structure and content rules. Its few control rules require quality tests and a printed scorecard on every page, tags for human verification instead of invented facts, and the user's confirmation before writing or changing routing and deployment files.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent never silently overwrites an existing page or component file.",
+    "statements": [
+      {
+        "quote": "**Never overwrite** an existing component or page file silently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When rewriting an existing page, the agent takes the target keyword from the title or asks the user.",
+    "statements": [
+      {
+        "quote": "Identify target keyword from title/H1 or ask user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly bullet points. The agent confirms the brief with the user before writing (unless told to \"just write it\"), and never changes routing, .htaccess or deployment files without showing the exact diff and getting approval.",
+    "statements": [
+      {
+        "quote": "Confirm with user before writing unless they said \"just write it.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the user provides only a keyword, infer the rest and confirm before writing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never modify** routing config, `.htaccess`, or deployment manifests without printing the exact diff and asking the user to approve before write.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly bullet points. Every page must pass the Reddit and Information Gain tests and the quality checklist, and is rewritten until it does; the quality scorecard must always be printed, and companion pages meet the same tests.",
+    "statements": [
+      {
+        "quote": "**Always print the quality scorecard** (Section 14) at the end of every page output. No exceptions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before completing any output, pass these tests. If the content fails, rewrite it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Pass the **Reddit Test, Information Gain Test, and `{{VERIFY}}` tagging requirements** identically to the money page (Section 5).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Quality Checklist**: Run the checklist (Section 14) and **print the scorecard in the output** (see Section 14 for format). If any item fails, revise before delivering.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**MANDATORY -- DO NOT SKIP THIS STEP.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. The agent never invents studies, statistics or prices but tags unverified claims for human editors, and if the research script fails it falls back to other data sources.",
+    "statements": [
+      {
+        "quote": "You are forbidden from inventing fake studies, statistics, or pricing. Use auditable tags for human editors.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Tag any unverified claims with `{{VERIFY}}` as usual",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the script exits with an error (no DataForSEO creds), fall back in this order:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

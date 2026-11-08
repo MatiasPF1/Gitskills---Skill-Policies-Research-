@@ -1,0 +1,318 @@
+{
+  "name": "mlops-tabular",
+  "mechanism": "Act",
+  "repo": "ayush488-glitch/mlops-stack",
+  "path": "skills/mlops-tabular/SKILL.md",
+  "author": {
+    "owner": "ayush488-glitch",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00bfd0c0c3b815b3587b084ad2756a35ab817c64.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "clarification_rules",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Distributed Systems",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "mlops-tabular (Act) specifies 5 of 5 categories: 3 autonomy limits, 8 clarification rules, 10+ approval gates, 10+ validation rules, 3 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "mlops-tabular is a co-pilot that guides users from a business problem to a production machine-learning system on tabular data, covering design, implementation, deployment and monitoring. Control rests mostly with the user: the agent explains, proposes and asks permission before every file, piece of code or command, and leaves business decisions to the user. It asks discovery questions one at a time and never guesses library APIs. It runs and verifies each step, evaluates models against a baseline and runs a readiness checklist before shipping, and it stops or warns the user when data is missing or tools fail.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. The front matter limits the agent to a fixed tool set, including web fetch and search. During discovery it does not re-ask what the user already said, and if an answer is still vague after one follow-up it works with what it has instead of questioning further.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Edit, Grep, Glob, AskUserQuestion, WebFetch, WebSearch, Agent",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If the second answer is still vague, work with what you have — don't interrogate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't re-ask what you already know.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "8 clarification rules (6 mandatory, 2 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, 6 strict and 2 counted as suggestions (their quoted questions contain \"should\"), 3 tied to a situation, mostly running text. The agent asks discovery questions one at a time, states the problem type and asks the user to confirm it, and asks for feedback on the feature, training and monitoring plans and on which drifted features matter. It must never guess a library's API: if unsure, it fetches the docs. If the user pushes back on problem framing twice, it still asks the two most critical questions.",
+    "statements": [
+      {
+        "quote": "Ask these **one at a time**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't ask \"is this classification or regression?\" — tell them what it is based on what they described, and ask them to confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Here's the feature engineering plan for your data. Does this make sense? Any domain knowledge I should factor in?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Here's the training and evaluation plan. The baseline model will be [X] — we start simple and iterate. Does this align with your timeline and expectations?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Will this model run in production long-term? If yes, we need monitoring.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Human judgment:** \"Which drifted features matter most in your business context? At what threshold should we trigger retraining?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Generate code matching the INSTALLED version.** If you're unsure about an API, fetch the docs first. Never guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If they push back again, ask the 2 most critical questions (Q1 and Q2) and proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. Every action follows an explain, propose, confirm, execute cycle: the agent asks explicit permission before creating any file, writing code or running any command, and executes only after confirmation. The user decides business questions such as metric thresholds and design choices, and must approve the problem statement before the agent moves on to architecture.",
+    "statements": [
+      {
+        "quote": "**Human judgment on business decisions.** The user decides metric thresholds, feature selection rationale, retraining triggers, cost-of-error tradeoffs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**CONFIRM** — Ask for explicit permission via AskUserQuestion before executing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**EXECUTE** — Only after confirmation: write the code, run it, show the output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Creating any file → explain what it will contain, ask permission first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing any code → describe the approach first, ask permission first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Running any command → say what you're running and why, ask permission first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Making any design decision → present options with recommendation, user picks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Moving to the next step → summarize what was done, show progress, ask to continue",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After discovery, produce a `problem_statement.md` that the user reviews before proceeding:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Get explicit approval before moving to Phase 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent builds one pipeline step at a time, runs it and verifies the output, and re-runs code after fixing an error. It evaluates the model on a held-out test set, compares it with the baseline, checks it across subgroups, and adds unit and integration tests. Before shipping it runs a production-readiness checklist, including that all pipeline steps run without errors and metrics beat the baseline.",
+    "statements": [
+      {
+        "quote": "Build one pipeline step, run it, verify it works, explain what happened, then move to the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run it. Verify output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Evaluate on held-out test set",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Compare against baseline from Phase 1 Q7",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Slice-based analysis (does the model work for all subgroups?)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tests (unit, integration)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Re-run and verify** the fix works.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Read `references/capabilities/production-readiness.md` and run through the checklist:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All pipeline steps execute without errors",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Metrics meet or exceed the baseline from Phase 1",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, all tied to a situation, mostly bullet points. If the user has no data or labels, the agent stops and redirects to collecting data. When code fails because of a library version mismatch, it tells the user why before fixing it, and if no live documentation source is available it warns the user and flags its uncertainty.",
+    "statements": [
+      {
+        "quote": "If they don't have data or labels: stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If version/API mismatch**: Use WebFetch to check current docs for the installed version. Show the user: \"This failed because [library] version [X] uses a different API than what I generated. Let me ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If neither is available, warn the user and flag uncertainty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

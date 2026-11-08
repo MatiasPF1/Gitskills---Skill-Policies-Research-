@@ -1,0 +1,298 @@
+{
+  "name": "brainstorming",
+  "mechanism": "Ask",
+  "repo": "silviobeer/agentic-development-skill-chain",
+  "path": "claude/skills/1_brainstorming/SKILL.md",
+  "author": {
+    "owner": "silviobeer",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01349d7d3124b0b1f1000e400404087b4f237403.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "brainstorming (Ask) specifies 4 of 5 categories: 3 autonomy limits, 10+ clarification rules, 10+ approval gates, 10+ validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "brainstorming is step 1 of the PROJ workflow, turning a feature idea into one or more approved, buildable feature concepts, splitting broad ideas into separate projects. It is built around the user: the agent never assumes, rejects vague answers, plays back assumptions and has the user approve the split, the boundary and the concept before anything else happens. It self-reviews the written concept before the user does. It inspects the project rather than asking what the code can answer, and never jumps ahead to downstream skills.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. The agent inspects the project rather than asking questions the repository can answer, and does not invoke planning, architecture, implementation or other downstream skills directly from brainstorming.",
+    "statements": [
+      {
+        "quote": "If a needed answer can be discovered from the project, inspect the project instead of asking.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT invoke writing-plans, architecture, executing, QA, documentation, or implementation directly from brainstorming.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Inspect the project before asking questions the repo can answer.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"should\", in a quoted example answer), 5 tied to a situation, mostly running text. The agent never fills gaps with assumptions: it asks instead, one question per response, re-asks with concrete options when an answer is a vague \"yes\", and records only what the user confirms. It asks what already exists, asks one at a time until the mandatory deep-dives are covered, and reads back every assumption for confirmation.",
+    "statements": [
+      {
+        "quote": "Do NOT fill gaps with assumptions. If you catch yourself thinking \"I assume the user means X\", ask the user instead. Probable is not certain.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A vague \"yes\" is not clarification. Answers like \"yes\", \"looks fine\", \"should work\", \"probably\", \"I think so\", or \"mostly\" are non-answers when a concrete decision is needed. Re-ask with specific alte",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask one question per response unless the user explicitly asks for a checklist or wants to move fast.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not leave unresolved ambiguity in the concept just because a later step exists.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user what already exists and gather references:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not guess — only record what the user confirms or what a reference clearly shows.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "This is a concrete decision, so a vague \"yes\" is not enough if the split has unresolved boundaries. Re-ask with specific merge/remove/reorder options when needed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Choose processing order** - for a multi-PROJ map, confirm whether to write only the first concept or write all concepts in dependency order.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Clarifying questions** - ask one at a time until mandatory deep-dives are covered.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Assumption playback** - read back every assumption and wait for confirmation/correction.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly running text. Nothing is implemented, planned or scaffolded until the user approves a feature concept. The user must approve any split into several projects before real project numbers are assigned, approve the project boundary, approve the concept section by section and review the written concept before the workflow moves on.",
+    "statements": [
+      {
+        "quote": "Do NOT invoke any implementation skill, write code, scaffold a project, edit production files, or create an implementation plan until you have presented a feature concept and the user has approved it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use temporary labels such as \"PROJ-A candidate\" until the user approves the split.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not allocate real PROJ numbers before approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to approve or correct the split before continuing:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Allocate real PROJ numbers only after the split and ordering are approved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Approve project boundary** - get explicit user approval for one PROJ or an approved multi-PROJ map before feature intake.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Present feature concept** - section by section, scaled to complexity, and get approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**User reviews written concept** - wait for approval before transition.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask for approval after each section when the concept is large or nuanced.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After self-review, ask the user to review the written concept:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. Before asking the user to review it, the agent self-reviews the written concept: no placeholders, internal consistency, focused or decomposed scope, documented decomposition, no ambiguous requirements, covered deep-dives, recorded alternatives and documented assumptions.",
+    "statements": [
+      {
+        "quote": "**Concept self-review** - fix placeholders, contradictions, ambiguity, missing deep-dives, and scope creep.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Review the written concept before asking the user to review it:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Placeholder scan:** no `TBD`, `TODO`, empty sections, or vague words standing in for decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Internal consistency:** selected direction, scope, users, success criteria, and risks do not contradict each other.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Scope check:** the concept is focused enough for one PROJ, or it has been decomposed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Decomposition check:** for broad seeds, the approved project map, sibling PROJs, dependencies, and excluded sibling scope are documented.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ambiguity check:** requirements cannot be interpreted in materially different ways.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Deep-dive coverage:** success criteria, out-of-scope, and users/scenarios are explicitly documented.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Exploration record:** rejected/deferred alternatives are captured briefly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Assumption record:** confirmed assumptions are documented; unresolved assumptions are not hidden.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

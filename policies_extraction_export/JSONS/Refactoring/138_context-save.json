@@ -1,0 +1,237 @@
+{
+  "name": "context-save",
+  "mechanism": "Ask",
+  "repo": "greencm/gstuck",
+  "path": "output/gstack/context-save/SKILL.md",
+  "author": {
+    "owner": "greencm",
+    "commit_author": "71de0f2e5f620065",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01857d534824afc920229b8e456cff67446e7cac.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "context-save (Ask) specifies 5 of 5 categories: 10+ autonomy limits, 4 clarification rules, 5 approval gates, 1 validation rule, 5 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "context-save saves the working context (git state, decisions made and remaining work) to a file so a later session can resume it (gstack). Its shared preamble asks about setup choices and requires explicit confirmation for destructive decisions, while orchestrator-spawned sessions decide alone. The skill itself only reads state and writes the context file, never modifying code. It escalates after repeated failures, security doubts or work it cannot verify.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (9 mandatory, 1 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"recommended\"), 5 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Write`, `Glob`, `Grep` and `AskUserQuestion`. First-run tips never halt the user's task, and in orchestrator-spawned sessions the agent skips setup prompts and picks the recommended option. If asking the user fails it must not silently decide instead. The sync question never blocks the skill, the agent auto-commits only in continuous checkpoint mode and pushes only when that is switched on, and auto-decides questions the user has set to \"never ask\".",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If `ACTIVATED` is `no` (first skill run on this machine) AND the preamble printed a non-empty `FIRST_TASK:` value that is NOT `nongit`: show ONE short, project-specific line mapped from the token, as ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion for interactive prompts. Auto-choose the recommended option.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT run upgrade checks, telemetry prompts, routing injection, or lake intro.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If AskUserQuestion is unavailable (no variant in your tool list) OR a call to it fails, do NOT silently auto-decide or write the decision to the plan file as a substitute.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not block the skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"continuous\"`: auto-commit completed logical units with `WIP:` prefix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Rules: stage only intentional files, NEVER `git add -A`, do not commit broken tests or mid-edit state, and push only if `CHECKPOINT_PUSH` is `\"true\"`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `CHECKPOINT_MODE` is `\"explicit\"`: ignore this section unless a skill or user asks to commit.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "`AUTO_DECIDE` means choose the recommended option and say \"Auto-decided [summary] → [option] (your preference). Change with /plan-tune.\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly running text. The agent asks once about the new writing style, asks which open question a bare-letter reply answers instead of guessing, and on high-stakes ambiguity stops, names it, presents options and asks. When information is missing it says exactly what it needs.",
+    "statements": [
+      {
+        "quote": "If `WRITING_STYLE_PENDING` is `yes`: ask once about writing style:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A bare letter maps to the single most-recent UNANSWERED brief; if more than one is open (a split chain), do NOT guess — ask which `D<N>.k` it answers.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For high-stakes ambiguity (architecture, data model, destructive scope, missing context), STOP. Name it in one sentence, present 2-3 options with tradeoffs, and ask. Do not use for routine coding or o",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — missing info; state exactly what is needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly running text. Irreversible or destructive choices need an explicit typed confirmation and are never taken on a vague reply. The agent asks before syncing artifacts to GitHub or setting up the sync repository, treats agreement between AI models as a recommendation for the user to decide, and confirms ambiguous preference changes.",
+    "statements": [
+      {
+        "quote": "**One-way / destructive confirmations in prose.** When the decision is a one-way door (irreversible or destructive — delete, force-push, drop, overwrite), prose is a WEAKER gate than the tool, so make",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Privacy stop-gate: if output shows `ARTIFACTS_SYNC: off`, `artifacts_sync_mode_prompted` is `false`, and gbrain is on PATH or `gbrain doctor --fast --json` works, ask once:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If A/B and `~/.gstack/.git` is missing, ask whether to run `gstack-artifacts-init`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Cross-model agreement is a recommendation, not a decision. The user decides.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Normalize never-ask, always-ask, ask-only-for-one-way; confirm ambiguous free-form first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. A task counts as done only when it is completed with evidence.",
+    "statements": [
+      {
+        "quote": "**DONE** — completed with evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (4 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"consider\"), 1 tied to a situation, mostly bullet points. In headless sessions where no one can answer a question, the agent reports itself blocked and waits. It stops and reassesses when going in circles, reports concerns and blockers, and escalates after 3 failed attempts, on doubts about security-sensitive changes, or when it cannot verify the work.",
+    "statements": [
+      {
+        "quote": "`headless` → `BLOCKED — AskUserQuestion unavailable`; stop and wait (no human can answer).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If you are looping on the same diagnostic, same file, or failed fix variants, STOP and reassess. Consider escalation or /context-save.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — completed, but list concerns.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — cannot proceed; state blocker and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Escalate after 3 failed attempts, uncertain security-sensitive changes, or scope you cannot verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "name": "parallel-ticket-planner",
+  "mechanism": "Act",
+  "repo": "mizan0515/driftless",
+  "path": "profiles/shared/skills/parallel-ticket-planner/SKILL.md",
+  "author": {
+    "owner": "mizan0515",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0165a2e0f8ac7446162dccc7d42f1172b22b1383.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "parallel-ticket-planner (Act) specifies 4 of 5 categories: 10+ autonomy limits, 2 approval gates, 10+ validation rules, 2 escalation rules; none for clarification rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "parallel-ticket-planner splits remaining repository work into conflict-free parallel tickets and gives a non-developer manager a step-by-step guide with ready-to-paste prompts, written in Korean and English. Most of its rules limit what the agent and its workers may touch: no other AI tools, no secrets or host-wide files, careful use of worktrees, and workers that never merge. It keeps going without asking between tickets except at human-only gates, and does not touch a dirty checkout without the manager's decision. It checks work through audit lanes and repository gate scripts before adopting anything, and reports failed merges or stop signals.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. They forbid calling other AI tools or CLI bridges and allow sub-agent fan-out only where the tool guarantees a concurrency limit. Lanes that create new files must not use worktrees (separate working copies), large batches of parallel shell calls are not used, and git or GitHub changes run one after another. Workers stop at a review-ready state and never claim a merge; the agent never reads or writes credentials, secrets or host-wide profiles, never imports host helper scripts, and never resets, stashes or deletes a dirty base checkout.",
+    "statements": [
+      {
+        "quote": "peer/recursive AI 호출, MoA, 다른 CLI 브리지 호출 금지.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "같은 도구가 자기 서브에이전트로 이 레포 일을 하는 in-harness fan-out은 그 도구가 동시성 상한을 보장할 때만 허용.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**새 파일을 만드는 lane은 worktree를 쓰지 않는다 (load-bearing).**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**거대 병렬 셸 배치로 fan-out을 흉내내지 않는다.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "GitHub/git mutation(push/merge/PR)과 chained 호출(뒤 인자가 앞 결과에 의존)은 순차로 돌린다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "워커는 이 레포 일을 하는 독립 세션, 서브에이전트, 또는 worktree lane. peer/recursive AI 호출이나 다른 CLI 브리지 명령 금지.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "워커 출력은 blocked가 아니면 `REVIEW_READY`에서 끝난다. 최종 merge, issue closure, Project 완료를 주장하지 않는다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "host-global 에이전트 프로필, credentials, 환경 비밀 파일, SSH 자료, 브라우저 프로필, auth 상태, secrets 디렉터리를 읽거나 쓰지 않는다(canonical set: `schemas/forbidden-paths.json`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "host helper 스크립트를 import 하지 않는다. 레포 안 `scripts/*.ps1`, `gh`, plain `git`을 쓴다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "dirty 또는 ahead base worktree는 보존하고 보고한다. reset/stash/delete 하지 않는다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. In long autonomous runs the agent does not stop to ask between tickets, but it must stop at true human-only gates such as product priorities, credentials, money, public releases, destructive actions or force-pushes. It never resets, stashes or deletes a dirty base checkout, or builds on top of it, without an explicit manager decision.",
+    "statements": [
+      {
+        "quote": "**No stop-to-ask between tickets.** 각 lane이 끝나면 다음이 즉시 시작; 진짜 human-only gate(product/priority, credentials, money, public release, destructive/irreversible, host-global, user data, force-push/history",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "명시적 관리자 결정 없이 reset/stash/delete 하거나 그 위에 build 하지 않는다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. The agent plans a periodic audit lane that checks every \"done\" claim has real command evidence, verifies each worker after creation, and does not count a worker as finished just because tests ran. Before review, merge or adoption it runs the repository's mergeability, validation, containment and adoption gate scripts, and the coordinator checks the diff and evidence before any commit or merge. It self-checks its plan and fixes any failed item before replying.",
+    "statements": [
+      {
+        "quote": "**별도 주기적 audit lane(~15분)을 계획한다** — feature 작업 안 함: goal+rules 재독, 최근 lane이 mission에 부합하는지·모든 done/PASS에 진짜 command/gate 증거가 있는지 확인 (auto-compaction drift와 낙관적 보고를 잡는다), main이 clean하고 매달린 PR 없음을 확인, d",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify every worker after creation: title, `cwd`, branch/worktree, owner surfaces, and stop signal must match the plan.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Worker closeout is not success merely because tests ran. Useful changes must end in a draft PR, `REVIEW_READY` packet, explicit blocker evidence, or no-change evidence. Idle/completed plus uncommitted",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "워커나 코디네이터 프롬프트가 PR을 만들거나 소유하면, `REVIEW_READY` / `PR_READY` / merge-ready / auto-merge 전에 레포의 PR mergeability 게이트 스크립트를 돌린다. 현재 PR이 `CONFLICTING`, `DIRTY`, 또는 `UNVERIFIED` mergeability면 성공이 아니라 `CONFLI",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Validation 게이트: 레포 계약대로 PR validation 게이트 스크립트를 채택 전에 돌리고, 명령 증거와 함께 PASS/FAIL을 보고한다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "모든 Done/adoption 전 containment 게이트: 레포의 containment 가드 스크립트가 PASS여야 한다. 프로필별 containment 가드가 별도로 있으면 그것도 PASS여야 한다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "이 계획이 작업을 downstream/default 워크플로로 승격하면, 레포의 downstream-adoption 가드 스크립트를 돌리고 결과를 보고한다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "코디네이터는 commit/PR/merge 전에 local diff, validation 증거, branch, issue marker, forbidden-surface scan(레포의 containment 가드 스크립트)을 검증해야 함;",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "parallel-ticket 요청에 답하기 전, 조용히 검증한다:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any item fails, fix the response before sending it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. If the automatic merge fails, the agent reports the blocker, and if any worker reports a stop signal it does not start the next phase.",
+    "statements": [
+      {
+        "quote": "Auto merge 기본값: 루틴 PR owner는 validation/review/현재-PR 게이트가 통과하고 manager-risk 게이트가 없을 때 레포의 auto-merge 헬퍼를 돌린다. auto-merge 실패 시 헬퍼 blocker를 보고한다. 관리자가 GitHub를 직접 들여다보게 두지 않는다.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "어떤 워커가 stop 신호를 보고하면 다음 phase를 시작하지 않음.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

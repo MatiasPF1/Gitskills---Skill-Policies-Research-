@@ -1,0 +1,159 @@
+{
+  "name": "opencode-agent-creator",
+  "mechanism": "Ask",
+  "repo": "family3253/skill",
+  "path": "skills/opencode-agent-creator/SKILL.md",
+  "author": {
+    "owner": "family3253",
+    "commit_author": null,
+    "declared": "Rodrigo Lago"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0182b9ac6ce39964f099ea4f2e0206aca10bfec7.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "opencode-agent-creator (Ask) specifies 2 of 5 categories: 1 autonomy limit, 10+ validation rules; none for clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "opencode-agent-creator guides the creation of OpenCode agents: their front matter, tools, permissions and system prompt. Its control rules are mostly a pre-creation checklist plus a final check that the agent works, and the agent writes the files itself rather than asking the user to run scripts. It sets no clarification rules, approval gates or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent creates and edits agent files itself with its own tools and does not make the user run scripts by hand.",
+    "statements": [
+      {
+        "quote": "When creating agents, use OpenCode's `Write` and `Edit` tools directly to create/modify agent files. Do NOT require users to run scripts manually.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. Before creating an agent the agent checks a list: written entirely in English, valid front matter with description and examples, triggers and example blocks, tools matching the purpose, permission controls on dangerous tools, clear responsibilities, a Context First subsection and a documented workflow.",
+    "statements": [
+      {
+        "quote": "Before creating an agent, verify:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Written entirely in English** (frontmatter, prompt, examples)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Valid YAML frontmatter with description and examples",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Description includes triggers + `<example>` blocks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tools match agent purpose",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Dangerous tools have permission controls",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "System prompt defines clear responsibilities",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Context First subsection** in Operating Principles",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Workflow is documented",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tested with real tasks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

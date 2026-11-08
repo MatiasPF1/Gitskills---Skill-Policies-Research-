@@ -1,0 +1,139 @@
+{
+  "name": "ce-brainstorm",
+  "mechanism": "Escalate",
+  "repo": "Aadilmalik70/serpstrategistagent",
+  "path": ".github/skills/ce-brainstorm/SKILL.md",
+  "author": {
+    "owner": "Aadilmalik70",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/006039220493d12d0d7509dd003847d5772c3a72.md",
+  "conclusion": "ce-brainstorm (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 10+ clarification rules, 3 approval gates, 1 validation rule; none for escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose: auto-dispatching Slack research; ending the turn waiting for acknowledgment; applying vocabulary edits silently.",
+    "statements": [
+      {
+        "quote": "**Slack context** (opt-in, Standard and Deep only) — never auto-dispatch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT end the turn waiting for acknowledgment.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Apply edits silently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "10+ clarification rules (9 mandatory, 1 advisory; 10 conditional), mostly list: one question at a time; platform's blocking question tool; empty feature description.",
+    "statements": [
+      {
+        "quote": "**Ask one question at a time** - One question per turn, even when sub-questions feel related. Stacking several questions in a single message produces diluted answers; pick the single most useful one a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Default to the platform's blocking question tool** - Use `AskUserQuestion` in Claude Code (call `ToolSearch` with `select:AskUserQuestion` first if its schema isn't loaded), `request_user_input` in ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If the feature description above is empty, ask the user:** \"What would you like to explore? Please describe the feature, problem, or improvement you're thinking about.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed until you have a feature description from the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the scope is unclear, ask one targeted question to disambiguate and then proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When present, ask for the most concrete thing someone has already done about this.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When present, ask the user to name a specific person or narrow segment, and what changes for that person when this ships.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When present, ask what the current workaround is, even if it's messy — and what it costs them.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When present, ask what the smallest version that still delivers real value would look like.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When present, ask how the idea fares under the most plausible near-term shifts — and push past rising-tide answers every competitor could make.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "3 approval gates (2 mandatory, 1 advisory; 1 conditional), mostly list: resuming an existing requirements doc; scoping synthesis before writing the doc; unconditional confirmation on Path B.",
+    "statements": [
+      {
+        "quote": "Confirm with the user before resuming: \"Found an existing requirements doc for [topic]. Should I continue from this, or start fresh?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Surface a scoping synthesis to the user before Phase 3 writes the requirements doc — the user's last opportunity to correct scope before the artifact lands.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirmation is unconditional even when zero call-outs survive the keep test.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly list: verifying claims about infrastructure against the codebase.",
+    "statements": [
+      {
+        "quote": "**Verify before claiming** — When the brainstorm touches checkable infrastructure (database tables, routes, config files, dependencies, model definitions), read the relevant source files to confirm wh",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

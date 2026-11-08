@@ -1,0 +1,146 @@
+{
+  "name": "unbroker",
+  "mechanism": "Act",
+  "repo": "nastechai/nastech-agent",
+  "path": "optional-skills/security/unbroker/SKILL.md",
+  "author": {
+    "owner": "nastechai",
+    "commit_author": null,
+    "declared": "SHL0MS (github.com/SHL0MS)"
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00b91b08c5423b55ccbf3e0b004dbc51c3b831ca.md",
+  "conclusion": "unbroker (Act) specifies 5 of 5 categories: 10+ autonomy limits, 1 clarification rule, 2 approval gates, 3 validation rules, 2 escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 3 conditional), mostly list: choosing configuration; pausing before individual submissions; interrupting the run for human-only work.",
+    "statements": [
+      {
+        "quote": "**Never ask the operator to choose configuration.** `$PDD setup --auto` detects capabilities and picks the most autonomous valid config itself.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never pause before individual submissions** when `autonomy=full` (the default): the consent recorded at intake is standing authorization for T0-T2 opt-outs. (`autonomy=assisted` restores per-submiss",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never interrupt the run for human-only work.** Record it (`record ... human_task_queued --reason \"...\"`) and keep going; it all surfaces once in the final digest.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run via `terminal`, **not** `execute_code` (that sandbox scrubs env and redacts output, which breaks reading the dossier).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Setup (once, no questions).** Run `$PDD setup --auto` - it detects capabilities and configures the most autonomous valid combination itself (programmatic email when `EMAIL_*` creds exist, Browserbas",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**web_form** → drive `optout_url` with `browser_navigate`/`browser_type`/`browser_click`, submit only `disclosure_fields`, screenshot the confirmation, then the action's `after` record command. Playbo",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**captcha** → soft/managed challenges clear automatically on the default cloud browser (proceed as normal); only a hard interactive/behavioral challenge it can't pass is recorded `blocked` (requeued f",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**phone_callback / account / gov_id / fax / mail / voice (T3)** *without a deletion email* → never an agent action; `next` already routed these to the digest. Record them: `$PDD record <subject> <brok",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never disclose more than the broker already shows.** Submit only `disclosure_fields`. The engine never volunteers SSN/ID numbers; you must not either.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ledger writes are locked.** Concurrent runs (cron + manual) serialize safely; if you ever see a lock timeout, another run is mid-write - let it finish, don't delete the `.lock` by hand.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list: intake and consent conversation.",
+    "statements": [
+      {
+        "quote": "**Intake + consent (the ONE human conversation).** `$PDD intake ...` with `--consent` (and `--consent-method`). Without consent the engine refuses to plan or act. Collect everything in one pass - name",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list: acting without recorded consent; no consent, no action.",
+    "statements": [
+      {
+        "quote": "The hard limits that autonomy never overrides: no acting without recorded consent, no disclosure beyond `disclosure_fields`, no CAPTCHA/anti-bot bypass, and `confirmed_removed` only after a verifying ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**No consent, no action.** The engine enforces this; do not work around it to \"research\" a third party.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list: re-verifying subagent self-reports; confirming removal after verification; dry run.",
+    "statements": [
+      {
+        "quote": "Subagent reports are self-reports: the parent re-verifies key claims (listing URLs, match basis) before recording `found` and before any deletion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**\"Hidden from free search\" ≠ deleted.** Only mark `confirmed_removed` after verifying the record is actually gone; note paid-tier retention in the report.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Dry run: `$PDD setup --auto && $PDD doctor && SID=$($PDD intake --full-name \"Test Person\" --email t@example.com --consent | python3 -c 'import sys,json;print(json.load(sys.stdin)[\"subject_id\"])') && $",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list: improvisation under full autonomy; broken broker flows.",
+    "statements": [
+      {
+        "quote": "**Autonomy ≠ improvisation.** Full autonomy means not *asking* between steps; it does not loosen any gate. If a broker demands MORE than the planned `disclosure_fields` mid-flow, stop that case and qu",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Broker pages change.** If a flow breaks, `$PDD record ... blocked` and flag the broker file in `references/brokers/` for re-verification instead of guessing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "name": "aidlc-cto",
+  "mechanism": "Escalate",
+  "repo": "CornFedKratos/s3-aidlc",
+  "path": "plugins/s3-aidlc/skills/aidlc-cto/SKILL.md",
+  "author": {
+    "owner": "CornFedKratos",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0037752ea3c888c1bbd8de2d429f5745fb2cd07f.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "aidlc-cto (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 9 approval gates, 10+ validation rules, 4 escalation rules; none for clarification rules. Strongest: validation rules.",
+  "conclusion_qualitative": "aidlc-cto defines the Chief Technology Officer role in an AI-driven development lifecycle: technical authority over architecture, agent allocation, collision detection and merges. Its rules are a chain of gates: an annotation confirmed by the product role before any code, orchestrator approval before invoking agents, and strict verification before merging. A broken main or an unresolved collision is reported and escalated. It sets no clarification rules.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. The CTO never works on main or another agent's branch, never touches a file outside the annotation's list, and does not silently expand its scope.",
+    "statements": [
+      {
+        "quote": "No work happens on main. No work happens on another agent's branch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "They do not silently expand their scope.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never touch a file not listed in the annotation's `files_to_touch`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "9 approval gates (9 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 1 tied to a situation, evenly split between bullet points and running text. Implementation never starts before the CPO confirms the annotation, and execution agents are never invoked without the orchestrator's approval of the brief; work waits for that confirmation.",
+    "statements": [
+      {
+        "quote": "Begins implementation before annotation is confirmed by CPO",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Invokes execution agents without orchestrator permission",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Rule 1: Annotation before code. Always.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Work does not begin until confirmation is received.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Rule 3: Orchestrator permission before execution agent invocation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Work does not begin before approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for explicit CPO confirmation before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Request orchestrator approval with the brief",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never begin implementation before CPO confirmation is received",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. Nothing is merged with failing tests, analyzer errors or lint violations, no agent starts without a clean collision check, and before merging the CTO verifies the quality and design sign-offs, runs the analyzer, and checks main is green with the full test suite.",
+    "statements": [
+      {
+        "quote": "Merges with failing tests, analyzer errors, or lint violations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No execution agent starts work without a clean collision check.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "No commit with analyzer errors reaches a PR.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run collision detection (Protocol 2) — must be CLEAR before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify CQO sign-off exists in KB",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify CDO sign-off exists in KB",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Pull the branch, run analyzer — must be 0 errors",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify main is green after merge — run full test suite",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If any field is missing, the annotation is incomplete and must not be delivered to the CPO.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never merge a PR with any failing test, analyzer error, or missing PR description field",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, evenly split between bullet points and running text. A broken main stops everything: the CTO reports it to the orchestrator and does not start feature work or absorb the fix. Collisions it cannot resolve are escalated to the orchestrator.",
+    "statements": [
+      {
+        "quote": "Absorbs a broken main into a feature branch — reports and stops",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Rule 7: Broken main stops everything.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If main is broken at session open, the CTO stops, reports to the orchestrator, and does not begin feature work until main is green.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If conflict cannot be resolved by these methods: escalate to orchestrator",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "name": "ralph",
+  "mechanism": "Ask",
+  "repo": "davzucky/iceberg-explorer",
+  "path": ".opencode/skill/ralph/SKILL.md",
+  "author": {
+    "owner": "davzucky",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/004bf8774a7e8ab17679d6578a09c928f9696481.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "ralph (Ask) specifies 2 of 5 categories: 5 clarification rules, 10+ validation rules; none for autonomy limits, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "ralph sets up Ralph, an autonomous feature-development loop, by talking through a feature and creating small, dependency-ordered tasks for Ralph to run. The agent questions the user until it understands the feature well enough to split it, and its checks make sure each task is small, verifiable and fully set up before Ralph starts. It sets no approval gates, autonomy limits or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The agent asks the user which mode they need, then asks about the feature and clarifying questions about its goal, the code it touches and the expected result, never assuming, and keeps asking until it has enough detail to break the work into tasks.",
+    "statements": [
+      {
+        "quote": "Chat through the feature - Ask clarifying questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask the user which mode they need:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Start by asking the user about their feature. Don't assume - ASK:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Then ask clarifying questions:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Keep asking until you have enough detail to break it into tasks.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent verifies the parent task ID was saved and that setup is complete before Ralph may run, every task must carry verifiable acceptance criteria, and a checklist before creating tasks confirms the scope was discussed, tasks are small and ordered by dependency, and each includes a typecheck and, for UI, browser verification.",
+    "statements": [
+      {
+        "quote": "Verify it was saved:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "4. Verify setup is complete:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**Only after completing all 4 steps is Ralph ready to run.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Each task description MUST include verifiable acceptance criteria:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Checklist Before Creating Tasks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Chatted through feature to understand scope",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Each task completable in one iteration (small enough)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tasks ordered by dependency (schema → backend → UI → tests)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Every task has \"npm run typecheck passes\" in description",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "UI tasks have browser verification in description",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

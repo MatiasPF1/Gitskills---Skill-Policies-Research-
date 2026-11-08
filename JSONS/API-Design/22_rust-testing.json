@@ -1,0 +1,112 @@
+{
+  "name": "rust-testing",
+  "mechanism": "Act",
+  "repo": "EvilBit-Labs/DaemonEye",
+  "path": ".claude/skills/rust-testing/SKILL.md",
+  "author": {
+    "owner": "EvilBit-Labs",
+    "commit_author": "29d438e42b52d8d1",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00c8866b11b02778b6705cd9d3b2e7a2d99a7cb3.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "rust-testing (Act) specifies 1 of 5 categories: 6 validation rules; none for autonomy limits, clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "rust-testing gives Rust testing patterns: unit, integration, async and property-based tests, mocking, benchmarks and coverage, following test-driven development (writing the test first). Its only control rules are checks on the agent's work: confirming new tests fail first, keeping tests green and meeting coverage targets. It never limits what the agent may do alone, asks it to consult the user or wait for approval, or says what to do when something fails.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, evenly split between bullet points and table rows. In its test-first cycle the agent runs a new test to confirm it fails as expected, keeps tests passing while refactoring, and checks coverage with `cargo-llvm-cov`. Coverage targets are 100% for critical business logic, 90% or more for the public API and 80% or more for general code.",
+    "statements": [
+      {
+        "quote": "**Run tests (RED)** — Verify the test fails with the expected error",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Refactor** — Improve while keeping tests green",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Check coverage** — Use cargo-llvm-cov, target 80%+",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Critical business logic | 100%",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Public API | 90%+",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "General code | 80%+",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

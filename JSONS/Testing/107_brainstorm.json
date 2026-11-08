@@ -1,0 +1,209 @@
+{
+  "name": "brainstorm",
+  "mechanism": "Ask",
+  "repo": "Fleron/Claude-plugins",
+  "path": "skills/claude-scaffolding/skills/brainstorm/SKILL.md",
+  "author": {
+    "owner": "Fleron",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00d68458f03891ecd2a8ef00d1d5ff3cf8ee9170.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "brainstorm (Ask) specifies 4 of 5 categories: 5 autonomy limits, 9 clarification rules, 8 approval gates, 3 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "brainstorm turns an idea into an approved design spec and handoff document through dialogue, as the first stage of a three-stage pipeline. It asks one question at a time and proposes alternatives, and the user approves the design section by section and the written spec before anything else happens. A self-review and a subagent review check the spec. The agent then stops, taking no implementation action and invoking no further skill.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The agent takes no implementation action, invokes no other skill and writes no code until the spec is written, reviewed and handed off. It then stops and tells the user to start a fresh session, never invoking plan-writing itself, and does not propose unrelated refactoring.",
+    "statements": [
+      {
+        "quote": "Do NOT invoke any other skill, write any code, scaffold any project, or take any implementation action until the spec is written, the subagent spec-quality review has passed, and the handoff doc is wr",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After the handoff is written, STOP and instruct the user to /clear or open a new session before running plan-writing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**The terminal state is \"handoff written, session stops\".** Do NOT invoke plan-writing automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't propose unrelated refactoring.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT invoke plan-writing or any other skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "9 clarification rules (8 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, 8 strict and 1 counted as a suggestion (it contains \"prefer\"), 2 tied to a situation, mostly bullet points. The agent understands the project, then asks clarifying questions one at a time through `AskUserQuestion` rather than free text, preferably multiple choice and only one per message. It proposes 2 to 3 approaches with trade-offs and its recommendation.",
+    "statements": [
+      {
+        "quote": "Start by understanding the current project context, then ask questions one at a time to refine the idea.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Propose 2-3 approaches** — with trade-offs and your recommendation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use AskUserQuestion for all user interactions in this process. Do not use free text to ask questions or get user input.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For appropriately-scoped projects, ask questions one at a time to refine the idea",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Prefer multiple choice questions when possible, but open-ended is fine too",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Only one question per message - if a topic needs more exploration, break it into multiple questions",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Propose 2-3 different approaches with trade-offs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**One question at a time** - Don't overwhelm with multiple questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "8 approval gates (8 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 2 tied to a situation, evenly split between running text and bullet points. Every design, however simple, must be presented and approved: the agent asks after each section whether it looks right, then asks the user to review the written spec and proceeds only once the user approves, iterating on requested changes.",
+    "statements": [
+      {
+        "quote": "Once you understand what you're building, present the design and get user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The design can be short (a few sentences for truly simple projects), but you MUST present it and get approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Present design** — in sections scaled to their complexity, get user approval after each section",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**User reviews written spec; iterate until approved**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask after each section whether it looks right so far",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After the spec review loop passes, ask the user to review the written spec before proceeding:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user's response. If they request changes, make them and re-run the spec review loop. Only proceed once the user approves.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Incremental validation** - Present design, get approval before moving on",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. The agent self-reviews the written spec for placeholders, contradictions, scope and ambiguity, and a subagent spec-quality review must approve it after fixes.",
+    "statements": [
+      {
+        "quote": "**Inline spec self-review** — placeholder/contradiction/scope/ambiguity sweep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Subagent spec review** — dispatch `claude-scaffolding:spec-compliance-reviewer` with `skills/brainstorm/spec-quality-review-prompt.md`. Apply fixes. Show user diff. Iterate until APPROVED.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After writing the spec document, look at it with fresh eyes:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "name": "interface-design",
+  "mechanism": "Ask",
+  "repo": "duc01226/EasyPlatform",
+  "path": ".claude/skills/interface-design/SKILL.md",
+  "author": {
+    "owner": "duc01226",
+    "commit_author": "243440c1cbcda100",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/00b29dcf7968ff5d196dad8151dc4e7e52ef9922.md",
+  "conclusion": "interface-design (Ask) specifies 3 of 5 categories: 3 clarification rules, 7 approval gates, 9 validation rules; none for autonomy limits, escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly prose: unclear intent, task or feeling; ambiguity before acting.",
+    "statements": [
+      {
+        "quote": "**Intent** — Identify who, what task, what feeling (ask user if unclear)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you cannot answer these with specifics, stop. Ask the user. Do not guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Surface ambiguity before acting — don't pick silently.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "7 approval gates (7 mandatory, 0 advisory; 1 conditional), mostly prose: skipping or reordering steps; direction buy-in before building; saving patterns or skipping steps on request.",
+    "statements": [
+      {
+        "quote": "NEVER skip, reorder, or merge steps without explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Propose Direction** — Present exploration + direction, get user buy-in",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Lead with your exploration and recommendation, then confirm:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm — Get user buy-in",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When you finish building something, **always offer to save**:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For simple tasks, AI MUST ATTENTION ask user whether to skip.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**IMPORTANT MUST ATTENTION** follow declared step order for this skill; NEVER skip, reorder, or merge steps without explicit user approval **IMPORTANT MUST ATTENTION** for every step/sub-skill call: s",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "9 validation rules (9 mandatory, 0 advisory; 1 conditional), mostly prose: evidence for each completed step; mandate checks before showing output; verifying generated content and all outputs.",
+    "statements": [
+      {
+        "quote": "**[BLOCKING]** Every completed/skipped step MUST include brief evidence or explicit skip reason.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Evaluate** — Run mandate checks (swap, squint, signature, token tests) before showing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run 4 mandate checks before showing output to user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Before showing the user, look at what you made.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run these against your output before presenting:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any check fails, iterate before showing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verify generated content against source evidence.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verify ALL affected outputs, not just the first.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**MANDATORY IMPORTANT MUST ATTENTION** add a final review todo task to verify work quality",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

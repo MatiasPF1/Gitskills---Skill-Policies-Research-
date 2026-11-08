@@ -1,0 +1,129 @@
+{
+  "name": "techspec-validator",
+  "mechanism": "Escalate",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "quality/techspec-validator/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00d655cfb745ce075091179924ecb4566f7cff74.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "techspec-validator (Escalate) specifies 4 of 5 categories: 1 clarification rule, 1 approval gate, 6 validation rules, 2 escalation rules; none for autonomy limits. Strongest: validation rules.",
+  "conclusion_qualitative": "techspec-validator automatically checks a generated technical spec before tasks are created: file paths, type consistency, breaking changes, new dependencies, internal consistency and coverage of the product requirements. Most of its rules are these checks. Blockers stop the flow for the user to fix, warnings are put to the user, and unknown dependencies need approval. It sets no autonomy limits.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a table row. For warnings, the agent shows them to the user and asks whether to fix them before continuing; the user can dismiss them.",
+    "statements": [
+      {
+        "quote": "Present to user, ask if they want to fix before continuing. Can be dismissed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. An unknown or niche new dependency needs the user's explicit approval.",
+    "statements": [
+      {
+        "quote": "Unknown dependency requires explicit approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, all in running text. The agent checks every file path and import in the technical spec, compares types and names with the codebase, scans for breaking changes (which must come with a migration plan), checks internal consistency and maps every functional requirement to the spec.",
+    "statements": [
+      {
+        "quote": "For every file path, import, and module reference mentioned in the TechSpec:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Compare types and field names proposed in the TechSpec Data Model against the codebase:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Scan TechSpec for changes to **existing** functions, APIs, schemas, or types.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each detected breaking change, the TechSpec **must** include a migration plan:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Check that sections of the TechSpec are internally consistent:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Cross-reference every functional requirement in `prd.md` with the TechSpec:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a table row. A blocker, such as a requirement with no technical coverage, stops the flow until the user corrects it before tasks are generated.",
+    "statements": [
+      {
+        "quote": "If any functional requirement has no corresponding TechSpec coverage:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Stop the flow**. User must correct before Tasks generation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

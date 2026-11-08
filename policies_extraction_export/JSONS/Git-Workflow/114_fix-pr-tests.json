@@ -1,0 +1,161 @@
+{
+  "name": "fix-pr-tests",
+  "mechanism": "Ask",
+  "repo": "Franck-Fernandez-pro/inout",
+  "path": ".claude/skills/fix-pr-tests/SKILL.md",
+  "author": {
+    "owner": "Franck-Fernandez-pro",
+    "commit_author": "c1bb2249a09e8c05",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00f9a2f5c1647829d837f13ae723ffb0f7d5a239.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "validation",
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "fix-pr-tests (Ask) specifies 4 of 5 categories: 4 autonomy limits, 3 clarification rules, 8 validation rules, 1 escalation rule; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "fix-pr-tests diagnoses and fixes failing CI tests on a pull request, classifying each failure as a real bug, a stale test or a flake before touching code. Its largest group of rules are checks: reproduce locally, classify, scan related tests and re-verify before pushing. It must not edit tests or CI configuration just to turn CI green, asks the user when intent is unclear, and raises genuine CI setup needs with the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. The agent never edits a test to make CI pass before classifying the failure, never changes both production code and the test when only one was wrong, never edits CI configuration to make a test pass, and investigates environment differences rather than editing a test that only fails in CI.",
+    "statements": [
+      {
+        "quote": "Do NOT edit the test to make CI green — investigate the env delta first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER edit a test to make it pass without classifying first**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER fix the prod code AND the test in the same change when only one was wrong**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER edit `.github/workflows/` or CI config to make a test pass**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 3 tied to a situation, mostly bullet points. Whenever the user must pick an option or confirm an action, the agent uses the `AskUserQuestion` picker. It stops and asks when it cannot identify the pull request, and when it cannot tell whether changed behavior is intentional it asks the user instead of guessing.",
+    "statements": [
+      {
+        "quote": "**User-question protocol:** Whenever this skill needs the user to pick between options, confirm an action, or answer a multiple-choice prompt, you MUST call the `AskUserQuestion` tool to render a prop",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If neither resolves, stop and ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ambiguous?** When you cannot tell whether the new behavior is intentional, **stop and ask the user**. Do not guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (8 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 2 tied to a situation, mostly bullet points. The agent does not proceed without the test name, location and exact error, writes down a classification before editing, and reproduces the failure locally before pushing any fix. It re-runs a suspected flake 3 times, scans sibling tests for the same cause, re-verifies after fixing, and treats a still-red CI as a new failure to investigate.",
+    "statements": [
+      {
+        "quote": "**Checkpoint — do not proceed without:** test name, file:line, exact error.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Checkpoint — write down the classification and one-sentence justification before editing anything.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After fixing one failure, **scan sibling tests** for the same root cause before pushing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-verify: failing test → containing file → full suite only if the fix touched shared code (utilities, types, schemas, config).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If still red, return to Phase 1 with the new logs — do not assume a second failure is the same as the first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER push a fix without reproducing the failure locally first**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER classify a single failure as a flake without re-running 3×**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER skip sibling-test scan after fixing one failure**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If a test genuinely needs a different CI setup, the agent raises it with the user instead of silently disabling, weakening or bypassing the job.",
+    "statements": [
+      {
+        "quote": "If the test genuinely needs different CI setup (new env var, service container), surface it to the user; don't silently disable the job, downgrade strictness, or add `continue-on-error`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

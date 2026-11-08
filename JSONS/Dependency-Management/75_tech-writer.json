@@ -1,0 +1,195 @@
+{
+  "name": "tech-writer",
+  "mechanism": "Ask",
+  "repo": "codemie-ai/docs",
+  "path": ".claude/skills/tech-writer/SKILL.md",
+  "author": {
+    "owner": "codemie-ai",
+    "commit_author": "e98be5d8daa722f7",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0038fd25034c5287bbf3372fb308dd9ba1afee14.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "tech-writer (Ask) specifies 4 of 5 categories: 1 autonomy limit, 9 clarification rules, 1 approval gate, 10+ validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "tech-writer writes documentation for the AI/Run CodeMie Docusaurus site, from Jira context and repository analysis through an approach proposal, clarifying questions, a git branch, standards-compliant pages and FAQ entries. The user is involved early: the agent asks for context when there is no ticket, waits for confirmation of its approach and collects answers to targeted questions before writing. A QA checklist and build checks gate its own output. It sets no rules for escalating failures to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the repository is already on a feature branch, the agent tells the user and proceeds without creating a new branch.",
+    "statements": [
+      {
+        "quote": "**If already on a feature branch** (not `main`): confirm it to the user and proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "9 clarification rules (9 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 2 tied to a situation, mostly running text. Without a Jira ticket, or when the ticket tool is unavailable or finds nothing, the agent asks the user to describe the feature and waits for the answer. Once the approach is confirmed it always asks about audience and depth, asks about screenshots, prerequisites and related docs when relevant, and collects all answers before writing; it asks which section to use when no related docs exist.",
+    "statements": [
+      {
+        "quote": "If unavailable, ask the user to describe the feature directly.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the response before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After the user confirms the approach, ask targeted questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Always ask (1 and 2):**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask if relevant (3–5):**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Collect all answers before proceeding to Phase 5.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask user to describe feature; proceed without ticket context",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Default to suggesting a new page; ask user which section",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. After presenting its analysis and proposed documentation approach, the agent waits for the user's confirmation before proceeding.",
+    "statements": [
+      {
+        "quote": "Wait for user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. Before moving on to the FAQ the agent completes a QA checklist: screenshots moved and referenced, front matter complete, clean document IDs, local images, correct relative links and document IDs in partials, escaped angle brackets, code-block languages and Docusaurus admonitions.",
+    "statements": [
+      {
+        "quote": "QA Checklist (Complete Before Proceeding to Phase 7)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "All screenshots moved from `screenshots/` to the correct `images/` folder and referenced in docs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All front matter fields present and correct",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Document ID is clean (no numbers), matches sidebars.ts reference",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Images stored locally in `images/` with relative paths",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All internal links in regular `.md`/`.mdx` files use **relative paths with file extension** (e.g. `./page.md`, `../section/page.md`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All internal links in `_*.mdx` partials use **Docusaurus document IDs** (e.g. `admin/deployment/aws/overview`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Angle brackets wrapped in backticks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Code blocks specify language",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Admonitions use Docusaurus syntax (`:::type`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

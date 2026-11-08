@@ -1,0 +1,246 @@
+{
+  "name": "clauck",
+  "mechanism": "Act",
+  "repo": "CoreyRDean/clauck",
+  "path": "plugins/clauck/skills/clauck/SKILL.md",
+  "author": {
+    "owner": "CoreyRDean",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0179bd4b87f0c89b247ac745b2bb6df65b5422f7.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "clauck (Act) specifies 5 of 5 categories: 3 autonomy limits, 7 clarification rules, 5 approval gates, 8 validation rules, 2 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "clauck schedules and automates work for the agent (recurring jobs, reminders, event triggers and multi-step pipelines) on a macOS scheduler. The agent asks the user for the details of new jobs and customizations, and gets permission before removing, uninstalling or overwriting jobs or opening issues. It verifies every new or changed job with a test run and checks pipelines for cycles. When a test run fails or a request is unsupported, it tells the user and proposes a fix or workaround. Its few autonomy rules cover reading the timezone itself, avoiding the human-facing CLI and keeping credentials out of job prompts.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (2 mandatory, 1 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 only a suggestion (worded with \"should NOT\"), none tied to a situation, mostly running text. The agent must never ask the user for their timezone but read it from the system, should not use the `clauck` command-line tool itself (it works with the files directly), and must not put credentials in job prompts.",
+    "statements": [
+      {
+        "quote": "Never ask the user for their timezone — read it from the runtime context or from `date +%Z`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**As an agent, you should NOT use `clauck` CLI commands.**",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Secrets: don't put credentials in job prompts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (6 mandatory, 1 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (it contains \"should\"), 4 tied to a situation, mostly bullet points. When installing a marketplace job the agent walks the user through each required customization, and when designing a new job it asks in order for the trigger, the action, the output destination, the cost tolerance and how to avoid duplicate work. It asks the user to narrow a job that does several things, which output pattern they want when unclear, and whether to report an issue to a fork or to the original repository.",
+    "statements": [
+      {
+        "quote": "\"Install [marketplace job]\" | See **Installing from the marketplace** below. Copy the `.md`, walk the user through any `CUSTOMIZE BEFORE INSTALLING` blocks, then ad-hoc fire to verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "\"Add a new scheduled job for …\" | See **Designing a new job** below. Elicit cron/trigger, budget, destination, then write the `.md`, ad-hoc fire, confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Walk the user through each customization (ask for the specific channel ID / path / etc.), and edit the copy in memory.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When the user wants a new job that isn't in the marketplace, elicit these in order:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**What it should do:** in one sentence. If multiple actions, ask them to narrow — scheduled jobs should do one thing well.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When designing a job for the user, ask which pattern they want if the intent is ambiguous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If fork override is in the config, ask whether to report on the fork or upstream",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly bullet points. The agent asks before removing a job or uninstalling clauck, since both are destructive, and never overwrites an existing job without asking. It installs a suggested job only after the user says yes, and offers, rather than goes ahead, to open an issue for an unsupported feature.",
+    "statements": [
+      {
+        "quote": "\"Remove job X\" | `rm ~/.clauck/<name>.md` + clean state. Ask first — this is destructive.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "\"Uninstall the whole thing\" | Point them at the uninstall.sh one-liner. Note that jobs/logs are preserved by default (use `--wipe` for full removal). Ask before running.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Never overwrite an existing job of the same name without asking first.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If they say yes**, immediately design/modify and install. Don't ask more questions unless you genuinely need a decision (output destination, specific channel, etc.).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Offer to report it.** \"This isn't supported yet — want me to open an issue on the clauck repo?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (8 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 2 tied to a situation, mostly bullet points. After installing, creating or changing a job the agent fires it once to verify it works, and reports success only if it exited cleanly and did its job. It checks pipelines for dependency cycles, and after an update it verifies the heartbeat job still fires.",
+    "statements": [
+      {
+        "quote": "\"Make this job depend on / use output from [other job]\" | Add `producers: [{name: other-job}]` to frontmatter. Check manifest for cycle errors within 60s. See **Pipelines** below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "\"Apply the update\" | Run `~/.clauck/update-check.sh --apply`. The installer re-runs against the release tag; verify the heartbeat still fires after.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Wait ~60s for the scheduler to pick up the new job (`.manifest.json` will regenerate), then ad-hoc fire it to verify: `~/.clauck/trigger-job.sh <name> [KEY=VALUE ...]`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If exit_code=0 and the expected side-effect happened (Slack post / file written / etc.), report success with the expected schedule and cost.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Once collected, write `~/.clauck/<name>.md`, ad-hoc fire to verify, and report.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Write the `.md` file**, ad-hoc fire to verify, report cost and schedule.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**When designing pipelines, ALWAYS check for cycles.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify with `~/.clauck/trigger-job.sh <name>` before waiting for the first cron fire.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, one bullet point and one in running text. If a test run of a job fails, the agent shows the user the log excerpt and proposes a fix. If a request cannot be expressed with the available settings, it explains what it can do, does that, and suggests filing a feature request.",
+    "statements": [
+      {
+        "quote": "If it failed, show the user the log excerpt and propose a fix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If any requirement can't be expressed in the available frontmatter fields, be transparent: explain what you CAN do, do that, and suggest the user file a feature request at https://github.com/CoreyRDea",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

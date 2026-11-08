@@ -1,0 +1,124 @@
+{
+  "name": "brainstorming-design-docs",
+  "mechanism": "Ask",
+  "repo": "zrosenfield/sharepoint-ai-skills",
+  "path": "Skills/documents/brainstorming-design-docs/SKILL.md",
+  "author": {
+    "owner": "zrosenfield",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00e2fd3f4a726f3b09c7236ecdcda0516ab25cca.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "brainstorming-design-docs (Ask) specifies 3 of 5 categories: 1 autonomy limit, 9 clarification rules, 2 approval gates; none for validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "brainstorming-design-docs turns a raw idea into a SharePoint-ready design document through structured dialogue. Its rules are almost all about asking: one question at a time, a confirmed summary before any proposal, and alternatives for the user to choose. Each section of the document is approved before the next, and the skill writes no code. It sets no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The skill produces only prose and Markdown and does not write code, scripts or formulas.",
+    "statements": [
+      {
+        "quote": "**Scope:** Produces prose and Markdown only. Does not write code, scripts, or formulas.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "9 clarification rules (8 mandatory, 1 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, 8 strict and 1 counted as a suggestion (it contains \"prefer\"), 3 tied to a situation, all in running text. The agent asks the user to describe the idea first, then asks clarifying questions one at a time, preferably multiple choice, never bundled. It confirms its understanding with a short summary before proposing anything, and presents 2 to 3 alternative approaches with a recommendation for the user to choose from.",
+    "statements": [
+      {
+        "quote": "**Ask one question at a time.** Asking multiple questions at once creates cognitive load and produces vague answers. Work through clarifications sequentially — each answer shapes the next question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Prefer multiple choice.** When asking clarifying questions, offer 2–4 options where possible.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Propose alternatives before committing.** Never design toward a single solution from the start. Generate two or three distinct approaches, present their trade-offs, and recommend one — then get buy-",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to describe the idea in their own words — one or two sentences. Do not ask follow-up questions yet.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Then ask clarifying questions one at a time to establish:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop and confirm your understanding before moving to Phase 2. Summarize the idea back to the user in two to three sentences and ask if the summary is accurate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After presenting the options, make a recommendation and explain the reasoning briefly. Then ask the user which approach to develop, or whether they want a hybrid.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Solving before understanding.** Do not propose approaches or draft any section until Phase 1 is complete and the summary is confirmed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Bundling questions.** \"What is the problem, who is the audience, and what are the constraints?\" is three questions. Ask one. Get the answer. Then ask the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both in running text. The agent presents the design document one section at a time and gets each section approved, revised or skipped before moving on.",
+    "statements": [
+      {
+        "quote": "**Validate incrementally.** Present the design one section at a time and confirm each before moving to the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Work through the design document one section at a time. After completing each section, share it and ask for one of three responses:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

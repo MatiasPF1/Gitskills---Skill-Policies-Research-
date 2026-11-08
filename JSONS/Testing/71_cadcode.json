@@ -1,0 +1,204 @@
+{
+  "name": "cadcode",
+  "mechanism": "Ask",
+  "repo": "autonomous-ai/autonomous-vibe",
+  "path": "skills/cadcode/SKILL.md",
+  "author": {
+    "owner": "autonomous-ai",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0034beac5990c00383f399917f07971aa8c7bce8.md",
+  "topics": [
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "cadcode (Ask) specifies 5 of 5 categories: 4 autonomy limits, 7 clarification rules, 1 approval gate, 10+ validation rules, 3 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "cadcode turns natural-language descriptions into parametric CadQuery models for hobbyist 3D printing, exporting STEP and STL files. It splits decisions sharply: the agent asks the user only about personal preferences that change the geometry and decides all engineering silently. Its largest group of rules make it verify its own work, with renders, checks and a verification checklist before anything counts as done. It asks the user after about 4 failed iterations, and the planning phase ends with a plan the user approves.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. The agent uses its defaults unless the user specifies otherwise, and decides every engineering choice (wall thickness, clearance, joints, fasteners, print orientation) silently from best practice, never turning one into a question.",
+    "statements": [
+      {
+        "quote": "Use these defaults unless the user specifies otherwise:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Engineering choices — there is a best answer. Never ask; pick it.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never ask (engineering — just pick, optionally note): wall thickness, fillet radius, clearance, joint/fastener type and thread, print orientation, finish, print-bed edge chamfer (always yes — it lifts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Decide every *engineering* choice silently from the references — never ask about wall thickness, clearance, joint/fastener type, or print orientation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (7 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 4 tied to a situation, mostly bullet points. The agent asks the user only about personal preferences that change the geometry, such as which device, orientation, mounting or capacity, and asks as few questions as possible, ideally one. It asks for a value it cannot derive, including a device dimension a web search cannot pin down.",
+    "statements": [
+      {
+        "quote": "**Exact measurements.** Every dimension, quantity, and metric is a precise number with a unit. Never \"about\", \"roughly\", or \"approximately\" — if you don't know a value, derive it (below) or ask the us",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a search can't pin a specific device, say so and ask the user for the dimension.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask only about preferences; decide all engineering silently",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**Personal preferences — only the user can know these. Ask, but sparingly.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask only when the answer actually changes geometry, and ask the **fewest, highest-leverage** questions — ideally one, never a quiz.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Warrants a question (preference): device when \"phone stand\" names no model; portrait vs landscape when both are common; wall mount vs desk stand when not implied; capacity (\"1 pen or 6\").",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user only about *personal preferences* that change geometry, and ask the fewest possible.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. In the planning phase the agent writes no geometry and produces a plan for the user to approve before the build.",
+    "statements": [
+      {
+        "quote": "When Vibe runs you in its **Plan phase** (enforced by the phase system prompt: no writing `.py`, no running the generator), you write no geometry — you produce the plan the user approves before the bu",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 4 tied to a situation, mostly bullet points. The agent closes the feedback loop itself instead of handing the user a possibly broken model: warnings block completion, it inspects every part and every rendered image, and iterates until the model is correct. The plan ends with a verification checklist, and a model is not done while it is not a valid solid, its mating is unchecked or a part cannot be justified.",
+    "statements": [
+      {
+        "quote": "**You close the feedback loop yourself** — do not hand a possibly-broken model to the user for verification.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "``warnings`` non-empty: deterministic geometry defects — any non-`info` warning is **blocking** (full taxonomy: Non-negotiables).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Always inspect every part** — geometry can be valid (`is_solid=true`, no warnings) but still wrong.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Iterate until the model is correct.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verification checklist.** End the plan with the explicit list the build will clear one item at a time, each paired with how it is checked — a SANITY check (a number / `validate()` assert / `function",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "``scripts/cad`` reports ``is_solid`` in its JSON — do not declare done when it's ``false``.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Don't skip this step. Even when `ok=true is_solid=true`, geometry can be visually wrong.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A model with valid solids but unchecked mating is **not done**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "You **MUST** `Read` **every** PNG it produces and look.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If you cannot justify a part, or it does not connect to anything, it is a defect — fix it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. After about 4 fix iterations the agent asks the user a clarifying question, since it is probably guessing about intent rather than fixing geometry, and it warns the user if the model exceeds a typical print bed.",
+    "statements": [
+      {
+        "quote": "Soft cap of 4 iterations before you ask the user a clarifying question — past that, you're probably guessing about user intent rather than fixing a geometry bug.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Print bed**: 200×200mm typical FDM. Warn if your model exceeds it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Soft cap: 4 iterations** before asking the user a clarifying question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

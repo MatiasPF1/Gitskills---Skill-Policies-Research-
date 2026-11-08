@@ -1,0 +1,183 @@
+{
+  "name": "ergo-feature-planning",
+  "mechanism": "Escalate",
+  "repo": "sandover/codex-skills",
+  "path": "skills/ergo-feature-planning/SKILL.md",
+  "author": {
+    "owner": "sandover",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00881df3a4e3e64d46ec3c12a89c8501d937b176.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "ergo-feature-planning (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 5 clarification rules, 2 approval gates, 8 validation rules, 2 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "ergo-feature-planning turns a feature request into a dependency graph of tasks and epics tracked with the ergo tool, then executes it task by task. Most of its rules push decisions to the user during planning instead of deferring them, followed by a review pass and the user's approval before implementation. Missing tools and blocked tasks are reported rather than hidden.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent does not include the plan's .ergo files in per-task commits.",
+    "statements": [
+      {
+        "quote": "**Do not** include `.ergo/` files in per-task commits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (4 mandatory, 1 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"should\", in a quoted question), 2 tied to a situation, mostly running text. When unsure the agent asks whether to plan or implement. It resolves unknowns and decisions during planning by asking the user rather than deferring them into task bodies, and stops to consult the user when important questions come up during execution.",
+    "statements": [
+      {
+        "quote": "**Unsure?** Ask: \"Want an ergo plan first, or should I just implement?\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Resolve them now, during planning, by asking the user.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not write \"Consult Me\" or \"TBD\" into task bodies as a way to defer a conversation you could have right now",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The test: if you can describe the options and tradeoffs to the user today, ask today.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop and consult the user if important questions arise.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all in running text. The agent presents an executive summary of the plan for the user's approval and gets buy-in before implementing.",
+    "statements": [
+      {
+        "quote": "Fix what you find, then **present an executive summary to the user for approval**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Get buy-in before investing time in implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (7 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"consider\"), none tied to a situation, mostly bullet points. Before presenting the plan the agent reviews coverage, task sizing, dependencies, runnable gates, the highest risks, unresolved decisions and leftover debt.",
+    "statements": [
+      {
+        "quote": "Before presenting to the user, do a final confirmation pass:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Coverage** — API, tests, docs, migrations, edge cases all accounted for?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Sizing** — anything too small (fold in) or too large (split)?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Dependencies** — missing edges that'll cause churn? unnecessary edges blocking parallelism?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Validation** — every task has runnable gates?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Risk** — 1–3 highest-risk tasks identified; spikes or mitigation added?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Open calls** — every judgment call resolved with the user, not deferred to task bodies?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Cruft** — will the planned work leave behind unowned debt? Consider cleanup tasks.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, all bullet points. If ergo is not installed the agent asks the user to install it, and a task that cannot be completed is marked blocked or error rather than left in progress.",
+    "statements": [
+      {
+        "quote": "If missing, ask the user to install it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a task can't be completed, mark it blocked or error — never leave tasks in progress.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

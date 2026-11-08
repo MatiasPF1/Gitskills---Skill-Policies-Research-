@@ -1,0 +1,108 @@
+{
+  "name": "robust-latex-formula-extraction",
+  "mechanism": "Ask",
+  "repo": "XuShuwenn/RedAct",
+  "path": "data/skills/skill_extract/skills_raw/latex-formula-extraction/robust-latex-formula-extraction/SKILL.md",
+  "author": {
+    "owner": "XuShuwenn",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/000dfc26dc3c2613afbd237c16ab5cb7192660e3.md",
+  "conclusion": "robust-latex-formula-extraction (Ask) specifies 3 of 5 categories: 3 autonomy limits, 3 clarification rules, 6 validation rules; none for approval gates, escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list: shell here-docs for writing LaTeX; background converters without logs or timeouts.",
+    "statements": [
+      {
+        "quote": "Write the file using a language-native file writer (e.g., Python), not shell here-docs, to avoid quoting/escaping corruption.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Avoid running converters in the background without streaming logs. Use explicit timeouts and check for actual output files before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use a safe writer (Python/Open file APIs). Don’t pipe complex TeX through shell here-docs with nested quotes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 3 conditional), mostly list: inventing missing or unreadable formula parts; guessing uncertain syntax fixes.",
+    "statements": [
+      {
+        "quote": "Do not infer or invent missing parts. If the text extraction drops special symbols and you cannot recover them reliably, mark the formula as problematic and avoid hallucinating replacements.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If unsure about a fix, do not guess. Leave the original and flag the issue in your notes (not in the output file unless the task demands).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Only transcribe what you can extract from text/layout. If a piece is unreadable, don’t invent it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "6 validation rules (6 mandatory, 0 advisory; 1 conditional), mostly list: 1-page smoke test before scaling up; timeouts and output artifact checks; structural and content checks before delivery.",
+    "statements": [
+      {
+        "quote": "Run a 1-page smoke test with a short timeout and capture logs. Confirm expected output (e.g., presence of math blocks) before scaling up.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never leave long-running processes unattended. Always set timeouts and check for actual output artifacts before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run structural checks on each formula:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use these checks before delivering the file:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Success criteria:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always smoke-test with `--help` and a 1-page run + timeout. If it doesn’t produce verifiable math output, switch tools.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

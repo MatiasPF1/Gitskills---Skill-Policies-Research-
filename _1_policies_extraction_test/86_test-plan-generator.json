@@ -1,0 +1,120 @@
+{
+  "name": "test-plan-generator",
+  "mechanism": "Escalate",
+  "repo": "dundas/agentbootup-public",
+  "path": "templates/.claude/skills/test-plan-generator/SKILL.md",
+  "author": {
+    "owner": "dundas",
+    "commit_author": "152e96744f7a24c6",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/013dfa6a847b845bf88849beec95208e133a64cc.md",
+  "conclusion": "test-plan-generator (Escalate) specifies 3 of 5 categories: 4 clarification rules, 7 approval gates, 3 validation rules; none for autonomy limits, escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (4 mandatory, 0 advisory; 0 conditional), mostly list: the target environment; test account strategy; assuming the repo structure.",
+    "statements": [
+      {
+        "quote": "**GATE: Environment Declaration (REQUIRED)** Ask the user explicitly:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**GATE: Test Account Strategy** Ask the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Environment Gate** - ALWAYS ask explicitly, never assume",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Normalize to actual repo** - Don't assume structure, discover it",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "7 approval gates (7 mandatory, 0 advisory; 0 conditional), mostly list: proceeding without environment confirmation; production deployment verification; journey map and draft review.",
+    "statements": [
+      {
+        "quote": "**Do NOT proceed without explicit confirmation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**BLOCKING GATE:** Require deployment verification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Then **propose** the journey map to the user: > \"Based on my analysis, here's the user journey I'll test.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Present draft to user for review**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Production Gate** - BLOCKING confirmation required",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Draft Review** - Present for user feedback before saving",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list: completion standard for each test; re-running E2E tests after fixes.",
+    "statements": [
+      {
+        "quote": "A test is **NOT COMPLETE** until:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP** - Don't mark the current test as passing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**RE-VALIDATE** - After fixing, re-run the E2E test",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

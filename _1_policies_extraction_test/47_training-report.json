@@ -1,0 +1,133 @@
+{
+  "name": "training-report",
+  "mechanism": "Ask",
+  "repo": "samber/cc-skills",
+  "path": "skills/training-report/SKILL.md",
+  "author": {
+    "owner": "samber",
+    "commit_author": null,
+    "declared": "samber"
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/008113c6374c7f60cdf67c8e33347b46aa0d6423.md",
+  "conclusion": "training-report (Ask) specifies 4 of 5 categories: 2 autonomy limits, 10+ clarification rules, 3 approval gates, 1 escalation rule; none for validation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter: allowed tools; generating the .docx mid-conversation.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read Edit Write Glob Grep Agent AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Never generate the .docx mid-conversation — Markdown is the draft stage",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "10+ clarification rules (10 mandatory, 0 advisory; 2 conditional), mostly prose: unclear answers after transcription; uploading a template; brand color.",
+    "statements": [
+      {
+        "quote": "If any answer is unclear after transcription, ask a short clarifying question before moving on — do not guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Yes** → ask them to upload it; use it as the base at Step 6 (unpack/inject/repack)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No** → proceed with a clean document; ask for a brand color before defaulting to blue `#2E75B6`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Conduct a structured interview in batches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for answers before moving on.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm or refine: who is the document for?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Probe until complete: \"What happened next?\", \"Did anything go differently than planned?\", \"Were there any pivots?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Did participants produce anything during the session?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Do you have specific observations for any individual participant?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"What would you recommend to the direction/client to build on this session?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "3 approval gates (2 mandatory, 1 advisory; 1 conditional), mostly prose: closing note with contact details; content entering the document; moving to Step 6.",
+    "statements": [
+      {
+        "quote": "Ask: \"May I include a closing note thanking the team for the invitation, and your contact details for future collaboration? (email + phone)\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to confirm before it enters the document.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only move to Step 6 when the user explicitly confirms the content is final.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list: missing file required for the Word document.",
+    "statements": [
+      {
+        "quote": "If not found: warn the user — it is required to generate the final Word document and can be installed from Anthropic's official skill library. Offer to proceed with the Markdown draft in the meantime.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

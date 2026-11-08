@@ -1,0 +1,204 @@
+{
+  "name": "review",
+  "mechanism": "Escalate",
+  "repo": "lendtrain/complete-pipeline",
+  "path": "skills/review/SKILL.md",
+  "author": {
+    "owner": "lendtrain",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/013738755c503105cc4d0c447cb312aceeb3ffde.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "review (Escalate) specifies 5 of 5 categories: 2 autonomy limits, 5 clarification rules, 3 approval gates, 2 validation rules, 7 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "review is a pre-landing pull request review (gstack) that checks the diff for SQL safety, LLM trust boundaries, conditional side effects and other structural issues. Mechanical problems are fixed directly, while anything needing judgment goes to the user in a batched question and is applied only after approval. It never commits or pushes, and escalates after repeated failures, security doubts or work it cannot verify.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a bullet point. When proactive mode is off the agent invokes skills only when the user asks, and the review never commits, pushes or opens pull requests.",
+    "statements": [
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills — only invoke them when the user explicitly asks.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Never commit, push, or create PRs — that's /ship's job.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly running text. During setup the agent asks about telemetry, and it says exactly what it needs when information is missing. Review findings that need judgment are put to the user in one batched question, and each false-positive automated review comment is presented for the user to decide.",
+    "statements": [
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If there are ASK items remaining, present them in ONE AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**FALSE POSITIVE comments:** Present each one via AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly running text. The agent asks before upgrading or opening the essay link, and applies findings that need judgment only after the user approves.",
+    "statements": [
+      {
+        "quote": "If output shows `UPGRADE_AVAILABLE <old> <new>`: read `~/.claude/skills/gstack/gstack-upgrade/SKILL.md` and follow the \"Inline upgrade flow\" (auto-upgrade if configured, otherwise AskUserQuestion with",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "ASK items are only applied after user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. A task counts as done only with evidence for each claim, and the agent never calls something \"likely handled\" but verifies it or flags it as unknown.",
+    "statements": [
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never say \"likely handled\" or \"probably tested\" — verify or flag as unknown",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "7 escalation rules (6 mandatory, 1 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (it contains \"should\"), 4 tied to a situation, mostly bullet points. The agent reports concerns and blockers and may always stop, must stop and escalate after 3 failed attempts, on doubts about a security-sensitive change or when it cannot verify the work, and stops with an error if the review checklist cannot be read.",
+    "statements": [
+      {
+        "quote": "**DONE_WITH_CONCERNS** — Completed, but with issues the user should know about. List each concern.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "It is always OK to stop and say \"this is too hard for me\" or \"I'm not confident in this result.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If the file cannot be read, STOP and report the error.** Do not proceed without the checklist.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "name": "orchestration",
+  "mechanism": "Escalate",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/testing-security/orchestration/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01a700450fc0aa9c0d47d0aff9645e5413cc6683.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Scalability",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "orchestration (Escalate) specifies 3 of 5 categories: 1 clarification rule, 1 approval gate, 4 validation rules; none for autonomy limits, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "orchestration is a quality-gated pipeline from idea to shipped code: requirements, design, adversarial review, planning, drift detection, parallel build, quality, security and release gates. Its control rules are separation of duties and independent validation at every gate, with explicit human approval for critical gate progression. It sets no autonomy limits or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. Requirements are extracted from the user through conversational questions.",
+    "statements": [
+      {
+        "quote": "Steps: Extract requirements, constraints, non-goals, style, key concepts via conversational Q&A",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Progression through critical gates requires explicit human approval.",
+    "statements": [
+      {
+        "quote": "**Human control points**: automation assists execution, but critical gate progression requires explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. Producers never certify their own work, validation runs from an independent context, recommendations must trace to verifiable evidence, and the security gate requires all checks re-run with no open critical or high findings and accepted risks signed off.",
+    "statements": [
+      {
+        "quote": "**Separation of duties**: producers do not self-certify; validation must run from independent context.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Evidence-first guidance**: recommendations must trace to verifiable sources and repository facts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Rerun the same checks and confirm closures.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Gate: no open critical/high findings; mandatory checklist fully executed; accepted risks explicitly signed off.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "name": "conductor-newTrack",
+  "mechanism": "Escalate",
+  "repo": "tdmtrader/jetbridge",
+  "path": ".codex/skills/conductor-newTrack/SKILL.md",
+  "author": {
+    "owner": "tdmtrader",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00e4bb3bed78a09b2ceab58e9685e11dd8ea976b.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "conductor-newTrack (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 6 clarification rules, 5 approval gates; none for validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "conductor-newTrack creates a scoped development track (spec, plan and context files) for a feature, bugfix, refactor or docs work. It requires a conversation first: the agent asks about the why and what, researches the how itself, and gets the user's approval of the approach, the spec and the plan before creating anything. It sets no checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (0 mandatory, 1 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one rule, counted as a suggestion (it contains \"should\"), always on, in running text. The agent researches the technical approach itself rather than making the user explain it.",
+    "statements": [
+      {
+        "quote": "The user should not have to explain the technical approach — that's your job.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (6 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly running text. Before creating any files the agent must understand why and what the user wants: it asks about motivation, desired behavior and constraints, asks follow-up questions instead of guessing on vague requests, never skips this conversation and keeps asking until the request is clear.",
+    "statements": [
+      {
+        "quote": "**Before creating any files, you MUST deeply understand what the user wants and why.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Focus on motivation and goals. Ask the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Focus on desired behavior and outcomes. Ask the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user gives a vague one-liner like \"add notifications\" or \"fix the dashboard\", you MUST ask follow-up questions — do not guess and start generating files.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Phase 0 (WHY/WHAT) is mandatory** — never skip the user conversation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user's request is unclear, keep asking questions until you understand",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly running text. The agent asks whether its proposed approach makes sense, and creates the track only after the user confirms the approach and approves both the spec and the plan.",
+    "statements": [
+      {
+        "quote": "Ask: \"Does this approach make sense? Anything you'd change?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after the user confirms both the WHAT and the HOW, move to track creation below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Show spec to user and get approval before proceeding.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Show plan to user and get approval before proceeding.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Get user approval on both the approach AND the spec/plan before creating files",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

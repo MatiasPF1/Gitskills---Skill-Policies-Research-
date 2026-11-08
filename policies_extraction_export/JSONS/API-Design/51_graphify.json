@@ -1,0 +1,140 @@
+{
+  "name": "graphify",
+  "mechanism": "Ask",
+  "repo": "xpickey/ice-skills-claude-plugin",
+  "path": "plugins/ice-tools/skills/graphify/SKILL.md",
+  "author": {
+    "owner": "xpickey",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0001d10314508f89794ef70298d5c57b517ecb7f.md",
+  "topics": [
+    {
+      "topic": "API Design",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "graphify (Ask) specifies 5 of 5 categories: 6 autonomy limits, 3 clarification rules, 1 approval gate, 1 validation rule, 4 escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "graphify turns a folder of code, documents, papers, images or video into a queryable knowledge graph with community detection and reports. The agent works mostly on its own, using defaults instead of asking for a path, but asks which subfolder to use when the corpus is very large and runs follow-up queries only when the user agrees. It must use subagents for extraction and never invent graph edges. It checks each chunk's output and warns about failed chunks, stopping and telling the user when most chunks fail or the graph is empty.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly running text. The agent does not ask the user for a path or to narrow the scope, including when there are no subfolders to choose from. It must use the Agent tool for semantic extraction instead of reading files one by one, must not use the read-only `Explore` subagent type, and must not render the HTML view of a graph with more than 5,000 nodes without warning the user.",
+    "statements": [
+      {
+        "quote": "Do not ask the user to narrow.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask the user for a path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If all files are in `(root)` with no subdirectories, do not ask to narrow — no subfolders exist.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**MANDATORY: You MUST use the Agent tool here. Reading files yourself one-by-one is forbidden - it is 5-10x slower. If you do not use the Agent tool you are doing this wrong.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use `Explore` - it is read-only and cannot write chunk files to disk, which silently drops extraction results.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never run HTML viz on a graph with more than 5,000 nodes without warning the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. For a very large corpus the agent shows the biggest subfolders, asks which one to run on and waits for the answer. It must never invent an edge in the graph; when unsure it marks the edge as ambiguous.",
+    "statements": [
+      {
+        "quote": "Otherwise rank by count, show the top 5 with file counts, then ask which subfolder to run on.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for the user's answer before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never invent an edge. If unsure, use AMBIGUOUS.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. After offering to trace the most interesting question, the agent runs the query only if the user says yes.",
+    "statements": [
+      {
+        "quote": "If the user says yes, run `/graphify query \"[question]\"` on the graph and walk them through the answer using the graph structure - which nodes connect, which community boundaries get crossed, what the",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent checks that each chunk's output file exists on disk, which is the signal that the subagent succeeded.",
+    "statements": [
+      {
+        "quote": "Check that `graphify-out/.graphify_chunk_NN.json` exists on disk — this is the success signal",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, all tied to a situation, evenly split between bullet points and running text. When a chunk file is missing or a subagent returns invalid JSON, the agent prints a warning and skips that chunk instead of skipping silently or aborting. If more than half the chunks fail, or the built graph is empty, it stops and tells the user.",
+    "statements": [
+      {
+        "quote": "If the file is missing, the subagent was likely dispatched as read-only (Explore type) — print a warning: \"chunk N missing from disk — subagent may have been read-only. Re-run with general-purpose age",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a subagent failed or returned invalid JSON, print a warning and skip that chunk - do not abort",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If more than half the chunks failed or are missing, stop and tell the user to re-run and ensure `subagent_type=\"general-purpose\"` is used.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If this step prints `ERROR: Graph is empty`, stop and tell the user what happened - do not proceed to labeling or visualization.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

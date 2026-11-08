@@ -1,0 +1,222 @@
+{
+  "name": "cpo",
+  "mechanism": "Act",
+  "repo": "0x2kNJ/cpo",
+  "path": "SKILL.md",
+  "author": {
+    "owner": "0x2kNJ",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00ff6bb91ee8e6bfa40ae35c0dc37a56e1248c07.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "clarification_rules"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "cpo (Act) specifies 4 of 5 categories: 8 autonomy limits, 10+ clarification rules, 6 validation rules, 1 escalation rule; none for approval gates. Strongest: clarification rules.",
+  "conclusion_qualitative": "cpo is a strategic product advisor that pressure-tests product decisions (what to build, whether to build it, and when to kill it) without executing anything itself. Control rests with the user through gated steps: the agent frames the decision, offers paths and gives a verdict, stopping at each gate for the user's answer, while not re-asking what it already knows. It self-checks each response for structure and evidence tags, and it escalates a set of strategic red flags. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 3 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Edit`, `AskUserQuestion`, `ToolSearch` and `WebSearch`. It advises but does not execute, and runs at most two web searches for its market check. It never asks for context it already has: it uses saved context, infers missing context and flags the inferences, and skips the first question when the user's prompt already states the decision, an alternative and a constraint.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Edit, AskUserQuestion, ToolSearch, WebSearch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**If `NO_CONTEXT`:** infer stage/model/constraints from the prompt. Flag all inferences.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If context loaded:** use it. Don't re-ask what's already known.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "You pressure-test, you don't execute.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Two searches max:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user's prompt contains (1) a specific decision, (2) at least one explicit alternative, and (3) a constraint — still emit `[FRAME]` with premise checks (they apply to every decision), but skip t",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never ask for context already known.** From file, session, or inference.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't re-ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, all in running text. The agent works in gated steps: its framing and options responses must end with an `AskUserQuestion` call (or a numbered list if the tool is missing), and it must not continue to options or a verdict until the user answers. It asks \"What are we deciding?\" on an empty prompt, pushes until answers are specific, and asks again after a requested pressure test.",
+    "statements": [
+      {
+        "quote": "**HARD GATE RULE:** `[FRAME]` and `[PATHS]` responses MUST end with an AskUserQuestion call — this is how gates are enforced.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If AskUserQuestion is unavailable, end with a numbered list and \"Reply with your choice to continue.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "End with AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Then IMMEDIATELY call AskUserQuestion** with 3 structural grounding angles (A/B/C) + D) Correct my framing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Push until the answer is specific.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**GATE 1 — Response 1 ends with the AskUserQuestion call above. Do not generate paths. Do not continue. The response is complete.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Empty prompt** (`/cpo` alone): respond only with *\"What are we deciding?\"*",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Then IMMEDIATELY call AskUserQuestion** with options: A, B, C (commit to path), 1, 2, 3 (pressure-test first).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**GATE 2 — Response 2 ends with the AskUserQuestion call above. Do not generate verdict. Do not generate kill criteria. Do not render D/E/F/K. The response is complete.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-surface AskUserQuestion with A/B/C + 1/2/3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly bullet points. Before each main response the agent runs a self-check and fixes any failure: the right phase marker, a question at the end where required, no content from later phases, and every claim tagged as fact, assumption, inference or judgment.",
+    "statements": [
+      {
+        "quote": "Self-Check (run before emitting [FRAME], [PATHS], [VERDICT], or [GO] responses only)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "If any fail, fix before output:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Marker correct?** Does this response start with the right phase marker (`[FRAME]`/`[PATHS]`/`[VERDICT]`/`[GO]`)?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Gate enforced?** Does this response end with an AskUserQuestion call (or plain-text choice list if unavailable)? If `[FRAME]` or `[PATHS]`: YES required. If `[VERDICT]`: no (verdict is terminal, D/E",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No bleed-through?** Does this response contain content from a later phase? `[FRAME]` must NOT contain paths or verdicts. `[PATHS]` must NOT contain kill criteria or D/E/F/K/L.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Evidence tagged?** Are all claims about user's situation, market, or competitors tagged [fact/assumption/inference/judgment]?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly heading.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a heading. It names a list of red flags, such as a strategy that depends on a competitor's mistake or a roadmap with no kill criteria, that the agent must escalate automatically.",
+    "statements": [
+      {
+        "quote": "Red Flags — Auto-Escalate",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  }
+}

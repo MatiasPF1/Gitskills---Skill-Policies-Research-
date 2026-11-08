@@ -1,0 +1,127 @@
+{
+  "name": "gh-issues",
+  "mechanism": "Escalate",
+  "repo": "Adamuuuu/medical_evaluation_system",
+  "path": ".claude/skills/gh-issues/SKILL.md",
+  "author": {
+    "owner": "Adamuuuu",
+    "commit_author": "ef316c9a57ff0ec0",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/002ad93f92a57cee81a366aa15dcdda49bfa470e.md",
+  "conclusion": "gh-issues (Escalate) specifies 4 of 5 categories: 5 autonomy limits, 1 clarification rule, 5 approval gates, 4 escalation rules; none for validation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly prose: curl and GitHub REST API only; dry-run stopping before Phase 4; auto-processing issues without confirmation.",
+    "statements": [
+      {
+        "quote": "IMPORTANT — No `gh` CLI dependency. This skill uses curl + the GitHub REST API exclusively.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Display the table and stop. Do not proceed to Phase 4.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Auto-process ALL listed issues without asking for confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Launch up to 8 concurrently (matching `subagents.maxConcurrent: 8`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Launch up to 8 concurrently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: owner/repo when no git remote found.",
+    "statements": [
+      {
+        "quote": "If not in a git repo or no remote found, stop with an error asking the user to specify owner/repo.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 3 conditional), mostly prose: which issues to process; first watch-mode poll; uncommitted changes in working tree.",
+    "statements": [
+      {
+        "quote": "Ask the user to confirm which issues to process:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for user response before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Watch mode note: On the first poll, always confirm with the user (unless --yes is set).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation. If declined, stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--yes` is NOT set and this is not a subsequent watch poll: ask the user to confirm which PRs to address (\"all\", comma-separated PR numbers, or \"skip\").",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "4 escalation rules (4 mandatory, 0 advisory; 4 conditional), mostly list: GitHub authentication failures; curl errors; unreachable remote origin.",
+    "statements": [
+      {
+        "quote": "If curl returns an HTTP 401 or 403 → stop and tell the user: > \"GitHub authentication failed. Please check your apiKey in the OpenClaw dashboard or in ~/.openclaw/openclaw.json under skills.entries.gh",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If curl fails or returns any other error → report the error verbatim and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If this fails, stop with: \"Cannot reach remote origin. Check your network and git config.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If HTTP status is not 200, stop with:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

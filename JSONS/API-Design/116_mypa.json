@@ -1,0 +1,107 @@
+{
+  "name": "mypa",
+  "mechanism": "Ask",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/mypa/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": "e543ffb89bb8aab1",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01040fa22554503b31637330780fb410483c9631.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "mypa (Ask) specifies 4 of 5 categories: 1 autonomy limit, 4 clarification rules, 1 approval gate, 1 escalation rule; none for validation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "mypa is a voice-first personal communication hub for sending context-rich messages (\"tezits\") to family and team members, managing a feed, briefings and a CRM. The agent asks which team to use when the user has several, and confirms recipients before sending except in a narrow high-confidence direct-message case. It tells the user when the CRM is unavailable. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. When automatic direct messages are switched on, confidence is at least 90, the intent is a direct message and the team has at most 10 people, the agent sends without asking.",
+    "statements": [
+      {
+        "quote": "If `autoSendDMs` is **true**, confidence is **≥ 90**, intent is `\"dm\"`, and team size is **≤ 10**: send immediately without confirmation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (3 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, 3 strict and 1 counted as a suggestion (it contains \"should\"), 2 tied to a situation, mostly bullet points. When the user belongs to several teams and no team is given, the agent shows the list and asks which team to use. Before sharing web research it asks whether it should be a private note or a team share, and with whom.",
+    "statements": [
+      {
+        "quote": "**If `teams.length > 1`** → present the list and ask the user which team to scope to",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Disambiguation protocol**: if `teams.length > 1` and no teamId is specified, the backend returns `AMBIGUOUS_TEAM_SCOPE` with the list of teams. Present this to the user and ask them to choose.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Agent response**: Present the team list and ask the user which team they mean.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask whether this should be a **private note** or a **team share** (and who the recipients are).",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Outside the narrow automatic case, the agent shows the user who a message will go to and asks for confirmation before creating it.",
+    "statements": [
+      {
+        "quote": "Otherwise: show the user who you're sending to and ask for confirmation before creating the tez.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the CRM integration is not configured or not reachable, the agent tells the user and asks for setup help rather than for a file path.",
+    "statements": [
+      {
+        "quote": "If not configured/reachable, tell the user CRM integration is not configured or unreachable and ask for setup help (URL/key), not for a file path.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

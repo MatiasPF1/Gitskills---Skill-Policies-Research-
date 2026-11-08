@@ -1,0 +1,108 @@
+{
+  "name": "openspec-apply-change",
+  "mechanism": "Ask",
+  "repo": "DewaldOosthuizen/py-tray-command-launcher",
+  "path": ".github/skills/openspec-apply-change/SKILL.md",
+  "author": {
+    "owner": "DewaldOosthuizen",
+    "commit_author": null,
+    "declared": "openspec"
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/003f1a2c1d9b602f43a3b83b6afc3e97569896e7.md",
+  "conclusion": "openspec-apply-change (Ask) specifies 3 of 5 categories: 2 autonomy limits, 5 clarification rules, 5 escalation rules; none for approval gates, validation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list: keeping code changes minimal and scoped.",
+    "statements": [
+      {
+        "quote": "Keep changes minimal and focused",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Keep code changes minimal and scoped to each task",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (5 mandatory, 0 advisory; 3 conditional), mostly list: ambiguous change selection; unclear or ambiguous tasks; assuming specific file names.",
+    "statements": [
+      {
+        "quote": "If vague or ambiguous you MUST prompt for available changes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If ambiguous, run `openspec list --json` to get available changes and use the **AskUserQuestion tool** to let the user select",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Task is unclear → ask for clarification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If task is ambiguous, pause and ask before implementing",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Use contextFiles from CLI output, don't assume specific file names",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "5 escalation rules (5 mandatory, 0 advisory; 2 conditional), mostly list: blocked state with missing artifacts; design issues revealed during implementation; errors and blockers.",
+    "statements": [
+      {
+        "quote": "If `state: \"blocked\"` (missing artifacts): show a clear message explaining what artifacts are missing and advise the user to update or complete those artifacts before retrying apply",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Implementation reveals a design issue → suggest updating artifacts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Error or blocker encountered → report and wait for guidance",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If implementation reveals issues, pause and suggest artifact updates",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Pause on errors, blockers, or unclear requirements - don't guess",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

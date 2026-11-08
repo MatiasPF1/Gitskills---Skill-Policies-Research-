@@ -1,0 +1,81 @@
+{
+  "name": "trae-orchestrator",
+  "mechanism": "Act",
+  "repo": "dvcrn/openclaw-skills-marketplace",
+  "path": "plugins/vichard998--trae-orchestrator/skills/trae-orchestrator/SKILL.md",
+  "author": {
+    "owner": "dvcrn",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00fe16d9123bfb3755314f864bbf8a2a8dbe294b.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "trae-orchestrator (Act) specifies 2 of 5 categories: 4 autonomy limits, 1 clarification rule; none for approval gates, validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "trae-orchestrator drives the TRAE IDE (a separate coding tool) to build software autonomously, coordinating through signal files instead of constant checking. The agent's rules mainly limit what it reads and when it intervenes, to keep token use low, and it asks the user for input only when TRAE signals it needs clarification. It never tells the agent to get approval, check its own work, or what to do when something fails; quality checks and bug fixing are left to TRAE.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly table.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly table rows. To save tokens, the orchestrating agent reads only `task_plan.md` and `progress.md` (and `progress.md` only when a signal file appears), while the TRAE IDE handles the source files. It must not poll every 30 seconds and intervenes only when TRAE signals it is blocked or stuck in a loop.",
+    "statements": [
+      {
+        "quote": "Read only: task_plan.md, progress.md | Read/write all source files",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**DO NOT poll every 30 seconds.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Read progress.md | Only when signal file exists",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "Intervene | Only on BLOCKED/loop",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a table row. When TRAE creates a signal file saying it needs clarification, the agent asks the user for input.",
+    "statements": [
+      {
+        "quote": "`.signal_need_clarification` | Ask user for input",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

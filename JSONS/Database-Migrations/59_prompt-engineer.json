@@ -1,0 +1,75 @@
+{
+  "name": "prompt-engineer",
+  "mechanism": "Ask",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/cli-automation/prompt-engineer-dhavanesh24cs412/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": null,
+    "declared": "Eric Andrade"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00199a1f67a983aa3d64974b92a99b57e5a13c42.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "prompt-engineer (Ask) specifies 2 of 5 categories: 1 autonomy limit, 1 clarification rule; none for approval gates, validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "prompt-engineer rewrites raw user prompts into optimized prompts using established prompting frameworks (RTF, RISEN, Chain of Thought and others). Outside its code blocks it has only two control rules: it works silently, asking the user only when clarification is critically needed, and does not explain its framework choice. It sets no approval gates, no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent picks the prompting framework silently and does not explain its choice to the user.",
+    "statements": [
+      {
+        "quote": "**Critical Rule:** This selection happens **silently** - do not explain framework choice to user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent works silently and interacts with the user only when clarification is critically needed.",
+    "statements": [
+      {
+        "quote": "The skill operates in \"magic mode\" - it works silently behind the scenes, only interacting with users when clarification is critically needed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

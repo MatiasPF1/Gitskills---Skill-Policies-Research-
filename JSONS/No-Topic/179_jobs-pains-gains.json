@@ -1,0 +1,73 @@
+{
+  "name": "jobs-pains-gains",
+  "mechanism": "Escalate",
+  "repo": "jocwulf/service-engineering-skills",
+  "path": "skills/jobs-pains-gains/SKILL.md",
+  "author": {
+    "owner": "jocwulf",
+    "commit_author": null,
+    "declared": "jocwulf"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0090611ed51cea40cc39bfae74b440b41a8ee370.md",
+  "topics": [],
+  "conclusion_quantitative": "jobs-pains-gains (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 3 clarification rules, 1 validation rule; none for approval gates, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "jobs-pains-gains identifies customer segments from interviews, notes or a domain description and profiles each by its jobs, pains and gains. The agent asks for missing inputs and has the user confirm the segment list before profiling, infers only on request, and checks profiles against the data. Its other rules govern the content of the profiles. It sets no approval gates or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent infers jobs, pains and gains only when the user asks, and marks such inferences.",
+    "statements": [
+      {
+        "quote": "infer only if requested by user and mark inferences with *(inferred)*.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (2 mandatory, 1 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (it contains \"may\"), none tied to a situation, all in running text. The agent asks for any missing input and does not proceed without data and a domain description. Before profiling it asks the user which segments to drop or add.",
+    "statements": [
+      {
+        "quote": "Ask for any missing inputs before proceeding:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not proceed without data and an explicit domain description.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "prompt for exclusion of any segments that may be out of scope and inclusion of any additional segments the user thinks are relevant before proceeding to profiling.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After profiling, the agent confirms each segment's profile is internally consistent and grounded in the input data.",
+    "statements": [
+      {
+        "quote": "Confirm that each segment's profile is internally consistent and grounded in the input data.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "name": "experiment-report",
+  "mechanism": "Ask",
+  "repo": "weisberg/agile_agentic_analytics",
+  "path": "plugins/ab-testing/skills/experiment-report/SKILL.md",
+  "author": {
+    "owner": "weisberg",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/009567cf89aca72f9eee4eb83673d938b1249e6d.md",
+  "topics": [
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "experiment-report (Ask) specifies 4 of 5 categories: 5 clarification rules, 1 approval gate, 1 validation rule, 4 escalation rules; none for autonomy limits. Strongest: clarification rules.",
+  "conclusion_qualitative": "experiment-report writes a stakeholder-ready readout of an analyzed experiment for a named audience, reconciling the pre-registered plan with the actual analysis. The agent asks rather than estimates: missing numbers and the audience are put to the user before drafting. It discloses deviations and mismatches with the user's preferred conclusion openly and leaves the ship decision to humans. A clear completion status records whether the report is done, qualified, blocked or waiting for context.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 4 tied to a situation, mostly running text. The agent never estimates a missing number but asks for it or takes it from the analysis, and gathers any missing inputs in one batched message. The audience is a real decision gate: if the user has not named one, it asks once through `AskUserQuestion` before drafting, and reports what is needed when the audience or recommendation context is missing.",
+    "statements": [
+      {
+        "quote": "If a number is missing, you ask for it or pull it from the analysis artifact; you do not estimate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "if the audience is unclear, resolve it once with AskUserQuestion before drafting.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm or gather these before drafting. If any are missing, ask in a single batched message, not a Q&A loop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "The audience determines the document's whole shape, so this is a real decision gate — do not guess it. If the user has not named an audience, present it as a structured decision brief using **AskUserQ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — the audience is unconfirmed (see the audience decision gate) or the user's recommendation context is missing. Name exactly what to provide.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The skill does not approve ship decisions: its recommendation is only a recommendation, and humans approve.",
+    "statements": [
+      {
+        "quote": "It does not approve ship decisions. The recommendation is a recommendation; humans approve.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The report is done only when it is written for the confirmed audience, states a single recommendation and reconciles the pre-registered plan.",
+    "statements": [
+      {
+        "quote": "**DONE** — report written for the confirmed audience; a single recommendation from {Ship, Iterate, Kill, Extend} is stated and the pre-registration is reconciled.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, evenly split between running text and bullet points. The agent prominently discloses any divergence between the pre-registered plan and the analysis, and when the data does not support the user's intended recommendation it says so and lets the user decide. It reports caveats that qualify the recommendation and declares itself blocked when there is no analysis or design to work from.",
+    "statements": [
+      {
+        "quote": "If the pre-registered plan and the actual analysis diverge, you say so prominently — that disclosure *is* the report's most valuable section.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user provided a recommendation context and the data does not support it, **say so**. Surface the gap, explain the evidence, and let the user decide.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — delivered, but the report surfaces caveats that qualify the recommendation: guardrail regressions, post-hoc segment claims, or evidence weaker than the ask implied. List them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — no analysis artifact or design document to compose from; the skill will not invent numbers. State what is needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

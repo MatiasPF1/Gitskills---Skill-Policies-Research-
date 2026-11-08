@@ -1,0 +1,70 @@
+{
+  "name": "claude-expert",
+  "mechanism": "Ask",
+  "repo": "arthurflachs/.dotfiles",
+  "path": ".claude/skills/claude-expert/SKILL.md",
+  "author": {
+    "owner": "arthurflachs",
+    "commit_author": "049f7779bc2625c7",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/003342c27dfdbb997e7bacebeed553b8a8b0aeac.md",
+  "topics": [
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "claude-expert (Ask) specifies 3 of 5 categories: 1 autonomy limit, 1 clarification rule, 1 validation rule; none for approval gates, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "claude-expert is a Claude Code power-user assistant that answers questions and builds skills, agents, hooks and plugins. Most of its text is advice for the user rather than rules for the agent. It works with a fixed tool set, clarifies the scope of build requests with the user, and checks that what it built is available. It sets no approval gates and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Read`, `Write`, `Edit`, `Glob`, `Grep`, `WebSearch`, `WebFetch`, `AskUserQuestion`, `Bash` and `Task`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, AskUserQuestion, Bash, Task",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. Before building a skill, agent, hook or plugin, the agent uses `AskUserQuestion` to clarify what the user has not specified: what it should do, who invokes it, where it runs and at what level.",
+    "statements": [
+      {
+        "quote": "**Clarify scope** — Use AskUserQuestion if the user hasn't specified:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After building a skill or agent, the agent checks that it shows up in Claude Code.",
+    "statements": [
+      {
+        "quote": "**Verify** — Check the skill appears with \"What skills are available?\" or the agent with `/agents`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

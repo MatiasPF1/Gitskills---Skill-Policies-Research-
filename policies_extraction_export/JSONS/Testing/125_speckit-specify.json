@@ -1,0 +1,131 @@
+{
+  "name": "speckit-specify",
+  "mechanism": "Ask",
+  "repo": "iltan987/jetadisyon",
+  "path": ".claude/skills/speckit-specify/SKILL.md",
+  "author": {
+    "owner": "iltan987",
+    "commit_author": "db05b6df44e6e4bc",
+    "declared": "github-spec-kit"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/015044f0c168c9a61683f7299bbc68b4099421b7.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "speckit-specify (Ask) specifies 4 of 5 categories: 3 autonomy limits, 5 clarification rules, 1 validation rule, 1 escalation rule; none for approval gates. Strongest: clarification rules.",
+  "conclusion_qualitative": "speckit-specify creates or updates a feature specification from a natural-language description. The agent fills gaps with reasonable defaults and asks at most 3 critical clarifying questions, presented together. A quality checklist validates the spec, and the user is warned when issues remain after 3 rounds of fixes. It sets no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly running text. The agent does not ask the user to repeat the feature description unless it was empty, makes informed guesses beyond the 3 most critical open questions, and does not ask about details that have reasonable defaults.",
+    "statements": [
+      {
+        "quote": "Do not ask the user to repeat it unless they provided an empty command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**LIMIT CHECK**: If more than 3 markers exist, keep only the 3 most critical (by scope/security/UX impact) and make informed guesses for the rest",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Examples of reasonable defaults** (don't ask about these):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, all bullet points. The agent marks a point as needing clarification only for critical decisions without a reasonable default, at most 3 of them, presents all its questions together and waits for the user's answers.",
+    "statements": [
+      {
+        "quote": "Only mark with [NEEDS CLARIFICATION: specific question] if:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Present all questions together before waiting for responses",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for user to respond with their choices for all questions (e.g., \"Q1: A, Q2: Custom - [details], Q3: B\")",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Limit clarifications**: Maximum 3 [NEEDS CLARIFICATION] markers - use only for critical decisions that:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Common areas needing clarification** (only if no reasonable default exists):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent checks each item of the spec-quality checklist to see whether it passes or fails.",
+    "statements": [
+      {
+        "quote": "For each item, determine if it passes or fails",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the spec still fails the checklist after 3 iterations, the agent records the remaining issues and warns the user.",
+    "statements": [
+      {
+        "quote": "If still failing after 3 iterations, document remaining issues in checklist notes and warn user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

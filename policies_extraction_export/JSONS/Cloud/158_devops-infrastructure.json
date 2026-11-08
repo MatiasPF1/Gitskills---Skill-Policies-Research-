@@ -1,0 +1,188 @@
+{
+  "name": "devops-infrastructure",
+  "mechanism": "Escalate",
+  "repo": "lv416e/dotfiles",
+  "path": "dot_claude/skills/devops-infrastructure/SKILL.md",
+  "author": {
+    "owner": "lv416e",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/002493bc38bb9bfa9aa0d9778e4a61868971e199.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Deployment",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Infrastructure as Code",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "devops-infrastructure (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 2 approval gates, 10+ validation rules; none for clarification rules, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "devops-infrastructure governs infrastructure work (provisioning, containers, CI/CD, deployments, secrets and monitoring) under the rule that everything is codified, versioned and automated. Its control rules are mostly checks: plan review before apply and a verification checklist before done. Production deploys and any exception need explicit human approval. It sets no clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent never commits infrastructure state files to git.",
+    "statements": [
+      {
+        "quote": "Never commit state files to git",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. Production deploys require explicit approval, and no exception to the process is allowed without the human partner's explicit approval.",
+    "statements": [
+      {
+        "quote": "Production deploy requires explicit approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No exceptions without your human partner's explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent always runs and reviews the plan before applying, and before marking infrastructure work complete it checks that everything is in code, state is remote and locked, images are minimal, non-root and scanned, and no secrets sit in code.",
+    "statements": [
+      {
+        "quote": "Always run plan/preview first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Review every change in the plan",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never apply without reviewing the plan",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before marking infrastructure work complete:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All resources defined in IaC (no console-created resources)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "State stored remotely with locking",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Container images are multi-stage, minimal, non-root",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Images scanned for vulnerabilities in CI",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No secrets in code, Dockerfiles, or CI configs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Secrets injected from vault/secrets manager at runtime",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

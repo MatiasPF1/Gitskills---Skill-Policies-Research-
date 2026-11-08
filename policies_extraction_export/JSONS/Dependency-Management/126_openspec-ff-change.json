@@ -1,0 +1,110 @@
+{
+  "name": "openspec-ff-change",
+  "mechanism": "Ask",
+  "repo": "trrad/pytyche",
+  "path": ".claude/skills/opsx:ff/SKILL.md",
+  "author": {
+    "owner": "trrad",
+    "commit_author": "f6b1b58f0712279a",
+    "declared": "openspec"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0152acf569ae145b9d4a44ce16487465b24446a8.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "openspec-ff-change (Ask) specifies 3 of 5 categories: 1 autonomy limit, 7 clarification rules, 1 validation rule; none for approval gates, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "openspec-ff-change fast-forwards an OpenSpec change, generating all the planning artifacts needed before implementation in one pass. Its rules are mostly about asking briefly up front: the agent clarifies what to build and resolves the main ambiguities, then works through the artifacts, asking only when critically unclear. It checks each artifact was written and sets no approval gates or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. When the user's description is already specific and unambiguous, the agent skips the up-front clarification step.",
+    "statements": [
+      {
+        "quote": "Skip this step if the user's description is already specific and unambiguous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (6 mandatory, 1 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (it contains \"prefer\"), 5 tied to a situation, mostly bullet points. The agent asks what to build when there is no clear input and does not proceed without understanding it. Before creating artifacts it resolves likely ambiguities with 1 to 2 questions, such as which of several approaches or how wide the scope is, and asks again when an artifact needs user input, while preferring reasonable decisions to keep momentum.",
+    "statements": [
+      {
+        "quote": "**If no clear input provided, ask what they want to build**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**IMPORTANT**: Do NOT proceed without understanding what the user wants to build.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before starting the artifact loop, scan for likely ambiguities and resolve them upfront. 1-2 questions max — better to spend 30 seconds clarifying now than rewrite artifacts later.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user's description mentions multiple possible approaches → ask which one",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope is unclear (affects one area vs. many) → ask",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If an artifact requires user input** (unclear context):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If context is critically unclear, ask the user - but prefer making reasonable decisions to keep momentum",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent verifies that each artifact file exists after writing it before moving to the next.",
+    "statements": [
+      {
+        "quote": "Verify each artifact file exists after writing before proceeding to next",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

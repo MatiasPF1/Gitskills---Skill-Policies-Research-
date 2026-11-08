@@ -1,0 +1,308 @@
+{
+  "name": "polaris-local-forge",
+  "mechanism": "Escalate",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/polaris-local-forge/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": "e543ffb89bb8aab1",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/00971155a44ced33463ab896ab3d20edc635d338.md",
+  "conclusion": "polaris-local-forge (Escalate) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 10+ approval gates, 5 validation rules, 10+ escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly list: editing .env with sed/awk/bash; deleting the .snow-utils directory; modifying the skill directory.",
+    "statements": [
+      {
+        "quote": "NEVER use `sed/awk/bash` to edit `.env` or configuration files -- use the Edit/StrReplace tool",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER delete `.snow-utils/` directory -- this contains the manifest needed for replay/audit. Teardown and cleanup commands always preserve `.snow-utils/`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER modify files in the skill directory (`<SKILL_DIR>`) -- `k8s/`, `polaris-forge-setup/`, `src/`, `example-manifests/` are read-only source. Only the user's `--work-dir` is writable",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER start setup (with or without manifest) without a work directory -- the skill repo is READ-ONLY",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER run raw `duckdb` commands -- use `./bin/plf catalog query --sql \"...\"` for data queries, `./bin/plf catalog verify-sql` for initial setup verification, or `./bin/plf catalog explore-sql` for int",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER extract credentials from `principal.txt` to pass to other commands -- credentials are automatically loaded by CLI commands",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER use `uv run --project ... polaris-local-forge` after init -- ALWAYS use the `./bin/plf` wrapper script which handles paths, env vars, and suppresses warnings",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER use `plf` commands for REST API queries (list catalogs, show namespaces, list tables, etc.) -- use Ansible playbooks instead (see [Apache Polaris API Queries](#apache-polaris-api-queries))",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER look for or try to run a `polaris` CLI -- there is NO `polaris` command in this skill. The only CLI is `plf` (for infrastructure) and Ansible (for API queries)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER run `which polaris` or `polaris --help` -- the `polaris` binary does not exist",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "10+ clarification rules (10 mandatory, 0 advisory; 4 conditional), mostly list: choice status via AskQuestion; assuming the cluster is running; work directory before setup.",
+    "statements": [
+      {
+        "quote": "**If `\"status\": \"choice\"`**: Present choice using **AskQuestion tool** with radio options:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER assume the cluster is running -- always check status with `k3d cluster list` before operations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER create `.snow-utils/` in the skill directory -- ALWAYS ask for a work directory FIRST, then create `.snow-utils/` there",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER guess or invent CLI commands or options -- ONLY use commands from the CLI Reference tables below (e.g., `plf cluster status` NOT `plf status`). If a command fails, run `./bin/plf --help` or `./b",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If NOT in an existing workspace (and NOT in skill directory), ask user:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Which value to edit? (e.g., K3D_CLUSTER_NAME)\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask: \"Enter new value for {variable}:\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If in skill directory, STOP and ask:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP**: Ask user for execution preference:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Present using AskQuestion tool** with radio options:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 1 conditional), mostly prose: destructive cluster delete or purge; teardown confirmation; cleanup confirmation dialog.",
+    "statements": [
+      {
+        "quote": "NEVER run destructive commands (`cluster delete`, `polaris purge`) without explicit user confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER skip teardown confirmation because user did setup in the same session -- ALWAYS confirm destruction regardless of session context",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "For **cleanup/teardown** requests → ALWAYS present confirmation dialog with options (see [Teardown Flow](#teardown-flow))",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "At every decision point, ASK the user and WAIT for their response before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Step 0a: Configuration Review and Confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**After confirmation, proceed to prerequisites check.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**After translating, show user and confirm:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP**: Wait for user confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**STOP**: Wait for user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If \"step_by_step\":** Run each step, show output, then ask \"Continue?\" before the next step.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly prose: verifying with DuckDB; success after each step; manifest written.",
+    "statements": [
+      {
+        "quote": "**Step 8: Verify with DuckDB**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**After each step completes**, briefly confirm success before moving to next step.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify manifest was written:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Check the result:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Cortex Code MUST verify manifest has `Status: COMPLETE` or `Status: REMOVED`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "10+ escalation rules (10 mandatory, 0 advisory; 2 conditional), mostly table: error status; direct podman/k3d/kubectl use; missing tools.",
+    "statements": [
+      {
+        "quote": "**If `\"status\": \"error\"`**: Display the error message and stop",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "| Any command | NOT using direct podman/k3d/kubectl | Stop: \"Use CLI commands only. See FORBIDDEN COMMANDS.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `doctor` | Tools installed | Report missing tools with install instructions |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `doctor` | No ghost clusters | Report stale Docker resources if found |",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "| `cluster create` | Cluster doesn't exist | Stop: \"Cluster already exists. Use `cluster delete` first or `setup` to resume.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `cluster create` | No ghost cluster | Stop: \"Ghost cluster detected. Use `--force` to clean up stale references.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `cluster create` | Ports 19000, 19001, 18181 available | Stop: \"Port in use. Run `doctor --fix` first.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `catalog setup` | Cluster running, Apache Polaris ready | Stop: \"Cluster not ready. Run setup first.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `polaris deploy` | Cluster running | Stop: \"Cluster not running. Run `cluster create` first.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| `polaris purge` | Apache Polaris deployed | Stop: \"Apache Polaris not deployed. Nothing to purge.\" |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

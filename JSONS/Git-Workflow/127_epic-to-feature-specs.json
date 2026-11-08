@@ -1,0 +1,203 @@
+{
+  "name": "epic-to-feature-specs",
+  "mechanism": "Ask",
+  "repo": "unknown-studio-dev/epic-to-feature-specs",
+  "path": "skills/epic-to-feature-specs/SKILL.md",
+  "author": {
+    "owner": "unknown-studio-dev",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0156c650dfd7c4a963524c9f8d27dc8e79f703c8.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "epic-to-feature-specs (Ask) specifies 4 of 5 categories: 10+ clarification rules, 4 approval gates, 4 validation rules, 4 escalation rules; none for autonomy limits. Strongest: clarification rules.",
+  "conclusion_qualitative": "epic-to-feature-specs breaks a large epic into implementation-ready feature specs and, optionally, sub-specs sized for one AI-delivered pull request each. It is interview-driven: the agent asks for every input and never assumes. Design mismatches and oversized splits go back to the user, and sub-spec boundaries and team contracts need approval before work proceeds. Each spec is checked for SMART independence.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"should\"), 5 tied to a situation, mostly running text. The agent gathers every input through `AskUserQuestion` and never assumes: it asks who it is working with, then persona-adapted context questions such as an existing tech document, team boundaries and available designs. When uncertain about how to cut the epic it asks rather than guessing, and after presenting the feature specs it asks whether to split them into sub-specs.",
+    "statements": [
+      {
+        "quote": "Follow these steps in order. Use the AskUserQuestion tool to gather inputs — do not assume.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user (use AskUserQuestion):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Now ask the remaining context questions, **adapted to the persona**:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Existing tech doc** — ask if there's an architecture/technical document the specs should cite rather than duplicate. Read it if provided.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If they pick \"by team boundary\", follow the PM flow for team structure questions. Otherwise, ask them to describe the boundaries they want.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not improvise these inputs. A wrong assumption here corrupts every spec downstream.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If design MCP(s) are detected**, ask:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If no design MCP is detected**, ask:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If uncertain, ask the user rather than guessing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After presenting feat specs, prompt the user whether to decompose them further into sub-specs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. The agent proposes sub-spec boundaries to the user before writing any of them. When teams are split, the handoff contract must be agreed by both team leads before coding, and any later change needs both leads' sign-off.",
+    "statements": [
+      {
+        "quote": "11b — Propose sub-spec boundaries (do not write yet)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Then propose the boundaries to the user via AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Freeze before coding.** The contract must be agreed by both team leads before either side writes production code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Amendments require co-review.** If a contract needs to change mid-implementation, both team leads sign off in the same PR.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly running text. Unresolved design mismatches keep a spec from being frozen, and each spec is checked for SMART independence, with extra checks when designs are present.",
+    "statements": [
+      {
+        "quote": "**Unresolved mismatches block the spec from reaching \"Frozen\" status.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Step 7: Validate independence (SMART check)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "For each spec, run through `references/smart-checklist.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Additional validation when designs are present:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, evenly split between running text and bullet points. Mismatches between designs and stories are never resolved silently but surfaced to the user with a recommendation. When an epic needs more than 5 specs or a spec more than 5 sub-specs, the agent escalates to the user before going further.",
+    "statements": [
+      {
+        "quote": "**When mismatches are found, do NOT silently resolve them.** Use AskUserQuestion to surface each mismatch (or batch related mismatches) with a concrete recommendation so the user can decide quickly.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the proposed cut would need 6+ sub-specs to fit the work, escalate to the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**More than 5 specs per epic** — the epic itself is probably too big. Escalate to the user: \"Do we want to split the epic first?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the work needs 6+ sub-specs, the parent feat spec itself is probably too big — escalate to the user before overflowing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

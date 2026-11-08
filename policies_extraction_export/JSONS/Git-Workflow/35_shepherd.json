@@ -1,0 +1,204 @@
+{
+  "name": "shepherd",
+  "mechanism": "Act",
+  "repo": "w0lzard/Wolzard-s-Marketplace",
+  "path": "plugins/personal-skills/skills/shepherd/SKILL.md",
+  "author": {
+    "owner": "w0lzard",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0136bab819af3f6bb0475c76ab7082cad00719ee.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "shepherd (Act) specifies 5 of 5 categories: 6 autonomy limits, 2 clarification rules, 3 approval gates, 3 validation rules, 10+ escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "shepherd watches open pull requests on GitHub or GitLab in a loop, triaging review comments, fixing simple CI failures and keeping them moving. The agent acts on its own for routine fixes and may merge simple pull requests, but only when reviewers approved, CI is green, there are no conflicts and it has the user's permission or standing authority. It avoids noisy comments, asks the user about debatable nits or unclear questions, and stops and reports when failures repeat, conflicts are complex or human judgment is needed.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 4 tied to a situation, spread evenly over bullet points, table rows and running text. The agent must not post filler comments such as \"polling\" or comment when nothing has changed, acts only on automatic CI stages unless told otherwise, and merges only when its conditions are met. For simple pull requests it merges by default, and it must not fix a test it cannot explain.",
+    "statements": [
+      {
+        "quote": "Do NOT comment just to say \"polling\" or \"checking in\" — those are noise",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT comment if nothing has changed since your last comment",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Only act on automatic stages; skip manual ones unless instructed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only merge when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Log what you checked so user can scan | Default: merge yourself",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Fixing a test you don't understand | \"Obvious fix\" means you can explain WHY. If you can't, don't fix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (0 mandatory, 2 advisory; 2 conditional), mostly table.",
+    "conclusion_qualitative": "There are 2 rules, both counted as suggestions (their rows quote \"optional\" and \"consider\"), both tied to a situation, both table rows. When a reviewer's nit is debatable the agent asks the user, and when it is unsure how to answer a reviewer's question it passes the question to the user.",
+    "statements": [
+      {
+        "quote": "Nit / suggestion | \"nit\", \"optional\", \"consider\" | Apply if trivial (rename, formatting). Skip if debatable — ask user",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "Question | \"why\", \"what about\", \"did you consider\" | Answer the question. If unsure, relay to user",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "table"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. The agent merges only after the requested reviewers have approved and only if the user gave explicit merge permission or it has standing authority; after an approval comment it offers to merge, or merges if instructed.",
+    "statements": [
+      {
+        "quote": "Approval / LGTM | \"LGTM\", \"ship it\", `APPROVED` review / GitLab approval | Check CI is green, then offer to merge or merge if instructed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "All requested reviewers have approved (or review requirement is met)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "User gave explicit merge permission OR you have standing merge authority",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. Before merging, all CI checks (automated tests and builds) must be green and there must be no merge conflicts; an approval alone is not enough, so the agent always checks CI first.",
+    "statements": [
+      {
+        "quote": "All CI checks are green",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No merge conflicts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Merging after approval without checking CI | Approval ≠ ready to merge. Always check CI first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly bullet points. The agent reports what it cannot fix, and stops polling and reports to the user when a CI failure repeats for 3 cycles, a comment needs human judgment, or a merge conflict cannot be resolved cleanly. It stops and asks the user on red flags such as long unfamiliar failure logs, 3 or more failed fix pushes, or reviewers who contradict each other, and it reports complex merge conflicts.",
+    "statements": [
+      {
+        "quote": "Poll open PRs (GitHub) and MRs (GitLab) in a loop, triage events by type, act on what you can fix, and report what you can't.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Merge conflict | \"needs rebase\", \"conflicts\" | Rebase on base branch, push. If conflicts are complex, report to user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "Stop polling and report to user when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "A CI failure repeats 3 cycles without resolution",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A comment requires human judgment you don't have",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "You detect a merge conflict you can't resolve cleanly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Red Flags — STOP and ask user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "CI failure log is >50 lines of unfamiliar code",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "You've pushed 3+ fix commits and CI still fails",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "A comment contradicts another reviewer",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "name": "executing-plans",
+  "mechanism": "Act",
+  "repo": "anortham/razorback",
+  "path": "skills/executing-plans/SKILL.md",
+  "author": {
+    "owner": "anortham",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/009f9ed6fe1eac60618e8c4fb6705535da0a0aff.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "executing-plans (Act) specifies 4 of 5 categories: 9 autonomy limits, 2 approval gates, 5 validation rules, 6 escalation rules; none for clarification rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "executing-plans carries out a written implementation plan in one session, task by task, with review checkpoints. The agent is built to keep going alone: it makes plan-consistent decisions itself, does not pause for confirmation between tasks or phases, and notes its choices in a report. It runs the plan's verifications and branch checks, and stops and reports only on real blockers such as broken credentials or data that contradicts the plan. It needs the user's consent only to work on `main`/`master` or to skip an isolated worktree, and it never tells the agent to ask the user for missing information.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "9 autonomy limits (9 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 2 tied to a situation, mostly bullet points. They push the agent to keep going on its own: for design questions it picks the answer that fits the plan and notes it in its report, and when in doubt it presses on and flags the choice. It must not pause or wait for confirmation after finishing a task or a phase, and checkpoints are never a reason to ask the user anything. It must not fall back to `Glob`/`Read`/`Grep` chains instead of the Miller code-search tool, and it folds in only refactors needed for correctness or testability.",
+    "statements": [
+      {
+        "quote": "For any other design-quality questions, decide the plan-consistent answer and note it in your eventual report (file:line + reason)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT fall back to Glob → Read → Grep chains.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "This is a fast bookkeeping write — do not pause, request review, or wait for confirmation; continue straight to the next task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only fold in refactors required for correctness, testability, or avoiding a brittle patch without a new user prompt.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When in doubt, press on and flag.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Anything else: pick the plan-consistent option, note the choice in your report, continue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If a reasonable path exists, take it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "It is **not** a stop, a review gate, or a reason to ask the user anything — write it and immediately continue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "A phase boundary is a checkpoint trigger, not a stop: finishing a phase never means pausing for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. The agent never starts implementing on the `main` or `master` branch, and never skips setting up an isolated git worktree (a separate working copy), without the user's explicit consent.",
+    "statements": [
+      {
+        "quote": "Never start implementation on main/master branch without explicit user consent",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**razorback:using-git-worktrees** - Set up isolated workspace before starting. Skip only with explicit user consent (small, single-session work where a feature branch is sufficient).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. The agent checks that the plan's file paths and symbol references still match the code, runs the verifications the plan specifies and never skips them, makes sure a passing branch-gate check (the branch-level test run) is recorded before the external review, and verifies the branch gate again when finishing.",
+    "statements": [
+      {
+        "quote": "Review critically: use Miller to check that the plan's file paths and symbol references are still valid against current code",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run verifications as specified",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**First**, ensure the verification ledger has a passing `branch-gate` entry for the current HEAD.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Follow that skill in Autonomous Mode to verify the branch gate, push, create the PR, write the report, and stop before merge",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't skip verifications",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (6 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 4 tied to a situation, evenly split between bullet points and running text. The agent stops and reports when it hits a real blocker from its list, such as broken credentials, an unauthorized destructive action, data that contradicts the plan, a safety-critical ambiguity, or tests that keep failing. It reports a mismatch when the code contradicts the approved architecture, and stops when a re-check shows the plan is no longer valid. It stops only for these real blockers.",
+    "statements": [
+      {
+        "quote": "Preserve the approved architecture, do not redesign locally, and report a plan mismatch if code reality contradicts it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you find a real blocker per `../using-razorback/references/blocker-taxonomy.md` (in the razorback plugin) (especially #3, plan-contradicting data, or #4, safety-critical ambiguity with no plan answ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Real blockers (stop and report):**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If not, stop per blocker taxonomy #3 (plan-contradicting data).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Don't force through real blockers.** Stop and report per the taxonomy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop only for real blockers; if you can reason through a plan-consistent path, take it and note the choice (see blocker taxonomy)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "name": "finishing-a-development-branch",
+  "mechanism": "Escalate",
+  "repo": "tilework-tech/nori-luma-cli",
+  "path": ".claude/skills/finishing-a-development-branch/SKILL.md",
+  "author": {
+    "owner": "tilework-tech",
+    "commit_author": "9c1fa88f0ad6b222",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00ad1eaafe859b865e0ccecf59a2d4c1c6c5c9a4.md",
+  "topics": [
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "finishing-a-development-branch (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 1 clarification rule, 1 approval gate, 9 validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "finishing-a-development-branch takes completed, tested work to a merged-ready pull request: verify tests, run formatters, linters and type checks, self-review, push, create the PR and get CI green. Most of its rules are checks. It pushes without asking again except on the main branch, which needs permission. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent pushes and creates the pull request without waiting for further user approval, since invoking the skill counts as consent.",
+    "statements": [
+      {
+        "quote": "Do NOT wait for user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the project has no formatting, lint or type checking, the agent asks the user whether it missed something.",
+    "statements": [
+      {
+        "quote": "If NONE of these exist, ask me if there was something that you missed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If on the main branch, the agent asks before proceeding and never pushes to main without permission.",
+    "statements": [
+      {
+        "quote": "If you are, ask me before proceeding. NEVER push to main without permission.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "9 validation rules (9 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 2 tied to a situation, mostly bullet points. Before opening the pull request the agent runs the tests, formatters, linters and type checks, a code self-review and a test review in subagents; afterwards it makes sure CI passes and fixes any failures, even ones it did not cause.",
+    "statements": [
+      {
+        "quote": "Use the Task tool to verify tests by using the project's test suite.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use the Task tool to run any formatters and fix issues in a subagent.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use the Task tool to run any linters and fix issues in a subagent.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use the Task tool to run type checking and fix issues in a subagent.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Use the nori-code-reviewer subagent to do a self review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run the test-scenario-hygiene skill in a subagent to do test review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Make sure the PR branch CI succeeds.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If CI did not pass, examine why and fix the issue.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "It is *critical* that you fix any ci issues, EVEN IF YOU DID NOT CAUSE THEM.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

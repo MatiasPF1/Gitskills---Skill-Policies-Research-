@@ -1,0 +1,59 @@
+{
+  "name": "clarify-first",
+  "mechanism": "Ask",
+  "repo": "tnikhil-24/handy-claude-skills",
+  "path": "plugins/my-skills/skills/clarify-first/SKILL.md",
+  "author": {
+    "owner": "tnikhil-24",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/002cefa17759c4cdcc5ce926c466835f79ef63b9.md",
+  "conclusion": "clarify-first (Ask) specifies 2 of 5 categories: 1 autonomy limit, 3 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly list: asking more questions once answered.",
+    "statements": [
+      {
+        "quote": "**Once answered, proceed confidently.** Use the answers to complete the task without asking more questions unless something truly unexpected comes up.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly list: clarifying questions before any work; waiting for answers before producing output.",
+    "statements": [
+      {
+        "quote": "Before doing any work on the user's task, ask targeted clarifying questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask 3–6 focused questions.** Cover the most important unknowns — things that would meaningfully change your approach or output. Don't ask about things you can reasonably infer.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Wait for answers before proceeding.** Do not produce any draft output, code, or plan alongside the questions. Questions only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

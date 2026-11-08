@@ -1,0 +1,210 @@
+{
+  "name": "investigate-issue",
+  "mechanism": "Act",
+  "repo": "growilabs/growi",
+  "path": ".claude/skills/investigate-issue/SKILL.md",
+  "author": {
+    "owner": "growilabs",
+    "commit_author": "17c12d0c9a182bfc",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00bc340b5a0db1994e6ab20c1573109ffd117dee.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "investigate-issue (Act) specifies 5 of 5 categories: 7 autonomy limits, 10+ clarification rules, 2 approval gates, 1 validation rule, 4 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "investigate-issue investigates a GitHub issue end to end: it fetches details, updates labels, analyzes or reproduces the problem, reports findings and optionally fixes it. Control depends on a confidence rating: in interactive mode the agent always asks, and in autonomous mode it asks whenever confidence is not high, fixing and opening a pull request only when approved or highly confident. It must not change code while investigating and never commits directly to `master`. It runs lint and tests after the fix, and stops or notes the problem when the issue, login, labels or dev server fail.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (7 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly running text. The front matter limits the agent to a fixed tool set. It must not change source files while investigating and reporting, must create a dedicated fix branch before touching code, and must never commit fixes directly to `master` or the current branch. In autonomous mode with high confidence, it moves on to the fix and to the pull request without asking.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Agent, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**CRITICAL**: Do NOT modify any source files in this step.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Implementing code changes before the gate in Step 4-C is strictly forbidden.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**HIGH** → proceed to Step 5 automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Always create a dedicated fix branch before touching any source files.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never commit fixes to `master` or the current branch directly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**HIGH** → proceed to create PR automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. A confidence table tells the agent when to ask: in interactive mode it always asks, and in autonomous mode it stops and asks whenever confidence is medium or low, for example when it is unclear whether an old-version bug still exists or the fix is risky. It must look up exact label names instead of guessing them.",
+    "statements": [
+      {
+        "quote": "HIGH | Evidence is clear, risk is low, path forward is unambiguous | Proceed autonomously — state the evidence and the decision made | Ask user (present recommendation clearly)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "MEDIUM | Some evidence exists but ambiguity remains, or blast radius is larger than expected | Stop and ask — present findings and your recommendation | Ask user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "LOW | Evidence is thin, multiple theories, or the change is risky | Stop and ask — present what is known and what is missing | Ask user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Label names in this repo include emoji prefixes (e.g. `\"0️⃣ phase/new\"`, `\"1️⃣ phase/under-investigation\"`), so always look them up rather than guessing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**MEDIUM**: Code has changed but it is unclear whether the bug was fixed or remains. Stop and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**LOW**: Major version gap, completely different architecture, or the subagent finds no relevant code. Stop and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "In `interactive` mode, always ask regardless of confidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**MEDIUM or LOW** → stop and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Always ask, presenting confidence level and recommendation clearly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**MEDIUM or LOW** → stop and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 2 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, both headings. The agent implements a fix, and opens a pull request, only if the user approved it or, in autonomous mode, its confidence is high.",
+    "statements": [
+      {
+        "quote": "Step 5: Implement the Fix (Only if approved or autonomous HIGH confidence)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "heading"
+      },
+      {
+        "quote": "5-E: Open a Pull Request (Only if approved or autonomous HIGH confidence)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "heading"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After making the fix, the agent runs lint and tests.",
+    "statements": [
+      {
+        "quote": "Run lint and tests:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, all tied to a situation, all bullet points. If the issue number is invalid the agent shows the `gh` error and stops; if `gh` is not logged in it tells the user to run `gh auth login`. A missing label is noted in the output and skipped (no new labels are created), and if the dev server fails to start the agent notes it and relies on code analysis only.",
+    "statements": [
+      {
+        "quote": "If the issue number is invalid or not found: display error from `gh` and stop",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `gh` is not authenticated: instruct the user to run `gh auth login`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a label does not exist in the repo: note it in output and skip (don't create new labels)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the dev server fails to start: note this and rely on code analysis only",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

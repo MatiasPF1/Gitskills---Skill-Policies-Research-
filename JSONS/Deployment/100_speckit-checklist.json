@@ -1,0 +1,111 @@
+{
+  "name": "speckit-checklist",
+  "mechanism": "Ask",
+  "repo": "a2mus/smart-da3m",
+  "path": ".agents/skills/speckit-checklist/SKILL.md",
+  "author": {
+    "owner": "a2mus",
+    "commit_author": null,
+    "declared": "github-spec-kit"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00936e15908faa5dcb7c162cc9f507c95827529c.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "speckit-checklist (Ask) specifies 2 of 5 categories: 1 autonomy limit, 5 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "speckit-checklist generates quality checklists that test whether written requirements are complete, clear and consistent, like unit tests for a spec. Its control rules are all about asking: a few targeted clarifying questions, capped at 5, and no repeated questions. It sets no approval gates, checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent never asks the user to restate what they already said.",
+    "statements": [
+      {
+        "quote": "Never ask the user to restate what they already said",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (4 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"may\"), 2 tied to a situation, mostly bullet points. The agent derives up to 3 clarifying questions from the user's request and the spec, asking only what materially changes the checklist and asking explicitly when unsure whether something is in scope. If key scenario classes remain unclear it may ask up to 2 follow-ups, never more than 5 questions in total.",
+    "statements": [
+      {
+        "quote": "**Clarify intent (dynamic)**: Derive up to THREE initial contextual clarifying questions (no pre-baked catalog).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only ask about information that materially changes checklist content",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If uncertain, ask explicitly: \"Confirm whether X belongs in scope.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After answers: if ≥2 scenario classes (Alternate / Exception / Recovery / Non-Functional domain) remain unclear, you MAY ask up to TWO more targeted follow‑ups (Q4/Q5) with a one-line justification ea",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not exceed five total questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "name": "project-specify",
+  "mechanism": "Ask",
+  "repo": "telum-ai/speck",
+  "path": ".cursor/skills/project-specify/SKILL.md",
+  "author": {
+    "owner": "telum-ai",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/005c7c4f2539976d6e74469e690cfe96a3fcbbed.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "project-specify (Ask) specifies 2 of 5 categories: 4 autonomy limits, 7 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "project-specify produces the project.md specification at the start of a Speck project, from scratch or pre-filled from imported code and documents. Its rules are mostly about asking: it fills gaps in the description with targeted questions and asks only what the code cannot answer. It refuses to overwrite a validated project and regenerates the README automatically. It sets no approval gates, checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, all in running text. The agent does not ask the user to repeat the project description unless it was empty, and for existing codebases skips questions about features, tech stack and architecture already found in the code. It must not run this skill on an already completed or validated project when the user wants a pivot, and after writing `project.md` it regenerates the README on its own without waiting for the user.",
+    "statements": [
+      {
+        "quote": "Do not ask the user to repeat it unless they provided an empty command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL**: If this project is already completed or validated, and the user is requesting a directional pivot, strategic contract change, or redesigned feature, **do NOT run `/project-specify`**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Skip questions about:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After `project.md` is written, **automatically invoke `/project-readme`** (run `.speck/scripts/regenerate-project-readme.sh`) to populate the root README scaffold with project title and spec links. Do",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (7 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 5 tied to a situation, mostly running text. The agent infers or asks for the project archetype, offers a matching recipe, and asks targeted questions when the description is vague or misses the project type, users, core problem or scale, including whether the domain needs specialist knowledge. For existing codebases it asks only about what cannot be discovered from the code.",
+    "statements": [
+      {
+        "quote": "Before play level detection, infer or ask for the **Project Archetype** from the project's description or conversation context:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If unclear, ask: \"Which archetype best describes this project's target architecture? (consumer_product | b2b_saas | internal_tool | infra_service | backend_api)\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If match found**, offer the recipe:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If empty or too vague, ask: \"What would you like to build?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "The project template needs specific information. If any of these are missing from the input, ask targeted questions:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask if domain is specialized:**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask targeted questions to fill gaps that **cannot be discovered from code**:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

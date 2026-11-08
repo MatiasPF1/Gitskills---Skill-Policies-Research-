@@ -1,0 +1,113 @@
+{
+  "name": "design-lite",
+  "mechanism": "Escalate",
+  "repo": "Nharu/cc-cmds",
+  "path": "plugins/cc-cmds/skills/design-lite/SKILL.md",
+  "author": {
+    "owner": "Nharu",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00f518cfcc3f4d993d09770258f0e5a4ab8e2100.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "design-lite (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 3 clarification rules, 1 approval gate, 1 validation rule; none for escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "design-lite runs a lightweight design discussion with a fixed two-member team of agents, producing a design document in Korean. The agent interviews the user first, gets approval for the team, enforces a quality gate on proposals, and never modifies code. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. The skill makes no code changes, only design discussion, and never spawns a refinement team, even when the user asks for deeper investigation.",
+    "statements": [
+      {
+        "quote": "NO code modifications allowed. Design discussion only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user requests deeper investigation that would normally trigger a refinement team, do NOT spawn one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "NO code modifications. Design discussion only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. Before forming a team the agent interviews the user with deep, specific questions, alternating with codebase exploration until coverage is sufficient, then confirms with the user before proceeding.",
+    "statements": [
+      {
+        "quote": "Do NOT create a team yet. First, interview the user to understand requirements.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask deep, non-obvious questions covering all aspects of the task",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Iterate between interviewing and codebase exploration until coverage is sufficient, then confirm with the user before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The two-member team is created only after the user approves its composition.",
+    "statements": [
+      {
+        "quote": "Only create the team after the user approves the composition (single Y/N gate — no iterative re-proposal cycle).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Before cross-review, each proposal must reference concrete code from the codebase and give reasons for its design decisions.",
+    "statements": [
+      {
+        "quote": "**Quality Gate**: Before cross-review, verify each proposal references concrete files/modules/patterns from the actual codebase and includes design decisions with rationale.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

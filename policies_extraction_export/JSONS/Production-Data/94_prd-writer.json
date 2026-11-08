@@ -1,0 +1,100 @@
+{
+  "name": "prd-writer",
+  "mechanism": "Ask",
+  "repo": "GustavoGutierrez/engineering-skills",
+  "path": "skills/prd-writer/SKILL.md",
+  "author": {
+    "owner": "GustavoGutierrez",
+    "commit_author": null,
+    "declared": "gustavog-gutierrez"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/006125f8e7c26121839336bce0bb0e9b533f7d67.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "prd-writer (Ask) specifies 3 of 5 categories: 1 autonomy limit, 4 clarification rules, 1 approval gate; none for validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "prd-writer generates product requirements documents for software and AI features following a strict schema. It interviews the user before writing, with at least 2 clarifying questions, and iterates on the draft with the user's feedback. It works with a minimal tool set and sets no checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Read`, `Edit` and `Write`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Edit, Write",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, evenly split between running text and bullet points. Before writing any of the PRD the agent must interview the user to fill knowledge gaps (the core problem, success metrics and constraints), never writing without at least 2 clarifying questions, and asks about an unspecified tech stack or marks it as to be decided.",
+    "statements": [
+      {
+        "quote": "Before writing a single line of the PRD, you **MUST** interrogate the user to fill knowledge gaps. Do not assume context.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask about:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Skip Discovery**: Never write a PRD without asking at least 2 clarifying questions first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Hallucinate Constraints**: If the user didn't specify a tech stack, ask or label it as `TBD`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent presents a draft and asks the user for feedback on specific sections.",
+    "statements": [
+      {
+        "quote": "**Iterate**: Present a draft and ask for feedback on specific sections.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

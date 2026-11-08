@@ -1,0 +1,113 @@
+{
+  "name": "pr_create",
+  "mechanism": "Escalate",
+  "repo": "vig-os/commit-action",
+  "path": ".claude/skills/pr_create/SKILL.md",
+  "author": {
+    "owner": "vig-os",
+    "commit_author": "f0deda6c4dedc1a7",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/006bc2290cedf0d7d5743fbb65d00b3e16d1cbc9.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "pr_create (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 3 clarification rules, 4 approval gates, 2 escalation rules; none for validation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "pr_create prepares and submits a pull request for feature or bugfix work: syncing the branch, checking the changelog, filling the template and submitting. The user confirms the target branch, approves the text and names assignees and reviewers before anything is submitted. Uncommitted changes and merge conflicts are handed to the user. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent adds assignees and reviewers only as the user specifies.",
+    "statements": [
+      {
+        "quote": "Add `--assignee` and `--reviewer` only as specified by the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, all bullet points. The agent asks for the target branch when it cannot infer it, asks the user to name the assignee and reviewers, and confirms with the user when the branch is ambiguous.",
+    "statements": [
+      {
+        "quote": "If the user did not specify it, infer from context (e.g. \"into 37\" → branch for issue 37) or ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user to specify **assignee** and **reviewers**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm with the user when ambiguous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, all bullet points. The agent does not prepare the pull request on a dirty tree unless the user says so, has the user confirm or edit the text, and never submits the pull request until the user has approved it and given assignees and reviewers.",
+    "statements": [
+      {
+        "quote": "Do not prepare the PR until the working tree is clean (or the user explicitly says to proceed with uncommitted changes).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user to confirm or edit the text.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not run `gh pr create` until the user approves and provides assignee/reviewers.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never submit the PR (step 6) until the user has approved the text and provided assignee/reviewers preferences.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, all bullet points. If there are uncommitted changes the agent lists them and asks the user to commit or stash, and on merge conflicts it lists the files and asks the user to resolve them before proceeding.",
+    "statements": [
+      {
+        "quote": "If there are uncommitted changes, list them and ask the user to commit or stash before submitting the PR.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Conflict handling:** If merge conflicts occur, list the conflicting files and ask the user to resolve them manually before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

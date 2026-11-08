@@ -1,0 +1,72 @@
+{
+  "name": "qa-designer-agent",
+  "mechanism": "Escalate",
+  "repo": "swongsuddee/windflu-test",
+  "path": ".agents/toolkit/qa-designer-agent/SKILL.md",
+  "author": {
+    "owner": "swongsuddee",
+    "commit_author": "01bde9e606189745",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/005721338a1473eb6b42e5087461ba9785782919.md",
+  "conclusion": "qa-designer-agent (Escalate) specifies 3 of 5 categories: 1 autonomy limit, 1 clarification rule, 4 approval gates; none for validation rules, escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list: storing credentials or personal data in output files.",
+    "statements": [
+      {
+        "quote": "Never store credentials or personal data in any output file",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: confidence below 95% before estimating coverage.",
+    "statements": [
+      {
+        "quote": "**Confidence gate:** If below 95%, ask targeted clarification questions grouped by category and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list: confirming coverage estimates before generating cases; impact summary before updating designs.",
+    "statements": [
+      {
+        "quote": "| `coverage-estimation` | After technique-selection | Coverage summary — stop for confirmation |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Stop for user confirmation before generating cases.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Show impact summary and updated test count. Stop for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop for confirmation before generating cases",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "name": "verify-issue",
+  "mechanism": "Act",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/verify-issue/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00ab206a57e89d8cd0ab9839a1359057445be7a2.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "verify-issue (Act) specifies 4 of 5 categories: 5 autonomy limits, 1 clarification rule, 10+ validation rules, 3 escalation rules; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "verify-issue checks a finished issue against its acceptance criteria, runs tests and posts a review comment on the Linear or Jira ticket. Most of its control rules are checks: tests, type checks, lint, criterion-by-criterion comparison and a multi-agent review. It acts on its own, without asking, to reopen failing sub-tasks, post the report and close the verification task. The user is involved only when rework repeats too often or requirements are unclear, and it exits with a blocked status when sub-tasks are unfinished. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. All of them tell the agent to act without asking the user: it reopens failing sub-tasks (smaller pieces of the issue) and starts the rework loop, posts its verification report to the ticket, and marks the verification sub-task done on a pass.",
+    "statements": [
+      {
+        "quote": "**CRITICAL**: The following actions MUST be performed AUTONOMOUSLY without asking the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not ask \"Should I reopen these sub-tasks?\" - just do it",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Post verification report** - Always post the review comment to the ticket without asking.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Mark verification sub-task Done** - On PASS or PASS_WITH_NOTES, automatically mark the current verification sub-task as Done.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**AUTONOMOUS ACTION**: On FAIL or NEEDS_WORK, IMMEDIATELY implement the rework loop without asking the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. It names unclear requirements that need clarification (the DISCUSS status) as one of the two cases where the agent involves the user.",
+    "statements": [
+      {
+        "quote": "Ambiguous requirements that need clarification (DISCUSS status)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent runs tests, type checks and lint, compares the work against each acceptance criterion (the conditions the issue must meet), and spawns four parallel reviewer agents. It checks that all sub-tasks are done or in progress, none is blocked, and each has completion comments, and for each changed file it checks that the code follows project conventions and covers the criteria.",
+    "statements": [
+      {
+        "quote": "**Run verification checks** - Tests, typecheck, lint",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Compare against criteria** - Check each acceptance criterion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Multi-agent critique** - Spawn 4 parallel review agents for comprehensive analysis",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All sub-tasks are in \"Done\" or \"In Progress\" (ready for review) state",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No sub-tasks are still blocked or in Backlog",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Each sub-task has completion comments",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Check for patterns**: Does it follow codebase conventions?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify completeness**: Does the code address the acceptance criteria?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Execute the test suite:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify type safety:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. After the maximum number of rework cycles (3 by default) the agent escalates, which is one of the two cases where the user is involved. If any implementation sub-task is not finished, it outputs a blocked status and exits.",
+    "statements": [
+      {
+        "quote": "Escalation after max_rework_iterations exceeded",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify all implementation sub-tasks \"Done\"** - If any implementation sub-task is not complete, output STATUS: ALL_BLOCKED and exit",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Max Iterations**: After `max_rework_iterations` (default 3) rework cycles, escalate:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "name": "github-navigator",
+  "mechanism": "Escalate",
+  "repo": "MikeCheng1208/BattleTree",
+  "path": ".agents/skills/github-navigator/SKILL.md",
+  "author": {
+    "owner": "MikeCheng1208",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/016cbd3e7b4e5d112d1558073e44ee3842ee80b1.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "github-navigator (Escalate) specifies 3 of 5 categories: 3 autonomy limits, 4 approval gates, 5 escalation rules; none for clarification rules, validation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "github-navigator handles GitHub operations through the gh command-line tool (repositories, issues, pull requests, releases and files) instead of fetching web pages. Destructive and state-changing operations need the user's confirmation, and failing commands are tried at most twice before the error goes to the user. It works with a restricted tool set and sets no clarification rules or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, one in the front matter, one bullet point and one running-text line. The front matter limits the agent to `gh` commands, `git clone`, `Read`, `Glob`, `Grep` and `Task`, and it never loops through blind variations of a failing command.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash(gh:*), Bash(git:clone), Read, Glob, Grep, Task",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Never loop endlessly** trying variations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**DO NOT try multiple blind variations.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly headings. Creating or closing issues, merging pull requests and any other destructive, state-changing, resource-creating or security operation needs the user's confirmation before it runs.",
+    "statements": [
+      {
+        "quote": "Create Issue (Requires Confirmation)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Close Issue (Requires Confirmation)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Merge PR (Requires Confirmation)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**Always confirm before executing:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (4 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"try\"), 3 tied to a situation, mostly bullet points. Each command pattern gets at most 2 attempts; after a second failure the agent stops and reports the error to the user.",
+    "statements": [
+      {
+        "quote": "**Execute** with max 2 attempts, then STOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If fails twice: **STOP** and report error to user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Maximum 2 attempts per command pattern, then STOP.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If fails again**: **STOP** - Report error to user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When command fails: Read error → check `gh <cmd> --help` → try once more → report to user if still fails.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

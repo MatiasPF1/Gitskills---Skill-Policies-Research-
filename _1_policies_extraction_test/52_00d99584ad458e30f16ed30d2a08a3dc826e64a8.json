@@ -1,0 +1,163 @@
+{
+  "name": null,
+  "mechanism": "Ask",
+  "repo": "LLTOMZHOU/personal_website",
+  "path": "skills/photo-ingestion-upload-serve/SKILL.md",
+  "author": {
+    "owner": "LLTOMZHOU",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/00d99584ad458e30f16ed30d2a08a3dc826e64a8.md",
+  "conclusion": "unknown (Ask) specifies 4 of 5 categories: 8 autonomy limits, 5 clarification rules, 7 validation rules, 1 escalation rule; none for approval gates. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "8 autonomy limits (8 mandatory, 0 advisory; 3 conditional), mostly prose: the canonical R2 storage target; installing new tooling mid-ingest; uploading or writing before inspection.",
+    "statements": [
+      {
+        "quote": "Use Cloudflare R2 as the canonical upload target unless the user explicitly changes the storage decision.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not install random new tooling in the middle of ingestion just to get around a local environment issue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Start read-only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not upload or rewrite content before this summary exists.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the answers are obvious enough, proceed and state the assumptions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the machine still has an `npx`/Node mismatch, use the already-working local Wrangler path rather than installing random new tooling mid-ingest.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "do not hand-author a normal album page under `pages/photography/`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not upload first and figure out meaning later.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (4 mandatory, 1 advisory; 5 conditional), mostly prose: questions only when they affect storage or metadata; inventing missing or low-confidence metadata; ambiguous folder shapes.",
+    "statements": [
+      {
+        "quote": "Only ask when the answer materially affects storage keys, page placement, or authored metadata.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "if date information is missing, it is acceptable to ship a date-less title and slug rather than inventing one",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "AI should not silently invent critical metadata when confidence is low.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If confidence is low on something user-facing, surface the uncertainty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Escalate when:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 2 conditional), mostly prose: definition of done for a photography run; verifying public delivery URLs; site build and page checks after updates.",
+    "statements": [
+      {
+        "quote": "For a normal photography run, “done” means all of the following are true:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not treat “JSON was written” as success if the upload path or delivery verification is still broken.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "only proceed to repo writes after the upload path is proven to work",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After upload, verify the public URLs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not write final canonical URLs into the repo until delivery verification passes or the failure is explicitly acknowledged.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "confirm the affected page renders correctly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "check for broken references introduced by the ingestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: failed upload verification.",
+    "statements": [
+      {
+        "quote": "If upload verification fails, stop before writing final canonical URLs unless the user explicitly asks for a partial or placeholder repo update.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

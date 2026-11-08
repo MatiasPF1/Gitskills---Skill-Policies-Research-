@@ -1,0 +1,280 @@
+{
+  "name": "maintainer",
+  "mechanism": "Ask",
+  "repo": "kaitranntt/kai-personal-claude",
+  "path": "skills/maintainer/SKILL.md",
+  "author": {
+    "owner": "kaitranntt",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/003690e9f992f780a1b39f8e583ca60568816f45.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "maintainer (Ask) specifies 5 of 5 categories: 9 autonomy limits, 5 clarification rules, 10+ approval gates, 4 validation rules, 5 escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "maintainer is a daily issue-resolution pipeline: triage, GitHub issue, worktree, fix, pull request and a review-feedback loop, classifying input as a bug or feature. The user chooses the target, confirms issue details, comment posting, their understanding of the changes and any UI evidence before the pull request. The agent itself works only in worktrees, delegates fixes, and never targets `main` or touches user-opened issues without being asked. It proves root causes with evidence and stops and asks or alerts the user when evidence fails or the review loop runs out of attempts.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "9 autonomy limits (9 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 3 tied to a situation, mostly bullet points. Signal intake is strictly read-only and never picks a target, branches, commits or edits on its own. All code work happens in a worktree, never in the original repository, and the maintainer itself only orchestrates, delegating fixes rather than changing code. It may auto-comment on issues it created and auto-enter the review loop after a pull request, but never targets `main` without the user's flag or comments on or closes issues the user opened unless asked.",
+    "statements": [
+      {
+        "quote": "**This mode is strictly read-only.** No autonomy, no cron, no auto-pick, no ck-loop. It never branches, commits, pushes, edits files, or opens a worktree.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Worktree is REQUIRED for all maintainer work. NEVER make code changes directly on the original repo directory.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Maintainer-created issue (Step 3):** Auto-post comment, no confirmation needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER auto-decide to target `main`** -- even if branch looks like a hotfix, target `dev` unless user said `--pr-main`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After PR is created (Step 8), automatically enter a fix loop that monitors review feedback (both AI bot AND upstream human reviewers) and resolves ALL issues until clean approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**MUST NOT implement fixes directly.** ONLY role is orchestration and delegation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**MUST NOT modify code yourself.** Delegate entirely to `/fix --parallel` or `/team`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER comment on or close user-opened issues** via `gh` unless the user explicitly asks",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER modify code directly on the original repo dir** -- always use a worktree",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 4 tied to a situation, mostly running text. The user picks what to work on: the agent ranks the candidates and asks which to address, never auto-picking even when there is only one, and asks what to work on when there is no input or nothing needs attention. It suggests splitting a large change into sub-issues through `AskUserQuestion`.",
+    "statements": [
+      {
+        "quote": "Surfaces what needs attention, ranks it, and lets the USER pick the target.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Fallback when neither applies:** if there is no `--from-signals` flag AND no input (report / image / transcript / URL / description), ask the user what they want to work on (or suggest re-running wi",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user which candidate to address. The user may instead override with a fresh target -- a GitHub issue URL or a plain description. Never auto-pick, even when there is only one candidate or a cle",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When the suggester reports no candidates (`topTarget: null`, empty `candidates`), state that nothing needs attention and ask whether the user wants to provide a target manually.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If >3 files AND >2 groups -> suggest decomposition via `AskUserQuestion`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 4 tied to a situation, evenly split between running text and bullet points. The agent confirms the issue title and labels before creating an issue and confirms before posting on an issue the user provided. It proceeds only after the user confirms they understand the changes, asks before running a code review ahead of git operations, and pushes UI evidence and opens the pull request only after the user approves the evidence report.",
+    "statements": [
+      {
+        "quote": "Use `AskUserQuestion` to confirm issue title and labels before creation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**User-provided issue URL:** Use `AskUserQuestion` to confirm before posting.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Proceed when user confirms understanding",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Before any git operations, ask the user via `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Hard gate if `--force-ui`:** PR creation (Step 8) is BLOCKED until evidence is produced and user-approved.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Review locally first** — open report for user approval BEFORE any git commit. Never push evidence incrementally",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER push evidence commits incrementally.** Capture locally, get user approval, THEN commit+push once.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When refreshed: replace locally → user approval → amend evidence commit → force-push once → update PR body.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "HTML report generated and locally reviewed by user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If PR is still **open** -> Use `AskUserQuestion`: \"PR #N is still open (not merged). Merge it first before cleanup?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. The agent must prove the root cause with concrete evidence and confirm or refute its hypothesis before fixing. It audits commit types before a hotfix to `main` and runs a parallel self-review on every review-loop iteration.",
+    "statements": [
+      {
+        "quote": "**Prove root cause** -- must show concrete evidence (code path, log, repro steps) that confirms the hypothesis. If brainstorm alone can't prove it, pair with `/debug` to validate before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm or refute** the hypothesis from Step 1a with evidence",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**`--pr-main` commit audit:** Before committing, verify ALL commits use release-worthy types (`hotfix:`, `fix:`, `feat:`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Self-review** — Run `/code-review codebase --parallel` yourself each iteration to catch issues before reviewers do",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly bullet points. When reliable UI evidence cannot be produced, the agent stops and asks the user rather than opening a weak pull request. It alerts the user when no review arrives in time and when the review loop reaches its maximum attempts with issues still open.",
+    "statements": [
+      {
+        "quote": "If reliable evidence cannot be produced, **stop and ask the user** before opening a weak PR",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "if reliable evidence still can't be produced: stop and ask the user",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**STOP and ask user** — never open a weak PR",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "If `MAX_FIRST_WAIT` exceeded with no review: alert user, proceed to Step 9",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Alert: \"Review feedback loop reached max {MAX_ATTEMPTS} attempts for PR #{PR}. Remaining issues require manual attention.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

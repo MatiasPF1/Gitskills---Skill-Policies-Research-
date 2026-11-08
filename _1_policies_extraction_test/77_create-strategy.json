@@ -1,0 +1,134 @@
+{
+  "name": "create-strategy",
+  "mechanism": "Escalate",
+  "repo": "upbit-official/upbit-strategy-toolkit",
+  "path": ".claude/skills/create-strategy/SKILL.md",
+  "author": {
+    "owner": "upbit-official",
+    "commit_author": "b1416d0f52e7fe5e",
+    "declared": "Upbit"
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/00657e872b4fd328afb5c77a9f2907781a97108d.md",
+  "conclusion": "create-strategy (Escalate) specifies 5 of 5 categories: 6 autonomy limits, 2 clarification rules, 5 approval gates, 1 validation rule, 2 escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "6 autonomy limits (6 mandatory, 0 advisory; 3 conditional), mostly list: overwriting existing strategy files; live trading connections and requests; handing validation failures to the user.",
+    "statements": [
+      {
+        "quote": "If the same slug already exists, use a new filename such as `-v2`/`-v3`; do not overwrite.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use this skill's wrapper for tool calls instead of running `upbit-strategy-toolkit` directly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not connect to automated/live trading** - see [Live Trading Guardrail](#live-trading-guardrail) when requested.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not hand validation failures to the user** - handle validation errors through the self-correction loop ([references/error-recovery.md](references/error-recovery.md)).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When any of the following utterance patterns are detected, immediately explain and stop work.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Refuse live trading requests and point to [upbit-agent-skills](https://github.com/upbit-official/upbit-agent-skills)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list: assuming the data directory; guessing indicators outside the catalog.",
+    "statements": [
+      {
+        "quote": "When in doubt, confirm with `bash scripts/upbit-strategy-toolkit.sh config get data-dir` rather than assuming it from the table above.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not guess indicators outside the catalog** - reject anything outside the 15 JSON types / 16 target indicators ([references/indicators.md](references/indicators.md)).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly prose: saving strategy JSON only after approval; substituting an unsupported market.",
+    "statements": [
+      {
+        "quote": "After user approval, save the strategy JSON to `{data_root}/strategies/{slug}.json`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not save JSON before user approval** - do not write files before the STEP 2 gate passes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Market substitution rule**: If the requested market is unsupported, **ask the user before substituting** (e.g., \"SGD-DOGE is not supported.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed to STEP 3 before **explicit approval**, such as \"proceed\", \"OK\", \"yes\", or \"do it that way\".",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not save JSON without approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose: reporting save completion only after validation passes.",
+    "statements": [
+      {
+        "quote": "Do not report save completion to the user before validation passes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list: validation still failing after three correction attempts.",
+    "statements": [
+      {
+        "quote": "If it does not pass within 3 attempts, report the diagnosis to the user and renegotiate the hypothesis.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Validation failure self-correction is limited to 3 attempts ([references/error-recovery.md](references/error-recovery.md)); if it still fails, ask the user to renegotiate the hypothesis",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

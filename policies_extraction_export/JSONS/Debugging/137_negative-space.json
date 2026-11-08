@@ -1,0 +1,85 @@
+{
+  "name": "negative-space",
+  "mechanism": "Ask",
+  "repo": "LJT-520/openClaw-backup",
+  "path": "skills/jcools1977/negative-space/SKILL.md",
+  "author": {
+    "owner": "LJT-520",
+    "commit_author": null,
+    "declared": "J. DeVere Cooley"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0184af508c7c2c722069dd282de12152410142e2.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "negative-space (Ask) specifies 2 of 5 categories: 2 clarification rules, 1 validation rule; none for autonomy limits, approval gates, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "negative-space is a reasoning aid that makes the agent look at what is missing: unstated assumptions, absent requirements and unhandled cases. Its control rules are few: verify the assumption the approach depends on, and when the user must be asked, ask one precise question instead of many. It sets no autonomy limits, approval gates or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a bullet point. When an assumption can only be checked by asking, the agent asks one precise question rather than a list, and it does not pile clarifying questions before every action.",
+    "statements": [
+      {
+        "quote": "If it requires asking the user, ask ONE precise question — not a list.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**DO NOT** ask the user 5 clarifying questions before every action. Identify the ONE question that matters most. Often, you can verify assumptions through tool calls instead of asking.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the agent's whole approach would collapse when its top assumption is wrong, it verifies that assumption before proceeding.",
+    "statements": [
+      {
+        "quote": "If yes, verify it before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

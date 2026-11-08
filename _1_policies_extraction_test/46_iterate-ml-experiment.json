@@ -1,0 +1,206 @@
+{
+  "name": "iterate-ml-experiment",
+  "mechanism": "Ask",
+  "repo": "glemaitre/experiments",
+  "path": "agentic_discovery/exp_02/.claude/skills/iterate-ml-experiment/SKILL.md",
+  "author": {
+    "owner": "glemaitre",
+    "commit_author": "9a157b28192d8444",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/0076ec479e82f00f7d6dc39ce0d7500185e0f131.md",
+  "conclusion": "iterate-ml-experiment (Ask) specifies 5 of 5 categories: 7 autonomy limits, 9 clarification rules, 9 approval gates, 1 validation rule, 2 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "7 autonomy limits (7 mandatory, 0 advisory; 1 conditional), mostly list: writing plan/ during read-only requests; mass-editing prior plan files; drafting plans during compare requests.",
+    "statements": [
+      {
+        "quote": "Do not write to `plan/` during these requests. Read-only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not mass-edit prior `plan/NN_*.md` files.** Their Success criteria are frozen at approval — that's the contract. Their Headline result cells in History stay too (they were valid against the old g",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't draft a plan file. Don't add a row to History.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Don't write to `plan/`** during a compare request. If the side-by-side reading surfaces a finding the user wants to act on, re-enter § 1 with the appropriate strategy (typically `diagnostic` if the ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "A re-run is a new file, **never** an in-place edit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "In-place edits to an approved plan file are reserved for the Status block.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't ask the user to re-pick — the empty / clean result *is* the signal to move on.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "9 clarification rules (9 mandatory, 0 advisory; 6 conditional), mostly prose: which sourcing strategy to use; goal when no README exists; resuming, recording or proposing next.",
+    "statements": [
+      {
+        "quote": "**Strategy is picked, not assumed.** When you propose a next experiment, name the sourcing strategy you used: user input, literature, methodology audit, diagnostic. If the user hasn't signalled one, a",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If no README / dataset card exists, then ask — but make that the exception, not the default.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask explicitly: do you want to **resume the last experiment** (still planned / running / unfinished), **record an outcome** (the last one ran since we last spoke), or **propose the next** one?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The menu is the contract: the skill never picks for the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not silently default to one option** — even if the latest experiment has a fresh diagnostic report, the user must say \"diagnostic\".",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you suspect a run finished but the user hasn't said so, ask — don't assume.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If not accessible** (run was on a different machine, batch system, the script crashed before `project.put`, …): **do not fabricate report content from memory.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When the rotation reaches `user` after methodology and literature both came up empty, **ask the user directly** with the three options laid out:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do not invoke `iterate-from-user` without an idea in hand, and do not pick (a)/(b)/(c) for the user — the rotation ends in a human conversation, not another silent dispatch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "9 approval gates (9 mandatory, 0 advisory; 5 conditional), mostly list: creating experiment scripts before plan approval; ambiguous replies not counting as approval; plan file before the script.",
+    "statements": [
+      {
+        "quote": "**No plan, no script.** Never create or edit `experiments/NN_*.py` until `plan/NN_*.md` exists, is filled in, and the user has explicitly approved it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Approval is explicit.** \"Looks good\", \"yes\", \"go\" from the user is the gate. Anything ambiguous (\"hmm interesting\") is not approval. If unsure, ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "The plan file is created first and edited until the user approves; the script is created only after that.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**The user's role in bootstrap is to approve or amend the baseline plan**, not to invent it. Skip the strategy dispatch entirely for this one.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Edit `plan/NN_short_name.md` in place until the user explicitly approves. **Do not** create `experiments/NN_*.py` during this step — the plan file is the only artifact in play.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never auto-post. The `gh issue comment` call only fires on explicit user approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not auto-launch the next strategy dispatch in the same turn. Surface the implication to the user as a one- liner (\"the residual bias near boundaries points at a target- transform experiment — want ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "A goal pivot is user-only — the skill never auto-pivots.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**User-decided only.** The skill never auto-abandons. If an experiment has been planned/approved for many sessions without progress, *flag* it to the user (\"`05_quantile_intervals` is still in `approv",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose: pre-flight checklist backed by tool calls.",
+    "statements": [
+      {
+        "quote": "Each box must be backed by an actual tool call or an explicit decision documented in the response.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list: defaults conflicting with the project goal; PLAN.md drift.",
+    "statements": [
+      {
+        "quote": "Don't silently override the default — surface the tension to the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `PLAN.md` has drifted (Status references an experiment that no longer matches History's last row, Backlog has stale items), flag the drift to the user — but **don't auto-edit** during a read-only r",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

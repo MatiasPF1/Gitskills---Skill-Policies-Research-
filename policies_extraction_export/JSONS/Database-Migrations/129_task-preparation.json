@@ -1,0 +1,163 @@
+{
+  "name": "task-preparation",
+  "mechanism": "Ask",
+  "repo": "nolood/planpipe",
+  "path": "skills/task-preparation/SKILL.md",
+  "author": {
+    "owner": "nolood",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01659384667f97eea5b2f301e248fb69d34ab5b1.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "task-preparation (Ask) specifies 2 of 5 categories: 10+ clarification rules, 6 validation rules; none for autonomy limits, approval gates, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "task-preparation is stage 1 of a planning pipeline, turning a raw task into a verified, normalized task statement before any analysis or design. It is a conversation with the user: the agent confirms its understanding, verifies it against the code with scouts and verifiers, then challenges the user with specific questions until every unknown is resolved. A readiness critic gates the stage. It sets no approval gates, autonomy limits or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly running text. The agent presents its normalized understanding of the task and asks the user to confirm it, waiting and re-presenting until confirmed. After verifying the task against the code it challenges the user with a specific question for each finding, waits for the answers and re-confirms if the understanding changed. Every unknown must be resolved with the user before the task moves on.",
+    "statements": [
+      {
+        "quote": "Before going deeper, present your normalized understanding to the user and ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Правильно ли я понял задачу? Если нет — поправь, и я обновлю понимание.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Wait for the user's response.** Do NOT proceed until the user confirms or corrects.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user corrects your understanding — update the normalized statement and present it again. Repeat until confirmed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Step B: Ask probing questions.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For each finding, ask a specific clarifying question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Wait for the user's answers.** This is a conversation, not a report dump.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the corrections change the understanding significantly, re-confirm with the user (Step 3)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Every unknown and every weak area must be resolved before the task moves forward.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present it to the user: blocking gaps first, then open unknowns, then assumptions to verify",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly running text. The stage loops through prepare, critique and refine until the task passes a readiness gate. The agent must verify the user's claims against the actual system, a readiness critic subagent evaluates the preparation, and the stage is not complete until the critic is satisfied and every gap is closed.",
+    "statements": [
+      {
+        "quote": "The stage runs in a loop: **prepare → critique → refine** — repeating until the task passes the readiness gate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After the user confirms their understanding, verify their claims against the actual system.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT skip this step.** A task built on wrong assumptions wastes everyone's time in later stages.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Spawn a **Readiness Critic** subagent to independently evaluate whether the task preparation is good enough.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Repeat until the critic returns READY_FOR_DEEP_ANALYSIS *and* all gaps are closed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT declare the stage complete yet",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

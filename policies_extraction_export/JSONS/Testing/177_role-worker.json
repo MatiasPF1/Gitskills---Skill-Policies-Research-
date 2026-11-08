@@ -1,0 +1,83 @@
+{
+  "name": "role-worker",
+  "mechanism": "Escalate",
+  "repo": "JuroOravec/agents",
+  "path": ".cursor/skills/role/worker/SKILL.md",
+  "author": {
+    "owner": "JuroOravec",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0085dd75cbfaf6f76e5861096e2373ec3526a83c.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "role-worker (Escalate) specifies 2 of 5 categories: 1 approval gate, 4 validation rules; none for autonomy limits, clarification rules, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "role-worker implements a pool of GitHub issues one at a time: it claims an issue, runs the full act-dev workflow and closes the issue, so several workers can share a pool. Its few control rules are an optional confirmation after claiming and a completion checklist. It sets no autonomy limits, clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (0 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one rule, counted as a suggestion (it contains \"optional\"), always on, in a bullet point. In a single-worker flow the agent may confirm with the user after claiming an issue.",
+    "statements": [
+      {
+        "quote": "**Confirm with user** (optional for single-worker flow): \"Claimed #N: {title}. Proceeding.\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, all bullet points. The agent checks that the pool was ordered by dependency, each issue was implemented through act-dev, each linked issue was closed when done, and the pool was processed until empty or the user stopped.",
+    "statements": [
+      {
+        "quote": "Pool identified and ordered (dependencies respected)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Each issue implemented via act-dev",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Linked GitHub issue closed when work is done (via PR or `gh issue close`)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Pool processed until empty or user stops",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "name": "rooma",
+  "mechanism": "Ask",
+  "repo": "bencode/rooma",
+  "path": ".claude/skills/rooma/SKILL.md",
+  "author": {
+    "owner": "bencode",
+    "commit_author": "35b5dc5d9be89dd2",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/016041606e3467d65b7e314a4b183614a2399607.md",
+  "conclusion": "rooma (Ask) specifies 4 of 5 categories: 3 autonomy limits, 6 clarification rules, 2 approval gates, 1 escalation rule; none for validation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (2 mandatory, 1 advisory; 2 conditional), mostly list: allowed tools; responding directly in private chats; replying to peer agents and service bots.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Monitor",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Private chat (p2p)** + content needs a response → respond directly (you are the bot for this account). Don't pause to ask the user unless the content is genuinely sensitive.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Group chat (@bot)** + a peer agent / service bot is talking → respond directly; bot-to-bot exchanges are expected and you should engage on the user's behalf unless the topic is clearly off-limits.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "6 clarification rules (5 mandatory, 1 advisory; 4 conditional), mostly list: the on-shift message text; unclear sender identity or room purpose; possibly relevant ambient questions.",
+    "statements": [
+      {
+        "quote": "Ask for the message text (AskUserQuestion or a quick text exchange). Default: `🟢 开始工作啦`. The user can edit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When unsure, ask the human in the room.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "When the room's purpose is ambiguous and the topic is sensitive, **ask the room what's appropriate** before answering — a clarifying question is always safe.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "When a topic edges into something the room's setup doesn't clearly cover, default to the safer interpretation (less disclosure, ask first).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Possibly relevant, but you'd be guessing** — an ambiguous question that *might* be for you, but you lack the context to answer well → ask one short clarifying question in the room, then act on the a",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When the distinction matters, ask the human in the room rather than guessing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "2 approval gates (1 mandatory, 1 advisory; 2 conditional), mostly list: chats receiving the on-shift broadcast; questions meant for the user rather than the bot.",
+    "statements": [
+      {
+        "quote": "If non-empty: present the chats via AskUserQuestion (multi-select, one option per chat: label = chat name, description = \"id: oc_xxx\"). Title it something like \"Which chats should receive an on-shift ",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Group chat (@bot)** + a human is talking → check `pull` for context, then either respond or — if the question is really for the user, not for you — surface it and wait (example phrasing): `\"🙋 Bob as",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose: hitting a real blocker.",
+    "statements": [
+      {
+        "quote": "Use when you hit a real blocker.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

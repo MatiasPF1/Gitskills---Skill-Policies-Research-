@@ -1,0 +1,164 @@
+{
+  "name": "vendor-agreement-review-anthropics",
+  "mechanism": "Escalate",
+  "repo": "ThomasMoreAI/legal-skills-open",
+  "path": "general/commercial/skills/vendor-agreement-review-anthropics/SKILL.md",
+  "author": {
+    "owner": "ThomasMoreAI",
+    "commit_author": null,
+    "declared": "anthropics"
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/003070003687abb95755a8befab332fc5a687d17.md",
+  "conclusion": "vendor-agreement-review-anthropics (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 7 clarification rules, 4 approval gates, 7 validation rules, 2 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 1 conditional), mostly prose: reading another matter's files.",
+    "statements": [
+      {
+        "quote": "Never read another matter's files unless `Cross-matter context` is `on`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "7 clarification rules (7 mandatory, 0 advisory; 6 conditional), mostly prose: which matter is active; destination inside the privilege circle; which side the company is on.",
+    "statements": [
+      {
+        "quote": "If enabled and there is no active matter, ask: \"Which matter is this for? Run `/commercial-legal:matter-workspace switch <slug>` or say `practice-level`.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user has named a destination (a channel, a distribution list, a counterparty, \"everyone\"), ask whether it's inside the privilege circle.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it's not obvious (a reseller agreement, a partnership, a revenue share), ask: \"Which side is [company] on for this agreement — vendor or customer?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the main agreement does not state a dollar value (the MSA sets terms but the Order Form carries price, which is typical), **stop and ask** before running escalation math or applying dollar threshol",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT silently assume a value and then use the assumed value to drive routing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not silently proceed as if the DPA were absent when it is incorporated by reference.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a term doesn't map cleanly to a playbook position, ask the user which bucket it belongs in and offer to record the answer in `~/.claude/plugins/config/claude-for-legal/commercial-legal/CLAUDE.md`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly prose: proceeding past the attorney-review gate; filling research gaps without asking; sending anything for signature.",
+    "statements": [
+      {
+        "quote": "Do not proceed past this gate without an explicit yes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT fill the gap from web search or model knowledge without asking.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do **not** send anything for signature without explicit instruction.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed past this gate without an explicit yes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly list: quality checks before delivering; playbook loaded and quoted; deal-breaker checked first.",
+    "statements": [
+      {
+        "quote": "Quality checks before delivering",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "[ ] `~/.claude/plugins/config/claude-for-legal/commercial-legal/CLAUDE.md` was loaded and quoted — not generic market positions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Deal-breaker checked first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Every issue has specific replacement language",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Risk levels are calibrated (not everything is Critical)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Approver is named, not \"escalate to legal\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "[ ] Counterparty context considered (BigCo vs. startup — affects what's worth fighting over)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly prose: deal-breaker present in the contract; research query returning few results.",
+    "statements": [
+      {
+        "quote": "If the contract has the deal-breaker, flag it at the top of the memo and stop the detailed review.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a research query to the configured legal research tool returns few or no results for a rule the memo needs (enforceability of a limitation clause, indemnity scope, governing-law choice), report wha",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

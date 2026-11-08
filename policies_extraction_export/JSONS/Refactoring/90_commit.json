@@ -1,0 +1,89 @@
+{
+  "name": "commit",
+  "mechanism": "Ask",
+  "repo": "delicb/dotfiles",
+  "path": "home/dot_agents/skills/commit/SKILL.md",
+  "author": {
+    "owner": "delicb",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/005a2a569dd4c0e01ed8928760f517c2eefeb94a.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "commit (Ask) specifies 2 of 5 categories: 3 autonomy limits, 2 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "commit creates a git commit with a Conventional Commits subject for the current changes. The agent works within narrow limits: it only commits, never pushes, does not amend unless told to and sticks to the files the user named. It asks the user when it is unclear which files to include. It sets no approval gates, checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, all bullet points. The agent only commits and never pushes, does not amend unless explicitly told to, and stages only the files the user specified unless asked otherwise.",
+    "statements": [
+      {
+        "quote": "Do NOT amend, add new commits, unless explicitly instructed to amend.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Only commit; do NOT push.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "File paths or globs should limit which files to commit. If files are specified, only stage/commit those unless the user explicitly asks otherwise.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (1 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, 1 strict and 1 counted as a suggestion (it contains \"should\"), both tied to a situation, both bullet points. When it is unclear whether a file belongs in the commit, or there are ambiguous extra files, the agent asks the user before committing.",
+    "statements": [
+      {
+        "quote": "If it is unclear whether a file should be included, ask the user which files to commit.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If there are ambiguous extra files, ask the user for clarification before committing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

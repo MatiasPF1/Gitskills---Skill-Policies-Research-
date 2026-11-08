@@ -1,0 +1,135 @@
+{
+  "name": "adr",
+  "mechanism": "Escalate",
+  "repo": "tobiwan88/weather-station",
+  "path": ".claude/skills/adr/SKILL.md",
+  "author": {
+    "owner": "tobiwan88",
+    "commit_author": "60c1d667a77f3225",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/019f0fd15e57ec898ce283cd88099027f7d6530d.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "adr (Escalate) specifies 4 of 5 categories: 3 autonomy limits, 3 clarification rules, 4 approval gates, 1 validation rule; none for escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "adr drafts architecture decision records through conversation: checking the decision meets the threshold, asking about context, decision, consequences and alternatives one section at a time, then writing the record. The user confirms the draft before it is saved and decides when it is accepted. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 2 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, one in the front matter, one running-text line and one bullet point. The front matter limits the agent to `Read`, `Write`, `Edit`, `Bash`, `Glob` and `Grep`; it stops when a decision does not warrant a record, and redirects attempts to edit an accepted record to a superseding one.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Bash, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Stop here if below threshold.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user is attempting to update the Context, Decision, or Consequences of an existing Accepted ADR, stop and redirect:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly running text. The agent asks one section at a time and waits for each answer, probes for downsides when only positives are given, and asks what problem made the decision necessary when the context reads like implementation.",
+    "statements": [
+      {
+        "quote": "Ask the user these questions **one section at a time**. Wait for each answer before moving to the next. Do not ask all questions at once.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user gives only positives, probe: \"What does this make harder or constrain?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the Context sounds like implementation description, ask what problem made the decision necessary.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly running text. The agent asks before writing and confirms before saving: the draft is not written to disk until the user confirms it, and the record is never marked accepted without explicit instruction.",
+    "statements": [
+      {
+        "quote": "ask before writing, confirm before saving.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT write to disk yet.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Incorporate any changes. Repeat until the user confirms.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not mark it Accepted without explicit instruction.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. After writing, the agent reads the file back and confirms the status, date and decision fields.",
+    "statements": [
+      {
+        "quote": "**Validate:** Read the file back and confirm the Status, Date, and Decision fields are present and correct.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

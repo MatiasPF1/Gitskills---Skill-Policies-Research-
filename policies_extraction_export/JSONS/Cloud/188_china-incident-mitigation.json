@@ -1,0 +1,182 @@
+{
+  "name": "china-incident-mitigation",
+  "mechanism": "Escalate",
+  "repo": "aws-samples/sample-skills-for-AWS-Devops-agent",
+  "path": "devops-agent-cn-management/china-incident-mitigation/SKILL.md",
+  "author": {
+    "owner": "aws-samples",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00b89b41971df0f704439f1e54fb834889802df7.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "china-incident-mitigation (Escalate) specifies 3 of 5 categories: 5 autonomy limits, 10+ approval gates, 3 escalation rules; none for clarification rules, validation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "china-incident-mitigation drafts step-by-step CLI mitigation commands for a root-caused incident in a China AWS account, each with an explanation, an undo command and an approval prompt. Nothing runs without the exact per-step approval phrase, credentials come from the user, and unmatched incidents or failed steps go back to the human. It sets no clarification rules or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. The skill only drafts commands and never executes write operations on its own, never acts in production without a change record, never generates cloud credentials (the user provides them) and never uses stack deletion as a mitigation.",
+    "statements": [
+      {
+        "quote": "This skill **only produces command drafts for human review**. It never executes write operations autonomously.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "never in production without a change record.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**user provides the new AK/SK**, agent does not generate credentials",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** generate AWS credentials (AK/SK).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** run `aws cloudformation delete-stack` as a mitigation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. Every mitigation command is a draft for human approval: the agent executes a step only after the exact phrase \"approve step N\", treats \"yes\" or \"ok\" as insufficient, approves steps one at a time, reports after each and waits for the next approval, and deletes a stack only with explicit authorization.",
+    "statements": [
+      {
+        "quote": "This skill produces **command drafts for human approval**, not autonomous actions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "the agent will wait for explicit \"approve step N\" before executing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The agent **never** executes without explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "\"yes\", \"do it\", \"go ahead\" are NOT valid — must be \"approve step N\" or a documented change record approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not delete-stack unless the user explicitly authorizes (data loss risk).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for explicit \"approve step N\" before executing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After each step, report result and wait for next approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** execute any command without the exact phrase \"approve step N\".",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ambiguous responses (\"sure\", \"yes\", \"ok\") → ask again, do not execute.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** bundle multiple steps into a single approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, all tied to a situation, mostly bullet points. If the root cause matches no known pattern, the agent does not improvise but falls back to investigation and recommends manual operator action; if a step fails, it reports the failure verbatim and waits for the user's decision instead of retrying.",
+    "statements": [
+      {
+        "quote": "If the RCA does not match any pattern, fall back to general investigation (do not improvise mitigation).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not** improvise a mitigation if the RCA does not match a library pattern.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not** silently retry failed commands. If step N fails, report the failure verbatim and wait for user decision.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

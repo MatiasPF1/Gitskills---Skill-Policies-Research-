@@ -1,0 +1,278 @@
+{
+  "name": "address",
+  "mechanism": "Ask",
+  "repo": "axross/ptcgp.axross.dev",
+  "path": ".claude/skills/address/SKILL.md",
+  "author": {
+    "owner": "axross",
+    "commit_author": "de553ef0c64ecbe5",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00dd342cae66f71afbdcd63c087debbaa1e7bb39.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "address (Ask) specifies 5 of 5 categories: 4 autonomy limits, 8 clarification rules, 7 approval gates, 7 validation rules, 5 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "address drives one issue, pull request or prompt from intake to a review-ready pull request in a single session: plan, code, verify, independent review and fixes. It runs autonomously within each phase but stops for the human at a mandatory plan-approval gate, asks every open decision inline, and leaves merging to the human. Quality comes from verification evidence and an independent reviewer, never the agent's own assessment. Diverged state, ambiguous findings, stuck checks and non-convergence are escalated to the human.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly bullet points. The agent advances each phase on its own and stops the turn whenever a human is needed. It polls only for machine events such as CI and the independent review, never for a human, implements strictly from the approved plan within the smallest surface, and ends the turn instead of looping while it waits.",
+    "statements": [
+      {
+        "quote": "Advance the work as far as you can autonomously within each phase, and stop the turn whenever the next step needs a human.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "MUST poll autonomously ONLY for machine events (CI, the review workflow); never keep a session alive polling for a human.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Implement strictly from the approved plan, keeping edits within the smallest surface that satisfies the acceptance criteria.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "End the turn (never loop-block) whenever waiting on a human — the plan-approval gate, a stuck machine event, or a dormancy cap — so an idle run consumes nothing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "8 clarification rules (8 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 3 tied to a situation, mostly bullet points. Decisions with options (must-ask spec questions, ambiguous review findings, conflict calls) are asked inline through the question tool with a recommended default, never buried in prose or assumed, and re-presented if the tool errors. Every spec ambiguity must be answered before planning and implementing; a bare \"continue\" with nothing to resume is met with a question, and a takeover summary lets the human catch misreadings.",
+    "statements": [
+      {
+        "quote": "**A human decision with options** — a Phase 1 Must-ask clarification, an ambiguous review finding, or a conflict judgment call — asked inline through the dedicated question UI, with the answer returne",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "MUST clear the [Phase 1](#phase-1--plan) clarify-before-building gate before writing the plan, and the mandatory plan-approval gate before implementing: surface every spec ambiguity that needs a human",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "MUST prefer the question tool when it is available: frame the decision as concrete options (2–4), state the **default you would otherwise take** and mark it recommended, and rely on the tool's built-i",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "MUST, when the question tool errors (or a synchronous answer is otherwise unavailable), **re-present the decision and wait** — never route around the human.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Neither** → state that there is nothing to resume and ask what was meant (see [Asking the Human](#asking-the-human)). MUST NOT start new work from a bare `continue`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "MUST report a short takeover summary — what the handoff says, what was verified, and the plan — before editing anything, so the human can catch a misreading early.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Clarify before building — required gate.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If any Must-ask question remains, you **MUST NOT** start implementing — ask them through the dedicated question UI (see [Asking the Human](#asking-the-human)), each framed as options with the **defaul",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, all bullet points. After the plan is written the run always stops for the human to approve it, and no code is written until the human resumes; visual design options are decided by the human at that gate. A handoff package found on disk must be confirmed with the human before use, and merging stays the human's decision.",
+    "statements": [
+      {
+        "quote": "**The mandatory plan-approval gate** — after the plan is written the run **always** stops for the human to verify it before any implementation (see [Phase 1](#phase-1--plan)).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "MUST stop the turn and wait for `/address continue` at the plan-approval gate, and whenever a machine event is stuck;",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never proceed to Code on an unstated assumption or an unapproved plan.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "MUST confirm it with the human (see [Asking the Human](#asking-the-human)) before ingesting it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "its UI design section presents a choice of visual presentation options that the human decides at the plan-approval gate, with the issue as the durable design record.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT enter Code until that resume arrives — the plan check is required on every run, not optional.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Merging remains the human's decision.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. The agent verifies a handoff's preconditions before changing anything, runs the required verification and records the evidence, and self-checks before opening the pull request. The authoritative review comes from an independent reviewer, never from the agent itself: it addresses each blocking finding, and the pull request becomes ready only on a clean independent review plus green CI.",
+    "statements": [
+      {
+        "quote": "MUST verify every item in the document's **Precondition** section against reality — right repository and branch, expected `HEAD`, patches apply cleanly, tools and environment available — and resolve, ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run the verification the changed surface requires — the commands in the `AGENTS.md` **Verification** section, per [Development Guidelines › verification](../development-guidelines/references/verificat",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do a reviewer-mode reset and fix obvious Critical/Major issues before opening the pull request (a self-check to avoid trivial hand-backs per [Code Review Guideline](../code-review-guideline/SKILL.md))",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "That separation is the whole point: the code's author never certifies its own work.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT review the diff yourself in place of it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Address and resolve each blocking finding (Important, or whatever the posted-review policy marks merge-blocking) and every unmet acceptance criterion, pushing fixes to the same branch and re-running t",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Gate the draft→ready flip on a **clean independent review** (no blocking findings) plus green CI — never on your own assessment of your code.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, all bullet points. Mismatches in a handoff package and diverged state are put to the human rather than ignored or forced, and ambiguous findings or product decisions are escalated through the question tool. The agent stops polling and hands back to the human after 2 hours with a stuck check, and after 8 review rounds without convergence.",
+    "statements": [
+      {
+        "quote": "MUST check the zip's contents against the document's **Precondition** inventory and treat any mismatch — a missing entry, an unexpected extra — as a question for the human (see [Asking the Human](#ask",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When state has diverged — the branch moved, a patch conflicts, a required credential is missing — surface the divergence and ask how to proceed (see [Asking the Human](#asking-the-human)) rather than ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Escalate through the dedicated question UI (see [Asking the Human](#asking-the-human)) when a finding or human comment is ambiguous or needs a product or architecture decision, rather than guessing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "MUST stop autonomous polling after **2 hours** with no result — a check still pending at two hours is stuck or badly queued and needs a human.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Cap the address↔review loop at **8** rounds; on non-convergence, record what still fails in the status block, state the summary in the turn output, end the turn, and wait for `/address continue`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

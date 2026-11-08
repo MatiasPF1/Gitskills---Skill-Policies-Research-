@@ -1,0 +1,162 @@
+{
+  "name": "kiro-spec-requirements",
+  "mechanism": "Ask",
+  "repo": "PrimeBrains/sdd-workshop",
+  "path": ".claude/skills/kiro-spec-requirements/SKILL.md",
+  "author": {
+    "owner": "PrimeBrains",
+    "commit_author": "3bcddfc650eeeb34",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/003a5b5ed66dfd1622d66f091181ccb9a1955404.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "kiro-spec-requirements (Ask) specifies 5 of 5 categories: 1 autonomy limit, 4 clarification rules, 2 approval gates, 6 validation rules, 3 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "kiro-spec-requirements generates EARS-format requirements for a feature from its project description and steering context. It asks the user about requirement scope, never design, and asks rather than assumes whenever the description is open to several readings. A review gate checks the draft before it is written, and real ambiguities stop the run for the user. The user is asked to confirm the requirements are complete and decides whether to approve them or ask for changes.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There is one strict rule, always on, in the front matter. It limits the agent to `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Agent`, `WebSearch`, `WebFetch` and `AskUserQuestion`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Glob, Grep, Agent, WebSearch, WebFetch, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, evenly split between running text and bullet points. The agent asks the user about requirements scope (what is included, user-visible behavior, business rules, visible non-functional needs) but not about design choices such as technology or architecture. When the description allows several readings it asks before writing that requirement, as many questions as needed, rather than assuming, and it asks for feature details when the project description is missing.",
+    "statements": [
+      {
+        "quote": "**Ask the user about (requirements scope):**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not ask about (design scope — defer to design phase):**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the project description leaves room for multiple interpretations on scope, behavior, or boundary conditions, ask the user to clarify before generating that requirement. Ask as many questions as nee",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Missing Project Description**: If requirements.md lacks project description, ask user for feature details",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both bullet points. After generating the requirements the agent explicitly asks the user whether they cover all expected functionality, and tells the user how to approve and continue or ask for changes.",
+    "statements": [
+      {
+        "quote": "**Next Steps**: Guide user on how to proceed (approve and continue, or modify)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Incomplete Requirements**: After generation, explicitly ask user if requirements cover all expected functionality",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, all bullet points. The agent keeps the requirements as a draft until a review gate passes, checking coverage, EARS compliance, ambiguity and scope boundaries, repairs local issues in at most 2 passes, and writes `requirements.md` only after the gate passes.",
+    "statements": [
+      {
+        "quote": "Keep this as a draft until the review gate passes; do not write `requirements.md` yet",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Run the `Requirements Review Gate` from `rules/requirements-review-gate.md`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Review coverage, EARS compliance, ambiguity, adjacent expectations, and scope boundaries before finalizing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If issues are local to the draft, repair the requirements and review again",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Keep the review bounded to at most 2 repair passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Write `.kiro/specs/{feature}/requirements.md` only after the requirements review gate passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (2 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, 2 strict and 1 counted as a suggestion (it contains \"may\"), 2 tied to a situation, all bullet points. If the draft reveals a real scope ambiguity or contradiction the agent stops and asks the user rather than writing guessed requirements. It warns the user when templates are missing and it falls back to an inline structure, or when the steering context is empty.",
+    "statements": [
+      {
+        "quote": "If the draft exposes a real scope ambiguity or contradiction, stop and ask the user to clarify instead of writing guessed requirements",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Template Missing**: If template files don't exist, use inline fallback structure with warning",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Steering Directory Empty**: Warn user that project context is missing and may affect requirement quality",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

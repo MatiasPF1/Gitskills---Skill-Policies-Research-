@@ -1,0 +1,190 @@
+{
+  "name": "aif-implement",
+  "mechanism": "Act",
+  "repo": "hightemp/gosearch-ai",
+  "path": ".codex/skills/aif-implement/SKILL.md",
+  "author": {
+    "owner": "hightemp",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/010b6fd86b766b521e825a29392a65802b4d952f.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "aif-implement (Act) specifies 5 of 5 categories: 10+ autonomy limits, 1 clarification rule, 1 approval gate, 7 validation rules, 1 escalation rule. Strongest: autonomy limits.",
+  "conclusion_qualitative": "aif-implement works through the tasks of an implementation plan one by one, tracking progress so work can continue across sessions. The agent's rules mostly limit what it may change: a fixed tool set, no changes in list mode, never editing the project rules file, and not starting other skills automatically; in autonomous Handoff mode it asks nothing and does not pause. It verifies each task works before marking it done and checks its output against project rules. It asks when a task is unclear, does not skip tasks without permission, and raises missing work with the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The front matter limits the agent to a listed set of tools, including several Handoff tools. When run by the autonomous Handoff agent it must not call those tools, must not ask questions, and runs all tasks without pausing. In list mode it must not execute tasks, modify files or update task statuses, and it must never edit the project rules file or start the `$aif-rules` or `$aif-docs` skills on its own.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read Write Edit Glob Grep Bash TaskList TaskGet TaskUpdate AskUserQuestion Questions mcp__handoff__handoff_sync_status mcp__handoff__handoff_push_plan mcp__handoff__handoff_get_task mcp",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do NOT call MCP tools.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**No interactive questions:** Do not use `AskUserQuestion` — use sensible defaults (auto-commit at checkpoints, skip pause prompts).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No pause/resume prompts:** Execute all tasks sequentially without stopping.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not execute tasks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not modify files",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not update TaskList statuses",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never edit the resolved `paths.rules_file` artifact from `$aif-implement`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not invoke `$aif-rules` automatically (it is user-invoked).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do **not** invoke `$aif-docs` automatically",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If a task is unclear, the agent stops and asks.",
+    "statements": [
+      {
+        "quote": "Stop and ask if task is unclear",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. It is listed under the things not to do: skipping tasks without the user's permission.",
+    "statements": [
+      {
+        "quote": "Skip tasks without user permission",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "7 validation rules (7 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, mostly bullet points. After each task the agent verifies the implementation: it checks that the code compiles or runs and that the functionality works. It verifies every output against the project's skill-context rules and fixes violations before showing them, quickly verifies tasks that look done before marking them, and must not mark incomplete tasks as done (listed under the things not to do).",
+    "statements": [
+      {
+        "quote": "If code changes for a task appear already implemented but the task is not marked completed, verify quickly and then `TaskUpdate(..., status: \"completed\")` and update the plan checkbox.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Enforcement:** After generating any output artifact, verify it against all skill-context rules.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any rule is violated — fix the output before presenting it to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**3.4: Verify implementation**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Check code compiles/runs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify functionality works",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Mark incomplete tasks as done",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If a task is marked done but its code is missing (for example after a rebase or reset), the agent marks it pending again and discusses it with the user.",
+    "statements": [
+      {
+        "quote": "If a task is marked completed but the corresponding code is missing (rebase/reset happened), mark it back to pending and discuss with the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

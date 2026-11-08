@@ -1,0 +1,209 @@
+{
+  "name": "ce-work",
+  "mechanism": "Ask",
+  "repo": "All-The-Vibes/ATV-StarterKit",
+  "path": ".github/skills/ce-work/SKILL.md",
+  "author": {
+    "owner": "All-The-Vibes",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0171b5a2cc113b1f509f2cefce53caf99e2ae06f.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ce-work (Ask) specifies 4 of 5 categories: 2 autonomy limits, 5 clarification rules, 4 approval gates, 10+ validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "ce-work executes a work plan or prompt end to end: clarifying, setting up the branch, implementing in tasks (inline or with subagents), testing, reviewing and preparing to ship. The agent clarifies and gets approval before starting, asks about branches and never commits to the default branch without permission. Its largest group of rules are checks: test-first verification, continuous testing, mandatory review and a completion checklist. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a bullet point and running text. When run by an orchestrator the agent does not open a pull request or run shipping steps, and it uses agent teams only when the user explicitly asks for them.",
+    "statements": [
+      {
+        "quote": "Do NOT create a PR or run shipping/finalize steps; the parent workflow owns those.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not attempt to use agent teams unless the user explicitly requests swarm mode or agent teams, and the platform supports it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly bullet points. For large work the agent suggests brainstorming or planning first and follows the user's choice. It asks clarifying questions before starting rather than building the wrong thing, without waiting for perfect understanding, and asks whether to continue on the current branch or create a new one.",
+    "statements": [
+      {
+        "quote": "Inform the user this would benefit from `/ce-brainstorm` or `/ce-plan` to surface edge cases and scope boundaries. Honor their choice.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "If anything is unclear or ambiguous, ask clarifying questions now",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not skip this** - better to ask questions now than build the wrong thing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Then ask: \"Continue working on `[current_branch]`, or create a new branch?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't wait for perfect understanding - ask questions and move",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, all bullet points. The agent gets the user's approval before proceeding with the plan, and never commits directly to the default branch without explicit permission (\"yes, commit to [default branch]\").",
+    "statements": [
+      {
+        "quote": "Get user approval to proceed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Requires explicit user confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only proceed after user explicitly says \"yes, commit to [default_branch]\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never commit directly to the default branch without explicit permission",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly bullet points. Each unit's verification field marks it done, new tests must be seen failing before the fix, and the agent runs a system-wide test check, tests continuously and fixes failures immediately. Every change is reviewed, with full review the default, and before finishing all tasks must be complete, without console errors, and every traced requirement verified.",
+    "statements": [
+      {
+        "quote": "Use each unit's `Verification` field as the primary \"done\" signal for that task",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not skip verifying that a new test fails before implementing the fix or feature",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**System-Wide Test Check** — Before marking a task done, pause and ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't wait until the end to test",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Fix failures immediately",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Every change gets reviewed before shipping. The depth scales with the change's risk profile, but review itself is never skipped.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Tier 2: Full review (default)** — REQUIRED unless Tier 1 criteria are explicitly met.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "All tasks marked completed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No console errors or warnings",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the plan has a `Requirements Trace`, verify each requirement is satisfied by the completed work",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

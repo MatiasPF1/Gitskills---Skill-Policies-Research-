@@ -1,0 +1,96 @@
+{
+  "name": "reflect",
+  "mechanism": "Ask",
+  "repo": "estevanhernandez-stack-ed/vibe-cartographer",
+  "path": "plugins/vibe-cartographer/skills/reflect/SKILL.md",
+  "author": {
+    "owner": "estevanhernandez-stack-ed",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/0116825ec35c58069dbefd1e8deae917749c86db.md",
+  "conclusion": "reflect (Ask) specifies 3 of 5 categories: 5 autonomy limits, 3 clarification rules, 2 escalation rules; none for approval gates, validation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 1 conditional), mostly list: writing only to the calibration stream; other plugins' profile blocks; rewriting or touching protected profile fields.",
+    "statements": [
+      {
+        "quote": "The calibration interface NEVER writes to `friction.jsonl` — only to `friction.calibration.jsonl`. These are distinct streams. `/reflect` never logs friction-about-friction (per the /reflect triggers ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never touch other plugins' blocks.** You only write to `shared` (for genuinely new cross-plugin observations) and `plugins.vibe-cartographer` (for this plugin's scoped data).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Leave identity, experience, and creative sensibility alone unless the builder explicitly told you something new.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Don't rewrite the whole profile from scratch. Merge into what's there.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Don't touch `shared.name`, `shared.identity`, or `shared.technical_experience` during reflect. Those live in onboard's territory.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly list: guessing missing originals or evidence; ambiguous false-positive markings.",
+    "statements": [
+      {
+        "quote": "Do not guess, and do not log based on partial evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If evidence is insufficient, say so — don't guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If markings are ambiguous** (e.g., `fp` with no number, or a number out of range): ask a single clarifying question, then proceed. Don't spiral.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list: missing prerequisite docs; append script failures.",
+    "statements": [
+      {
+        "quote": "If any are missing, list what's missing and point to the relevant command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `atomic-append-jsonl.js` exits non-zero, surface the stderr and continue. Don't block the handoff.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

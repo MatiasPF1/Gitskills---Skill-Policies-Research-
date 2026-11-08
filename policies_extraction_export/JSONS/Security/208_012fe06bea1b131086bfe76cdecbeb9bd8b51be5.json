@@ -1,0 +1,177 @@
+{
+  "name": null,
+  "mechanism": "Escalate",
+  "repo": "cloudyrion/cloudyrion-security-marketplace",
+  "path": "plugins/cloudyrion-security/skills/vibe-patch/SKILL.md",
+  "author": {
+    "owner": "cloudyrion",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/012fe06bea1b131086bfe76cdecbeb9bd8b51be5.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": [
+        "approval_gates",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Escalate) specifies 5 of 5 categories: 4 autonomy limits, 2 clarification rules, 3 approval gates, 1 validation rule, 8 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) reads the latest security code review and generates one minimal remediation patch per finding, with a report and a pull request. It stops or warns on missing reports, unsafe git states and unexpected diffs, skips low-confidence findings and never touches the base branch. The user confirms the inventory before patching, and engineering approves the result.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, evenly split between bullet points and running text. The agent never patches over uncommitted work or touches the base branch, skips low-confidence findings rather than writing speculative patches, and never rewrites whole functions.",
+    "statements": [
+      {
+        "quote": "**Dirty working tree** → do not patch over uncommitted work.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**LOW confidence = skip.** Do not generate speculative patches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never rewrite entire functions/classes/methods — add a helper if needed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "The base branch is **never touched**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. If several reports exist the agent asks which to use, and on a detached HEAD it asks the user to check out a base branch.",
+    "statements": [
+      {
+        "quote": "If multiple reports → list with dates, ask which to use, default to most recent.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user to check out a named base branch first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The agent waits for confirmation of the findings inventory before creating the branch, asks before stashing uncommitted changes, and leaves approval of the patches to engineering.",
+    "statements": [
+      {
+        "quote": "Wait for confirmation before creating the branch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: \"Stash changes before patching? (y/N)\".",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Engineers own the code** — Security proposes, engineering approves",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. After writing each fix the agent verifies the diff.",
+    "statements": [
+      {
+        "quote": "Write the fix, then verify the diff:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "8 escalation rules (8 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 2 tied to a situation, mostly bullet points. The agent stops when no report exists, on a detached HEAD, on an existing patch branch or when no findings match; it warns about stale reports and missing remotes, aborts patches whose diff is larger than expected, and never force-bypasses a rejected pre-commit hook.",
+    "statements": [
+      {
+        "quote": "If no report found → stop with: `❌ No security-code-review report found. Run /cloudyrion-security:code-review first.`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "warn and offer to stop or proceed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**No remote** → warn that PR step will be skipped; patches will be local only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Detached HEAD** → stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Already on a `security/vibe-patch-*` branch** → stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If zero findings match → stop gracefully with guidance to use `warn` or `all` flags.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Diff larger than expected** → abort. Skip, log. Never leave unintended changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Pre-commit hook rejected → do NOT force-bypass. Revert file, skip, log hook output",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

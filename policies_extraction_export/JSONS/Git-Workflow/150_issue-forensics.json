@@ -1,0 +1,194 @@
+{
+  "name": "issue-forensics",
+  "mechanism": "Ask",
+  "repo": "boinger/zorille",
+  "path": "issue-forensics/SKILL.md",
+  "author": {
+    "owner": "boinger",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01b2984d489d8017f53a72f3259aae97edff9500.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits",
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "issue-forensics (Ask) specifies 4 of 5 categories: 6 autonomy limits, 7 clarification rules, 2 approval gates, 4 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "issue-forensics applies investigative rigor to a non-trivial finding in someone else's codebase before an upstream issue or pull request is filed: an entry gate, a five-pillar evidence playbook and a disclosure check for security-shaped findings. The agent decides what it can and asks only for what it cannot infer, while the user confirms or overrides its classification. Strict evidence rules govern the draft. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 3 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Grep`, `Glob`, `Write`, `Edit`, `AskUserQuestion` and `WebFetch`. When it has the information to decide it does so without asking: it derives the target repository from the working directory, reasons through the entry-gate questions itself instead of asking each one, and does not re-prompt after the user overrides the security classification.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion, WebFetch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**cwd is a git repo AND cwd-derived slug exists** → derive from cwd. Announce the target inline (e.g., `Target: grafana-loki (from cwd)`) and proceed. No AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not make the user click when you have the information to decide.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not route the user through five sequential AskUserQuestion calls when you can reason about each question and put your answers on the table for a single veto step.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Don't fake certainty. But also don't convert every question into a user click; the skill's job is to bring reasoning, not just forms.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "if the user has explicitly overridden, do not re-prompt even if pillar evidence later surfaces concrete failure surfaces.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (7 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 4 tied to a situation, mostly running text. The agent asks rather than guesses when it lacks the information: which repository to investigate when the working directory is not one, what the finding is, the topic name, whether to resume or start a fresh scratchpad, and why a pillar is being skipped.",
+    "statements": [
+      {
+        "quote": "**Ask first, don't guess — but don't waste a click on the obvious case.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**cwd is NOT a git repo** (no git remote, or user ran skill from a non-repo dir) → there is no sensible default. ASK via AskUserQuestion: \"cwd isn't a git repo, so I can't auto-derive the target. What",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If no finding context is visible yet, ask: \"What's the finding? One sentence is enough.\" — that's the ONLY question you should need to ask before classifying.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user for a `<topic>` string if one hasn't been supplied.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any exist, prompt via AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Order matters:** ALWAYS prompt first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--skip-pillar <N>` was passed, skip pillar N and log the user's reason (ask for one if not provided).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between running text and a bullet point. The agent forms its own classification of the finding, and the user confirms or overrides it in a single question with three options.",
+    "statements": [
+      {
+        "quote": "**You, Claude, form the opinion — the user confirms or overrides.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present it as a SINGLE AskUserQuestion with three options:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, all in running text. Every pillar is either applied or marked not applicable with a reason, every file reference must be a full-SHA permalink, claims that existing code is wrong must be shown with a concrete scenario, and the caller trace must admit its own limits.",
+    "statements": [
+      {
+        "quote": "Each pillar has an N/A discipline: if it doesn't apply, state so in the notes with a one-sentence reason. Silent skipping is forbidden — it invites fabrication.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**GATE ASSERTION: every file reference in the scratchpad and the draft MUST use a SHA-pinned permalink with the FULL 40-character SHA**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you're claiming existing code is wrong / vestigial / broken, you must SHOW it, not just assert it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**GATE ASSERTION: the caller trace MUST admit its own limits.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

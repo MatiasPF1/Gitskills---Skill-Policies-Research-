@@ -1,0 +1,380 @@
+{
+  "name": "architect",
+  "mechanism": "Ask",
+  "repo": "Heavy-Chain-Engineering/etc",
+  "path": "skills/architect/SKILL.md",
+  "author": {
+    "owner": "Heavy-Chain-Engineering",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/001ad1a3fa82f6da90cf28eaea61a5d7fb6e96e5.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "architect (Ask) specifies 5 of 5 categories: 8 autonomy limits, 10+ clarification rules, 10+ approval gates, 10+ validation rules, 10+ escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "architect runs a Socratic loop that turns a finished spec.md into an implementation-ready design.md plus architecture decision records. It is built around the user: it questions before writing, resolves gray areas one at a time and gets each section approved, recording a reason whenever the user overrides a warning. It does all of this itself rather than through subagents, and changes nothing on disk unless the author acts. Missing files, rejected specs and engine errors stop the run with a message to the user, and a Definition of Ready checklist gates the final output.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 4 tied to a situation, mostly running text. The agent must not hand questioning, gray-area resolution, section drafting, layer review or readiness checks to subagents; it does them itself, interactively. It proceeds without asking when there are no gray areas or when research filled every gap, never re-asks recorded research fills, and never changes a legacy design or blocks on a missing architecture baseline unless the author acts.",
+    "statements": [
+      {
+        "quote": "You MUST NOT attempt to Agent-dispatch Socratic questioning, gray-area resolution, section drafting, or the Definition of Ready validation; those operations live in this skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Forward-only: a `missing` baseline never blocks /architect and nothing on disk is mutated unless the author proceeds and records an override.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If no gray areas are found, state explicitly: \"No architectural gray areas identified — research findings are unambiguous.\" and proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Skip the user gray-area session and proceed directly to Phase 3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The research fills are already recorded and are not re-asked.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**This phase is INTERACTIVE and MUST NOT Agent-dispatch.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "a legacy design predating this standard is **never auto-mutated** — the author retains the accept / refine / mark-not-applicable escape hatches and nothing changes on disk unless the author acts.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Forward-only (BR-007):** running this gate on a legacy design auto-mutates nothing — the author retains accept / refine / defer and nothing changes on disk unless the author acts.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 4 tied to a situation, mostly running text. The agent is interactive: it asks clarifying questions before writing any design, never buries a question in prose, asks six architecture questions one at a time and waits for each answer, and does not proceed until all six are answered. It follows up on vague answers, asks what to do with an existing draft or what to research further, and resolves gray areas one at a time.",
+    "statements": [
+      {
+        "quote": "You ask questions and wait for answers.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "You NEVER start writing the design before asking clarifying questions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never bury a question in prose.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Phase 1 Step 3: Ask six architect-style questions, ONE AT A TIME via Pattern B (the visual marker)** — do not batch them into a numbered list.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the answer before asking Question 2.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT proceed until the user has answered all six.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any answer is vague, ask a follow-up using the same Pattern B marker:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If the user provides an explicit path to an existing draft `design.md`** (e.g., from a prior incomplete `/architect` session), read it, print a one-paragraph analysis of what's strong and what needs",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user picks \"Research more\", ask via Pattern B for the specific topic, do the research, and re-invoke the `AskUserQuestion` above.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Then resolve them ONE AT A TIME using `AskUserQuestion` (Pattern A — multi-choice is a perfect fit for gray areas because each has 2-4 enumerable options from the research). Do NOT batch all gray area",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 6 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 6 tied to a situation, mostly running text. Proceeding without a verified architecture baseline needs a recorded override with a non-empty reason, and silent dismissal is not allowed. The agent asks what to do after the research summary, asks for approval of each drafted section and repeats until it is accepted, asks the user to confirm when the spec has no security content, and re-prompts on refined contract sentences until they are accepted.",
+    "statements": [
+      {
+        "quote": "Then reuse the **existing contract-completeness WARN+recorded-override machinery** (BR-006; do NOT fork a parallel mechanism) to gate proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "On \"Yes, proceed\", prompt via Pattern B for a one-line override reason (MUST be **non-empty** — re-ask if empty)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Silent dismissal is prohibited**: every baseline override carries a non-empty reason and is surfaced downstream.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Present the research summary to the user** (as prose — this is status output, not a question), followed by an `AskUserQuestion` prompt for the next action:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Prompt for approval via `AskUserQuestion`** using the standard section-approval template below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the spec has none, surface that and prompt the user to confirm.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Then revise and re-invoke the approval template. Repeat until accepted.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user picks \"Research more\", ask via Pattern B what to research, do the research, and re-draft + re-ask for approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user picks \"Refine\", capture the revised sentence via Pattern B (`**▶ Your answer needed:**`) and re-prompt until accepted.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user picks \"Refine\", capture the revised sentence via Pattern B and re-prompt until accepted.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly bullet points. Once all sections are approved the agent runs an architecture Definition of Ready checklist: clear module boundaries, named integration patterns, rationale for technology choices, addressed security considerations, documented trade-offs, identified ADRs, a complete layer impact analysis, and format and response contracts for every field that needs them.",
+    "statements": [
+      {
+        "quote": "After all sections are written and approved, run the architect-specific Definition of Ready checklist.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Module boundaries are clear.** Every module named in the Module Structure section has a stated responsibility, a stated public surface, and a stated layer (per `standards/architecture/layer-boundari",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Integration patterns are named.** Every integration in the design has a chosen pattern (sync vs async, push vs pull, idempotent vs not) with a one-line rationale.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Technology choices have rationale.** Every new technology introduction (framework, library, database, queue) has a Trade-offs entry citing the alternatives considered and the reason for the choice. ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Security considerations addressed.** The Security Considerations section is non-empty AND identifies the trust-boundary crossings, OR explicitly notes \"no new trust-boundary crossings\" with rational",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Trade-offs documented.** The Trade-offs section is non-empty AND each major decision lists what becomes easier and what becomes harder.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**ADR(s) for major decisions identified.** Every Trade-offs entry that meets the `standards/architecture/adr-process.md` \"When to Write an ADR\" criteria has a corresponding entry in the Phase 3 ADR-ca",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Layer Impact Analysis is complete.** The `## Layer Impact Analysis` section exists (Phase 2.9). For every layer `detect` returned (and every touched cross-cutting concern), every rubric item has a n",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Format contracts are present** (contract-completeness, Phase 3.5). Every field classified boundary-crossing (signal list B in `standards/process/contract-completeness.md`) carries a canonical `\"Form",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Response-DTO obligations are present** (contract-completeness, Phase 3.5). Every externally/federally-required field (signal list C) is declared as an `\"API-response guarantee: …\"` sentence on its A",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 8 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 8 tied to a situation, mostly running text. The agent stops and reports to the user when a required standards file is missing, or reports a missing architecture standard and asks whether to proceed. It exits with an error message when there is no spec directory, the spec was rejected, `state.yaml` or `spec.md` is missing, or `state.yaml` changed concurrently. It warns loudly about an unverified architecture baseline, announces a rejected design, and stops the layer review when the detection engine fails.",
+    "statements": [
+      {
+        "quote": "If `standards/process/interactive-user-input.md` does not exist, STOP and report the missing file to the user — no phase in this skill can proceed without it, because every user interaction is Pattern",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any of the three architecture standards files (items 2–4 above) do not exist, note the gap in the research summary and proceed with best judgment — but do NOT silently fork an ADR template inline; ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user invokes `/architect` without an existing `/spec`-allocated directory, exit non-zero with stderr:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it's `rejected`, exit non-zero: `/architect cannot run on a rejected /spec — refine the spec and re-run /spec first.`",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `state.yaml` is missing, exit non-zero with stderr:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `spec.md` is missing under the resolved feature_path, exit non-zero with the same message — `/architect` cannot author a design against a missing spec (this is also Edge Case 4 of F006).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the state.yaml has changed under the skill's feet (concurrent edit), exit non-zero with stderr naming the conflict and stop — never silently allocate a new directory.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**On `missing`, `unratified`, or `malformed`**, render the warning as a Pattern B status block (NOT a question) — loud, verbatim, and naming the backfill command:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "5. Surface the rejection to the user using Pattern B (the visual marker), because the message is a status/error announcement, not a question.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Error handling (EC-003): if the engine exits non-zero (`registry not found`, `registry parse error: <detail>`, or a missing/unreadable design file), surface the stderr message to the user via Pattern ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

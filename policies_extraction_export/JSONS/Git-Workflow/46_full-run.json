@@ -1,0 +1,167 @@
+{
+  "name": "full-run",
+  "mechanism": "Act",
+  "repo": "olympix/olympix-claude-plugin",
+  "path": "skills/full-run/SKILL.md",
+  "author": {
+    "owner": "olympix",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/019d3bf63c93378391291355dd176710936f6d96.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "full-run (Act) specifies 4 of 5 categories: 5 autonomy limits, 2 clarification rules, 1 approval gate, 9 escalation rules; none for validation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "full-run orchestrates a full Olympix security analysis of a smart-contract repository (static analysis, unit tests, mutation tests and BugPocer), running the long tools as background agents while the user keeps chatting. The agent settles setup questions with the user up front, such as the session name and whether to run the costly BugPocer scan; after that, the background agents never ask anything. It stops hard when the CLI is missing or the code does not compile, and reports tool failures without stopping the others. It gives no rules for checking its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points (tied with running text; one more is in the front matter). The front matter limits the agent to a fixed tool set. The background agents it starts must never ask the user anything: they use the session name and scan mode they were given and run fully non-interactively, and the unit-test agent must not send the `confirm_all` command after dispatch.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Glob, Grep, Bash, Write, Skill, Agent, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Tell each agent to USE the session name you provide verbatim and NOT to ask for a name** — the user has already confirmed it here, and a background agent has no user to prompt.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Background agents must NEVER call `AskUserQuestion` — for anything.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Dispatch: `printf '{\"action\":\"new_session\",\"data\":{\"title\":\"<base> [unit]\"}}\\n{\"action\":\"disconnect\"}\\n' | olympix generate-unit-tests -w . -p <paths> --agent` (do NOT send `confirm_all` — it is inval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Run FULLY NON-INTERACTIVELY — you are a background agent with NO user. Do NOT call `AskUserQuestion` for anything (scan mode, session name, scope, docs). Use the scan mode passed to you (`{BUGPOCER_",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both in running text. The agent asks the user to confirm or change a suggested session name, and if the user opts into BugPocer it asks right away for the scan mode (full repository or changes only) and the base reference.",
+    "statements": [
+      {
+        "quote": "Pick a base name and **ask the user to confirm or change it, suggesting a sensible default** (use the repo identity, e.g. `<org>/<repo>@<short-sha>` from git, or the repo folder name).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If they opt in, ask the scan mode now too** (full-repo vs diff) with AskUserQuestion, and if diff, the base ref — because the background BugPocer agent has no user to prompt.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent asks the user whether to run BugPocer, noting that it incurs backend scan cost.",
+    "statements": [
+      {
+        "quote": "Ask the user with AskUserQuestion whether to run BugPocer (options: \"Yes, run it\" / \"Skip for now\"), noting it incurs backend scan cost.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "9 escalation rules (9 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 4 tied to a situation, mostly running text. The agent stops hard and tells the user what to do when the Olympix CLI is missing or too old, and when the repository cannot be compiled. When a tool fails it relays the failure to the user, notes it and keeps the other tools running rather than aborting, and it suggests `olympix update` when an older CLI ignores session names.",
+    "statements": [
+      {
+        "quote": "If `NOT_INSTALLED`, **HARD STOP** — tell the user to install the Olympix CLI from https://olympix.github.io/installation/ and rerun this skill.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `LEGACY_CLI` (the `--agent` flag is rejected), the CLI is pre-agent-mode — tell the user to run `olympix update`, then re-probe.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**HARD STOP** if the CLI still lacks `--agent`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**HARD STOP** if the repo cannot be made to compile — no tool can run without it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**An agent finishes (or fails):** immediately relay a one-line result — tool, session name, key metric, where saved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Don't stop on partial failure** — note a failed tool and continue with the others.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`--agent` flag rejected | CLI is pre-agent-mode — tell the user to run `olympix update`, then re-probe",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "One tool fails mid-run | Relay the failure, keep the other agents running — do not abort",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Older CLI ignores the session name | Session naming in agent mode needs a current CLI; the run still works, the session just keeps the default name. Suggest `olympix update`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

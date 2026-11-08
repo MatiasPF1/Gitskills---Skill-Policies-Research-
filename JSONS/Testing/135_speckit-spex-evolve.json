@@ -1,0 +1,183 @@
+{
+  "name": "speckit-spex-evolve",
+  "mechanism": "Ask",
+  "repo": "DouglasHennrich/orcamentos-cli",
+  "path": ".specify/extensions/spex/.specify-dev/agent-commands/claude/speckit-spex-evolve/SKILL.md",
+  "author": {
+    "owner": "DouglasHennrich",
+    "commit_author": null,
+    "declared": "github-spec-kit"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/017dd486e60f262dc5997bd4947602d195b2d5ca.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "speckit-spex-evolve (Ask) specifies 4 of 5 categories: 3 autonomy limits, 4 clarification rules, 10+ validation rules, 1 escalation rule; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "speckit-spex-evolve reconciles a spec with its implementation when they drift apart, recommending whether to update the spec, fix the code, clarify the spec or defer. It updates minor mismatches on its own within the user's configured threshold but always asks about major ones. Its largest group of rules verify the reconciliation. It stops and tells the user when spec-kit is missing.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The agent never edits the plan or task files by hand but regenerates them after spec changes. Whether it updates the spec on its own depends on the user's setting: never at \"none\", only trivial or minor mismatches at \"minor\".",
+    "statements": [
+      {
+        "quote": "**CRITICAL: Never manually edit plan.md or tasks.md. Always regenerate via /speckit-* commands after spec changes.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`none`: Never auto-update",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`minor`: Auto-update trivial/minor mismatches",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "4 clarification rules (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly running text. The agent asks the user to choose which spec to work on, and decides each mismatch's resolution either automatically or by asking; major mismatches, such as API contract, behavior or architectural changes, always go to the user.",
+    "statements": [
+      {
+        "quote": "**If specs found:** Present list and ask user to select one using AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Decide resolution (auto or ask user)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Major (Always Ask)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**Resolution:** Ask user (major)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. After resolving a mismatch the agent validates the updated spec and checks spec compliance, then verifies reconciliation: spec and code aligned, tests still passing, no regressions and all spec-kit artifacts regenerated and consistent.",
+    "statements": [
+      {
+        "quote": "Validate updated spec for soundness",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify spec compliance",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "6. Verify Reconciliation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Invoke `/speckit-analyze` to verify consistency across all artifacts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**VERIFICATION CHECKPOINT:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After regeneration, verify artifacts are in sync using `/speckit-analyze`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Spec and code now aligned",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tests still passing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No regressions introduced",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All spec-kit artifacts regenerated and in sync",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If spec-kit is not initialized, the agent tells the user to initialize it and stops.",
+    "statements": [
+      {
+        "quote": "If `.specify/` directory does not exist, tell the user to run `/spex:init` first and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

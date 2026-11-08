@@ -1,0 +1,200 @@
+{
+  "name": "connector-creator",
+  "mechanism": "Ask",
+  "repo": "narailabs/narai-primitives",
+  "path": "plugins/connector-creator/skills/connector-creator/SKILL.md",
+  "author": {
+    "owner": "narailabs",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00f251fa565448ed1a3f3a0f838d8ed4d8b083fb.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "clarification_rules",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "connector-creator (Ask) specifies 4 of 5 categories: 1 autonomy limit, 10+ clarification rules, 4 approval gates, 6 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "connector-creator scaffolds a local custom connector (API wrapper, shell-command gate, composite or knowledge-only) so Claude can call a service through narai-primitives. It is interview-driven: the agent identifies the connector type with the user and asks only the questions that type needs, never deciding the design from research alone. Nothing is written until the user approves the summary, and every connector type is verified after scaffolding. It sets no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Research informs the questions the agent asks, but it never decides the connector's architectural shape on research alone.",
+    "statements": [
+      {
+        "quote": "Research findings inform questions asked; never decide architectural shape unilaterally based on research alone.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (8 mandatory, 2 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 7 strict and 3 counted as suggestions (they contain \"should\"), 1 tied to a situation, mostly running text. The agent opens with a free-form question, asks 1 to 3 clarifying questions if the connector's shape is ambiguous and states its pick for the user to confirm, then asks only the checklist for that shape: scope, slug, authentication, base URL, actions, approval mode for write and delete actions, and gate rules.",
+    "statements": [
+      {
+        "quote": "**Open** — Ask: *\"Tell me about what you want to build.\"* Freeform. Do not offer a menu.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Identify shape** — Listen for cues (see \"Flavor recognition cues\" below). Ask 1-3 clarifying questions if the shape is ambiguous. Pick a flavor. State your pick explicitly: *\"This sounds like a shel",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask only the checklist that matches the shape.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask: *\"Should this connector be available only in this project, or for all your projects?\"*",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: *\"What's the service slug?\"*",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: *\"How does authentication work for this API?\"*",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: *\"What's the API base URL? Any rate limit or versioning header you know about?\"*",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: *\"What actions should this connector expose? Just describe them — name, what it does, what params, what it returns.\"*",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: *\"For the write/delete actions, how should the user approve them — `auto`, `confirm_once`, `confirm_each`, or `grant_required`?\"*",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Rules** — for each rule, ask:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. Before writing anything the agent shows a summary of the files, registry entry and settings change and waits for the user's explicit OK, and for runbook connectors it asks the user to confirm the content.",
+    "statements": [
+      {
+        "quote": "**Confirm summary** — Show the file tree that will be created, the registry entry, and (if first run) the settings.json change. Wait for explicit OK before writing anything.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Step 7 — Confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Ask: *\"Anything to change before I scaffold?\"* Wait for explicit OK.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user to confirm the runbook content looks right.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "6 validation rules (6 mandatory, 0 advisory; 0 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly headings. After scaffolding the agent verifies each kind of connector, smoke-testing the command shim or hook script and running the gate script with a synthetic payload to confirm its rules.",
+    "statements": [
+      {
+        "quote": "**Verify** — Smoke-test the bin shim or hook script. Report success or troubleshoot.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify (API wrapper)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Verify (shell-gate)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Run the gate script directly with a synthetic payload to confirm rule evaluation:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify (composite)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Verify (knowledge-only)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

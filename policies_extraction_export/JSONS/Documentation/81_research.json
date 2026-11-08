@@ -1,0 +1,173 @@
+{
+  "name": "research",
+  "mechanism": "Ask",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/development/research-hack-ink/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00458bbb2e880dda0a9977863af914d01021f94f.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "research (Ask) specifies 4 of 5 categories: 1 autonomy limit, 7 clarification rules, 5 validation rules, 3 escalation rules; none for approval gates. Strongest: clarification rules.",
+  "conclusion_qualitative": "research turns an ambiguous question into a decision-ready, evidence-backed recommendation with options and trade-offs. It is built around confirming with the user: inputs up front, a restated pain point and questions whenever something is unclear. Its checks are about evidence: an evidence map, at least 3 independent sources and no unsupported claims. When web search is unavailable, sources are too few or sources disagree, it tells the user and, for search, asks how to proceed.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent must not recommend a solution before reading the materials the user provided, or stating that none were provided.",
+    "statements": [
+      {
+        "quote": "**Read first**: do not recommend a solution before reading the provided materials (or explicitly stating none were provided).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "7 clarification rules (6 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (it contains \"prefer\"), 3 tied to a situation, mostly bullet points. The agent asks for the question, materials, constraints and success criteria up front, restates the user's pain points and asks whether it captured them correctly, and asks the user whenever something blocks correctness, highest-leverage questions first and preferably multiple choice. It asks the user to prioritize conflicting criteria and, for safety- or compliance-critical topics, to state the required standards.",
+    "statements": [
+      {
+        "quote": "Inputs (ask for these up front)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "**Confirm the pain**: restate the user's pain points/problems in your own words and confirm.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask when unclear**: if anything blocks correctness, ask the user. Prefer 1-3 short questions per turn; prefer multiple-choice when possible.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Extract the user's pain points as a bullet list; ask \"did I capture this correctly?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the highest-leverage question(s) first.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If criteria conflict, ask the user to prioritize (e.g., reliability > cost > speed).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the topic is safety- or compliance-critical, treat web sources as guidance only and ask for domain constraints and required standards.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, all bullet points. Every recommendation needs an evidence map tying claims to sources, backed by at least 3 independent external sources (2 only with a stated reason), and no key claim may rest on a single source. Claims that cannot be supported are labeled as hypotheses.",
+    "statements": [
+      {
+        "quote": "Every recommendation must include an evidence map (claim -> evidence -> source).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Default: at least 3 independent external sources**.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Fallback: 2 sources only if 3 is not feasible**, and you must say why (niche topic, paywalled sources, no primary docs, etc.).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No evidence, no claim**: if a claim cannot be supported, label it as a hypothesis and say what evidence would confirm/deny it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Triangulate: do not rely on a single source for a key claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 3 tied to a situation, all bullet points. If web search is unavailable or disallowed, the agent stops and asks whether to proceed with a lower-confidence internal-only answer. It tells the user early when it cannot reach 3 sources, and calls out explicitly when sources disagree.",
+    "statements": [
+      {
+        "quote": "If websearch is unavailable (policy, environment, outage) or disallowed by the user, **stop** and ask whether to proceed with an internal-only (lower-confidence) answer.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you cannot meet the 3-source default, say so early and propose a path to reach higher confidence (additional materials to request, which primary docs to locate, or a small experiment to run).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If sources materially disagree, call it out explicitly and explain what you trust and why.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

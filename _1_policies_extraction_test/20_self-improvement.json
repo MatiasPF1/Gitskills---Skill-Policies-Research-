@@ -1,0 +1,73 @@
+{
+  "name": "self-improvement",
+  "mechanism": "Act",
+  "repo": "miznizzz/claudefun",
+  "path": "self-improvement/SKILL.md",
+  "author": {
+    "owner": "miznizzz",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00ca90d321de8c47dcfa4417675c471469581996.md",
+  "conclusion": "self-improvement (Act) specifies 4 of 5 categories: 1 autonomy limit, 3 clarification rules, 1 validation rule, 1 escalation rule; none for approval gates. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose: applying a lesson without waiting for confirmation.",
+    "statements": [
+      {
+        "quote": "Don't wait for the user to confirm before applying the lesson within this conversation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (2 mandatory, 1 advisory; 2 conditional), mostly prose: general frustration from the user; withdrawn or unverified assumptions; unsure factual corrections.",
+    "statements": [
+      {
+        "quote": "| General frustration | Could be any of the above — ask one clarifying question |",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Offer the corrected version without it, or ask if the assumption is actually valid.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If unsure, say so rather than confabulating a fix.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list: verifying a fix before presenting it.",
+    "statements": [
+      {
+        "quote": "**Verify the fix before presenting it** — before closing the loop, ask internally: *\"Does this actually solve the problem, or does it just look better?\"* A fix that addresses the symptom but not the c",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list: the same mistake recurring in the conversation.",
+    "statements": [
+      {
+        "quote": "**Flag if it's a pattern** — if this same type of mistake has appeared more than once in the conversation, say so: > \"This is the second time I've [X] — I'll make a note of this.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

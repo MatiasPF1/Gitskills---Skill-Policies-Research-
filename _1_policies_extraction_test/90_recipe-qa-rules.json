@@ -1,0 +1,121 @@
+{
+  "name": "recipe-qa-rules",
+  "mechanism": "Escalate",
+  "repo": "tekliner/improvado-agentic-frameworks-and-skills",
+  "path": "plugins/improvado-agentic-frameworks-and-skills/skills/recipe-qa-rules/SKILL.md",
+  "author": {
+    "owner": "tekliner",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/01b1c08a9034256f8b5272b1fcdf72df28b5e49e.md",
+  "conclusion": "recipe-qa-rules (Escalate) specifies 4 of 5 categories: 2 autonomy limits, 5 approval gates, 4 validation rules, 3 escalation rules; none for clarification rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter: allowed tools; scanning unbounded history in queries.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Bash, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Always apply a date-range filter (`toStartOfMonth(today())` or similar) — never scan unbounded history",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly list: approving the generated QRD; applying any fix; updating the QRD.",
+    "statements": [
+      {
+        "quote": "**Present the draft to the user** — show the complete QRD with clear explanations of what was inferred vs assumed. Ask the user to review, edit, add, or remove rules.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Wait for user approval.** Do not proceed until the user explicitly approves the QRD.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Explicitly ask the user:** \"Shall I apply this fix?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NEVER apply a fix without explicit user confirmation.** This applies to ALL fixes, including trivial ones.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**You MUST present all proposed QRD changes to the user and wait for explicit approval before updating.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list: logical consistency of query output; result validation; re-running checks after fixes.",
+    "statements": [
+      {
+        "quote": "Run each query via the MCP query tool and evaluate all output values for logical consistency:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Validate results: row count 1–5000, mandatory columns present (`check_entity_id`, `datasource`, `check_result`), `check_entity_id` unique, `datasource` / `check_result` contain valid values.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After the user approves and the fix is applied, re-run the failed check to confirm resolution.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm the update was saved successfully.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly prose: inconsistent recipe state; duplicate QRDs; checks still failing after a fix.",
+    "statements": [
+      {
+        "quote": "If there is a state inconsistency that prevents clear QA (e.g., prod view exists but meta says staging, or `_pre_prod` is stale), **stop and invoke `notebook-editor-skill` first** to resolve the state",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If multiple QRDs are found** for the same recipe, use the most recently updated one. Warn the user about the duplicates so they can clean up.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the re-run still fails, report the new state and discuss next steps with the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

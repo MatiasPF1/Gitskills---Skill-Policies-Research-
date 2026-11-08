@@ -1,0 +1,148 @@
+{
+  "name": "roadmap-discovery",
+  "mechanism": "Ask",
+  "repo": "fyrsmithlabs/marketplace",
+  "path": "plugins/fs-dev/skills/roadmap-discovery/SKILL.md",
+  "author": {
+    "owner": "fyrsmithlabs",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/016ac902bba6de01935000464404b783351236fc.md",
+  "topics": [
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "roadmap-discovery (Ask) specifies 3 of 5 categories: 8 autonomy limits, 1 validation rule, 1 escalation rule; none for clarification rules, approval gates. Strongest: autonomy limits.",
+  "conclusion_qualitative": "roadmap-discovery autonomously analyzes a codebase through several lenses (such as error handling, performance and security) and turns the findings into roadmap items. It is deliberately non-interactive: the agent never asks the user and decides and documents everything itself. It must complete every step and reports lens failures as partial success. It sets no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 2 tied to a situation, mostly running text. Discovery is fully non-interactive: the agent never asks the user anything, including which lens to run or whether a finding is valid, and never waits for confirmation. It makes and documents its own decisions, uses confidence scores and defaults instead of questions, and includes uncertain findings with documented uncertainty.",
+    "statements": [
+      {
+        "quote": "Non-interactive: Cannot ask clarifying questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT ask the user any questions during discovery. This is autonomous analysis.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Discovery is 100% non-interactive. NEVER:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use confidence scores instead of asking",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If you catch yourself about to ask a question: STOP. Make a decision and document it.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Default = all. Don't ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Discovery is autonomous. Make decisions, document them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**When in doubt about severity or confidence: bias toward including the finding with documented uncertainty rather than asking the user.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. Every discovery run must complete all of its steps.",
+    "statements": [
+      {
+        "quote": "**EVERY discovery invocation MUST complete ALL steps:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. When a lens fails, the agent reports partial success with the failure details instead of failing the whole run.",
+    "statements": [
+      {
+        "quote": "Report partial success with failure details",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

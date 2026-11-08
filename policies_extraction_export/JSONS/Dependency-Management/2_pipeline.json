@@ -1,0 +1,344 @@
+{
+  "name": "pipeline",
+  "mechanism": "Act",
+  "repo": "Bruce188/pipelinekit",
+  "path": "claude/skills/pipeline/SKILL.md",
+  "author": {
+    "owner": "Bruce188",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/0013c5c045695429c44e75f8240984b264149eb2.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "pipeline (Act) specifies 5 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 1 approval gate, 10+ validation rules, 10+ escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "pipeline runs a list of features through analysis, planning, implementation, review and merge on its own, with no human intervention. The agent works within a fixed tool set, sends each phase to sub-agents, and must not work on the base branch or rewrite merged work; it can be told to skip all questions. Otherwise it asks the user many questions in the opening charter interview and when detecting the deployment target. It checks its work with smoke tests, a review step and a check that every review finding is handled, and stops with an error when options conflict or given files are missing. Its one approval gate holds the run until the operator handles or confirms unaccounted review findings.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 4 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 4 tied to a situation, mostly running text. The front matter limits the agent to a fixed tool set (`Read`, `Write`, `Edit`, `Bash`, `Glob`, `Grep`, `Agent`, `Skill`, `TodoWrite`), and `--no-prompts` makes it skip every question to the user. Phases must run in sub-agents (separate agent instances) via the `Agent` tool, with direct inline work allowed only in small fix paths, and sub-agents must write `docs/*.md` with a Bash heredoc. It must not work on the base branch, re-create an existing branch, revert a merged feature, use `git commit --amend`, or write app docs outside `documentation/`.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Agent, Skill, TodoWrite",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Skip every `AskUserQuestion` invocation for the remainder of this pipeline run.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`subagent` | Every subsequent phase (analyze, plan, implement, review) MUST be dispatched via the `Agent` tool using the corresponding `<!-- PHASE: ... -->` template from `reference.md`. **Inline invo",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "Any step inside a dispatched subagent that writes a `docs/*.md` artefact (analysis, plan, prompts, review file) MUST use the Bash heredoc surface (`cat > docs/<file>.md <<'EOF' … EOF`) — the Claude Co",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If on `$BASE` (main/master): **STOP** with \"Cannot implement on $BASE. Check out the feature branch or omit --restart-from to create one.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the branch already exists: `git checkout <type>/<feature-name>` (do not create).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Inline-mode boundary (REQUIRED INVARIANT):** Inline tool dispatch (direct `Skill:`, direct `Edit`/`Bash` outside an Agent) is permitted ONLY in Path N, Path M, and the optional Row-2 nit preamble.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Inline tool dispatch is forbidden in Paths A, B, C, and Retry when `Phase Mode = subagent` — those paths must use `Agent` tool dispatch with the corresponding `<!-- PHASE: ... -->` template.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "On FAIL the orchestrator appends rows to a `## UAT Findings` table in the feature file (`docs/features-*.md`) and writes `UAT: FAILED` to the Run Log — NEVER reverting a merged feature; the outer loop",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Dispatches `subagent_type: docs-writer` (`model: sonnet`, `<!-- PHASE: docs -->` template) to read the merged squash diff + `docs/progress.md`, write application docs ONLY in `documentation/`, and lan",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 8 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 8 tied to a situation, mostly running text. In the opening charter interview (a document recording what the user wants built), the agent asks each topic's question with `AskUserQuestion`, asks follow-ups, and asks who the decision-makers are when an answer mentions others. When it drafts a charter from earlier files, it asks whether to accept, edit or start over. For the deployment target, it asks the user to confirm a single detected config file, or asks the full question when none or several are found, unless prompts are turned off.",
+    "statements": [
+      {
+        "quote": "`docs/analysis*.md` (or `docs/analysis-v*.md`) OR `docs/plan*.md` exist AND `docs/charter.md` does NOT exist → **auto-extract draft charter from prior artifacts**, write `docs/charter.md` (status: `dr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Invoke `AskUserQuestion` with the topic's question and options from the bank.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If any token matches AND the Stakeholders prompt has not yet fired this run (**once-per-run latch**), invoke a conditional `AskUserQuestion` asking: \"Who are the decision-makers, blockers, or reviewer",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**\"go deeper / follow-up\"** → ask the topic's follow-up question (if any), then advance.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If exactly one is found, pre-fill the Topic 10 answer with the matching provider slug and ask the user only for confirmation (single `AskUserQuestion` — exempt from the `--max-questions` topic-cap).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If multiple config files coexist, log `DEPLOY_TARGET_AUTO_DETECT_CONFLICT: <files>` and fall through to a full Topic 10 prompt.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If none found, ask the full Topic 10 prompt as normal.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If exactly one sub-dir config is found, pre-fill the Topic 10 answer with its provider slug and ask for confirmation (single `AskUserQuestion` — exempt from `--max-questions`).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If multiple sub-dir configs are found, log `DEPLOY_TARGET_MONOREPO_MULTI_CONFIG: <files>` and fall through to `AskUserQuestion` listing the candidate paths (interactive sessions); when `$NO_PROMPTS=tr",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If no sub-dir config is found either, ask the full Topic 10 prompt as normal.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. When review findings are not accounted for, the agent must not move on until the operator (the human running it) handles them or explicitly overrides them with a manual confirmation logged in the run log.",
+    "statements": [
+      {
+        "quote": "The orchestrator MUST NOT advance to path selection until the operator either (a) reopens / defers / inlines the unaccounted findings via one of the Step 7.6 contracts in `claude/skills/review/SKILL.m",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, all running text. The agent validates the `--restart-from` value and that the feature file has at least one described feature, checks its recorded phase mode before each phase on resume, and verifies it is on the expected branch. It runs every hook smoke test (quick checks of hook scripts) after implementing, runs `/pipeline-review`, and checks that every review finding is accounted for. Fixable findings must be fixed before merging, and each run log line must pass `format_runlog.sh validate`.",
+    "statements": [
+      {
+        "quote": "Validate `--restart-from` if present: must be one of `analyze`, `plan`, `implement`, `review`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Validate: at least one feature with a Description field.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Self-check before any phase invocation on resume:** Before invoking a phase skill or Agent, the assistant must explicitly answer two questions: (1) \"What does `**Phase Mode:**` say in `docs/pipeline",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verify** the current branch matches the expected feature branch:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After Step 5.5.2 / 5.5.3 complete (regardless of dev/non-dev path), before advancing to review, discover and run every hook smoke test under `claude/hooks/tests/`:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Invoke `/pipeline-review` via the Skill tool.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before evaluating the path-detection table, count findings in the active review file and verify each one is accounted for via Path M / Path B reopen / Defer state transition.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Pre-Path-A fixable-findings sweep (REQUIRED — defer is the exception, not the default):** Before the orchestrator may route a feature to Path A, every non-blocking finding in the review file MUST be",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "In-scope fixable findings MUST be fixed before merge — never carried as deferred debt:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The orchestrator MUST invoke `bash claude/lib/pipeline/format_runlog.sh validate \"<candidate-line>\"` before appending any Run Log entry (Path A success, Path B failure, Path C failure, FAILED-no-chang",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 8 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 8 tied to a situation, evenly split between bullet points and running text. Whenever the given options conflict (for example `--from` with `--adopt`, or `--no-charter` with `--charter`), the agent stops with an error message naming the conflict. It also stops with an error when a charter path, plan file or feature file it was given does not exist.",
+    "statements": [
+      {
+        "quote": "`--no-charter` + `--charter <path>` → **STOP**: \"ERROR: --no-charter and --charter are mutually exclusive.\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`--charter <path>` with missing target → **STOP**: \"ERROR: --charter path not found: <path>\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Without a value: auto-picks the most-recently-modified `~/.claude/plans/*.md` if modified within the last 60 min (else STOP with a path-required error).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "STOP if the path does not exist: \"ERROR: --charter path not found: <path>\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Validate mutual exclusivity: if `--from` and `--adopt` are both present, STOP with \"ERROR: --from and --adopt are mutually exclusive.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--from` and `--renew` are both present, STOP with \"ERROR: --from and --renew are mutually exclusive.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--plan` is combined with `--from`, `--adopt`, `--renew`, or a positional feature file, STOP with `ERROR: --plan is mutually exclusive with --from/--adopt/--renew/positional path`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--issues` is combined with `--from`, `--adopt`, `--renew`, `--plan`, or a positional feature file, STOP with `ERROR: --issues is mutually exclusive with --plan/--adopt/--renew/--from/positional pa",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--no-charter` and `--charter <path>` are both present, STOP with \"ERROR: --no-charter and --charter are mutually exclusive.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a positional path argument is given AND the file does NOT exist → STOP: \"Feature file not found: [path]\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

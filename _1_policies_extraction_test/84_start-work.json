@@ -1,0 +1,120 @@
+{
+  "name": "start-work",
+  "mechanism": "Escalate",
+  "repo": "MattVOLTA/outworkos_diy",
+  "path": "skills/start-work/SKILL.md",
+  "author": {
+    "owner": "MattVOLTA",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/00ff7aecd191c45769f29568c2889e93080b27b3.md",
+  "conclusion": "start-work (Escalate) specifies 3 of 5 categories: 5 approval gates, 3 validation rules, 6 escalation rules; none for autonomy limits, clarification rules. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 3 conditional), mostly list: browser confirmation of UI changes; shipping UI changes without approval.",
+    "statements": [
+      {
+        "quote": "**Confirm with the user:** > \"Here's how the UI looks after the changes. Does this match what you expected?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Re-capture and re-confirm (repeat until approved)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "NEVER skip browser confirmation when `UI_AFFECTED = true`, even if the code change seems trivial",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If Chrome browser tools are unavailable, ask the user to manually verify and confirm before proceeding to /ship-it",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "| UI affected but not confirmed | BLOCK - do not /ship-it without browser confirmation or explicit user approval |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly heading: build and test baselines; visual verification in the browser.",
+    "statements": [
+      {
+        "quote": "Step 8: Establish Baseline - Build",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Step 9: Establish Baseline - Tests",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "When implementation is complete and the dev server is running, use the Claude in Chrome browser tools to visually verify the changes:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "6 escalation rules (6 mandatory, 0 advisory; 2 conditional), mostly table: failed steps, conflicts or missing issues; uncommitted changes and failing builds.",
+    "statements": [
+      {
+        "quote": "**STOP and report if any step fails.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If conflicts or errors:** Report and STOP.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "| Uncommitted changes | STOP - user must commit/stash first |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| Issue not found | STOP - verify issue number |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| Git pull fails | STOP - report conflict |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| Build fails | WARN - note baseline, ask to continue |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  }
+}

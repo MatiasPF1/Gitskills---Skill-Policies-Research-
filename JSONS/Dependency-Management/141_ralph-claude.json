@@ -1,0 +1,93 @@
+{
+  "name": "ralph-claude",
+  "mechanism": "Ask",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "data/ralph-claude/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/019d26e86ceef20923d5217b1a783f5bd9ff571e.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ralph-claude (Ask) specifies 2 of 5 categories: 2 autonomy limits, 3 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "ralph-claude is an interactive planning skill that interviews the user and then generates a spec, an implementation plan, prompt files and a loop script for iterative AI-driven development. Its control rules center on the opening interview, which the agent must finish before generating anything. It may use any tool and overwrites the generated files. It sets no approval gates, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, one in the front matter and one in running text. The front matter allows every tool, and the agent always overwrites the generated files instead of creating suffixed copies.",
+    "statements": [
+      {
+        "quote": "allowed-tools: *",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Always overwrite existing files** — never add suffixes like `-v2`, `-new`, or `_backup`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. The agent interviews the user with multiple-choice questions to gather requirements, asks follow-ups when answers are unclear, and waits for the answers before proceeding.",
+    "statements": [
+      {
+        "quote": "Use the `AskUserQuestion` tool to gather requirements.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask follow-up questions if answers are unclear",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**WAIT for user response before proceeding.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

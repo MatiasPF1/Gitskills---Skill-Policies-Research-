@@ -1,0 +1,139 @@
+{
+  "name": "auto-research",
+  "mechanism": "Act",
+  "repo": "christyjacob4/claude-tricks",
+  "path": "skills/auto-research/SKILL.md",
+  "author": {
+    "owner": "christyjacob4",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01087618e4d9d9116a6905a50e81bceee6f85b65.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "auto-research (Act) specifies 4 of 5 categories: 7 autonomy limits, 1 clarification rule, 3 validation rules, 3 escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "conclusion_qualitative": "auto-research runs an endless research loop that changes code, measures a single metric, keeps improvements and discards the rest. The agent works fully on its own: it never stops, never asks for permission and handles errors without reporting them, while leaving the evaluation code read-only and keeping each experiment's runtime bounded. It measures a baseline first, keeps only strict improvements, and reverts crashed experiments before moving on. It asks the user only to define the metric when none is clear, and it has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (7 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 2 tied to a situation, mostly bullet points. Once its experiment loop starts, the agent never stops, never asks the human whether to continue or for permission, and handles errors silently instead of stopping to report them. It must leave the evaluation harness, data loading, metric code and infrastructure read-only, never commit its `results.tsv` log to git, and keep each experiment's runtime fixed and bounded.",
+    "statements": [
+      {
+        "quote": "**Read-only:** Evaluation harness, data loading, metric computation, infrastructure",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Create a `results.tsv` file (tab-separated, never committed to git):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Keep experiment runtime fixed and bounded.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never stop.** Do not pause to ask the human if you should continue. They may be asleep, away, or busy. You are autonomous.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never ask permission.** Each experiment is a small, reversible change. If it works, keep it. If it doesn't, revert. There's no risk that requires human approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Handle errors silently.** Crashes, OOM, divergence — log them and move on. Don't stop to report them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never stop. Never ask. Log everything.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If there is no clear single metric to optimize, the agent works with the user to define one.",
+    "statements": [
+      {
+        "quote": "If there's no clear single metric, work with the user to define one.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all in running text. The agent always runs the unmodified code first to get a baseline measurement, compares finished experiments against the current best, and keeps a change only when the metric strictly improves.",
+    "statements": [
+      {
+        "quote": "Always run the unmodified code first to get a baseline measurement.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "When multiple experiments finish, compare all results against the current best.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Keep:** metric strictly improved",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "3 escalation rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. When an experiment crashes, the agent logs it, reverts the change and continues with a different idea, and an experiment that runs over twice the expected time is killed and logged as a crash. A crash never stops the loop.",
+    "statements": [
+      {
+        "quote": "**Timeout (>2x expected runtime):** Kill it, log as crash, move on",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never let a crash stop the loop. Log it, revert, and continue with a different experiment.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Crash:** log it, revert, continue with different idea",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

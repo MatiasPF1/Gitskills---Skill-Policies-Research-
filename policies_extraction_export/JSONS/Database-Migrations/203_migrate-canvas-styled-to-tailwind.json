@@ -1,0 +1,73 @@
+{
+  "name": "migrate-canvas-styled-to-tailwind",
+  "mechanism": "Escalate",
+  "repo": "UiPath/apollo-ui",
+  "path": ".claude/skills/migrate-canvas-styled-to-tailwind/SKILL.md",
+  "author": {
+    "owner": "UiPath",
+    "commit_author": "65479b4c336f44da",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01030902717446bfddcdece2d298a26efc1efc16.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "migrate-canvas-styled-to-tailwind (Escalate) specifies 2 of 5 categories: 1 approval gate, 2 validation rules; none for autonomy limits, clarification rules, escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "migrate-canvas-styled-to-tailwind migrates a canvas component from Emotion styled-components to Tailwind classes following a reference migration. Most of the file is migration patterns and class mappings. Its control rules are an approval of the migration plan and a verification step. It sets no autonomy limits, clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent gets the user's approval of the migration plan before proceeding.",
+    "statements": [
+      {
+        "quote": "**Get user approval before proceeding.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 1 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a heading and running text. The agent runs a verification step after the migration and checks Storybook for visual regressions when stories exist.",
+    "statements": [
+      {
+        "quote": "Step 9: Verify",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Check Storybook visually for regressions if stories exist for the component.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

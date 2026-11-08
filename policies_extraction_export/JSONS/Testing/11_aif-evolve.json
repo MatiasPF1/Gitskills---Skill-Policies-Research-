@@ -1,0 +1,180 @@
+{
+  "name": "aif-evolve",
+  "mechanism": "Act",
+  "repo": "alexeu00999/vpsbench",
+  "path": ".gemini/skills/aif-evolve/SKILL.md",
+  "author": {
+    "owner": "alexeu00999",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/007042cd79b4c341a648e3d754e3b1618edb5447.md",
+  "topics": [
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "aif-evolve (Act) specifies 5 of 5 categories: 10+ autonomy limits, 2 clarification rules, 4 approval gates, 4 validation rules, 1 escalation rule. Strongest: autonomy limits.",
+  "conclusion_qualitative": "aif-evolve improves AI Factory skills for a project, using accumulated patches (records of past fixes), the codebase and the tech stack. Most of its rules limit where the agent may write: never inside the built-in `skills/aif-*/` folders, only in project skill-context files, and never removing stale rules on its own. The user decides on stale rules and on which improvements to apply, and nothing changes before the user answers. The agent verifies its output against the project rules and stops with an error if the target skill does not exist.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly running text. The front matter limits the agent to a set of tools, with `Bash` allowed only for `git` commands. The rules repeatedly forbid editing, deleting or reverting the built-in `skills/aif-*/` files, which are overwritten on update; project-specific rules must go to the skill-context folder instead. When an existing rule looks stale or overlaps, the agent must not remove or narrow it on its own.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read Write Edit Glob Grep Bash(git *) Questions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**NEVER modify any files inside built-in `aif-*` skill directories** (`skills/aif-*/`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**ALWAYS write project-specific rules to skill-context:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Scope constraint:** Step 3 can ONLY modify or remove skill-context files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "It must NEVER propose editing, deleting, or reverting base `skills/aif-*/` files.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT auto-remove.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT auto-remove.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT auto-narrow.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never propose editing, deleting, or reverting base `skills/aif-*/` files — they are outside of evolve's scope.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEVER edit any files inside the skill's `skills/aif-*/` directory** — all files there are owned by ai-factory and WILL be overwritten on update.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both in running text. The agent collects the user's decisions on stale rules with `AskUserQuestion` and does not go on to the next step until all of them are collected and applied.",
+    "statements": [
+      {
+        "quote": "Use `AskUserQuestion` to collect stale rule decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT proceed to Step 5 until all stale rule decisions are collected and applied.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, evenly split between bullet points and running text. After presenting its report the agent asks the user which improvements to apply and does not apply any change until the user answers; the user approves before changes are applied. If no improvements were applied, it asks before moving its patch cursor (its record of which patches it has read) forward.",
+    "statements": [
+      {
+        "quote": "**After presenting the full report, use `AskUserQuestion` to collect decisions:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT apply any changes until the user answers.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user whether to advance cursor anyway.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Reversible** — user approves before changes are applied",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all in running text. The agent verifies every output against all skill-context rules and fixes any violation before showing it to the user. It checks each existing rule's content against each prevention point one by one, and counts covered and uncovered points after the scan.",
+    "statements": [
+      {
+        "quote": "**Enforcement:** After generating any output artifact, verify it against all skill-context rules.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If any rule is violated — fix the output before presenting it to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Always verify the **content** of the existing rule against each prevention point individually.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verification:** After completing the registry scan, count: total prevention points, covered, uncovered.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the requested skill is not found, the agent reports an error to the user and stops.",
+    "statements": [
+      {
+        "quote": "If the skill is not found → report an error to the user and stop:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

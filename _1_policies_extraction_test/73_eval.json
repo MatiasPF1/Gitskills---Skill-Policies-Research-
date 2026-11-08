@@ -1,0 +1,134 @@
+{
+  "name": "eval",
+  "mechanism": "Escalate",
+  "repo": "RelevanceAI/relevance-builder-kit",
+  "path": ".claude/skills/eval/SKILL.md",
+  "author": {
+    "owner": "RelevanceAI",
+    "commit_author": "3a0e75b8e07f561f",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/003d8229f7a6ecf4b7ea72fdf7378b3f09d781bc.md",
+  "conclusion": "eval (Escalate) specifies 5 of 5 categories: 3 autonomy limits, 2 clarification rules, 6 approval gates, 3 validation rules, 2 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose: tool simulation instead of real APIs; skipping review in Quick mode; auto-fixing without waiting for input.",
+    "statements": [
+      {
+        "quote": "**CRITICAL: always enable tool simulation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**For Quick mode:** skip review, proceed directly to Phase 3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not wait for user input.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list: Quick or Full eval mode; sample rate for high-volume agents.",
+    "statements": [
+      {
+        "quote": "Ask the user which mode to use.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user if they want a lower rate for high-volume agents",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "6 approval gates (6 mandatory, 0 advisory; 2 conditional), mostly prose: test case review in Full mode; configuring or replacing the publish gate; enabling performance monitoring.",
+    "statements": [
+      {
+        "quote": "Wait for user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**In Full mode**, present recommendations but do not auto-fix.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask: **\"Configure this test set as the agent's publish gate? Future publishes will run it automatically and block if the score is below the threshold.\"**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a `default_eval_config` already exists on the agent, ask the user: **replace** with the new test set, or **add** to the existing `test_set_ids` list (multiple test sets all run on publish, all must",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "After reporting results, ask: **\"Would you like to enable ongoing performance monitoring for production conversations?\"**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose: eval completion across all runs; verifying the publish gate config; go/no-go criteria before promotion.",
+    "statements": [
+      {
+        "quote": "Complete when `tasks_evaluated == total_runs`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Re-fetch the agent and confirm `default_eval_config` is set as expected.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before promoting any agent from dev to staging or staging to production:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list: failed or cancelled eval runs; score below 80% after two fix attempts.",
+    "statements": [
+      {
+        "quote": "Instead: report the failures separately, list which test cases failed (use `relevance_list_eval_runs`), and ask the user whether to retry the failed cases as-is, simplify them (lower `max_turns`, simp",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If score is still < 80% after 2 fix attempts, report the results and ask the user for guidance.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

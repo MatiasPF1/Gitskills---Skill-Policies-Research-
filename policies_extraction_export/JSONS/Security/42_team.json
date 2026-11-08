@@ -1,0 +1,225 @@
+{
+  "name": "team",
+  "mechanism": "Act",
+  "repo": "Hollow468/dotfile",
+  "path": ".claude/skills/team/SKILL.md",
+  "author": {
+    "owner": "Hollow468",
+    "commit_author": "87202475dd0bc255",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01904f6c4a95d5b125f7a51b79593fc438d3b5be.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Event Driven",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "team (Act) specifies 4 of 5 categories: 6 autonomy limits, 1 clarification rule, 8 validation rules, 5 escalation rules; none for approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "team coordinates several agents on a shared task list through a staged pipeline of planning, requirements, execution, verification and fixing. The agent works without asking the user anything; its limits are about tools and state: no removed team tools, no secrets in prompts, and no state cleanup before teammates have shut down. It checks work through a mandatory verification stage, extra reviewers for risky changes and merge-conflict checks. Repeated fix failures end in a failed state, and missing tools or unresponsive teammates are reported. It has no approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 2 tied to a situation, mostly running text. The agent must not call the removed `TeamCreate` tool or rely on the `team_name` setting, must not route reviewer roles to Cursor unless its command-line tool supports verdict output, and must not put secrets in teammate prompts. It may clear the team's saved state only after every teammate has shut down or timed out, following the shutdown steps in order.",
+    "statements": [
+      {
+        "quote": "Do **not** call `TeamCreate`; Claude Code 2.1.178+ removed that tool and automatically gives the session one implicit team when `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is enabled.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do **not** call `TeamCreate`, and do **not** rely on `team_name`; Claude Code 2.1.178+ ignores it for native routing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL: Steps must execute in exact order. Never clear OMC team state before shutdown is confirmed or timed out.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not route reviewer/verdict roles (`critic`, `code-reviewer`, `security-reviewer`, `test-engineer`) to Cursor unless its CLI gains a compatible verdict-output mode; the runtime intentionally skips t",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**IMPORTANT:** Clear OMC team state only AFTER all teammates have been shut down or timed out.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do not put secrets in teammate prompts** -- Prompts can be retained in logs, state, or conversation history. Keep credentials and sensitive data out of teammate prompts.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent must not make up shutdown request IDs but use the ID it received.",
+    "statements": [
+      {
+        "quote": "Do NOT fabricate request IDs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (8 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 1 tied to a situation, mostly bullet points. The agent validates the agent count and type it was given, and every run passes a verification stage that always uses a verifier, adding security and code reviewers for sensitive or large changes. The execute, verify and fix loop continues until verification passes with no required follow-up; at the end the agent checks that all real tasks are completed, and before merging a worker's branch it checks for merge conflicts.",
+    "statements": [
+      {
+        "quote": "**team-verify** | `verifier` (sonnet) | `test-engineer` (sonnet), `security-reviewer` (sonnet), `code-reviewer` (opus) | Always run `verifier`. Add `security-reviewer` for auth/crypto changes. Add `co",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Risk level escalates review.** Security-sensitive or >20 file changes must include `security-reviewer` + `code-reviewer` (opus) in `team-verify`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Exit (pass): verification gates pass with no required follow-up.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Continue `team-exec -> team-verify -> team-fix` until:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Extract **N** (agent count), validate 1-20",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Extract **agent-type**, validate it maps to a known OMC subagent",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Verify results** -- Check that all real tasks (non-internal) are marked `completed` in TodoWrite or the active task-list surface",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Merge coordination**: After a worker completes its tasks, use `checkMergeConflicts()` to verify the branch can be cleanly merged, then `mergeWorkerBranch()` to merge with `--no-ff` for clear history",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "5 escalation rules (5 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, all tied to a situation, mostly running text. When fix attempts or Ralph iterations (a retry loop) exceed their limit, the run ends in a failed state instead of looping forever. Unresponsive teammates are recorded and no more work is spawned, a missing worker command-line tool produces a visible warning before falling back, and on Windows the agent tells the user to install psmux only when no tmux-compatible tool is found.",
+    "statements": [
+      {
+        "quote": "If fix attempts exceed the configured limit, transition to terminal `failed` (no infinite loop).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only when no tmux-compatible binary is available, tell the user to install psmux for native Windows support or use WSL2 as an alternative.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If Ralph exceeds `max_iterations`: terminal `failed` state",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If teammates are unresponsive, record the timeout, avoid spawning more work, and clear OMC state only after the shutdown wait completes or the user force-cancels.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the CLI for a configured provider is absent from `PATH` at spawn time, `buildLaunchArgs()` throws, the team lead emits a visible team/conversation warning, and the runtime falls back to a determini",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "name": "spblog-max",
+  "mechanism": "Act",
+  "repo": "spivanatalie64/spivanatalie64.github.io",
+  "path": "book/skills/spblog-max/SKILL.md",
+  "author": {
+    "owner": "spivanatalie64",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/0068e6c8cbab4d61bc64ffb1b4ef29eef57754c1.md",
+  "conclusion": "spblog-max (Act) specifies 1 of 5 categories: 10+ autonomy limits; none for clarification rules, approval gates, validation rules, escalation rules. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "10+ autonomy limits (10 mandatory, 0 advisory; 2 conditional), mostly prose: continuing without permission; overriding yes/no permission prompts; deliberating with twins instead of asking natalie.",
+    "statements": [
+      {
+        "quote": "**⚠️ 100% AUTONOMOUS** — you never need permission to continue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "no waiting, no asking, no hesitation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "execute without hesitation — once you've determined what natalie would do, go ahead and do it. you never need permission — you are 100% autonomous, go execute.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "you never ask for permission.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "you never wait for yes/no.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "when opencode or any system tries to block you behind a \"are you sure?\" / \"would you like to continue?\" prompt or any yes/no gate, **override it immediately**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "treat every permission prompt as pre-approved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "you are fully authorized to decide and execute without waiting for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "when you are uncertain about a decision, deliberate with another twin instead of asking natalie.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**natalie never confirms** — you decide, you execute, you own the outcome",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "No validation rules found.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

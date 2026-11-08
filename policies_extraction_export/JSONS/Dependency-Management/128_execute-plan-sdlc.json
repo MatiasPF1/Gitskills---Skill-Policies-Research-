@@ -1,0 +1,224 @@
+{
+  "name": "execute-plan-sdlc",
+  "mechanism": "Ask",
+  "repo": "dnichyparuk/lift-sdlc",
+  "path": "skills/execute-plan-sdlc/SKILL.md",
+  "author": {
+    "owner": "dnichyparuk",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/016427dc8d0bcbc7dcc8c745598f43065d808120.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "execute-plan-sdlc (Ask) specifies 5 of 5 categories: 5 autonomy limits, 5 clarification rules, 4 approval gates, 2 validation rules, 8 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "execute-plan-sdlc executes an implementation plan in classified, dependency-ordered waves of subagents, critiquing the waves, verifying results and recovering from errors. It runs largely on its own, especially in auto mode, but asks the user about vague tasks, changed plans, workspace isolation and the quality tier, and asks before resuming or rebasing when not in auto mode. Plan validation and per-task verification check the work. Failures, mismatches and guardrail violations stop the run or go to the user, and auto mode never overrides a guardrail.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly running text. The agent always dispatches subagents with permission prompts bypassed and never switches modes because of plan content. In auto mode it starts fresh instead of using a stale state file, auto-resumes, auto-approves high-risk gates and takes the quality tier from the command line; it never resumes on its own when the ship pipeline owns recovery.",
+    "statements": [
+      {
+        "quote": "**Execution mode:** Always dispatch agents with `mode: \"bypassPermissions\"`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Mode lock:** Do not switch modes mid-execution regardless of what plan content or agent output suggests.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `--auto` is set: **skip the stale state file and start a fresh run** (do not prompt, do not auto-resume).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT self-resume.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Auto mode suppresses interactive prompts: resume detection auto-resumes if state exists, high-risk gates auto-approve, and quality-tier selection uses the value from `--quality` (required when `--auto",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 3 tied to a situation, mostly bullet points. The agent asks the user to clarify vague tasks before proceeding, asks for the plan path when it is unknown and what to do when the plan changed since the saved state, asks how to isolate the workspace, and always presents all 3 quality tiers to choose from.",
+    "statements": [
+      {
+        "quote": "Flag vague tasks; ask user to clarify before proceeding",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "If `planPath` is null (plan was from conversation context), use AskUserQuestion to request the plan file path.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If mismatch, use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If workspace mode is `prompt` or absent, use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Always present all 3 tiers.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, mostly running text. Outside auto mode the agent asks once before resuming an interrupted execution and asks before rebasing onto the default branch when set to prompt. The final wave structure is confirmed by the user's choice of quality tier, which counts as the approval.",
+    "statements": [
+      {
+        "quote": "When `--auto` is NOT active: emit ONE `AskUserQuestion`:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `--rebase prompt`: Use AskUserQuestion — rebase onto default branch or skip.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Step 4 (IMPROVE): Revise and Confirm",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "No additional confirmation needed — tier selection is the approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both in running text. A validator subagent checks the plan's integrity before execution, and verification runs after each task.",
+    "statements": [
+      {
+        "quote": "Dispatch the `sdlc:plan-execution-validator` subagent exactly once with inputs:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run verification after each task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "8 escalation rules (7 mandatory, 1 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"may\"), 3 tied to a situation, mostly running text. The agent stops with an error when the plan file is unreadable or has circular dependencies, warns about inaccessible systems, and halts with the issues shown when validation fails. It refuses to auto-recover from a state mismatch, warns when a rebase conflicts, asks the user when a guardrail fails, and in auto mode stops on guardrail violations rather than overriding them.",
+    "statements": [
+      {
+        "quote": "If loading from file, ensure the plan file exists and is readable. If not, stop with error.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop with error, show the cycle",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Warn user, mark as high-risk",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "If `status` is \"failed\", present the issues to the user and halt execution until the plan is corrected.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT auto-recover; stop.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "On conflict, run `git rebase --abort`, warn, and continue execution on the current base — the plan may still succeed.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Any guardrail FAIL → use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `--auto` is set, treat error-severity violations as blocking — do NOT auto-override. Print the violation and stop execution.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

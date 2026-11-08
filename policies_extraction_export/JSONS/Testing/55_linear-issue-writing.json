@@ -1,0 +1,115 @@
+{
+  "name": "linear-issue-writing",
+  "mechanism": "Ask",
+  "repo": "dealroom-ai/agent-skills",
+  "path": "skills/linear-issue-writing/SKILL.md",
+  "author": {
+    "owner": "dealroom-ai",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0004cb0f19bebca7036b2373a8eacd8ced30726e.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "linear-issue-writing (Ask) specifies 2 of 5 categories: 2 autonomy limits, 8 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "linear-issue-writing helps write well-structured Linear issues (parent features, sub-issues, bug reports and exploration tickets) that anyone can pick up and execute. Its rules are almost all about asking: the agent resolves the key unknowns with the user up front and again whenever new gaps appear, instead of guessing. It also avoids asking what it can find in existing context. It sets no approval gates, no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both in running text. The agent skips questions it can confidently answer from the codebase, earlier messages or linked documents, and asks only what it genuinely needs.",
+    "statements": [
+      {
+        "quote": "Skip questions you can confidently answer from existing context (codebase, prior messages, linked docs).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only ask what you genuinely need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "8 clarification rules (8 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 2 tied to a situation, all in running text. Before drafting an issue the agent identifies its type and asks the user, once and up front with `AskUserQuestion`, the key unknowns for that type: bug details and reproduction steps, purpose, audience, roles and analytics, or the open questions of an exploration. If new questions come up while drafting it asks again rather than guessing, fills every bug-report section by asking about any unknowns, and for sub-issues asks only what the parent issue leaves open.",
+    "statements": [
+      {
+        "quote": "**Before drafting any issue, identify the issue type (Parent Feature, Sub-Issue/Task, Bug Report, or Exploration), then use the `AskUserQuestion` tool _once, upfront_, to resolve the most important un",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**While drafting, if new open questions emerge that weren't covered upfront — especially ones the user hasn't thought about — call `AskUserQuestion` again to refine them.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not silently guess: surfacing a gap is more valuable than filling it with an assumption.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Bug Report** — ask upfront:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Task / Feature** — ask upfront (pick the ones not already answered):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Exploration** — ask upfront:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**For sub-issues**, only ask clarifying questions where the parent issue doesn't already answer them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Always fill all five — if any are unknown, ask via `AskUserQuestion`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

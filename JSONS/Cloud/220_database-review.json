@@ -1,0 +1,90 @@
+{
+  "name": "database-review",
+  "mechanism": "Escalate",
+  "repo": "nhahoang1909/MarketNest",
+  "path": ".claude/skills/database-review/SKILL.md",
+  "author": {
+    "owner": "nhahoang1909",
+    "commit_author": "16861b1f46729313",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/014a16d6ff2a76efc44ef4d670897985e8014ede.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "database-review (Escalate) specifies 3 of 5 categories: 2 autonomy limits, 1 approval gate, 2 validation rules; none for clarification rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "database-review scans a .NET codebase's database layer (EF Core migrations, queries, PostgreSQL indexes and Redis usage) and reports issues. Its control rules apply to the fix phase: changes to entities or migrations need the user's confirmation, existing migrations are never edited, and fixes are verified. It sets no clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all bullet points. The agent never edits existing migrations or designer files, creating a new migration for each change.",
+    "statements": [
+      {
+        "quote": "Create a new migration for each index/schema change — never edit existing migrations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never edit `*.Designer.cs` files",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent confirms with the user before modifying entity configuration or creating migrations.",
+    "statements": [
+      {
+        "quote": "Confirm with the user before modifying entity configuration or creating new migrations",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly heading.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a heading and a bullet point. Every new index migration needs a matching rollback, and fixes are followed by a post-fix verification phase.",
+    "statements": [
+      {
+        "quote": "After adding an index, the migration must have a matching `Down()` (`DropIndex`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Phase 5: VERIFY — Post-fix Verification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

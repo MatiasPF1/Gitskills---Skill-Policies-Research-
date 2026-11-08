@@ -1,0 +1,110 @@
+{
+  "name": "gpd-resume-work",
+  "mechanism": "Escalate",
+  "repo": "Unified-Field-Theory-Research/finite-capacity-causal-geometry",
+  "path": ".agents/skills/gpd-resume-work/SKILL.md",
+  "author": {
+    "owner": "Unified-Field-Theory-Research",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0192a5dfd78d5054dc817a4bf224c7df486cf2b0.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "gpd-resume-work (Escalate) specifies 3 of 5 categories: 2 autonomy limits, 4 validation rules, 1 escalation rule; none for clarification rules, approval gates. Strongest: validation rules.",
+  "conclusion_qualitative": "gpd-resume-work restores the full context of a research project from a previous session and points to the next command, based on the project's state files. Its control rules are about honesty: claims need evidence, nothing is fabricated, and anything missing or failed is reported plainly. It works with a fixed tool set and sets no clarification rules or approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between the front matter and a bullet point. The front matter limits the agent to `read_file`, `shell`, `write_file` and `ask_user`, and it never runs Python tools or scripts in this repository.",
+    "statements": [
+      {
+        "quote": "allowed-tools: read_file, shell, write_file, ask_user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do not invoke Python, legacy private interpreter bridges, Python package managers/test runners, notebooks, or `.py` helper scripts from this skill in this repository.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all bullet points. The agent applies scientific skepticism before endorsing a result, treats agreement as no evidence, never fabricates references, numbers, files or claimed completion, and narrows claims and names the weakest anchor when certainty is not warranted.",
+    "statements": [
+      {
+        "quote": "Use scientific skepticism and critical thinking by default: look for contradictions, missing anchors, overclaims, and failure modes before endorsing a result.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Agreement is not evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never fabricate references, numbers, derivations, files, figures, tables, logs, summaries, proofs, or claimed task completion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When certainty is not warranted, narrow the claim, lower confidence, and name the weakest anchor or disconfirming check still needed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If information or artifacts cannot be found, produced, verified or reproduced, the agent reports that plainly and keeps the status as missing, failed, blocked or inconclusive.",
+    "statements": [
+      {
+        "quote": "If information or artifacts cannot be found, produced, read, verified, or reproduced, report that plainly and keep the status missing, failed, blocked, or inconclusive.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

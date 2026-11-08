@@ -1,0 +1,152 @@
+{
+  "name": "tsh-jira-task-formatting",
+  "mechanism": "Escalate",
+  "repo": "TheSoftwareHouse/copilot-collections",
+  "path": ".github/skills/tsh-jira-task-formatting/SKILL.md",
+  "author": {
+    "owner": "TheSoftwareHouse",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/000e51241f4463c725b6ab2b4bba8bd26006fca1.md",
+  "conclusion": "tsh-jira-task-formatting (Escalate) specifies 5 of 5 categories: 5 autonomy limits, 2 clarification rules, 7 approval gates, 2 validation rules, 3 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 2 conditional), mostly prose: modifying protected-status tasks; sending updates for done or cancelled tasks.",
+    "statements": [
+      {
+        "quote": "Do not reformat, reword, or modify any fields.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not reformat, reword, or modify any fields.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "First, check the task's Status field. If the status is Done, Cancelled, or PO APPROVE, **skip this task** — do not send any update to Jira. It was already counted in the sync summary under category (c",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Check the task's Status field**. If it is Done, Cancelled, or PO APPROVE, inform the user that this task is protected and cannot be modified: _\"This task has a protected status ([status]). Per the P",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "These tasks are imported for visibility but must never be modified locally or pushed back to Jira.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly prose: uncertain fields, priorities or scope; the import scope.",
+    "statements": [
+      {
+        "quote": "Use `askQuestions` to get user input.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use one `askQuestions` call to determine the import scope if the user hasn't specified it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "7 approval gates (7 mandatory, 0 advisory; 1 conditional), mostly prose: review of formatted and imported tasks; approval before creating issues in Jira; pushing local changes or re-linking parents.",
+    "statements": [
+      {
+        "quote": "Present the formatted output to the user for review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "The user must explicitly approve before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before creating any issues in Jira, confirm with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Get explicit user approval before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Fields NOT to update: Issue Type, Parent link (unless the user explicitly requests re-linking)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask the user**: \"Do you want to push this change to Jira now?\" (using one `askQuestions` call)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present each imported task to the user for review using one `askQuestions` call per task.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly prose: cross-checking tasks against the benchmark; reading back issues after the push.",
+    "statements": [
+      {
+        "quote": "Cross-check every formatted task against the benchmark template:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After the Jira sync succeeds, read back the created or updated issues and verify at least the following for each task:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "3 escalation rules (3 mandatory, 0 advisory; 3 conditional), mostly prose: updates to issues that no longer exist; mismatches after the push; failed issue creation or updates.",
+    "statements": [
+      {
+        "quote": "If an update fails because the issue no longer exists in Jira, inform the user and offer to create a new issue instead",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If verification finds mismatches, surface them clearly and do not claim the push is fully verified until the differences are resolved or explicitly acknowledged by the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If any issue creation or update fails, inform the user immediately and ask how to proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

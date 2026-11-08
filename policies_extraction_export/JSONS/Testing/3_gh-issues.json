@@ -1,0 +1,154 @@
+{
+  "name": "gh-issues",
+  "mechanism": "Act",
+  "repo": "Adamuuuu/medical_evaluation_system",
+  "path": ".claude/skills/gh-issues/SKILL.md",
+  "author": {
+    "owner": "Adamuuuu",
+    "commit_author": "ef316c9a57ff0ec0",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/002ad93f92a57cee81a366aa15dcdda49bfa470e.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "clarification_rules",
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "gh-issues (Act) specifies 4 of 5 categories: 5 autonomy limits, 1 clarification rule, 5 approval gates, 4 escalation rules; none for validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "gh-issues fetches GitHub issues, spawns sub-agents to fix them and open pull requests, then monitors and addresses review comments. The agent can skip confirmation with `--yes`, in cron mode or on later watch polls, and launches at most 8 sub-agents at once. Otherwise it asks the user to confirm which issues and pull requests to handle, and waits for confirmation when there are uncommitted changes. It stops and reports when authentication, `curl` or the remote connection fails, and asks for `owner/repo` when it cannot find one. It gives no rules for checking its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly running text. Three let the agent go ahead without asking: in cron mode (scheduled runs) it forces `--yes`, with `--yes` it processes all listed issues without asking for confirmation, and in watch mode it processes new issues on later polls without asking again. Two limit it to launching at most 8 sub-agents (helper agents) at once.",
+    "statements": [
+      {
+        "quote": "Force `--yes` (skip confirmation)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Auto-process ALL listed issues without asking for confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "On subsequent polls, auto-process all new issues without re-confirming (the user already opted in).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Launch up to 8 concurrently (matching `subagents.maxConcurrent: 8`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Launch up to 8 concurrently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the agent is not in a git repository or finds no remote, it stops with an error asking the user to specify the `owner/repo` to use.",
+    "statements": [
+      {
+        "quote": "If not in a git repo or no remote found, stop with an error asking the user to specify owner/repo.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 2 tied to a situation, mostly running text. The agent asks the user to confirm which issues to process and waits for the answer before going on, always confirming on the first poll unless `--yes` is set. It waits for confirmation when the working tree has uncommitted changes, and asks which pull requests to address unless `--yes` is set or it is a later watch poll.",
+    "statements": [
+      {
+        "quote": "Otherwise: Ask the user to confirm which issues to process:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for user response before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Watch mode note: On the first poll, always confirm with the user (unless --yes is set).",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `--yes` is NOT set and this is not a subsequent watch poll: ask the user to confirm which PRs to address (\"all\", comma-separated PR numbers, or \"skip\").",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, all tied to a situation, all bullet points. The agent stops and tells the user when GitHub authentication fails (HTTP 401 or 403, or a status other than 200 when checking the token), stops and reports the error verbatim when `curl` fails, and stops when it cannot reach the remote `origin`.",
+    "statements": [
+      {
+        "quote": "If curl returns an HTTP 401 or 403 → stop and tell the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If curl fails or returns any other error → report the error verbatim and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If this fails, stop with: \"Cannot reach remote origin. Check your network and git config.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If HTTP status is not 200, stop with:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

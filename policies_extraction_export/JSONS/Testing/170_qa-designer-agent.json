@@ -1,0 +1,146 @@
+{
+  "name": "qa-designer-agent",
+  "mechanism": "Escalate",
+  "repo": "swongsuddee/windflu-test",
+  "path": ".agents/toolkit/qa-designer-agent/SKILL.md",
+  "author": {
+    "owner": "swongsuddee",
+    "commit_author": "01bde9e606189745",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/005721338a1473eb6b42e5087461ba9785782919.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "qa-designer-agent (Escalate) specifies 4 of 5 categories: 4 autonomy limits, 2 clarification rules, 7 approval gates, 1 validation rule; none for escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "qa-designer-agent designs test cases from requirements and diagrams: it selects techniques, estimates coverage, writes Zephyr-compatible test cases for web, mobile and API, and updates existing designs. Two confirmation stops govern the work: coverage before generation and impact before updates. A 95% confidence gate makes it ask questions first, and existing test IDs are never deleted. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, evenly split between running text and bullet points. For change requests the agent only updates the existing design, never deletes or renumbers existing test case IDs, and never stores credentials or personal data in output files.",
+    "statements": [
+      {
+        "quote": "`design-update` only — never re-run technique-selection from scratch on existing designs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never break sequence. Never delete old IDs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never store credentials or personal data in any output file",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Delete existing test case IDs",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between running text and a bullet point. When its confidence is below 95%, the agent never skips the gate: it asks targeted clarification questions and stops until the user answers or accepts the listed assumptions.",
+    "statements": [
+      {
+        "quote": "**Confidence gate:** If below 95%, ask targeted clarification questions grouped by category and stop. Do not proceed until the user addresses them or explicitly accepts listed assumptions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Skip the confidence gate when below 95%",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, none tied to a situation, mostly bullet points. The agent stops for the user's confirmation of the coverage estimate before generating test cases, and of the impact summary before updating an existing design.",
+    "statements": [
+      {
+        "quote": "Coverage summary — stop for confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Stop for user confirmation before generating cases.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Output format — stop here and wait for confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Show impact summary and updated test count. Stop for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After confirmation, apply update rules below.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Generate test cases before coverage estimation is confirmed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop for confirmation before generating cases",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent inspects every diagram block for characters that would break the parser before output.",
+    "statements": [
+      {
+        "quote": "Inspect every block for parser-risky characters before output",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

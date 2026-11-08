@@ -37,16 +37,15 @@ Notebooks only import the helpers and call one function per cell.
 
 ## Human-control mechanisms
 
+For a given software task, when should an AI agent act, ask, or escalate to a human?
+
 | Mechanism | What the skill tells the agent |
 | --- | --- |
-| Scope boundary | what it must leave alone |
-| Clarification trigger | when to ask instead of guessing |
-| Approval gate | when to wait for a human yes |
-| Planning transparency | to show its plan before acting |
-| Validation requirement | to check its work before finishing |
-| Escalation / rollback | to stop or undo instead of pushing on |
+| Act | to continue autonomously |
+| Ask | to request clarification |
+| Escalate | to require explicit approval before a consequential step |
 
-Each mechanism has a keyword set in [Mechanisms.py](HelperFunctions/HelperFunctions_Mechanisms/Mechanisms.py). Its notebook saves the 15 representative skills containing the most different keywords to `Found/<file_sha>.md`.
+Each mechanism has a keyword set in [Mechanisms.py](HelperFunctions/HelperFunctions_Mechanisms/Mechanisms.py). Its notebook saves the 30 representative skills containing the most different keywords to `Found/<file_sha>.md`, plus `Found/index.json` with the repo, path, owner and first commit author of each.
 
 This picks skills worth reading; it does not measure how common a mechanism is. Matching is by plain substring, and ties are broken by `file_sha`.
 

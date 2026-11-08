@@ -1,0 +1,99 @@
+{
+  "name": "specify",
+  "mechanism": "Ask",
+  "repo": "grailautomation/claude-plugins",
+  "path": "spec-kit/skills/specify/SKILL.md",
+  "author": {
+    "owner": "grailautomation",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01af27dd98aedc33ea1d8681373dda61d73e0661.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "clarification_rules"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "specify (Ask) specifies 2 of 5 categories: 3 autonomy limits, 3 clarification rules; none for approval gates, validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "specify (Spec Kit) creates a brownfield-aware feature specification from a natural-language description, after inspecting the existing repository. The agent works with a fixed tool set, avoids git setup and branch changes it was not asked for, and marks uncertain points for later clarification instead of guessing. It sets no approval gates, checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 2 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, one in the front matter, one in running text and one bullet point. The front matter limits the agent to `Read`, `Write`, `Bash`, `Glob` and `Grep`. It does not ask the user to repeat the feature description, does not initialize git, and switches branches only to start a new feature branch.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do not ask the user to repeat it unless it is empty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not initialize git. Do not switch branches unless this command is being used to start a new feature branch.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly bullet points. If the description is empty the agent asks for one. It does not guess but marks material assumptions for clarification, and asks about them later only when the answer would change architecture, data, tests, safety, UX or operations.",
+    "statements": [
+      {
+        "quote": "If the input is empty, respond with: \"Please provide a feature description.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not guess. Mark material assumptions with `[NEEDS CLARIFICATION]`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask clarifying questions later only when the answer would change architecture, data model, task split, tests, safety, UX, or operations.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

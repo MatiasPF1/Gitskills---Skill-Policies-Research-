@@ -1,0 +1,127 @@
+{
+  "name": "ml-pipeline",
+  "mechanism": "Escalate",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "ai-ml/ml-pipeline-avav25-ai-assets/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/002f38ad95fad17b4bf8c29559da43ccfd9f9752.md",
+  "topics": [
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "ml-pipeline (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 2 clarification rules, 6 approval gates, 1 validation rule; none for escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "ml-pipeline orchestrates ML tasks through product-manager, ML-engineer and SRE roles: formulating the task, extracting production data, analysing and modelling, and turning recommendations into a feature plan. Production access is read-only, and the user approves each stage, including every extraction command, before the next. It checks extracted data for completeness and sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. All commands against production are read-only: no changes to production data or systems.",
+    "statements": [
+      {
+        "quote": "**⚠️ SAFETY: All commands are READ-ONLY. No mutations to production data or systems.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, all in running text. The agent gathers the ML task from the user and has the user confirm its summary of the project domain before going on.",
+    "statements": [
+      {
+        "quote": "Gather the ML task from the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the domain summary to the user for confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly running text. The user approves the task specification, reviews the data requirements and extraction plan, sees each extraction command before it runs, and approves the recommendations before a feature plan is generated.",
+    "statements": [
+      {
+        "quote": "Present to user for approval. Adjust based on feedback.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the data requirements and extraction plan to the user for review.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Show the exact command/query to the user before execution",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Execute after approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Present recommendations to the user. Wait for approval before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After user approves the recommendations, invoke `/feature-plan` with the following input:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After each extraction the agent verifies the data is complete: row counts, date ranges and null percentages.",
+    "statements": [
+      {
+        "quote": "Verify data completeness — row counts, date ranges, null percentages",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

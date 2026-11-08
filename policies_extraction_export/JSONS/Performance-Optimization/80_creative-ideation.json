@@ -1,0 +1,58 @@
+{
+  "name": "creative-ideation",
+  "mechanism": "Ask",
+  "repo": "muhamedaw/nour",
+  "path": "builderos/skills/creative-ideation/SKILL.md",
+  "author": {
+    "owner": "muhamedaw",
+    "commit_author": null,
+    "declared": "SHL0MS"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/003f7f49781a6bb0a092315be1eb2ad19392e509.md",
+  "topics": [
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "creative-ideation (Ask) specifies 1 of 5 categories: 2 clarification rules; none for autonomy limits, approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "creative-ideation is a routed library of named creative methods that the agent applies to generate, expand, select or unblock ideas. Its only control rules concern asking: it lets the user choose a method when asked for a recommendation and asks one question when the request is genuinely ambiguous. It sets no approval gates, autonomy limits, checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. When the user asks which ideation method to use, the agent offers 2 to 3 candidates and asks which to apply rather than defaulting silently, and when the request is genuinely ambiguous it asks one clarifying question instead of guessing.",
+    "statements": [
+      {
+        "quote": "**User asks for a method recommendation** (\"which method\") → surface 2–3 candidates with one-line each, ask which to apply. Don't silently default.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Genuinely ambiguous** → ask ONE clarifying question, don't silently guess.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

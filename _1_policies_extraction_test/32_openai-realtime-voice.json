@@ -1,0 +1,52 @@
+{
+  "name": "openai-realtime-voice",
+  "mechanism": "Ask",
+  "repo": "calesthio/generative-media-skills",
+  "path": "skills/providers/voice-agents/openai-realtime-voice/SKILL.md",
+  "author": {
+    "owner": "calesthio",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/001996f5202d3b4f61bd77a60e0fe49e55111e9f.md",
+  "conclusion": "openai-realtime-voice (Ask) specifies 1 of 5 categories: 3 validation rules; none for autonomy limits, clarification rules, approval gates, escalation rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "No autonomy limits found.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose: re-checking OpenAI API facts before release; release-blocking review checklist.",
+    "statements": [
+      {
+        "quote": "Re-check model identifiers, prices, session limits, voices, API object fields, data retention, and policy requirements before production release because Realtime surfaces change quickly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Block release until these are true:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "The model, API fields, price assumptions, session duration, voice list, transport path, and policy constraints have been re-verified against OpenAI docs with a date.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

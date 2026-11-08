@@ -1,0 +1,200 @@
+{
+  "name": "oat-brainstorm",
+  "mechanism": "Ask",
+  "repo": "tkstang/open-agent-toolkit",
+  "path": ".agents/skills/oat-brainstorm/SKILL.md",
+  "author": {
+    "owner": "tkstang",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/01020c64c4e8d8e33f60f3f5288ed79c0a62b978.md",
+  "conclusion": "oat-brainstorm (Ask) specifies 5 of 5 categories: 6 autonomy limits, 6 clarification rules, 10+ approval gates, 2 validation rules, 3 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly list: implementation code and build commands; staging with git add -A or globs; writing design.md or running the next phase.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Bash, Glob, Grep, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "No implementation code, no scaffolding, no actual feature changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No `git add -A` and no directory globs for the fold-back commit. Staging is always scoped: `git add -- \"$ARTIFACT_PATH\"`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Writing implementation code or running build/test commands → STOP. Brainstorming does not produce code; that's the destination skills' job.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT write `design.md`.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Stop here.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "6 clarification rules (5 mandatory, 1 advisory; 3 conditional), mostly list: declared multi-project boundaries; ambiguous destination matches; directory paths and unclear child lists.",
+    "statements": [
+      {
+        "quote": "In declared mode, ask this boundary question before ordinary free brainstorming:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**One question at a time.** Never bundle multiple questions in a single message. If a topic needs more exploration, break it across multiple turns.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Multiple matches → ask before committing.** If a user message could plausibly map to two destinations (e.g., \"save this somewhere\" — doc-to-path or active-project reference file?), surface the ambig",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Present the filtered list to the user. Wait for selection.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Path is a directory** → ask the user for a filename, do not write.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the child list is still unclear, ask one boundary question and return briefly to step 5 to decompose the scope.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (10 mandatory, 0 advisory; 2 conditional), mostly list: switching into brainstorm mode or the visual companion; confirming destinations and payload fields; overwriting files or creating directories.",
+    "statements": [
+      {
+        "quote": "If the user accepts (or types `/oat-brainstorm`, \"let's brainstorm\", etc.), transition to Hard Activation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for the user's response.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Single confident match → surface immediately.** \"Sounds like you want to track this as a backlog item — confirm?\" Then go to step 7 (satisfaction check) without forcing the user to commit yet.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Whichever path triggered convergence, ask the user one question — no exceptions:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**`full`** (currently only `Scoped backlog item`): present the proposed payload **field-by-field** using the example wording from the destination stanza in the playbook. The user confirms or revises e",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**`minimal`** (most destinations): confirm only the slug / path / which artifact / which idea / filename, depending on the destination. Examples:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Parent directory missing** → offer to create it. **If outside the current repo, require explicit confirmation** before creating any directory tree (e.g., \"That path is outside the current repo at `<",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**File already exists** → ask whether to overwrite or pick a different filename. Do not silently overwrite.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not invoke `oat-idea-ideate` automatically.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm the chosen artifact with the user (minimal confirmation per `references/destinations.md`).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list: preflight git status before fold-back commits.",
+    "statements": [
+      {
+        "quote": "No fold-back commit on a dirty working tree without running the preflight `git status` check first (see Process step 9 active-project branches).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Step 2 — Preflight `git status` check.** Run **before** any artifact mutation, scoped to the chosen artifact only:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "3 escalation rules (3 mandatory, 0 advisory; 1 conditional), mostly list: failed fold-back commits; unwritable output paths.",
+    "statements": [
+      {
+        "quote": "Printing the fold-back handoff prompt before the commit succeeds → STOP. Surface the commit error and let the user resolve it before the prompt is emitted.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Path is unwritable** (permission denied, read-only filesystem, etc.) → surface the OS error verbatim and ask for an alternative path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `git commit` failed (pre-commit hooks rejected, signing failed, anything else), surface the error verbatim and **do NOT print the handoff prompt** — the prompt references a commit hash, and a missi",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

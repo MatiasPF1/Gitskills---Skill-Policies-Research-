@@ -1,0 +1,118 @@
+{
+  "name": "yak-mapping",
+  "mechanism": "Act",
+  "repo": "mattwynne/yaks",
+  "path": "skills/yak-mapping/SKILL.md",
+  "author": {
+    "owner": "mattwynne",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01b32911eab28fa44281996986731354fdd6fca0.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "yak-mapping (Act) specifies 3 of 5 categories: 3 autonomy limits, 3 clarification rules, 3 approval gates; none for validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "yak-mapping plans work by approaching a goal and recording the blockers it finds as nested work items (\"yaks\") with the `yx` tool, instead of breaking everything down up front. The agent must use the `yx` tool and never edit the `.yaks` folder directly. Scope is the user's call: the agent agrees it in conversation, maps only areas the user approved, and asks what to do once the map is done. It gives no rules for checking its own work or handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The agent must never touch the `.yaks` directory directly (no `rm -rf`, `mkdir` or writing files into it) and must use the `yx` command-line tool instead.",
+    "statements": [
+      {
+        "quote": "**NEVER touch .yaks directory directly!**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never: `rm -rf .yaks`, `mkdir .yaks/...`, `cat > .yaks/...`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Touching .yaks directory directly instead of using yx CLI",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. After creating the top-level goal, the agent talks with the user to agree the scope before going deeper, asking the user to pick what is in scope now, and when the mapping is done it presents the map and asks what to do next.",
+    "statements": [
+      {
+        "quote": "After creating the top-level goal yak, **have a conversation to agree scope before going deeper.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Ask the human to pick** what's in scope for now. Use AskUserQuestion or just ask directly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Present the map and ask:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The agent starts the discovery loop only after the user agrees the scope, creates child yaks (work items) only for areas the user has agreed to explore, and lists creating child yaks without agreed scope as a red flag.",
+    "statements": [
+      {
+        "quote": "**Only after agreement**, start the discovery loop on the agreed scope",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Only create child yaks for areas the human has agreed to explore.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Creating child yaks without agreeing scope first (scope creep!)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

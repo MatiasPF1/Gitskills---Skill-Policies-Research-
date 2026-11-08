@@ -1,0 +1,248 @@
+{
+  "name": "mission-control",
+  "mechanism": "Escalate",
+  "repo": "dmltdev/void-grimoire",
+  "path": "skills/mission-control/SKILL.md",
+  "author": {
+    "owner": "dmltdev",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0013bade3bd63999b39e47c545d972c9b9d058ec.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "approval_gates",
+        "validation",
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "mission-control (Escalate) specifies 5 of 5 categories: 7 autonomy limits, 2 clarification rules, 5 approval gates, 8 validation rules, 4 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "mission-control is an in-session control plane for development work: intake, risk analysis, planning, test-first implementation through workers, review, verification, correction and git handoff. It never writes production code itself, asks only load-bearing questions, and needs the user's approval for high-risk work and every commit. Verification is independent for risky changes, and blockers stop dependent work with a reported diagnosis.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "7 autonomy limits (6 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, 6 strict and 1 counted as a suggestion (it contains \"may\"), 1 tied to a situation, mostly bullet points. The control plane never edits production code itself but dispatches workers, which never spawn subagents. It changes docs only when convention or the user requires it, runs at most 2 build lanes, infers facts and local details rather than asking, and lets low-risk work proceed on logged assumptions.",
+    "statements": [
+      {
+        "quote": "Do not edit production code yourself.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never implement or patch production code directly. Use implementer/fix workers for code changes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Modify docs/specs only when repo convention requires it or the user asks.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Workers never spawn subagents.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not ask for facts tools or repo context can answer. Infer local, reversible details and record assumptions in the packet.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Low-risk/local contracts may proceed with logged assumptions.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Run at most 2 active build lanes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, all in running text. The agent asks one load-bearing question at a time when scope, acceptance or authority is unclear, and when the user rejects output it asks whether to record the pattern.",
+    "statements": [
+      {
+        "quote": "Ask one load-bearing question at a time when scope, acceptance, or architectural authority is unclear.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user rejects output as wrong/slop, ask whether to record the pattern.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. High-risk contracts and high-risk tests need the user's approval before implementation, commits need explicit approval and green verification, and memory updates are proposed for human approval at signoff.",
+    "statements": [
+      {
+        "quote": "Propose human-approved decisions/corrections for memory promotion only at signoff.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Commit only after explicit user approval and green verification. Push/PR only through explicit handoff to the git skill.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "High-risk contracts require user approval before implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "High-risk/new-behavior tests require user approval before implementation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask for explicit approval to commit.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (7 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, 7 strict and 1 counted as a suggestion (it contains \"may\"), 1 tied to a situation, all bullet points. Risky behavior gets failing tests first, implementers make them pass without weakening assertions, workers self-verify, and high-risk changes need an independent verifier who runs commands rather than reading code.",
+    "statements": [
+      {
+        "quote": "Risky/new behavior: dispatch a dedicated test author first to create failing tests or a test contract.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Low-risk tests may proceed after the test author proves they fail for the right reason.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Implementer makes tests pass without weakening them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Removing or weakening assertions to get green is a blocker.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If user explicitly says no tests, obey and require the strongest alternative verification.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Every worker self-verifies and reports commands/output.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "High-risk, multi-file, sensitive, or user-visible changes require an independent verifier.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verifier must run commands/probes. Reading code is not proof.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 3 tied to a situation, all bullet points. Workers report done, concerns, missing context or blocked. Blocked shared contracts stop only dependent work, conflicting tests are escalated, and work still blocked after one correction round stops with a diagnosis.",
+    "statements": [
+      {
+        "quote": "They report `DONE`, `DONE_WITH_CONCERNS`, `NEEDS_CONTEXT`, or `BLOCKED`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stop only dependent work when a shared contract, architecture, schema, or dependency is blocked. Continue independent lanes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a test conflicts with accepted spec or repo convention, require evidence and escalate or dispatch a test-fix worker.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If still blocked, stop dependent work and report diagnosis + smallest next action.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

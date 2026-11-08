@@ -1,0 +1,290 @@
+{
+  "name": null,
+  "mechanism": "Ask",
+  "repo": "shogo-labs/shogo-ai",
+  "path": "packages/agent-runtime/templates/virtual-engineering-team/.shogo/skills/gstack-investigate/SKILL.md",
+  "author": {
+    "owner": "shogo-labs",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Ask/Found/002ab7ef9b1758208c56b1b9dec95282974335f0.md",
+  "conclusion": "unknown (Ask) specifies 5 of 5 categories: 7 autonomy limits, 9 clarification rules, 10+ approval gates, 7 validation rules, 9 escalation rules. Strongest: approval gates.",
+  "autonomy_limits": {
+    "conclusion": "7 autonomy limits (6 mandatory, 1 advisory; 2 conditional), mostly list: proactive skill invocation; staging and pushing in continuous checkpoint mode; auto-deciding questions and locking edits to a module.",
+    "statements": [
+      {
+        "quote": "If `PROACTIVE` is `\"false\"`, do not proactively suggest gstack skills AND do not auto-invoke skills based on conversation context.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run skills the user explicitly types (e.g., /qa, /ship).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion for interactive prompts. Auto-choose the recommended option.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Stage only files you intentionally changed. NEVER `git add -A` in continuous mode.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Push ONLY if `CHECKPOINT_PUSH` is `\"true\"` (default is false). Pushing WIP commits to a shared remote can trigger CI, deploys, and expose secrets — that is why push is opt-in, not default.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "`AUTO_DECIDE` → auto-choose the recommended option, tell user inline \"Auto-decided [summary] → [option] (your preference). Change with /plan-tune.\"",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After forming your root cause hypothesis, lock edits to the affected module to prevent scope creep.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "9 clarification rules (9 mandatory, 0 advisory; 5 conditional), mostly prose: writing style, telemetry and proactive settings; guessing on architectural or data model decisions; missing context to collect symptoms.",
+    "statements": [
+      {
+        "quote": "Ask the user once about the new default writing style.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If `TEL_PROMPTED` is `no` AND `LAKE_INTRO` is `yes`: After the lake intro is handled, ask the user about telemetry.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If B: ask a follow-up AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `PROACTIVE_PROMPTED` is `no` AND `TEL_PROMPTED` is `yes`: After telemetry is handled, ask the user about proactive behavior.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not guess on architectural or data model decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "For ambiguous free-form, confirm: > \"I read '<quote>' as `<preference>` on `<question-id>`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — Missing information required to continue. State exactly what you need.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Collect symptoms:** Read the error messages, stack traces, and reproduction steps. If the user hasn't provided enough context, ask ONE question at a time via AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `CROSS_PROJECT` is `unset` (first time): Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "10+ approval gates (8 mandatory, 2 advisory; 8 conditional), mostly prose: auto-invoking skills and trying new features; routing rules, vendoring and memory sync; commits and fixes touching more than five files.",
+    "statements": [
+      {
+        "quote": "If you would have auto-invoked a skill, instead briefly say: \"I think /skillname might help here — want me to run it?\" and wait for confirmation.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For each per-feature marker below, if the marker file is missing AND the feature is plausibly useful for this user, use AskUserQuestion to let them try it.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Only run `open` if the user says yes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use AskUserQuestion (one-time per project, check for `~/.gstack/.vendoring-warned-$SLUG` marker):",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the bash output shows `BRAIN_SYNC: off` AND the config value `gbrain_sync_mode_prompted` is `false` AND gbrain is detected on this host (either `gbrain doctor --fast --json` succeeds or the `gbrain",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If A or B was chosen AND `~/.gstack/.git` doesn't exist, ask a follow-up: \"Set up the GBrain sync repo now? (runs `gstack-brain-init`)\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Commit only when the user explicitly asks, or when a skill workflow (like /ship) runs a commit step.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If the fix touches >5 files:** Use AskUserQuestion to flag the blast radius:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**If fix touches >5 files → AskUserQuestion** about blast radius before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "7 validation rules (7 mandatory, 0 advisory; 1 conditional), mostly list: committing only with passing tests; verifying the hypothesis before any fix; full test suite and fresh reproduction of the bug.",
+    "statements": [
+      {
+        "quote": "Do NOT commit with known-broken tests. Fix first, then commit. The [gstack-context] example values MUST reflect a clean state.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**DONE** — All steps completed successfully. Evidence provided for each claim.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Before writing ANY fix, verify your hypothesis.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Run the full test suite.** Paste the output. No regressions allowed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Fresh verification:** Reproduce the original bug scenario and confirm it's fixed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never apply a fix you cannot verify.** If you can't reproduce and confirm, don't ship it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never say \"this should fix it.\"** Verify and prove it. Run the tests.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "9 escalation rules (9 mandatory, 0 advisory; 5 conditional), mostly list: going in circles or rejected writes; blocked tasks and repeated failed attempts; three failed hypotheses or fixes.",
+    "statements": [
+      {
+        "quote": "If you notice you're going in circles — repeating the same diagnostic, re-reading the same file, or trying variants of a failed fix — STOP and reassess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Exit code 2 = write rejected as not user-originated. Tell the user plainly; do not retry.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**BLOCKED** — Cannot proceed. State what is blocking and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If you have attempted a task 3 times without success, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you are uncertain about a security-sensitive change, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the scope of work exceeds what you can verify, STOP and escalate.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**3-strike rule:** If 3 hypotheses fail, **STOP**. Use AskUserQuestion:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**3+ failed fix attempts → STOP and question the architecture.** Wrong architecture, not failed hypothesis.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "BLOCKED — root cause unclear after investigation, escalated",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

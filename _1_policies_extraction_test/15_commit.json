@@ -1,0 +1,108 @@
+{
+  "name": "commit",
+  "mechanism": "Act",
+  "repo": "diegosouzapw/awesome-omni-skill",
+  "path": "skills/tools/commit-howarewoo/SKILL.md",
+  "author": {
+    "owner": "diegosouzapw",
+    "commit_author": "d8c1587f920f4897",
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00b437cb1004792562842dd8a74719d519aa8550.md",
+  "conclusion": "commit (Act) specifies 3 of 5 categories: 5 autonomy limits, 3 validation rules, 4 escalation rules; none for clarification rules, approval gates. Strongest: autonomy limits.",
+  "autonomy_limits": {
+    "conclusion": "5 autonomy limits (5 mandatory, 0 advisory; 1 conditional), mostly list: allowed tools; user confirmation at any step; pausing between tasks.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash(gt:*), Bash(git:status), Bash(git:diff), Bash(git:branch), Bash(gh:*), Bash(pnpm:*), Read",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**Do NOT ask for user confirmation** at any step",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do NOT pause** between tasks or wait for approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user specified specific files, stage only those files instead.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Always use `gt` commands** for branch/commit operations (never raw `git commit`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly heading: pre-commit checks; formatting and tests on changed files; pnpm pre-commit before committing.",
+    "statements": [
+      {
+        "quote": "Step 5: Run Pre-Commit Checks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Run formatting and tests on changed files:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Always run `pnpm pre-commit`** before committing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "4 escalation rules (4 mandatory, 0 advisory; 4 conditional), mostly list: critical errors; failing tests; PR submit failures.",
+    "statements": [
+      {
+        "quote": "**Only stop** if a critical error occurs",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If tests fail, report the failures and stop — do not commit broken code",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**PR submit fails**: If `gt submit` fails, report the error — the commit was still made successfully",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Pre-commit hook failure**: Fix formatting issues and retry. If tests fail, stop and report",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

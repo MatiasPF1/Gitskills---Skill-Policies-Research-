@@ -1,0 +1,83 @@
+{
+  "name": "investigate-ci",
+  "mechanism": "Ask",
+  "repo": "lhotari/pulsar-contributor-toolbox",
+  "path": "claude-code/skills/investigate-ci/SKILL.md",
+  "author": {
+    "owner": "lhotari",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0023f9c4faba5ff243a47e135b33b6859554eb18.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "investigate-ci (Ask) specifies 2 of 5 categories: 2 autonomy limits, 1 escalation rule; none for clarification rules, approval gates, validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "investigate-ci investigates failing GitHub Actions CI runs for a Java project, detecting Maven or Gradle, downloading logs and test reports, and summarizing the failures. It works on its own with a restricted tool set and only offers fixes, making no code changes until the user asks. It stops and asks the user when it cannot detect the build tool. It sets no approval gates and no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between front matter and running text. The front matter limits the agent to read-only tools and specific shell commands (`gh`, `git`, `python`, `unzip`, `find`, `grep`, `xmllint`). After presenting its findings it must not change any code until the user asks.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash(gh *), Bash(git *), Bash(python3 *), Bash(unzip *), Bash(find *), Bash(grep *), Bash(xmllint *), Bash(python *), Read, Glob, Grep",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Do NOT make any code changes automatically. Wait for the user to ask.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the agent cannot tell whether the branch builds with Maven or Gradle, it stops and asks the user instead of guessing.",
+    "statements": [
+      {
+        "quote": "If no signal could be obtained at all, stop and ask the user to clarify — do not guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

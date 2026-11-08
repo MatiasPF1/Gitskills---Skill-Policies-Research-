@@ -1,0 +1,66 @@
+{
+  "name": "create-slidedeck",
+  "mechanism": "Act",
+  "repo": "Uniquecrete/ThinkFasterv1",
+  "path": "Skills/zo-create-slidedeck/SKILL.md",
+  "author": {
+    "owner": "Uniquecrete",
+    "commit_author": null,
+    "declared": "rob.zo.computer"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01a1699ae50e35fab733ca48a0bf1a7ccc95b30c.md",
+  "topics": [
+    {
+      "topic": "Production Data",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "create-slidedeck (Act) specifies 3 of 5 categories: 1 clarification rule, 1 approval gate, 1 validation rule; none for autonomy limits, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "create-slidedeck turns reference material into a short, visually consistent slide deck: a style prototype image, one image per slide, and PowerPoint and PDF exports. The agent clarifies the deck's message with the user, waits for the cover slide to be approved before making the rest, and counts the work as done only when every slide is generated, exported and organized. It sets no limits on what the agent may do alone and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (0 mandatory, 1 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one rule, counted as a suggestion (it contains \"should\"), always on, in a bullet point. Before planning the deck, the agent clarifies with the user what the deck should communicate: the angle, insight or storyline to highlight.",
+    "statements": [
+      {
+        "quote": "Clarify what the user wants to communicate—what angle, insight, or storyline should the deck highlight.",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent moves on to the body slides only once the cover slide is approved.",
+    "statements": [
+      {
+        "quote": "Once the cover is approved, store it as `slide-00.png` in the deck folder, then proceed to the body slides.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. The agent follows every numbered step and does not stop until all slides have been generated, exported and organized.",
+    "statements": [
+      {
+        "quote": "Follow the numbered steps every time, and do not stop until all slides have been generated, exported, and organized.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

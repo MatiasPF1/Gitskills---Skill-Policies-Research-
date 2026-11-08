@@ -1,0 +1,152 @@
+{
+  "name": "jdi-issue",
+  "mechanism": "Act",
+  "repo": "slipalison/jdi-cli",
+  "path": "runtimes/antigravity/skills/jdi-issue/SKILL.md",
+  "author": {
+    "owner": "slipalison",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00b8c146b3947edbd73c335dd0ec931d9a6b5f10.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "jdi-issue (Act) specifies 3 of 5 categories: 4 autonomy limits, 3 validation rules, 9 escalation rules; none for clarification rules, approval gates. Strongest: escalation rules.",
+  "conclusion_qualitative": "jdi-issue turns an issue or task card into shipped work with a pull request, with no human in the loop until the pull request review. It never asks the user questions: it continues past the loop's human checkpoint on its own, but never ships failed work or merges the pull request. In place of a human it adds stricter checks, such as an executable check for every done criterion, a forced critic and an extra fix round for warnings. It stops and reports when the loop is killed or setup is missing, and lists unfixed warnings in the pull request. It has no clarification rules or approval gates.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, none tied to a situation, mostly bullet points. The front matter limits the agent (on Claude) to `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob` and `Agent`. Web research is capped at 2 lookups. At the loop's human checkpoint the agent does not ask but continues automatically, and stopped work is never shipped and the pull request is never merged by the tool.",
+    "statements": [
+      {
+        "quote": "allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent]",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Research caps apply as always (context7/web, max 2 lookups).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Follow the installed `/jdi-loop` process with ONE deviation, declared here: at the loop's human gate (iter cap or oscillation), do NOT ask — take the `Continue` branch automatically, appending `--- AU",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "invariant: killed/escalated work is NEVER shipped; the PR is NEVER merged by JDI; no gate of any chained command is weakened — autonomous mode only ADDS rigor (forced critic, warning fix round, deferr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. Every definition-of-done item must come with an executable check that proves it, the DoD critic (a reviewer sub-agent) is always run when sub-agents are available, and when warnings remain the agent does one extra fix pass followed by one re-check.",
+    "statements": [
+      {
+        "quote": "`dod=auto_only`: every DoD item MUST carry an executable `Verify:` (a command, grep, or file assertion that PROVES it).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Force the critic**: when following `/jdi-verify` (inside the loop), run Step 4.5 (DoD critic) whenever the runtime can spawn read-only sub-agents — regardless of `orchestration.mode`.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Autonomous mode does better: dispatch ONE extra doer pass targeting the warnings (`mode=fix_blockers` semantics, warnings as the work list), then ONE re-verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "9 escalation rules (8 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, 8 strict and 1 counted as a suggestion (it contains \"could\"), 1 tied to a situation, mostly bullet points. A killed loop (one that hit its retry limits) is a full stop: nothing is shipped and a stop report is written. When the card cannot be read, the project is not set up, or a needed command file is missing, the agent prints an instruction and exits. Warnings it could not fix are listed in the pull request body for the reviewer.",
+    "statements": [
+      {
+        "quote": "If rungs 1-2 both fail for a URL (no gh, no MCP): print ONE instruction — \"paste the card text: /jdi-issue \\\"<title>\\n<body>\\\"\" — and exit 0.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Not found → print the manual command and exit 0; never improvise another command's process.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "A killed loop is a FULL STOP — killed work is never shipped; autonomy ends where proof of quality ends.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Warnings persist → proceed, but every remaining warning is listed in the PR body under `## Shipped with warnings` (the PR reviewer sees exactly what the machine could not fix).",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Loop `killed` / `escalated` | NO ship. Full stop report with LOOP.md state",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "No `.jdi/` / no specialists → point to /jdi-new + /jdi-bootstrap",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tracker URL with neither gh nor a provider MCP → single paste instruction, exit clean",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Installed command file not found → print the manual command, exit 0",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Loop killed → full stop, audited, nothing shipped",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

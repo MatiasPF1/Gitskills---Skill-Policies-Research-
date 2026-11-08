@@ -1,0 +1,203 @@
+{
+  "name": null,
+  "mechanism": "Ask",
+  "repo": "Nikhilesh515/django-agentic-workflow",
+  "path": "skills/brainstorming/SKILL.md",
+  "author": {
+    "owner": "Nikhilesh515",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00551c0ea5f1c42f93d75fee443cc22410710069.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Ask) specifies 4 of 5 categories: 2 autonomy limits, 5 clarification rules, 7 approval gates, 10+ validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) is a brainstorming workflow that turns a vague request into an approved, written design before any plan or code. Its central rule is a hard gate: no implementation action until the user approves the design, section by section and then as a written spec. The agent asks one question at a time and proposes alternatives, self-reviews the spec, and confirms everything with a checklist. It hands off only to the planner and sets no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. After the spec is approved the agent hands off to the planner and must not invoke the implementer directly, and it must not propose unrelated refactoring.",
+    "statements": [
+      {
+        "quote": "Do NOT invoke the implementer directly.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT propose unrelated refactoring.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, all bullet points. The agent asks clarifying questions about purpose, constraints and success criteria one at a time, preferably multiple choice and never bundled. It proposes 2 to 3 approaches with trade-offs and its recommendation rather than a single option, and goes back to clarify whenever something does not make sense.",
+    "statements": [
+      {
+        "quote": "**Ask clarifying questions, one at a time** — purpose, constraints, success criteria. Prefer multiple choice. Never bundle multiple questions in one message.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Propose 2-3 approaches with trade-offs** — lead with your recommendation and why. Do not present a single option as the only way.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**One question at a time** — never overwhelm with a batch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Multiple choice preferred** — easier to answer than open-ended.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Be flexible** — go back and clarify when something doesn't make sense.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "7 approval gates (7 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 7 rules, all strict, 1 tied to a situation, mostly bullet points. The agent may not plan, code, scaffold or take any implementation action until it has presented a design and the user has approved it, however simple the request. It asks for approval after each design section, asks the user to review the written spec, and hands off to the planner only once the user approves.",
+    "statements": [
+      {
+        "quote": "Do NOT invoke the planner, write code, scaffold files, or take any implementation action until you have presented a design and the user has approved it. This applies to EVERY request regardless of per",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "The design can be short (a few sentences for truly simple changes), but you MUST present it and get approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After each section, ask whether it looks right so far.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Write the design doc** — save to `contexts/{feature-name}/00-spec.md` and ask the user to review it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Fix issues inline, then ask the user to review the file.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Transition** — once the user approves the spec, hand off to the `planner` agent (`/plan` or `agents/planner.md`) to produce `01-plan.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Incremental validation** — present section, get approval, continue.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. The agent self-reviews the written spec for placeholders, contradictions, scope creep and ambiguity, and a closing checklist confirms the context was explored, scope assessed, questions asked one at a time, approaches proposed, each section approved, the spec written and self-reviewed, and the user has reviewed it.",
+    "statements": [
+      {
+        "quote": "**Spec self-review** — scan the written spec for:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Checklist",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Project context explored (files, commits, conventions)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Scope assessed; decomposed if multi-subsystem",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Clarifying questions asked one at a time",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "2-3 approaches proposed with a recommendation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Design presented in sections, each approved",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "`contexts/{feature-name}/00-spec.md` written and committed",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Spec self-review passed (no placeholders / contradictions / ambiguity)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "User reviewed the spec file",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

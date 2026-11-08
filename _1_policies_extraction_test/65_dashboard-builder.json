@@ -1,0 +1,128 @@
+{
+  "name": "dashboard-builder",
+  "mechanism": "Escalate",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "data/dashboard-builder/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/0019612105af02d584244737088dbb7d27a91736.md",
+  "conclusion": "dashboard-builder (Escalate) specifies 5 of 5 categories: 1 autonomy limit, 4 clarification rules, 4 approval gates, 4 validation rules, 2 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list: writing SQL instead of letting Hex write it.",
+    "statements": [
+      {
+        "quote": "Do NOT write the SQL — let Hex handle it",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (4 mandatory, 0 advisory; 2 conditional), mostly list: feature inputs from the user; unclear funnel steps and unanswered Hex questions; inventing event names.",
+    "statements": [
+      {
+        "quote": "**Gather inputs from the user:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If unsure about funnel steps or retention events, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you DON'T know: ask the human user for clarification, then relay their answer to Hex",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never invent event names.** Only events from `shared/event-registry.yaml` or confirmed by user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly prose: confirming the Feature Brief and dashboard spec; approving feature-specific metrics.",
+    "statements": [
+      {
+        "quote": "DO NOT proceed to Phase 2 without user confirming the Feature Brief.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Propose feature-specific metrics to the user — they must approve before inclusion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "DO NOT proceed to Phase 3 without explicit user approval (\"yes\", \"go ahead\", \"approved\").",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never skip human approval.** Present spec → wait for approval → then build.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "4 validation rules (4 mandatory, 0 advisory; 0 conditional), mostly list: data quality checks after each query; final review of the Thread.",
+    "statements": [
+      {
+        "quote": "**Run data quality checks** after each query executes:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After each metric executes in Hex, review the results and check for:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do a final `get_thread` to review the complete Thread.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Always run data quality checks.** Review Hex's query results and flag issues.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list: SQL errors unresolved after two attempts.",
+    "statements": [
+      {
+        "quote": "If Hex reports SQL errors: help it debug by providing relevant column names or table structure from `shared/bq-schema.md`. If you can't resolve the error after 2 attempts, escalate to the human user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Correct Hex when wrong.** If Hex uses wrong columns, tables, or logic, provide the correct information from the shared files. Don't let bad queries go unchecked. If you can't fix it after 2 attempts",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "name": "manage",
+  "mechanism": "Escalate",
+  "repo": "ondrasek/cc-plugins",
+  "path": "plugins/github-releases/skills/manage/SKILL.md",
+  "author": {
+    "owner": "ondrasek",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0138fa66e9ebf10b5ca707e94e4ad241d4ada9de.md",
+  "topics": [
+    {
+      "topic": "CI/CD",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "clarification_rules"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "manage (Escalate) specifies 3 of 5 categories: 1 clarification rule, 5 approval gates, 1 validation rule; none for autonomy limits, escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "manage edits, publishes, deletes and manages the assets of existing GitHub releases. Every operation is previewed first and needs the user's approval, with explicit warnings and confirmation for irreversible deletions and for publishing. It sets no autonomy limits or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. When deleting a release, the agent asks whether the git tag should be deleted too.",
+    "statements": [
+      {
+        "quote": "Ask if they also want to delete the git tag",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "5 approval gates (5 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly bullet points. Every change is previewed and waits for the user's approval; the agent warns before irreversible deletions and before publishing, which triggers notifications and CI, and proceeds only after explicit confirmation.",
+    "statements": [
+      {
+        "quote": "**Always preview** changes and wait for user approval before modifying",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Warn before destructive actions** — deleting a release or asset is irreversible",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Wait for user approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Always warn**: Publishing triggers webhooks, notifications, and may trigger CI/CD workflows. Confirm with user before publishing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only proceed after explicit user confirmation",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. After an edit, the agent confirms the changes were applied.",
+    "statements": [
+      {
+        "quote": "Confirm changes applied",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

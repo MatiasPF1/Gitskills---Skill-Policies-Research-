@@ -1,0 +1,138 @@
+{
+  "name": "problem-spec",
+  "mechanism": "Ask",
+  "repo": "rolopez23/agent-harness",
+  "path": "skills/problem-spec/SKILL.md",
+  "author": {
+    "owner": "rolopez23",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/005d870dd427395436a75b4d479d827aab20626e.md",
+  "topics": [
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "problem-spec (Ask) specifies 3 of 5 categories: 10+ clarification rules, 2 approval gates, 1 validation rule; none for autonomy limits, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "problem-spec defines a problem precisely before any solution: goals, verifiable success criteria, scope boundaries and interfaces, written as a spec. Almost all of its rules are about asking: it never assumes and keeps questioning until nothing is ambiguous. The draft is stress-tested by subagents whose findings return to the user as questions. The spec is final only when the user signs off, and it sets no autonomy limits or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 6 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it contains \"should\"), 6 tied to a situation, mostly running text. The agent never assumes: it asks whenever anything is ambiguous and writes no spec until every open question is answered. It asks the user to describe the goal and moves on only after the user confirms its restatement, checks every noun and verb for ambiguity, asks one or two questions at a time, and gets a firm yes or no on every scope boundary. Stress-test findings go back to the user as questions.",
+    "statements": [
+      {
+        "quote": "**Never assume.** If anything is ambiguous, ask. A wrong assumption here costs far more than a clarifying question.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No partial specs.** Do not write the spec file until you have answers to every open question.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user to describe what they want to achieve.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not move on until you can restate the problem back in your own words and the user confirms it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you cannot translate it, that is the next clarifying question.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Go through every noun and verb in the problem statement and ask: \"Is this fully defined?\" If not, ask the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask one or two questions at a time — don't batch them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user is unsure whether something is in or out, it needs a decision now.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For each, get a yes/no from the user — not a \"we'll see\".",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Frame as questions** — even findings from the red team and pre-mortem should be presented as questions to the user, not verdicts",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a bullet point and running text. The agent asks the user to review the saved spec before any implementation, and the spec is done only when the user signs off.",
+    "statements": [
+      {
+        "quote": "Tell the user where the file was saved and ask them to review it before any implementation begins",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The spec is done when the user signs off.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent stress-tests the draft spec with three parallel subagents (pre-mortem, red team and Socratic review).",
+    "statements": [
+      {
+        "quote": "Dispatch three subagents in parallel against the draft.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

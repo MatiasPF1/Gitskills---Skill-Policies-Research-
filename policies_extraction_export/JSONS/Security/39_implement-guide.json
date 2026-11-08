@@ -1,0 +1,177 @@
+{
+  "name": "implement-guide",
+  "mechanism": "Act",
+  "repo": "nexuslabs-ai/nexus",
+  "path": ".claude/skills/implement-guide/SKILL.md",
+  "author": {
+    "owner": "nexuslabs-ai",
+    "commit_author": "35044cf582609101",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/017947adbfca24d35af851ccff8091d0e564b58f.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Scalability",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "implement-guide (Act) specifies 4 of 5 categories: 3 autonomy limits, 3 clarification rules, 2 approval gates, 8 validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "implement-guide drafts an implementation plan, has a council of reviewer subagents stress-test it, and then implements it in the main session, one phase at a time. The user must approve the revised plan before any implementation, after which the agent works through the phases without asking for confirmation. It never delegates implementation and never guesses how libraries work, raising ambiguity when blocked. It relies on the review council and on checks after each phase to verify its work. It has no rules for handling failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. The front matter limits the agent to a fixed tool set, including web search and fetch. Implementation is never handed to subagents, and once the plan is approved the agent commits after each phase and goes straight to the next without waiting for confirmation.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Grep, Glob, Bash, Edit, Write, WebSearch, WebFetch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Implementation is never delegated.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**After each phase: commit, then proceed immediately to the next phase. Do NOT wait for user confirmation between phases.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly bullet points. The agent must never guess how a library works but look it up before coding, and when blocked it raises the ambiguity instead of assuming.",
+    "statements": [
+      {
+        "quote": "This is mandatory -- do not guess how a library works.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Research before coding** -- look up libraries, never guess",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask when blocked** -- surface ambiguity rather than assuming",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both in running text. After presenting the revised plan, the agent waits for the user's approval before implementing, and starts implementing only once the user has approved.",
+    "statements": [
+      {
+        "quote": "**After presenting the revised plan and Council Delta: WAIT for user approval before implementing.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After user approves the plan, implement one phase at a time.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "8 validation rules (8 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 8 rules, all strict, none tied to a situation, mostly table rows. Before the user sees the plan, a council of four reviewer subagents checks it: whether the code it assumes really exists (verified by file and line), architecture and knock-on effects, needless complexity or duplication, and missing edge cases. Blocking findings must be fixed in the plan, and after each phase the agent runs its checks and fixes all errors before presenting a summary.",
+    "statements": [
+      {
+        "quote": "Before the user sees it, fan it out to a review council — independent subagents that each attack the plan from **one lens** and report gaps, wrong assumptions about existing code, and over-reach.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Codebase reality-check | `Explore` | Do the files, APIs, helpers, and patterns the plan assumes actually exist and behave as claimed? Every claim about existing code is verified `file:line`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Architecture & ripple | `principal-architect` | Integration points and callers/callees the plan ignores; whether the change respects the ripple-effect rule and the pre-production stage (delete, don't ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Simplicity & reuse | `sde2` | Over-engineering, speculative abstraction, a second copy of a helper that already exists, scope drifting past the issue. (`code-quality.md`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Edge cases & states | `tester` | Boundary inputs and failure modes the plan omits; missing loading / empty / error states; phases with no concrete verification step.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Blockers are never deferred** — a `blocker` is fixed in the revised plan, or the plan was wrong.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run after completing:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Fix all errors before presenting your summary.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "name": "autoresearch",
+  "mechanism": "Act",
+  "repo": "erfanzar/Xerxes-Agents",
+  "path": "xerxes/skills/autoresearch/SKILL.md",
+  "author": {
+    "owner": "erfanzar",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/0036fb0494de2d83b4c38db8e5fee7592ba6eb1c.md",
+  "conclusion": "autoresearch (Act) specifies 5 of 5 categories: 2 autonomy limits, 7 clarification rules, 3 approval gates, 5 validation rules, 4 escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list: git revert instead of git reset --hard; asking for help when stuck.",
+    "statements": [
+      {
+        "quote": "**Git is memory** — Every experiment committed with `experiment:` prefix. Use `git revert` (not `git reset --hard`) for rollbacks so failed experiments remain visible in history. Agent MUST read `git ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**When stuck, think harder** — Re-read files, re-read goal, combine near-misses, try radical changes. Don't ask for help unless truly blocked by missing access/permissions",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "7 clarification rules (7 mandatory, 0 advisory; 3 conditional), mostly prose: missing goal, scope, metric or verify; batched AskUserQuestion setup questions.",
+    "statements": [
+      {
+        "quote": "**If ANY required context is missing → you MUST use `AskUserQuestion` to collect it BEFORE proceeding to any execution phase.** DO NOT skip this step. DO NOT proceed without user input.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**YOU MUST NOT start any loop, phase, or execution without completing interactive setup when context is missing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Capture Goal** — ask what the user wants to improve (or accept inline text)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**CRITICAL: If ANY critical field is missing (Goal, Scope, Metric, Direction, or Verify), you MUST use `AskUserQuestion` to collect them interactively.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Scan the codebase first for smart defaults, then ask ALL questions in batched `AskUserQuestion` calls (max 4 per call).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Use a SINGLE `AskUserQuestion` call with these 4 questions:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**IMPORTANT:** You MUST call `AskUserQuestion` with batched questions — never ask one at a time, and never skip this step.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly list: launching the confirmed config; confirming the setup before the loop; running the GitHub star command.",
+    "statements": [
+      {
+        "quote": "**Confirm & Launch** — present the complete config, offer to launch immediately",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm and go** — Show user the setup, get confirmation, then BEGIN THE LOOP",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user: *\"If autoresearch helped, would you like to star the repo on GitHub to support the project? I can run `gh api -X PUT /user/starred/uditgoenka/autoresearch` for you.\"*",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly list: dry-running the verify command; baseline verification; mechanical metric verification only.",
+    "statements": [
+      {
+        "quote": "**Define Verify** — construct the shell command, **dry-run it**, confirm it works",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify command MUST pass a dry run on the current codebase before accepting",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**After Batch 2:** Dry-run the verify command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Establish baseline** — Run verification on current state AND guard (if set). Record as iteration #0",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Mechanical verification only** — No subjective \"looks good\". Use metrics",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "4 escalation rules (4 mandatory, 0 advisory; 3 conditional), mostly list: validation-fix loop unresolved after 3 retries; metric plateau after 15 iterations; failed verify commands and changes.",
+    "statements": [
+      {
+        "quote": "Validation-fix loop capped at 3 retries — escalates to user if unresolved",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If 15 consecutive measured iterations pass without a new best, the loop pauses and asks the user to decide: stop, continue, or change strategy.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it fails, ask user to fix or choose a different command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Automatic rollback** — Failed changes revert instantly. No debates",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

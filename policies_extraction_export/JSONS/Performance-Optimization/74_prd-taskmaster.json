@@ -1,0 +1,181 @@
+{
+  "name": "prd-taskmaster",
+  "mechanism": "Ask",
+  "repo": "bzellman/earp-kit",
+  "path": "skills/system/prd-taskmaster/SKILL.md",
+  "author": {
+    "owner": "bzellman",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0036926cd984f6d2ea6c61bd591d92f53c6a8f2b.md",
+  "topics": [
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "prd-taskmaster (Ask) specifies 4 of 5 categories: 2 autonomy limits, 3 clarification rules, 4 approval gates, 10+ validation rules; none for escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "prd-taskmaster generates a comprehensive product requirements document with no deferred scope, publishes it as a GitHub issue and triggers a spec-shaping skill for execution. It front-loads clarification, asking discovery questions one at a time, and confirms the detected scope and any auto-fixes with the user. It runs 14 automated quality checks on the document and works with a fixed tool set. It sets no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between front matter and bullet points. The front matter limits the agent to `Read`, `Write`, `Edit`, `Grep`, `Glob`, `Bash`, `AskUserQuestion` and `Skill`. When the user gives minimal answers, the agent uses its best guesses and documents the assumptions instead of asking more.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Read, Write, Edit, Grep, Glob, Bash, AskUserQuestion, Skill",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If user provides minimal answers, use best guesses and document assumptions",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. Clarifying questions come first, before execution. The agent asks the discovery questions interactively through `AskUserQuestion`, one at a time, but never asks about timelines as a way to cut scope.",
+    "statements": [
+      {
+        "quote": "Clarifying questions and pre-reqs come first, then execution runs to completion.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask questions interactively using AskUserQuestion. One question at a time.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEVER ask about timeline expectations as a way to reduce scope** — everything is must-deliver",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "4 approval gates (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly running text. The agent confirms the auto-detected engineering scope (iOS, backend, cloud infrastructure) with the user through `AskUserQuestion`, and when it auto-fixes deferred items flagged by validation it asks the user to confirm.",
+    "statements": [
+      {
+        "quote": "**Detect Scope** — Auto-detect iOS / Backend / GCP-Infra from PRD + repo, confirm with user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If validation fails on deferral checks:** Auto-fix by promoting deferred items to requirements or removing them entirely. Ask user to confirm.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Auto-detect from PRD content + repo structure, then confirm with user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Confirm with AskUserQuestion:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. The agent validates the PRD with 14 automated checks, including an executive summary, a problem statement with user and business impact, SMART goals, at least 3 acceptance criteria per user story, testable must-priority requirements and numbered requirements.",
+    "statements": [
+      {
+        "quote": "Step 4: Validate Quality (14 Automated Checks)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Executive summary exists (2-3 sentences)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Problem statement includes user AND business impact",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All goals have SMART metrics",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "User stories have acceptance criteria (minimum 3 per story)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Final acceptance criteria section exists",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All functional requirements are testable (not vague)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All requirements are Must priority (no Should/Could)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Requirements are numbered (REQ-001, REQ-002, etc.)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Technical considerations address architecture",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

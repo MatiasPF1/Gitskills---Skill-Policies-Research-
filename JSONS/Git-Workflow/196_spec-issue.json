@@ -1,0 +1,91 @@
+{
+  "name": "spec-issue",
+  "mechanism": "Escalate",
+  "repo": "omkmorendha/mcp-authkit",
+  "path": ".claude/skills/spec-issue/SKILL.md",
+  "author": {
+    "owner": "omkmorendha",
+    "commit_author": "21eea72032e5b4ab",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00e616149d6a68dc9ef7eea493be3ff1a695d46c.md",
+  "topics": [
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "spec-issue (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 1 clarification rule, 1 approval gate, 4 escalation rules; none for validation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "spec-issue turns a GitHub issue into an implementation plan: it validates the issue, creates a worktree and branch, researches the code and spec, and writes PLAN.md. It never edits code and waits for the user's approval before implementation. Closed, blocked or wrong issues and spec conflicts stop the work and go back to the user. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent never edits code in this skill; it only writes the plan.",
+    "statements": [
+      {
+        "quote": "Never edit code in this skill — PLAN.md only.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Risks and open questions must be answered before implementation starts.",
+    "statements": [
+      {
+        "quote": "Risks/open questions must be answered before `implement-issue` runs.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. After writing the plan, the agent stops and waits for the user to approve it or start implementation.",
+    "statements": [
+      {
+        "quote": "Wait for the user to approve or invoke `implement-issue`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "4 escalation rules (4 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, all tied to a situation, all bullet points. The agent stops and reports when the issue is not open or is blocked, stops and flags it when implementation would require changing the spec, and stops and asks when the issue itself looks wrong.",
+    "statements": [
+      {
+        "quote": "If state is not `OPEN`, stop and report.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If labeled `blocked` or has unmet `Blocked by:` deps that are still open, stop and report.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the issue cannot be implemented without changing the spec, stop and flag it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If you discover the issue is wrong (e.g., overlaps an already-merged issue), stop and ask before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

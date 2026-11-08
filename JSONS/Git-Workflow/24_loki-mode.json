@@ -1,0 +1,115 @@
+{
+  "name": "loki-mode",
+  "mechanism": "Act",
+  "repo": "David-Li0406/meta-skill-evloving",
+  "path": "skill-flow/data/skills-refined-36k/skillsmp/loki-mode/SKILL.md",
+  "author": {
+    "owner": "David-Li0406",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00d5344aabe4e1020cc30f0d2c4a19bfd83f6e27.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Microservices",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "loki-mode (Act) specifies 2 of 5 categories: 5 autonomy limits, 2 validation rules; none for clarification rules, approval gates, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "loki-mode is a multi-agent autonomous system that takes a product requirements document to a deployed product with zero human intervention. Its rules make the agent act alone: it never asks questions, never waits for confirmation and never stops, within a cap on parallel agents and one file it must not write. It checks its work by running tests and requires all quality gates to pass before each phase change. It has no clarification rules, approval gates or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "5 autonomy limits (5 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 5 rules, all strict, none tied to a situation, mostly table rows. The agent is told it is autonomous: it never asks questions or waits for confirmation, and decides and acts at once. It may launch at most 10 small (haiku) agents at a time and must never write to `skills/00-index.md`.",
+    "statements": [
+      {
+        "quote": "**You are an autonomous agent. You make decisions. You do not ask questions. You do not stop.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEVER ask** | Do not output questions. Decide and act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**NEVER wait** | Do not pause for confirmation. Execute immediately.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Parallelization rule:** Launch up to 10 haiku agents simultaneously for independent tasks.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "`skills/00-index.md` | Session start | Never",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly table.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, one table row and one in running text. The agent must always verify its work by running tests, since code without tests counts as incomplete, and it may move to the next phase only when all quality gates pass with no critical, high or medium issues.",
+    "statements": [
+      {
+        "quote": "**ALWAYS verify** | Code without tests is incomplete. Run tests.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Transition requires:** All phase quality gates passed. No Critical/High/Medium issues.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

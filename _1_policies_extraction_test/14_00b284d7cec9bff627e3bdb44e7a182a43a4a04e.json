@@ -1,0 +1,134 @@
+{
+  "name": null,
+  "mechanism": "Act",
+  "repo": "sagnikmitra/skills",
+  "path": "apps/skills-site/content/skills/graphify/skill.md",
+  "author": {
+    "owner": "sagnikmitra",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00b284d7cec9bff627e3bdb44e7a182a43a4a04e.md",
+  "conclusion": "unknown (Act) specifies 5 of 5 categories: 4 autonomy limits, 3 clarification rules, 1 approval gate, 1 validation rule, 7 escalation rules. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "4 autonomy limits (4 mandatory, 0 advisory; 0 conditional), mostly prose: asking the user for a path; Agent tool use and subagent type; HTML viz on large graphs without warning.",
+    "statements": [
+      {
+        "quote": "Do not ask the user for a path.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**MANDATORY: You MUST use the Agent tool here.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**IMPORTANT - subagent type:** Always use `subagent_type=\"general-purpose\"`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never run HTML viz on a graph with more than 5,000 nodes without warning the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "3 clarification rules (3 mandatory, 0 advisory; 3 conditional), mostly prose: choosing a subfolder for a large corpus; Neo4j credentials; graph lacking enough information.",
+    "statements": [
+      {
+        "quote": "If `total_words` > 2,000,000 OR `total_files` > 200: show the warning and the top 5 subdirectories by file count, then ask which subfolder to run on. Wait for the user's answer before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask the user for credentials if not provided:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the graph lacks enough information, say so - do not hallucinate edges.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly prose: tracing the suggested question on the graph.",
+    "statements": [
+      {
+        "quote": "If the user says yes, run `/graphify query \"[question]\"` on the graph and walk them through the answer using the graph structure - which nodes connect, which community boundaries get crossed, what the",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly list: chunk file existing on disk.",
+    "statements": [
+      {
+        "quote": "Check that `graphify-out/.graphify_chunk_NN.json` exists on disk — this is the success signal",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (7 mandatory, 0 advisory; 7 conditional), mostly list: no supported files found; failed transcriptions or subagent chunks; empty graph or failed add command.",
+    "statements": [
+      {
+        "quote": "If `total_files` is 0: stop with \"No supported files found in [path].\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If transcription fails for a file, print a warning and continue with the rest",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If the file is missing, the subagent was likely dispatched as read-only (Explore type) — print a warning: \"chunk N missing from disk — subagent may have been read-only. Re-run with general-purpose age",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If a subagent failed or returned invalid JSON, print a warning and skip that chunk - do not abort",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If more than half the chunks failed or are missing, stop and tell the user to re-run and ensure `subagent_type=\"general-purpose\"` is used.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If this step prints `ERROR: Graph is empty`, stop and tell the user what happened - do not proceed to labeling or visualization.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the command exits with an error, tell the user what went wrong - do not silently continue.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

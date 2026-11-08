@@ -1,0 +1,98 @@
+{
+  "name": "github-issue-quick-create",
+  "mechanism": "Escalate",
+  "repo": "marcellocurto/skills",
+  "path": "github-issue-quick-create/SKILL.md",
+  "author": {
+    "owner": "marcellocurto",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00b662be46266ceed780f01408649f2ddddd1752.md",
+  "topics": [],
+  "conclusion_quantitative": "github-issue-quick-create (Escalate) specifies 4 of 5 categories: 2 autonomy limits, 2 clarification rules, 3 approval gates, 2 escalation rules; none for validation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "github-issue-quick-create drafts one simple GitHub issue and creates it with `gh` after explicit approval. The agent asks only for missing essentials, uses only stated metadata and waits for the user's \"create\" before publishing. Pre-flight failures are reported without losing the draft. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a bullet point and running text. The agent uses only labels and assignees the user stated, inferring no other metadata and creating no labels.",
+    "statements": [
+      {
+        "quote": "Use only explicit labels and assignees. Do not infer other metadata or create labels.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Add `--repo`, `--assignee`, and repeated `--label` only when explicit and approved.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a bullet point and running text. The agent asks only for a missing essential (repository, expected outcome, behavior or a completion criterion) when it prevents a usable draft.",
+    "statements": [
+      {
+        "quote": "Ask only for a missing essential:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask only when a missing essential prevents a usable draft.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all in running text. The agent shows the draft, stops and waits, and creates the issue only after the user explicitly approves (replying \"create\").",
+    "statements": [
+      {
+        "quote": "End with: Reply \"create\" to create this issue, or tell me what to change.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Create only after explicit approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Stop after showing the draft and wait for approval.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all in running text. If the pre-flight check fails, the agent keeps the approved draft and reports the missing prerequisite, and after a failed command it never silently drops or replaces metadata.",
+    "statements": [
+      {
+        "quote": "If preflight fails, keep the approved draft intact and report the missing prerequisite.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not silently drop or replace invalid metadata after a failed command.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

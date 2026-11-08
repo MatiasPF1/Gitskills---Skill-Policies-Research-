@@ -1,0 +1,60 @@
+{
+  "name": "arc42-docs",
+  "mechanism": "Ask",
+  "repo": "h2nguyen/Arc42-Node-MCP-Server",
+  "path": ".claude/skills/arc42-docs-mcp/SKILL.md",
+  "author": {
+    "owner": "h2nguyen",
+    "commit_author": "98f20f86c65486e1",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/003b7be36841e8987e658bc0b379a51bc5bb41ed.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "arc42-docs (Ask) specifies 1 of 5 categories: 1 clarification rule; none for autonomy limits, approval gates, validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "arc42-docs guides use of the arc42 MCP server to create and maintain architecture documentation across the 12 arc42 sections. Most of its text is a tool reference; its one control rule is that the agent asks the user for project details instead of assuming them. It sets no approval gates, autonomy limits, checks on its own work or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Before writing any arc42 section the agent asks clarifying questions and never assumes project details, asking the user about their context, technologies and decisions.",
+    "statements": [
+      {
+        "quote": "**Ask clarifying questions** — never assume project details; ask the user about their specific context, technologies, and decisions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

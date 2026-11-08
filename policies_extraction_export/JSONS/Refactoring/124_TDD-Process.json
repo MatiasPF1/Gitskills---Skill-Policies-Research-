@@ -1,0 +1,174 @@
+{
+  "name": "TDD Process",
+  "mechanism": "Ask",
+  "repo": "audunstrand/status-app",
+  "path": ".github/skills/tdd-process/SKILL.md",
+  "author": {
+    "owner": "audunstrand",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/01470bf1f10e9716627d8b5cf8c4a2259fd3cc07.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "clarification_rules",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "TDD Process (Ask) specifies 5 of 5 categories: 1 autonomy limit, 2 clarification rules, 2 approval gates, 9 validation rules, 2 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "TDD Process enforces a strict test-driven development state machine (planning, red, green, refactor, verify, blocked), with the current state announced on every message. Its rules are mostly evidence checks: a meaningful failing test first, then real test, compile and lint runs before any transition. It runs tests without asking, but stops and waits for the user when blocked and asks permission to recover from a violation.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent does not ask permission to run tests; it just runs them.",
+    "statements": [
+      {
+        "quote": "Don't ask permission to run tests - just run them",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, both bullet points. While planning a test the agent asks clarifying questions when needed, and if a failure message is not precise it asks the user whether they want it improved.",
+    "statements": [
+      {
+        "quote": "Ask clarifying questions if needed",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Improve the code to produce a more explicit error message. Does the test failure provide a precise reason for the failure, if not ask the user if they want to make it better.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, both bullet points. After a state-machine violation the agent asks the user's permission to recover and returns to the correct state only if approved.",
+    "statements": [
+      {
+        "quote": "Ask user permission to recover",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If approved, return to correct state",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "9 validation rules (9 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 4 tied to a situation, mostly bullet points. The agent validates every state transition against evidence in its recent tool calls before responding, verifies the test fails for a meaningful reason, does not move to green until tests, compile and lint have actually run and passed, and never reports green while build or lint errors remain.",
+    "statements": [
+      {
+        "quote": "You MUST validate transitions before executing them.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "EVIDENCE CHECK - Verify evidence exists in your recent tool calls:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "ONLY AFTER VALIDATION PASSES: Write response",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "VERIFY test fails correctly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Repeat until you get a \"meaningful\" failure",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "DO NOT transition to GREEN until you have:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Confirm test command was executed (npm test, pytest, cargo test, etc.)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If ANY fail → Transition to BLOCKED or RED",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Never tell the user that the green phase is completed if there are build or lint errors. The definition of green is build, lint, and test are all green.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. In the blocked state the agent always stops and waits for the user's guidance.",
+    "statements": [
+      {
+        "quote": "STOP and wait for user guidance",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "🚨 ALWAYS stop and wait for user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "name": "long-research",
+  "mechanism": "Act",
+  "repo": "modbender/skill-library-mcp",
+  "path": "data/long-research/SKILL.md",
+  "author": {
+    "owner": "modbender",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/010d5a8c4fc542a48ebd3031288beb461a1219ed.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": []
+    },
+    {
+      "topic": "Privacy",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "long-research (Act) specifies 5 of 5 categories: 8 autonomy limits, 3 clarification rules, 6 approval gates, 10+ validation rules, 1 escalation rule. Strongest: validation rules.",
+  "conclusion_qualitative": "long-research does deep web research for a set length of time, reading pages rather than summarizing search results, and writes findings progressively to a file. The user must approve a pre-flight plan before any research starts, and the agent asks about the topic and the user's situation instead of assuming. Its rules strictly limit how often it may search compared with reading. It checks its work through source-verification rules, a time gate and a long self-audit before delivering, and it stops and re-orients when it drifts from the question.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "8 autonomy limits (8 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 5 tied to a situation, mostly running text. They limit how the agent searches: it may search only when its queue of pages to read is empty, never runs two searches in a row after the first phase, stays under a hard cap of 1.5 searches per committed minute, and stops searching when searches outnumber reads. It must not use `sleep` for more than 3 seconds or use `web_fetch` on Amazon.",
+    "statements": [
+      {
+        "quote": "Searching is only allowed when the URL queue is empty.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "SEARCH → SEARCH (never, unless in Seed)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Hard search cap:** Maximum searches = 1.5x committed minutes.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If you hit the cap, you are BLOCKED from searching for the rest of the session.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "At any checkpoint: if SEARCH_COUNT > 2x READ_COUNT → BLOCKED from searching until reads catch up.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If it says \"no\", stop searching and read.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Idle waiting / sleep commands** — NEVER use `sleep` for more than 3 seconds (browser-use page loads only).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**web_fetch on Amazon** — use browser-use with `--profile`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 2 tied to a situation, mostly bullet points. In the pre-flight checklist the agent asks for the research topic if it was not given, asks only the remaining questions if it was, and asks about the user's situation before starting instead of assuming hardware, location, budget or preferences.",
+    "statements": [
+      {
+        "quote": "If the user already provided a topic in their message, pre-fill it and ask the remaining questions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Topic** — What exactly to research. Get specific. If not provided yet, ask now.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Clarifying questions** — Ask anything about the user's situation BEFORE starting. Don't assume hardware, location, budget, preferences, etc.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 1 tied to a situation, mostly running text. Before any research tool call the agent confirms the plan with the user, posts a plan block and waits for explicit approval, and does not take implied approval or partial answers as a yes. If the user answers questions without saying to proceed, it posts the updated plan and asks again.",
+    "statements": [
+      {
+        "quote": "Before starting ANY research, confirm all of these with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**GATE: You MUST post the plan block below and receive explicit user approval before making ANY research tool calls.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not start research based on implied approval, partial answers, or \"just get going\" energy.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Post this and wait for approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user answers clarifying questions but doesn't say \"proceed/yes/go\", re-post the updated plan and ask again.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Skipping pre-flight** — plan block must be posted and approved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly bullet points. Every 5 tool calls the agent checks that its last action helps answer the exact question; user quotes must come from pages it actually fetched, and unverified claims may not appear in the recommendation or summary. It must pass a time check before writing its synthesis, hit at least one retailer for real prices, and complete a self-audit checklist, starting with real timestamps and the committed time, before delivering.",
+    "statements": [
+      {
+        "quote": "Every 5 tool calls, re-read it and ask: \"Does my last action directly help answer THIS question?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Real user quotes must come from pages you actually fetched.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**FIREWALL:** Unverified claims CANNOT appear in Recommendation or Executive Summary.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Before starting synthesis, you MUST run this check:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**If the check prints \"BLOCKED\":** You CANNOT synthesize.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**MUST hit at least one retailer** via browser-use for real pricing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**You CANNOT post the chat summary until every box is checked.** Run the audit, fix failures, THEN deliver.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "START_TS and END_TS set with `date +%s`",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All time reports used real `date +%s` (no guessing)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Time commitment honored — verify: final `date +%s` ≥ END_TS",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If the agent's last action does not help answer the user's question, it stops the current line of research and re-orients.",
+    "statements": [
+      {
+        "quote": "If no → STOP the current branch → re-orient.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

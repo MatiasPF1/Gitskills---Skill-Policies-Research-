@@ -1,0 +1,115 @@
+{
+  "name": "nextjs-cdk-deploy",
+  "mechanism": "Escalate",
+  "repo": "accolver/skill-maker",
+  "path": "workspaces/skill-maker-workspace/iteration-1/eval-nextjs-deploy-skill/with_skill/outputs/nextjs-cdk-deploy/SKILL.md",
+  "author": {
+    "owner": "accolver",
+    "commit_author": null,
+    "declared": "skill-maker"
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/0032d7f3279c82e41fece44c4af6775082dd0b43.md",
+  "conclusion": "nextjs-cdk-deploy (Escalate) specifies 4 of 5 categories: 2 autonomy limits, 4 approval gates, 5 validation rules, 2 escalation rules; none for clarification rules. Strongest: validation rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list: cdk destroy in production; skipping staging.",
+    "statements": [
+      {
+        "quote": "| Using `cdk destroy` instead of rollback              | Never destroy in production; use rollback strategies instead |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Staging before production, always.** Never skip staging. The approval gate exists because production outages cost real money and trust. Even \"trivial\" changes can break SSR or invalidate caches.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "4 approval gates (4 mandatory, 0 advisory; 0 conditional), mostly prose: production deployment without explicit approval; staging verification before production.",
+    "statements": [
+      {
+        "quote": "Before deploying to production, the user must explicitly approve.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Do NOT proceed to production deployment without explicit user approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after explicit approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "| Deploying to production without staging verification | Always deploy staging first and get explicit approval        |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 0 conditional), mostly list: reviewing cdk diff before deploy; verifying staging and production after deploy.",
+    "statements": [
+      {
+        "quote": "Review the diff output carefully.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "After deployment, verify staging works:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Verify the production URL loads correctly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "| Skipping `cdk diff` before deploy                    | Always review diff — unexpected deletions can cause outages  |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**Diff before deploy.** Always run and review `cdk diff` before `cdk deploy`. Unexpected resource deletions or security changes must be investigated, not rubber-stamped.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly prose: unexpected resources in the diff; issues found after the production deploy.",
+    "statements": [
+      {
+        "quote": "If unexpected resources appear (especially deletions), stop and investigate before deploying.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If issues are found, proceed to rollback immediately.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

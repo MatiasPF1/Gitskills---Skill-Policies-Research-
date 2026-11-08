@@ -1,0 +1,144 @@
+{
+  "name": "draft-user-story",
+  "mechanism": "Ask",
+  "repo": "sjmyuan/prompts",
+  "path": "skills/draft-user-story/SKILL.md",
+  "author": {
+    "owner": "sjmyuan",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/00c0cdd64ca4039846bd7a1773f4c019316d64ea.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "draft-user-story (Ask) specifies 3 of 5 categories: 10+ clarification rules, 1 approval gate, 3 validation rules; none for autonomy limits, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "draft-user-story helps the user write a user story with acceptance criteria, out-of-scope items and prerequisites. Its rules are almost all about checking in: each part is gathered through questions and confirmed by the user before the next one. The finished story is checked for consistency and against INVEST before being presented for final approval. It sets no autonomy limits or rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (10 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 3 tied to a situation, mostly bullet points. The agent builds the story step by step with the user: it asks about the user type when it is ambiguous, what the user wants to do and what problem it solves, and after each step (user, functionality, benefits, acceptance criteria, out-of-scope items and prerequisites) it summarizes and asks for confirmation before moving on.",
+    "statements": [
+      {
+        "quote": "Ask clarifying questions if the user type is ambiguous (e.g., \"Is this for an authenticated user or a guest?\")",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm User Definition**: Present a structured summary, state the defined user role and context, and request confirmation or refinements before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask \"What does the user want to do?\" to extract the core verb and action",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm Functionality**: Summarize the core action in plain language and request confirmation before proceeding to benefits.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask \"What problem does this solve?\" or \"What value does this deliver?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm Benefits**: Summarize the primary benefit in plain language and request confirmation before proceeding to acceptance criteria.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm Acceptance Criteria**: Present the criteria list in Given-When-Then format and request confirmation or additions before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm Out-of-Scope Items**: Present the list and request confirmation or additions before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Confirm Prerequisites**: Present the prerequisites list and request confirmation before finalizing the user story.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "When the user submits a requirement, apply **define-user** to gather information about the user. Confirm before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent presents the complete draft story for the user's final review and approval, offering to refine any section.",
+    "statements": [
+      {
+        "quote": "**Present for Final Approval**: Share the complete draft, ask the user to review and confirm, and offer to refine any section based on feedback.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. Before presenting the story the agent checks that the functionality, benefit, acceptance criteria and out-of-scope items are consistent, validates it against the INVEST criteria, and revises it if any criterion fails.",
+    "statements": [
+      {
+        "quote": "**Review for Consistency**: Verify the functionality matches the acceptance criteria, the benefit is supported by the functionality, and out-of-scope items don't contradict the acceptance criteria.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Validate Against INVEST Criteria**:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the story fails any criterion, revise it before presenting for final approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "name": "git-merge",
+  "mechanism": "Escalate",
+  "repo": "duc01226/EasyPlatform",
+  "path": ".agents/skills/git-merge/SKILL.md",
+  "author": {
+    "owner": "duc01226",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/009fb7b6d50770b08ce969b1011e83cea6df8ceb.md",
+  "topics": [
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "git-merge (Escalate) specifies 5 of 5 categories: 2 autonomy limits, 5 clarification rules, 2 approval gates, 4 validation rules, 2 escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "git-merge merges one branch into another with safety checks: sync with the remote, merge from the remote tracking branch, resolve conflicts and push. Most of the file is a shared protocol block on task tracking, evidence and avoiding AI mistakes. The merge itself needs the user's confirmation, ambiguity is surfaced rather than resolved silently, and missing tools stop the work and go to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and running text. The agent picks the workflow or skill itself instead of asking the user to choose, and never hand-edits the generated mirror files.",
+    "statements": [
+      {
+        "quote": "Do not ask the user to choose between direct execution, skill, standard workflow, or custom workflow.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "do not manually edit `.agents`, `.codex`, or `AGENTS.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The agent asks the user for any clarification it needs, asks whether to skip task tracking on simple tasks, asks why before changing existing values, and surfaces ambiguity instead of choosing silently.",
+    "statements": [
+      {
+        "quote": "If you need more clarifications, use a direct user question tool to ask the user for more details.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "For simple tasks, AI MUST ATTENTION ask user whether to skip.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Assume existing values are intentional — ask WHY before changing.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Surface ambiguity before acting — don't pick silently.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Surface ambiguity before coding — don't pick silently.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. A merge is destructive, so the agent always confirms with the user first, and it never skips, reorders or merges protocol steps without the user's explicit approval.",
+    "statements": [
+      {
+        "quote": "Do not skip, reorder, or merge protocol steps unless the user explicitly approves the deviation first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "WARNING: destructive operation -- always confirm with user first",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "4 validation rules (4 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, all in running text. The agent verifies generated content against source evidence and checks every affected output; every claim needs traced proof, and it stops only when observable checks pass.",
+    "statements": [
+      {
+        "quote": "**Verify generated content against source evidence.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Verify ALL affected outputs, not just the first.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Every claim needs traced proof, confidence >80% to act.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Goal-driven execution:** Define success criteria first, loop until verified, and stop only when observable checks pass.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, all bullet points. If a required step or tool cannot run, the agent stops and asks the user before adapting, and if the GitHub CLI is missing it tells the user to install and authorise it.",
+    "statements": [
+      {
+        "quote": "If a required step/tool cannot run in this environment, stop and ask the user before adapting.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `gh` command is not available, instruct the user to install and authorize GitHub CLI first.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

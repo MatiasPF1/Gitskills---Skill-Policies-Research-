@@ -1,0 +1,296 @@
+{
+  "name": null,
+  "mechanism": "Act",
+  "repo": "keturk/datrix",
+  "path": "claude-config/.claude/skills/operationalize-design/skill.md",
+  "author": {
+    "owner": "keturk",
+    "commit_author": "d66beb65ae5fd5a4",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/01a19234eaaa9fe742e7a6df89f9ae6a58ee572c.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Legacy Code",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "unknown (Act) specifies 4 of 5 categories: 10+ autonomy limits, 10+ clarification rules, 10+ validation rules, 6 escalation rules; none for approval gates. Strongest: autonomy limits.",
+  "conclusion_qualitative": "This skill (no name given; the file is named by its hash) turns a design document into resolved decisions, updated architecture docs and implementation task files across five phases, with the main agent deciding and cheaper subagents doing the reading and writing. Its strongest rule is a hard gate: no docs or tasks are produced while any question is open, questions are closed only by investigation, and named design alternatives always go to the user. Otherwise the agent runs each phase to completion without asking, never delegates decisions, writes tasks only to allowed folders and keeps the design document. It verifies each phase with checklists, and stops to explain any deviation from its instructions.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (9 mandatory, 1 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (its quoted question contains \"should\"), 2 tied to a situation, mostly bullet points. Within each phase the agent does not ask whether to continue or wait for approval of partial output, and it moves on automatically when every decision is backed by evidence, flagging medium-confidence ones for review. It must never hand a decision to a subagent, must write task files only inside the allowed framework project `.tasks` folders and never inside the customer project that holds the design document, and must not delete the design document.",
+    "statements": [
+      {
+        "quote": "Do NOT ask \"should I continue?\" mid-phase unless blocked",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT generate partial deliverables and wait for approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**If all questions have clear answers from the codebase (each backed by investigation, not assumption) AND the design presents no explicit alternatives** → proceed automatically.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Never delegate a decision.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**All HIGH** → proceed to Phase 3 automatically",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Any MEDIUM** → flag for review but proceed (include in final summary)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "The bindings that bite here: every task file path AND `dependencies.md` MUST begin with `D:\\datrix\\{project}\\.tasks\\` where `{project}` is one of the 15 allowlisted names; **the design document being ",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for approval mid-phase",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ask \"should I continue?\" after generating a subset of tasks",
+        "strength": "advisory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**NO deleting the design doc** — design docs are preserved as historical reference",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "10+ clarification rules (9 mandatory, 1 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (worded \"may NOT\"), 3 tied to a situation, all bullet points. No documentation or task work may start while any question or ambiguity remains open, and a question counts as resolved only by investigation, never by assumption. Named design alternatives (such as Option A or B) are always the user's decision: when questions remain unanswerable or an alternative is unchosen, the agent stops, presents its findings and a recommendation, and waits for the user to choose.",
+    "statements": [
+      {
+        "quote": "Before any official doc is edited (Phase 3) or any task is generated (Phase 4), there must be ZERO unresolved open questions and ZERO unresolved ambiguities.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "\"Resolved\" means resolved by **investigation, never by assumption.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "You may NOT declare \"no open questions\" unless you have investigated each one.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Explicit alternatives in the design (Option A/B, multiple named approaches) are ALWAYS user decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If, after genuine investigation, ANY question remains unanswerable from the codebase/docs, OR any explicit alternative remains unchosen → STOP.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Present each remaining item with your investigation findings and a recommendation, and WAIT for the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not enter Phase 3 or Phase 4 with any open item.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "WAIT for user to confirm or override",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "These are ALWAYS open questions that require user input, even when codebase patterns suggest one option",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "WAIT for user to choose — never auto-select",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "No approval gates found.",
+    "conclusion_qualitative": "The skill never tells the agent to get the user's permission or confirmation before doing something.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 1 tied to a situation, mostly bullet points. Every gate is decided by the agent on evidence it has checked itself, never on a subagent's report alone. A first-phase checklist requires the design document to be read in full, architecture docs cross-referenced, open questions investigated, decision points classified, scope and dependencies identified and the output in the exact format, followed by a self-check on whether it really investigated each question and checked the code.",
+    "statements": [
+      {
+        "quote": "Every gate in this skill is still **yours** and is decided on evidence you verify — a subagent's recon or self-report is input to your judgment, never a substitute for it.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Design document read in full",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "All architecture docs cross-referenced",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Open questions identified and investigated (not just listed)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Decision points classified correctly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Implementation scope determined",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Dependencies identified",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Output matches the format below exactly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Did I investigate each \"open question\" to determine if it's actually open?",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Did I check the codebase for existing patterns that resolve ambiguities?",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "6 escalation rules (6 mandatory, 0 advisory; 5 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 5 tied to a situation, mostly running text. At the end of every phase, if the agent finds it deviated from the instructions, it stops and explains the deviation to the user. If some design content could not be transferred, it reports what remains and why.",
+    "statements": [
+      {
+        "quote": "If you deviated: STOP and explain the deviation to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you deviated: STOP and explain the deviation to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you deviated: STOP and explain the deviation to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If you deviated: STOP and explain the deviation to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Report what remains and why it wasn't transferred",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If you deviated: STOP and explain the deviation to the user.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

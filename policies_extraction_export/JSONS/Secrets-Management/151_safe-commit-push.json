@@ -1,0 +1,239 @@
+{
+  "name": "safe-commit-push",
+  "mechanism": "Escalate",
+  "repo": "PR3MM/Agentic-skills",
+  "path": "git-pr/safe-commit-push/SKILL.md",
+  "author": {
+    "owner": "PR3MM",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/000262ba2de1490f8bc2193b1bdf2158454c1714.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "safe-commit-push (Escalate) specifies 4 of 5 categories: 6 autonomy limits, 5 clarification rules, 10+ approval gates, 8 escalation rules; none for validation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "safe-commit-push commits and pushes changes with full transparency, handling new branches, commits to existing branches, syncing with upstream, amending and pull-request handoff. Every destructive git action waits for the user's explicit approval, and the agent confirms the scenario, the commit message and the sync strategy with the user. Conflicts and failures are a full stop that returns control to the user. It sets no checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "6 autonomy limits (6 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, all strict, none tied to a situation, mostly bullet points. The agent never pushes to main or master, never commits secrets, never skips or retries around pre-commit hooks, and never resolves conflicts on its own.",
+    "statements": [
+      {
+        "quote": "**Never push to `main` or `master`** — always use a feature branch.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never commit secrets**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never skip pre-commit hooks** — no `--no-verify`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never auto-resolve.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never retry with `--no-verify`.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Never auto-resolve. Wait for the user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (5 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, evenly split between running text and bullet points. The agent confirms the detected scenario with the user, asks for a branch name when none is given, and when a push is rejected or the branch is behind it offers options and waits for the user to choose a strategy.",
+    "statements": [
+      {
+        "quote": "Based on pre-flight, auto-detect and confirm with the user:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user for a branch name if not provided.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Push rejected** (remote has new commits) → offer options:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never force push here. Wait for the user to choose.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "D3. Choose strategy (ask user)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "10+ approval gates (10 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 2 tied to a situation, mostly running text. Destructive actions such as force-push, hard reset, rebase or amending a pushed commit need the user's explicit approval; the agent asks before committing and before each rebase or force-push, amends only on request, and needs a specific double approval to amend a pushed commit.",
+    "statements": [
+      {
+        "quote": "**No destructive action without explicit approval.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Show and ask for approval before committing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after the user approves the message:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Before proceeding, require explicit approval:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after \"yes\" / \"approved\":",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only after approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only when the user explicitly asks to amend.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "E3. If already pushed (destructive — double approval)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "heading"
+      },
+      {
+        "quote": "Only after **explicit, specific** approval:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Uncommitted changes + need to switch** → offer: stash, commit first, or discard (discard requires approval).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "8 escalation rules (8 mandatory, 0 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 8 rules, all strict, 5 tied to a situation, mostly bullet points. On a merge conflict, a diverged main or a failed commit the agent stops, shows the problem and asks the user how to proceed. It warns when on main, when a commit was already pushed or in a detached HEAD, and tells the user when no origin remote exists.",
+    "statements": [
+      {
+        "quote": "**Conflict = full stop** — if any operation produces a merge conflict, stop immediately, show the conflicted files, and ask the user how to proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If `main`/`master`, warn — must create or switch branch.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "table"
+      },
+      {
+        "quote": "If `--ff-only` fails, **stop** — local main has diverged. Ask user before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the commit fails (pre-commit hook rejection, etc.), show the error and help fix it.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If conflicts → **full stop**.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Already pushed** → amending requires force-push. Warn prominently.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Detached HEAD** → warn; offer `git checkout -b <name>` or switch to existing branch. Do not commit in detached state.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**No `origin` remote** → tell user to add fork remote before pushing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

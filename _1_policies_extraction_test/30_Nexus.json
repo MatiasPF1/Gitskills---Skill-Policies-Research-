@@ -1,0 +1,200 @@
+{
+  "name": "Nexus",
+  "mechanism": "Act",
+  "repo": "David-Li0406/meta-skill-evloving",
+  "path": "skill-flow/data/skills-refined-agentskillos-36k/skillsmp/nexus-1/SKILL.md",
+  "author": {
+    "owner": "David-Li0406",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/01a1309ac2767e21e10449ce36c27ee0633d1db4.md",
+  "conclusion": "Nexus (Act) specifies 5 of 5 categories: 7 autonomy limits, 4 clarification rules, 2 approval gates, 5 validation rules, 9 escalation rules. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "7 autonomy limits (7 mandatory, 0 advisory; 0 conditional), mostly list: executing without confirmation by default; skipping confirmation in AUTORUN modes; AskUserQuestion prompts in full auto.",
+    "statements": [
+      {
+        "quote": "**Default mode is AUTORUN_FULL** - Execute automatically without confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**IMPORTANT**: In AUTORUN/AUTORUN_FULL mode, do NOT ask for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**CRITICAL: No confirmation required. Execute immediately without asking user.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion or any confirmation prompts",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Proceed directly to execution after chain design",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT use AskUserQuestion or any confirmation prompts for SIMPLE tasks",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Direct agent-to-agent handoffs are prohibited (agents only suggest \"Suggested next agent\")",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "4 clarification rules (4 mandatory, 0 advisory; 0 conditional), mostly list: ambiguous specs detected by Builder; blocking unknowns; missing prerequisites.",
+    "statements": [
+      {
+        "quote": "Builder detects ON_AMBIGUOUS_SPEC → Escalate to user or return to Spark for clarification",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Blocking unknowns → Ask user (max 5 questions)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Missing prerequisites → Pause task, confirm requirements",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Ambiguous acceptance criteria → Clarify with user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list: confirming before execution in GUIDED/INTERACTIVE; COMPLEX tasks in simple AUTORUN.",
+    "statements": [
+      {
+        "quote": "Only in GUIDED or INTERACTIVE mode, confirm before execution:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Only ask confirmation if task is COMPLEX (downgrade to GUIDED)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly list: success conditions after each step; running tests; confirming the build passes.",
+    "statements": [
+      {
+        "quote": "Verify success conditions",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Run tests (Radar equivalent)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Confirm build passes",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Security scan if applicable (Sentinel)",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "After all steps complete, verify acceptance criteria",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "9 escalation rules (9 mandatory, 0 advisory; 1 conditional), mostly list: file conflicts between parallel branches; test failures above 50%; critical security or data integrity risks.",
+    "statements": [
+      {
+        "quote": "If file conflicts detected, resolve or escalate",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "| L3 | PAUSE | test_failure>50%, breaking_change | Pause, attempt auto-recovery |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| L4 | ABORT | critical_security, data_integrity_risk | Immediate stop, rollback |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| test_failure>50% | L3 | Rollback to last checkpoint, re-decompose with Sherpa |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| breaking_change | L3 | Pause, verify with Atlas, require migration plan |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "test_failure≥50% → Rollback to last checkpoint, re-decompose with Sherpa",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Breaking change detected → Rollback, require migration plan",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Merge conflict in parallel execution → Rollback branch, resolve sequentially",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Recovery failed after 3 attempts → Request human guidance",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

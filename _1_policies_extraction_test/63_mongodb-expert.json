@@ -1,0 +1,121 @@
+{
+  "name": "mongodb-expert",
+  "mechanism": "Escalate",
+  "repo": "vitorsoratto/skills",
+  "path": "mongodb-expert/SKILL.md",
+  "author": {
+    "owner": "vitorsoratto",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Escalate/Found/0005bfdfffae9c0aa20b16c806c33b47bb41cc1c.md",
+  "conclusion": "mongodb-expert (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 5 clarification rules, 5 approval gates, 3 validation rules; none for escalation rules. Strongest: clarification rules.",
+  "autonomy_limits": {
+    "conclusion": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose: executing MongoDB operations from training data alone.",
+    "statements": [
+      {
+        "quote": "IRON LAW: NEVER recommend, configure, or execute ANY MongoDB operation based solely on training data.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "5 clarification rules (5 mandatory, 0 advisory; 3 conditional), mostly list: unverifiable facts, parameters and defaults; confirming the target version; majority reachability before rs.reconfig.",
+    "statements": [
+      {
+        "quote": "If you cannot verify a fact, say so explicitly — do NOT guess.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If not specified, default to 8.0 but ASK to confirm",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Hallucinate configuration parameters**: If unsure whether a parameter exists in the target version, SEARCH for it. Do NOT guess parameter names or values.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Assume defaults**: MongoDB defaults change between versions (e.g., WiredTiger cache size formula changed, default write concern changed to majority in 5.0+). ALWAYS verify defaults for the target ve",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Recommend rs.reconfig() without force analysis**: Ask: \"Is the majority of voting members reachable?\" Force reconfig can cause rollbacks and data loss.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion": "5 approval gates (5 mandatory, 0 advisory; 1 conditional), mostly table: medium and high risk operations; presenting findings before any action; executing configuration changes.",
+    "statements": [
+      {
+        "quote": "| Medium | ReplicaSet reconfig, oplog resize, WiredTiger cache change | ⚠️ Confirmation required |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "| High | Drop collection, stepDown primary, remove member, compact | ⛔ Explicit user approval + rollback plan |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "Present all research results to the user BEFORE taking any action.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "⚠️ Unless `--quick` was passed, do NOT proceed without user confirmation.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Execute only after explicit approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly prose: validating against official docs first; re-verifying on red flags; confirming a change took effect.",
+    "statements": [
+      {
+        "quote": "ALWAYS research and validate against official MongoDB documentation for the EXACT version in use FIRST.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Red Flags (STOP and re-verify if any appear):",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Run relevant diagnostic command to confirm the change took effect",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "No escalation rules found.",
+    "statements": []
+  }
+}

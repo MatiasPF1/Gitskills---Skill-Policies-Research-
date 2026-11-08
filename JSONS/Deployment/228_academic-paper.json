@@ -1,0 +1,101 @@
+{
+  "name": "academic-paper",
+  "mechanism": "Escalate",
+  "repo": "Liohtml/ultimate-skills",
+  "path": "research/skills/academic-paper/SKILL.md",
+  "author": {
+    "owner": "Liohtml",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/017d7fca2fce573602f137f488e2718f980ad19e.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "academic-paper (Escalate) specifies 4 of 5 categories: 1 clarification rule, 3 approval gates, 2 validation rules, 2 escalation rules; none for autonomy limits. Strongest: approval gates.",
+  "conclusion_qualitative": "academic-paper is a multi-agent pipeline for writing academic papers in several modes, from planning and literature review to drafting, revision and citation checks. The user confirms the configuration and approves the outline, critical review issues block progress, and citations must be verified. Unusable writer or evaluator phases abort and go to the user. It sets no autonomy limits.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "No autonomy limits found.",
+    "conclusion_qualitative": "The skill never forbids or restricts any action of the agent on files, commands, tools or other systems, and never tells it to go ahead without asking.",
+    "statements": []
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "1 clarification rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. Ambiguous input that spans phases is clarified before processing.",
+    "statements": [
+      {
+        "quote": "Ambiguous cross-phase input defaults to clarification before processing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly bullet points. The user must confirm the paper configuration before work starts and approve the outline before drafting, and any new content during revision needs explicit approval.",
+    "statements": [
+      {
+        "quote": "⚠️ **IRON RULE**: User must confirm Paper Configuration Record before proceeding to Phase 1",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Phase 2 -> 3**: User must approve outline (can request restructuring)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Revision addresses reviewer concerns only; new content requires explicit user approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "2 validation rules (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, evenly split between a bullet point and a table row. Critical peer-review issues block progression, and every citation must be verified by DOI or web search.",
+    "statements": [
+      {
+        "quote": "**Peer Review** Critical-severity issues block progression to Phase 7",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Every citation must be verified via DOI or WebSearch",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between running text and a bullet point. When the writer or evaluator phase becomes unusable after failed checks, the pipeline aborts and routes the decision to the user.",
+    "statements": [
+      {
+        "quote": "When a writer or evaluator phase becomes unusable (Phase Na lint twice fail OR Phase Nb lint fail), `academic-paper` emits a phase-level abort tag and routes to user intervention:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "when the writer or evaluator phase aborts via `[GENERATOR-PHASE-ABORTED]`, `academic-paper full` aborts and routes to user intervention.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

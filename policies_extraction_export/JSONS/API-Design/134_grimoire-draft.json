@@ -1,0 +1,135 @@
+{
+  "name": "grimoire-draft",
+  "mechanism": "Ask",
+  "repo": "jlissner/lissner.io",
+  "path": ".claude/skills/grimoire-draft/SKILL.md",
+  "author": {
+    "owner": "jlissner",
+    "commit_author": "72d35bce50226d98",
+    "declared": "kiwi-data"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/017c4952b9ce8c766ea6c35a386f4a1fffbfc281.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Incident Response",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "grimoire-draft (Ask) specifies 4 of 5 categories: 1 autonomy limit, 2 clarification rules, 3 approval gates, 3 validation rules; none for escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "grimoire-draft drafts the change artifacts (Gherkin feature files, decision records and a manifest) for a new or changed feature before planning. It asks one routing question when needed and researches on its own, but waits for the user's agreement at each step and approval before planning. The artifacts are validated before handoff. It sets no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The agent does the research on existing solutions itself instead of asking the user to do it.",
+    "statements": [
+      {
+        "quote": "Do not ask the user to research — do it yourself.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 2 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, evenly split between a bullet point and running text. When it is unclear what kind of change this is, the agent asks one clarifying question to route it, and defaults to drafting a feature if it is still unclear.",
+    "statements": [
+      {
+        "quote": "If unclear after one clarifying question, default to drafting a feature.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If unclear, ask the user one clarifying question to route correctly.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. The agent waits for the user's agreement on its research findings and confirmation of the requirements summary before proceeding, and does not move to planning without the user's approval of the draft.",
+    "statements": [
+      {
+        "quote": "Present findings to the user and wait for agreement before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present a Requirements Summary (template in the reference) and wait for user confirmation before proceeding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT proceed to plan stage without user approval",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all bullet points. The agent verifies that feature files are valid Gherkin, decision records have valid front matter and the manifest is complete and accurate.",
+    "statements": [
+      {
+        "quote": "Verify `.feature` files have valid Gherkin syntax",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify MADR records have valid YAML frontmatter (status, date)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Verify manifest is complete and accurate",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

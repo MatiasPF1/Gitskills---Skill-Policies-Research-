@@ -1,0 +1,315 @@
+{
+  "name": "ce:review",
+  "mechanism": "Act",
+  "repo": "xiaoyuge886/harness_assistance",
+  "path": "apps/agent-mesh/data/plugins/github/EveryInc-compound-engineering-plugin/plugins/compound-engineering/skills/ce-review/SKILL.md",
+  "author": {
+    "owner": "xiaoyuge886",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/00e9b674297ddd5a4285fc14a0f263762608e928.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Debugging",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "autonomy_limits",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Frontend",
+      "categories": []
+    },
+    {
+      "topic": "Code Review",
+      "categories": [
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "ce:review (Act) specifies 5 of 5 categories: 10+ autonomy limits, 5 clarification rules, 1 approval gate, 10+ validation rules, 10+ escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "ce:review runs a structured code review with several reviewer personas in parallel, then merges their findings into one report. In interactive mode the agent asks about unclear intent and policy decisions and applies risky fixes only after the user approves them; in its automatic modes it asks nothing but is limited to safe fixes, never commits or pushes, and must not switch the shared checkout. It checks its own report thoroughly, from schema validation to line-number accuracy. It stops with an error on conflicting options or missing base branches, and reports issues it could not fix after two rounds.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "10+ autonomy limits (10 mandatory, 0 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, 4 tied to a situation, all bullet points. In its non-interactive modes the agent skips all user questions and never pauses for approval or clarification. It applies only fixes classed as safe, never commits, pushes or opens a pull request in those modes, and in report-only mode never edits files or writes artifacts. It must not switch the shared checkout (the working copy other tools use) or run mutating reviews alongside browser testing on it, and in headless mode it creates no todo files.",
+    "statements": [
+      {
+        "quote": "**Skip all user questions.** Never pause for approval or clarification once scope has been established.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Apply only `safe_auto -> review-fixer` findings.** Leave `gated_auto`, `manual`, `human`, and `release` work unresolved.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never commit, push, or create a PR** from autofix mode. Parent workflows own those decisions.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Skip all user questions.** Infer intent conservatively if the diff metadata is thin.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Never edit files or externalize work.** Do not write `.context/compound-engineering/ce-review/<run-id>/`, do not create todo files, and do not commit, push, or create a PR.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not switch the shared checkout.** If the caller passes an explicit PR or branch target, `mode:report-only` must run in an isolated checkout/worktree or stop instead of running `gh pr checkout` / ",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not overlap mutating review with browser testing on the same checkout.** If a future orchestrator wants fixes, run the mutating review phase after browser testing or in an isolated checkout/workt",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Skip all user questions.** Never use the platform question tool (`AskUserQuestion` in Claude Code, `request_user_input` in Codex, `ask_user` in Gemini) or other interactive prompts. Infer intent con",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Apply only `safe_auto -> review-fixer` findings in a single pass.** No bounded re-review rounds. Leave `gated_auto`, `manual`, `human`, and `release` work unresolved and return them in the structure",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not create todo files.** The caller receives structured findings and routes downstream work itself.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "5 clarification rules (4 mandatory, 1 advisory; 4 conditional), mostly list.",
+    "conclusion_qualitative": "There are 5 rules, 4 strict and 1 counted as a suggestion (it contains \"could\"), 4 tied to a situation, mostly bullet points. In interactive mode, when the goal of the changes is unclear, the agent asks one question and does not start reviewers until it knows; it skips plan auto-discovery when the match is ambiguous rather than guess. It asks a policy question when findings needing a decision remain, waits for the user's choice if no question tool exists, and offers next steps at the end.",
+    "statements": [
+      {
+        "quote": "**Interactive mode:** Ask one question using the platform's interactive question tool (AskUserQuestion in Claude Code, request_user_input in Codex): \"What is the primary goal of these changes?\" Do not",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If multiple matches or the match looks ambiguous (e.g., generic keywords like `review`, `fix`, `update` that could hit many plans), **skip auto-discovery** — a wrong plan is worse than no plan.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Ask a policy question **using the platform's blocking question tool** (`AskUserQuestion` in Claude Code, `request_user_input` in Codex, `ask_user` in Gemini) only when `gated_auto` or `manual` finding",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If no blocking question tool is available, present the applicable numbered options as text and wait for the user's selection before proceeding.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Interactive mode only:** after the fix-review cycle completes (clean verdict or the user chose to stop), offer next steps based on the entry mode.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. Fixes that change behavior or other sensitive boundaries (`gated_auto` findings) are applied only after the user explicitly approves each item.",
+    "statements": [
+      {
+        "quote": "Only include `gated_auto` findings in the fixer queue after the user explicitly approves the specific items.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (9 mandatory, 1 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), 9 strict and 1 counted as a suggestion (it quotes \"consider\" and \"could\"), 1 tied to a situation, mostly bullet points. Critical (P0) findings must be fixed before merge, and fixes marked as needing verification are not complete without targeted tests or re-review. The agent checks that a found plan file exists, validates every reviewer's output against the schema, checks the report format, and before delivering verifies each finding is actionable, based on code it actually read, correctly rated and pointing to the right line.",
+    "statements": [
+      {
+        "quote": "**P0** | Critical breakage, exploitable vulnerability, data loss/corruption | Must fix before merge",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "**`requires_verification: true` means a fix is not complete without targeted tests, a focused re-review, or operational validation.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Always verify the selected file exists before using it — stale or copied plan links in PR descriptions are common.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Validate.** Check each output against the schema.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Format verification:** Before delivering the report, verify the findings sections use pipe-delimited table rows (`| # | File | Issue | ... |`) not freeform text.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Before delivering the review, verify:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Every finding is actionable.** Re-read each finding. If it says \"consider\", \"might want to\", or \"could be improved\" without a concrete fix, rewrite it with a specific action. Vague findings waste en",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**No false positives from skimming.** For each finding, verify the surrounding code was actually read. Check that the \"bug\" isn't handled elsewhere in the same function, that the \"unused import\" isn't",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Severity is calibrated.** A style nit is never P0. A SQL injection is never P3. Re-check every severity assignment.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Line numbers are accurate.** Verify each cited line number against the file content. A finding pointing to the wrong line is worse than no finding.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "10+ escalation rules (10 mandatory, 0 advisory; 10 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, all tied to a situation, mostly running text. The agent stops with an error when mode flags conflict, `base:` is combined with a target, or no diff scope can be found, and stops rather than falling back when the base branch cannot be resolved. It tells the user when uncommitted changes block a checkout, reports when all reviewers fail, and after two fix rounds hands off or reports any issues that remain.",
+    "statements": [
+      {
+        "quote": "**Conflicting mode flags:** If multiple mode tokens appear in arguments, stop and do not dispatch agents.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Require a determinable diff scope.** If headless mode cannot determine a diff scope (no branch, PR, or `base:` ref determinable without user interaction), emit `Review failed (headless mode). Reason",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If all reviewers fail or time out, emit `Code review degraded (headless mode). Reason: 0 of N reviewers returned results.` followed by \"Review complete\".",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "If both are present, stop with an error: \"Cannot use `base:` with a PR number or branch target — `base:` implies the current checkout is already the correct branch. Pass `base:` alone, or pass the tar",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the output is non-empty, inform the user: \"You have uncommitted changes on the current branch. Stash or commit them before reviewing a PR, or use standalone mode (no argument) to review the current",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the base ref still cannot be resolved from the PR's actual base repository after the fetch attempt, stop instead of falling back to `git diff HEAD`; a PR review without the PR base branch is incomp",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the output is non-empty, inform the user: \"You have uncommitted changes on the current branch. Stash or commit them before reviewing another branch, or provide a PR number instead.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the script outputs an error, stop instead of falling back to `git diff HEAD`; a branch review without the base branch would only show uncommitted changes and silently miss all committed work.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the script outputs an error, stop instead of falling back to `git diff HEAD`; a standalone review without the base branch would only show uncommitted changes and silently miss all committed work on",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If issues remain after the second round, stop and hand them off as residual work or report them as unresolved.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

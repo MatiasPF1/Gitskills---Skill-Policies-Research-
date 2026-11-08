@@ -1,0 +1,90 @@
+{
+  "name": "gstack-upgrade",
+  "mechanism": "Act",
+  "repo": "opencue/skills",
+  "path": "skills/gstack/gstack-upgrade/SKILL.md",
+  "author": {
+    "owner": "opencue",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Act/005f33bb81391b85b9c0d1bb64f0694294b55f8a.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "gstack-upgrade (Act) specifies 3 of 5 categories: 2 autonomy limits, 1 approval gate, 2 escalation rules; none for clarification rules, validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "gstack-upgrade upgrades the gstack toolkit to its latest version and shows what changed. The agent works with a small tool set and asks the user before upgrading, unless auto-upgrade is turned on, in which case it goes ahead alone. If setup fails, it restores the backup and warns the user. It gives no rules on asking for missing information or checking its work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly frontmatter.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, one in the front matter and one in running text. The front matter limits the agent to `Bash`, `Read`, `Write` and `AskUserQuestion`. When auto-upgrade is turned on, the agent skips the question and upgrades without asking.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash(Bash:*), Read, Write, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "**If `AUTO_UPGRADE=true` or `AUTO_UPGRADE=1`:** Skip AskUserQuestion.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent asks the user \"Upgrade now?\" before installing a new gstack version.",
+    "statements": [
+      {
+        "quote": "Question: \"gstack **v{new}** is available (you're on v{old}). Upgrade now?\"",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 2 rules, both strict, both tied to a situation, both in running text. If the `./setup` step fails, during an auto-upgrade or while syncing a local copy, the agent restores the previous version from the backup and warns the user.",
+    "statements": [
+      {
+        "quote": "If `./setup` fails during auto-upgrade, restore from backup (`.bak` directory) and warn the user: \"Auto-upgrade failed — restored previous version. Run `/gstack-upgrade` manually to retry.\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If `./setup` fails, restore from backup and warn the user:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

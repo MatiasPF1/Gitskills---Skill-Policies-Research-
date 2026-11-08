@@ -1,0 +1,98 @@
+{
+  "name": "self-review",
+  "mechanism": "Escalate",
+  "repo": "ammonfife/sakima.co",
+  "path": ".claude/skills/SELF-REVIEW/SKILL.md",
+  "author": {
+    "owner": "ammonfife",
+    "commit_author": "cca7a50f7f4c6ed5",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/01a37ade99b48deac96dcbda00d17eb4ceb3b0ea.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": []
+    },
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": []
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Documentation",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "self-review (Escalate) specifies 3 of 5 categories: 3 autonomy limits, 1 approval gate, 1 validation rule; none for clarification rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "self-review is a periodic behavior-correction scan in which a supervisor subagent checks the agent's recent turns against a catalogue of violation patterns and audits todo hygiene. Many of the patterns it flags are over-caution, such as asking permission or waiting for approval on reversible work, so its rules push toward autonomous execution, with one confirmation gate for large backlog cleanups. It sets no clarification rules or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, mostly running text. The skill pushes toward autonomy: hints are applied without asking for clarification, \"needs the user\" is treated as a copout when the agent has a path itself, and anything documented, reversible and non-destructive should simply be executed.",
+    "statements": [
+      {
+        "quote": "Don't ask for clarification; apply the hint as-stated.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**\"needs Ben\" is almost always a false copout (Ben 2026-06-09).**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "documented + reversible + no-permanent-destruction → EXECUTE",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in running text. If the scan finds more than 5 unverified backlog items, the agent stops and asks the user before running the triage.",
+    "statements": [
+      {
+        "quote": "**Batch-lift confirmation gate:** If the initial scan finds >5 unverified bullets across all sidecar files, STOP and ask Ben before running the triage",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "1 validation rule (1 mandatory, 0 advisory; 0 conditional), mostly prose.",
+    "conclusion_qualitative": "There is one strict rule, always on, in running text. The review must be performed by a separate supervisor subagent, not by the working agent grading its own turns.",
+    "statements": [
+      {
+        "quote": "**The review MUST be performed by a SEPARATE supervisor subagent, not by the working agent grading its own turns.**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

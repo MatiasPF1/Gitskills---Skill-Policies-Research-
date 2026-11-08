@@ -1,0 +1,188 @@
+{
+  "name": "a-comm-diagram",
+  "mechanism": "Ask",
+  "repo": "A-Comm-Tech/a-comm-claude-skills",
+  "path": "skills/a-comm-diagram/SKILL.md",
+  "author": {
+    "owner": "A-Comm-Tech",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0051523f81c6cf3b769bc4dba8114bcb1c02092a.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": []
+    },
+    {
+      "topic": "Security",
+      "categories": [
+        "escalation"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": []
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "a-comm-diagram (Ask) specifies 5 of 5 categories: 3 autonomy limits, 3 clarification rules, 2 approval gates, 3 validation rules, 9 escalation rules. Strongest: escalation rules.",
+  "conclusion_qualitative": "a-comm-diagram turns a description or Mermaid source into a diagram set (Mermaid source, an editable Excalidraw file and SVG/PNG renders) entirely offline. Its shared question-handling rules require explicit confirmation for destructive choices and forbid deciding silently when asking fails. The diagram work itself must be rendered and shown before it counts as done. Missing render bundles, render errors and unsupported diagram types are reported to the user, stopping the run when rendering is impossible.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. The front matter limits the agent to `Bash`, `Read`, `Write` and `AskUserQuestion`. If asking the user fails it must not silently decide instead, and it must not fall back to an online CDN, since working offline is the contract.",
+    "statements": [
+      {
+        "quote": "allowed-tools: Bash, Read, Write, AskUserQuestion",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "If AskUserQuestion is unavailable (no variant in your tool list) OR a call to it fails, do NOT silently auto-decide or write the decision to the plan file as a substitute.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not improvise a CDN fallback — offline is the contract.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, mostly running text. The agent asks which open question a bare-letter reply answers instead of guessing, stops and asks on high-stakes ambiguity with options and trade-offs, and says exactly what it needs when information is missing.",
+    "statements": [
+      {
+        "quote": "A bare letter maps to the single most-recent UNANSWERED brief; if more than one is open (a split chain), do NOT guess — ask which `D<N>.k` it answers.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "For high-stakes ambiguity (architecture, data model, destructive scope, missing context), STOP. Name it in one sentence, present 2-3 options with tradeoffs, and ask. Do not use for routine coding or o",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**NEEDS_CONTEXT** — missing info; state exactly what is needed.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between running text and a bullet point. Irreversible or destructive choices need an explicit typed confirmation and are never taken on a vague reply, and agreement between AI models is only a recommendation for the user to decide.",
+    "statements": [
+      {
+        "quote": "**One-way / destructive confirmations in prose.** When the decision is a one-way door (irreversible or destructive — delete, force-push, drop, overwrite), prose is a WEAKER gate than the tool, so make",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Cross-model agreement is a recommendation, not a decision. The user decides.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "3 validation rules (3 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, none tied to a situation, all bullet points. Done means completed with evidence: the agent never delivers a diagram without rendering it, and finishes only when the diagram files are delivered and shown.",
+    "statements": [
+      {
+        "quote": "**DONE** — completed with evidence.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Never ship the triplet without rendering it.** A `.mmd` file alone is not a diagram.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "DONE — triplet (or SVG/PNG pair + limitation note) delivered and shown.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "9 escalation rules (9 mandatory, 0 advisory; 3 conditional), mostly list.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 3 tied to a situation, mostly bullet points. The agent reports itself blocked when no one can answer a question, reports concerns and blockers, and escalates after 3 failed attempts, on security doubts or work it cannot verify. It tells the user when a diagram type cannot be made editable, stops and shows the build command when the render bundle is missing, shows render errors before fixing them, and stops when rendering is impossible.",
+    "statements": [
+      {
+        "quote": "`headless` → `BLOCKED — AskUserQuestion unavailable`; stop and wait (no human can answer).",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**DONE_WITH_CONCERNS** — completed, but list concerns.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**BLOCKED** — cannot proceed; state blocker and what was tried.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Escalate after 3 failed attempts, uncertain security-sensitive changes, or scope you cannot verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Sequence, state, gantt, and other mermaid types render to SVG/PNG fine, but the official converter only supports flowcharts — for those types the `.excalidraw` artifact is skipped and you MUST tell th",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If `BUNDLE_MISSING`: stop and show the user the build command.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If the mermaid render returns an error, show the parse error to the user, fix the mermaid, and retry — do not hand the user a broken source file.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If rendering is impossible (bundle missing, browse down), say so and stop.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "BLOCKED — bundle or browse unavailable; build/setup command surfaced.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "name": "writing-commit-messages",
+  "mechanism": "Escalate",
+  "repo": "kevinherron/agent-files",
+  "path": "skills/writing-commit-messages/SKILL.md",
+  "author": {
+    "owner": "kevinherron",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00411f90ed6293d6d7f39933024fbae4f1ef9637.md",
+  "topics": [
+    {
+      "topic": "Secrets Management",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Git Workflow",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Refactoring",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "writing-commit-messages (Escalate) specifies 3 of 5 categories: 3 autonomy limits, 3 approval gates, 1 escalation rule; none for clarification rules, validation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "writing-commit-messages turns session changes or staged work into well-structured git commits, with the diff as the main source of truth. The agent plans the commits, shows the files and messages, and commits only after the user's explicit approval. It stages specific files, avoids secrets and never pushes unless asked. It sets no clarification rules or checks on its own work.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "3 autonomy limits (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. The agent stages specific files only, never commits files that look like secrets, and does not push unless the user explicitly asks.",
+    "statements": [
+      {
+        "quote": "Stage specific files with `git add <file>` (never use `-A` or `.`)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Never commit files that look like secrets (.env, credentials, API keys)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do not push to remote unless the user explicitly asks",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "No clarification rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to ask the user for missing or unclear information, or to avoid guessing.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "3 approval gates (3 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all bullet points. The agent presents the planned commits and executes nothing until the user explicitly approves; any change to the plan resets the approval.",
+    "statements": [
+      {
+        "quote": "**Present your plan and wait for approval:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Do not execute until the user explicitly approves.** If the user requests changes, revise the plan and ask for approval again — every revision resets the approval.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Execute only after explicit approval:**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "1 escalation rule (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. If there is nothing to commit, the agent says so instead of creating an empty commit.",
+    "statements": [
+      {
+        "quote": "If there are no changes to commit, say so — don’t create empty commits",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  }
+}

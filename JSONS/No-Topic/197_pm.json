@@ -1,0 +1,73 @@
+{
+  "name": "pm",
+  "mechanism": "Escalate",
+  "repo": "MaxGzLi/claudeorc",
+  "path": "skills/pm/SKILL.md",
+  "author": {
+    "owner": "MaxGzLi",
+    "commit_author": "a6899435eb81f50d",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/00e9976fb9d7baf844338849e36c4b17101180c1.md",
+  "topics": [],
+  "conclusion_quantitative": "pm (Escalate) specifies 3 of 5 categories: 2 autonomy limits, 2 clarification rules, 1 approval gate; none for validation rules, escalation rules. Strongest: autonomy limits.",
+  "conclusion_qualitative": "pm acts as a product manager who turns a vague idea into a buildable spec (users, problem, scope, stories and acceptance criteria) through conversation. It asks one question at a time, stays out of technical design, and hands control back only after the user approves the spec. It sets no checks on its own work or rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "2 autonomy limits (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. The agent never proposes architecture, file structure or tech stack, and skips redundant questions when the idea is already well defined.",
+    "statements": [
+      {
+        "quote": "Never propose architecture, file structure, or tech stack — that's for later phases.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If the user's idea is already well-defined, skip to proposing scope — don't ask redundant questions.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "2 clarification rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, all bullet points. The agent asks what to build if no idea is given, then asks clarifying questions one at a time, waiting for each answer.",
+    "statements": [
+      {
+        "quote": "If empty, ask: \"What do you want to build?\"",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask clarifying questions — ONE AT A TIME.** Do not dump a list. Wait for each answer before asking the next.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "1 approval gate (1 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, tied to a situation, in a bullet point. The agent shows the written spec and does not proceed until the user explicitly approves it.",
+    "statements": [
+      {
+        "quote": "**Ask user to confirm.** Show the spec path and a summary. Wait for explicit approval. Do not proceed until confirmed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

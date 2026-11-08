@@ -1,0 +1,154 @@
+{
+  "name": "code-database",
+  "mechanism": "Escalate",
+  "repo": "PromptPasture/agent.md",
+  "path": "src/skills/software-engineering/code-database/SKILL.md",
+  "author": {
+    "owner": "PromptPasture",
+    "commit_author": null,
+    "declared": "Oleg Shulyakov"
+  },
+  "file": "Mechanisms/SWE_SKILLS/Escalate/0136a68a95aa2fb1511672cda3431fa072347f10.md",
+  "topics": [
+    {
+      "topic": "Database Migrations",
+      "categories": [
+        "autonomy_limits",
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Cloud",
+      "categories": []
+    },
+    {
+      "topic": "Production Data",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "code-database (Escalate) specifies 4 of 5 categories: 1 autonomy limit, 3 clarification rules, 6 approval gates, 5 validation rules; none for escalation rules. Strongest: approval gates.",
+  "conclusion_qualitative": "code-database generates SQL, migrations and ORM code in four phases: discover the stack, design confirmed schema and query contracts, build, and validate against a prioritized checklist. The user confirms the stack and contracts before code is written and must approve destructive or lossy schema changes. Every checklist failure is fixed before delivery. It sets no rules for escalating failures.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "1 autonomy limit (1 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There is one strict rule, always on, in a bullet point. The agent never modifies an applied migration but creates a new one.",
+    "statements": [
+      {
+        "quote": "Never modify an applied migration — create a new one",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 1 tied to a situation, all in running text. The agent confirms its summary of the detected stack, updates and re-confirms after corrections, and resolves ambiguity with one focused question at a time.",
+    "statements": [
+      {
+        "quote": "Present a concise summary and wait for confirmation before proceeding:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "If the user corrects any item, update and re-confirm.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Before drafting contracts, resolve any ambiguity with a single focused question. Do not ask more than one question at a time.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "6 approval gates (6 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 6 rules, all strict, 3 tied to a situation, mostly running text. A suggested default stack and the schema and query contracts need explicit confirmation before work moves on; destructive schema changes and data-loss risks must be confirmed with the user before the migration is written, and deferred checklist items are confirmed before closing.",
+    "statements": [
+      {
+        "quote": "If no stack files are found, suggest a default stack and wait for explicit user confirmation:",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not proceed to Design until the stack is confirmed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Present the schema and/or query contracts from steps 2.2–2.4, then wait for explicit confirmation before proceeding to Build.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Destructive schema changes (`DROP TABLE`, `DROP COLUMN`, `TRUNCATE`) were explicitly confirmed with the user before the migration was written",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Data loss risk identified and confirmed: column removal, column type coercion, adding `NOT NULL` to an existing column without a default — all flagged and acknowledged before writing",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "If any P2 or P3 item was deferred, state the reason and confirm it is acceptable before closing.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "5 validation rules (5 mandatory, 0 advisory; 1 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 5 rules, all strict, 1 tied to a situation, mostly running text. The agent runs the full quality checklist and fixes every failure until all items pass, with blocking items stopping delivery, never relies on unconfirmed indexes, and checks the output matches the confirmed contracts.",
+    "statements": [
+      {
+        "quote": "Do not write a query that depends on an index that is not confirmed to exist.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Loop:** Run the full checklist → fix each failure in Build → repeat from P0 until all items pass.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Do not report a failure and skip it — fix it before continuing.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "P0 failures block delivery.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All queries and schema match the confirmed Design contracts exactly",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

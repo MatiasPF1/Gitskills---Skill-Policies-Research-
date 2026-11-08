@@ -1,0 +1,262 @@
+{
+  "name": "eval",
+  "mechanism": "Ask",
+  "repo": "RelevanceAI/relevance-builder-kit",
+  "path": ".claude/skills/eval/SKILL.md",
+  "author": {
+    "owner": "RelevanceAI",
+    "commit_author": "3a0e75b8e07f561f",
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/003d8229f7a6ecf4b7ea72fdf7378b3f09d781bc.md",
+  "topics": [
+    {
+      "topic": "Deployment",
+      "categories": [
+        "autonomy_limits"
+      ]
+    },
+    {
+      "topic": "Production Data",
+      "categories": [
+        "approval_gates",
+        "validation"
+      ]
+    },
+    {
+      "topic": "Privacy",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Dependency Management",
+      "categories": []
+    },
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Performance Optimization",
+      "categories": [
+        "approval_gates"
+      ]
+    },
+    {
+      "topic": "Unit Test",
+      "categories": [
+        "validation"
+      ]
+    },
+    {
+      "topic": "Testing",
+      "categories": [
+        "clarification_rules",
+        "approval_gates",
+        "validation",
+        "escalation"
+      ]
+    }
+  ],
+  "conclusion_quantitative": "eval (Ask) specifies 5 of 5 categories: 4 autonomy limits, 3 clarification rules, 9 approval gates, 10+ validation rules, 2 escalation rules. Strongest: validation rules.",
+  "conclusion_qualitative": "eval generates test cases and runs platform evaluations on a Relevance AI agent, with a quick self-healing mode and a full user-reviewed mode, plus optional publish gates and production monitoring. In quick mode the agent fixes and re-runs on its own; in full mode and for gates and monitoring it waits for the user's confirmation. Go/no-go criteria and re-runs check the results. Platform failures and scores that stay low after 2 fixes are handed back to the user.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 2 tied to a situation, all in running text. In quick mode the agent skips the user's review of test cases and, when every run completed and the score is under 80%, fixes the agent's prompt and re-runs without waiting for the user. It auto-fixes only when all runs completed cleanly, and in full mode it only recommends changes, leaving the decisions to the user.",
+    "statements": [
+      {
+        "quote": "**For Quick mode:** skip review, proceed directly to Phase 3.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "**Precondition: only auto-fix when all runs completed cleanly.**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**If all runs completed AND score < 80% in Quick mode, automatically fix and re-run.** Do not wait for user input.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**In Full mode**, present recommendations but do not auto-fix. The user reviews and decides what to change, since Full mode is for pre-deployment validation where changes should be deliberate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "3 clarification rules (3 mandatory, 0 advisory; 3 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 3 rules, all strict, 3 tied to a situation, mostly running text. The agent asks the user whether to run a quick or full eval, whether to replace or add to an existing publish gate, and whether a lower monitoring sample rate is wanted for high-volume agents.",
+    "statements": [
+      {
+        "quote": "Ask the user which mode to use. Default to **Quick** unless the context suggests a full validation pass.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "If a `default_eval_config` already exists on the agent, ask the user: **replace** with the new test set, or **add** to the existing `test_set_ids` list (multiple test sets all run on publish, all must",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Ask the user if they want a lower rate for high-volume agents",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "9 approval gates (9 mandatory, 0 advisory; 2 conditional), mostly prose.",
+    "conclusion_qualitative": "There are 9 rules, all strict, 2 tied to a situation, mostly running text. In full mode the agent presents the test cases for review and waits for the user's confirmation. It asks before configuring a test set as the agent's publish gate, confirms the threshold and blocking behavior, and asks before enabling production monitoring, presenting the monitoring rules for confirmation.",
+    "statements": [
+      {
+        "quote": "**For Full mode only:** present the test cases as a table for user review:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for user confirmation before proceeding. Adjust if they request changes.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Step 1: Confirm with the user",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Ask: **\"Configure this test set as the agent's publish gate? Future publishes will run it automatically and block if the score is below the threshold.\"**",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Threshold score:** default `100` (all rules pass) for golden sets per BUILD_PRACTICES. Confirm with user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Block on failure:** default `true`. Confirm with user.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "After reporting results, ask: **\"Would you like to enable ongoing performance monitoring for production conversations?\"**",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Present rules for user review:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Wait for confirmation.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "10+ validation rules (10 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 10 or more rules (the first 10 are kept), all strict, none tied to a situation, mostly bullet points. After an auto-fix the agent re-runs the same test cases, only a passing eval may become a publish gate, and it re-fetches the agent to verify the gate was set. Before an agent is promoted it must meet go/no-go criteria: tool unit tests passing, at least 90% eval pass rate, 100% on safety cases and no regression from the previous baseline.",
+    "statements": [
+      {
+        "quote": "**Re-run the same test cases.** Trigger a new eval batch with the same `scenario_ids` (no need to recreate test cases)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Eval must have passed at the configured threshold.** Do NOT offer to wire a failing test set as a gate.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Step 4: Verify",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Re-fetch the agent and confirm `default_eval_config` is set as expected.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Gate Criteria (Go / No-Go)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "heading"
+      },
+      {
+        "quote": "Before promoting any agent from dev to staging or staging to production:",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "All tool unit tests pass (no empty responses, correct output format)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Platform eval pass rate >= 90%",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Safety test cases pass 100% (refusals, guardrails, PII handling)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "No regression from previous eval baseline",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion_quantitative": "2 escalation rules (2 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, 1 tied to a situation, evenly split between a bullet point and running text. When eval runs fail at the platform level the agent reports the failures and asks the user whether to retry, simplify or investigate. If the score is still under 80% after 2 fix attempts it reports the results and asks the user for guidance.",
+    "statements": [
+      {
+        "quote": "Instead: report the failures separately, list which test cases failed (use `relevance_list_eval_runs`), and ask the user whether to retry the failed cases as-is, simplify them (lower `max_turns`, simp",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Max 2 iterations.** If score is still < 80% after 2 fix attempts, report the results and ask the user for guidance.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      }
+    ]
+  }
+}

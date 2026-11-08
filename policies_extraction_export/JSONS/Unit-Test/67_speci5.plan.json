@@ -1,0 +1,128 @@
+{
+  "name": "speci5.plan",
+  "mechanism": "Ask",
+  "repo": "majiayu000/claude-skill-registry-data",
+  "path": "planning/speci5-plan/SKILL.md",
+  "author": {
+    "owner": "majiayu000",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/SWE_SKILLS/Ask/0030599956ac0f83e3e8c7c92c4d23e54d2accbd.md",
+  "topics": [
+    {
+      "topic": "API Design",
+      "categories": []
+    },
+    {
+      "topic": "Unit Test",
+      "categories": []
+    },
+    {
+      "topic": "Testing",
+      "categories": []
+    }
+  ],
+  "conclusion_quantitative": "speci5.plan (Ask) specifies 3 of 5 categories: 4 autonomy limits, 6 clarification rules, 2 approval gates; none for validation rules, escalation rules. Strongest: clarification rules.",
+  "conclusion_qualitative": "speci5.plan reads a story spec and analyzes the codebase to write a concrete implementation plan with specific tasks and unit-test tasks. It biases toward action, asking only when genuinely blocked, but lets the user pick the implementation approach and confirm the finished plan. Its hard limit is that it produces only plan files, never code or spec changes. It sets no checks on its own work and no rules for handling failure.",
+  "autonomy_limits": {
+    "conclusion_quantitative": "4 autonomy limits (4 mandatory, 0 advisory; 1 conditional), mostly list.",
+    "conclusion_qualitative": "There are 4 rules, all strict, 1 tied to a situation, mostly bullet points. The agent only writes plan files: it must not implement code, change the story or feature specs, create features or brainstorm. When the story and codebase give enough information it produces the plan directly.",
+    "statements": [
+      {
+        "quote": "Do NOT implement code, modify specs, create features, or brainstorm ideas.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "Do NOT modify `story.md` or `feature.md` — those are the **specify** skill's domain.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Do NOT implement the code — only produce the plan.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Bias toward action.** If the story and codebase give enough information, produce the plan directly.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion_quantitative": "6 clarification rules (5 mandatory, 1 advisory; 5 conditional), mostly list.",
+    "conclusion_qualitative": "There are 6 rules, 5 strict and 1 counted as a suggestion (it contains \"prefer\"), 5 tied to a situation, mostly bullet points. The agent asks questions only when genuinely blocked by ambiguous acceptance criteria or an open technical decision, one question at a time and preferably multiple choice. It proposes 2 to 3 implementation approaches with trade-offs and its recommendation for the user to choose from.",
+    "statements": [
+      {
+        "quote": "Only ask questions if the spec has genuine ambiguities that would lead to a wrong plan.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "**Only ask when genuinely blocked** — ambiguous acceptance criteria, multiple conflicting interpretations, or a technical decision with no clear answer.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**One question at a time** if you do need to ask.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Prefer multiple choice** when possible.",
+        "strength": "advisory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Ask clarifying questions (only if needed)** — If acceptance criteria are genuinely ambiguous or a technical decision has no clear answer from the codebase, ask. Otherwise, proceed.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "**Propose 2-3 implementation approaches** — Present different strategies with trade-offs (e.g., new module vs. extending existing, library vs. hand-rolled). Lead with your recommendation and explain w",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "approval_gates": {
+    "conclusion_quantitative": "2 approval gates (2 mandatory, 0 advisory; 0 conditional), mostly list.",
+    "conclusion_qualitative": "There are 2 rules, both strict, none tied to a situation, both bullet points. The agent writes the plan only once it is aligned with the user on the approach, and confirms with the user that the plan looks right before considering the job done.",
+    "statements": [
+      {
+        "quote": "**Write the plan** — Once aligned with the user, write ordered, actionable tasks to `.spec/features/<feature>/<story>/plan.md`.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Present for review** — Show the plan and confirm it looks right before considering the job done.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "validation": {
+    "conclusion_quantitative": "No validation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent to check its own work, such as running tests, or says when the work counts as done.",
+    "statements": []
+  },
+  "escalation": {
+    "conclusion_quantitative": "No escalation rules found.",
+    "conclusion_qualitative": "The skill never tells the agent what to do when something goes wrong, such as stopping or reporting an error to the user.",
+    "statements": []
+  }
+}

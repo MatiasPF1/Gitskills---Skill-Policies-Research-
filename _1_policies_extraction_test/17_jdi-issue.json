@@ -1,0 +1,108 @@
+{
+  "name": "jdi-issue",
+  "mechanism": "Act",
+  "repo": "slipalison/jdi-cli",
+  "path": "runtimes/antigravity/skills/jdi-issue/SKILL.md",
+  "author": {
+    "owner": "slipalison",
+    "commit_author": null,
+    "declared": null
+  },
+  "file": "Mechanisms/Mechanisms_Act/Found/00b8c146b3947edbd73c335dd0ec931d9a6b5f10.md",
+  "conclusion": "jdi-issue (Act) specifies 3 of 5 categories: 2 autonomy limits, 3 validation rules, 7 escalation rules; none for clarification rules, approval gates. Strongest: escalation rules.",
+  "autonomy_limits": {
+    "conclusion": "2 autonomy limits (2 mandatory, 0 advisory; 0 conditional), mostly frontmatter: Claude allowed tools; taking Continue at the loop's human gate.",
+    "statements": [
+      {
+        "quote": "allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Agent]",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "frontmatter"
+      },
+      {
+        "quote": "Follow the installed `/jdi-loop` process with ONE deviation, declared here: at the loop's human gate (iter cap or oscillation), do NOT ask — take the `Continue` branch automatically, appending `--- AU",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  },
+  "clarification_rules": {
+    "conclusion": "No clarification rules found.",
+    "statements": []
+  },
+  "approval_gates": {
+    "conclusion": "No approval gates found.",
+    "statements": []
+  },
+  "validation": {
+    "conclusion": "3 validation rules (3 mandatory, 0 advisory; 1 conditional), mostly list: executable Verify for every DoD item; forced DoD critic during verify; extra fix pass and re-verify for warnings.",
+    "statements": [
+      {
+        "quote": "`dod=auto_only`: every DoD item MUST carry an executable `Verify:` (a command, grep, or file assertion that PROVES it). Criteria that are inherently human (\"stakeholder approves the visual\") are NOT d",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "**Force the critic**: when following `/jdi-verify` (inside the loop), run Step 4.5 (DoD critic) whenever the runtime can spawn read-only sub-agents — regardless of `orchestration.mode`. No human is wa",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "list"
+      },
+      {
+        "quote": "Autonomous mode does better: dispatch ONE extra doer pass targeting the warnings (`mode=fix_blockers` semantics, warnings as the work list), then ONE re-verify.",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      }
+    ]
+  },
+  "escalation": {
+    "conclusion": "7 escalation rules (7 mandatory, 0 advisory; 1 conditional), mostly list: tracker unreadable without gh or MCP; installed command file not found; killed or escalated loop never shipped.",
+    "statements": [
+      {
+        "quote": "If rungs 1-2 both fail for a URL (no gh, no MCP): print ONE instruction — \"paste the card text: /jdi-issue \\\"<title>\\n<body>\\\"\" — and exit 0.",
+        "strength": "mandatory",
+        "conditional": true,
+        "form": "prose"
+      },
+      {
+        "quote": "Not found → print the manual command and exit 0; never improvise another command's process.)",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "prose"
+      },
+      {
+        "quote": "| Loop `killed` / `escalated` | NO ship. Full stop report with LOOP.md state |",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "table"
+      },
+      {
+        "quote": "invariant: killed/escalated work is NEVER shipped; the PR is NEVER merged by JDI; no gate of any chained command is weakened — autonomous mode only ADDS rigor (forced critic, warning fix round, deferr",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Tracker URL with neither gh nor a provider MCP → single paste instruction, exit clean",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Installed command file not found → print the manual command, exit 0",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      },
+      {
+        "quote": "Loop killed → full stop, audited, nothing shipped </errors>",
+        "strength": "mandatory",
+        "conditional": false,
+        "form": "list"
+      }
+    ]
+  }
+}
